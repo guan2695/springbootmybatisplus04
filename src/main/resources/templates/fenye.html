@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr><td>学号</td>  <td>姓名</td> <td>密码</td> <td colspan="2">操作</td></tr>
+    <#list listu as item>
+    <tr><td>${item.uid}</td>  <td><input type="text" name="uname" value="${item.uname}"></td>  <td><input name="upassword" value="${item.upassword}"></td><td><a href="delete?uid=${item.uid}"> 删除</a></td><td> <a href="update2?uid=${item.uid}">修改</a></td></tr>
+
+</#list>
+</table>
+<a href="fenye?pageindex=1">首页</a>
+<a href="fenye?pageindex=<#if pageindex gt 1>${pageindex-1}<#else>1</#if>">上一页</a>
+<a href="fenye?pageindex=<#if pageindex gte count>${count}<#else>${pageindex+1}</#if>">下一页</a>
+<a href="fenye?pageindex=${count}">末页</a>
+</body>
+</html>

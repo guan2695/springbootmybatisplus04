@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="css/succes.css">
+</head>
+<body>
+<table border="1">
+    <tr><td>学号</td>  <td>姓名</td> <td>密码</td> <td colspan="2">操作</td></tr>
+    <#list list as item>
+
+    <tr><td>${item.uid}</td>  <td><input type="text" name="uname" value="${item.uname}"></td>  <td><input name="upwd" value="${item.upwd}"></td><td><a href="delete?uid=${item.uid}"> 删除</a></td><td> <a href="update2?uid=${item.uid}">修改</a></td></tr>
+
+</#list>
+</table>
+<h1>ssss</h1>
+<a href="add.html"> 添加</a>
+</body>
+</html>
