@@ -1,6 +1,5 @@
 package com.zt.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zt.entity.Admin;
 import com.zt.mapper.Adminmapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,20 @@ import javax.servlet.http.HttpSession;
 public class Admincontroller {
     @Autowired
     private Adminmapper adminmapper;
+
+    /**
+     * 管理员登录
+     * @param admin
+     * @param model
+     * @param session
+     * @return
+     */
     @RequestMapping("/adminlogin")
-    public String adminlogin(Admin admin, Model model, HttpSession  session){
+    public String adminlogin(Admin admin, Model model, HttpSession session) {
         System.out.println("进入管理员登录");
-        Admin admin1= adminmapper.adminlogin(admin);
-        session.setAttribute("admin1",admin1);
-        if(admin1==null){
+        Admin admin1 = adminmapper.adminlogin(admin);
+        session.setAttribute("admin1", admin1);
+        if (admin1 == null) {
             return "error";
         }
         return "adminsuccess";

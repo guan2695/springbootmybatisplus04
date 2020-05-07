@@ -31,7 +31,7 @@ public class Car {
    private Cardseries cardseries;
    //一辆车六张图片
    private List<Images> imagesList;
-
+   //一个车对应一个用户
    private User user;
    //地区一对多
    private List<Address> addresslist;

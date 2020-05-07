@@ -18,23 +18,34 @@ public class Usercontroller {
     @Autowired
     private Usersmapper usersmapper;
 
-@RequestMapping("/free")
-    public String testfreemake(Model modelmap){
-    System.out.println(" --------Select--------- ");
-            List<User> list=usersmapper.selectList(null);
-    for (User users : list) {
-       // System.out.println(users.getUpassword());
-    }
-    modelmap.addAttribute("list",list);
-return "succes";
+    /**
+     * 得到所有用户
+     * @param modelmap
+     * @return
+     */
+    @RequestMapping("/selectAll")
+    public String testfreemake(Model modelmap) {
+        System.out.println(" --------Select--------- ");
+        List<User> list = usersmapper.selectList(null);
+        for (User users : list) {
+        }
+        modelmap.addAttribute("list", list);
+        return "succes";
 
-}
+    }
+
+    /**
+     * 用户登录
+     * @param modelmap
+     * @param user
+     * @return
+     */
     @RequestMapping("/login")
-    public String login(Model modelmap,User user){
+    public String login(Model modelmap, User user) {
         System.out.println(" --------login--------- ");
-        System.out.println("uname"+user.getUname());
-       User list2=usersmapper.selectlogin(user);
-        modelmap.addAttribute("list2",list2);
+        System.out.println("uname" + user.getUname());
+        User list2 = usersmapper.selectlogin(user);
+        modelmap.addAttribute("list2", list2);
         return "success";
 
     }

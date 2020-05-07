@@ -9,7 +9,7 @@ import java.util.List;
  * @create 2020-05-07 19:43
  */
 public interface Carmapper {
-    public List<Car> selectlimit ();
+    public List<Car> selectlimit();
 
 
 }

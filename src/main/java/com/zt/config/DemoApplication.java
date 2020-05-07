@@ -13,7 +13,8 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.zt.mapper")
 public class DemoApplication {
     @Bean
-    public PaginationInterceptor paginationInterceptor() {
+    public PaginationInterceptor paginationInterceptor()
+    {
         return new PaginationInterceptor();
     }
 
