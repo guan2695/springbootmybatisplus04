@@ -13,8 +13,17 @@ import java.util.List;
  */
 @Mapper
 public interface Usersmapper extends BaseMapper<User> {
-
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
     public User selectlogin(User user);
+
+    /**
+     * 查询所有用户
+     * @return
+     */
 
     public List<User> selectall();
 }

@@ -9,6 +9,10 @@ import java.util.List;
  * @create 2020-05-07 19:43
  */
 public interface Carmapper {
+    /**
+     * 首页查询九辆车
+     * @return
+     */
     public List<Car> selectlimit();
 
 

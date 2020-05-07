@@ -14,6 +14,8 @@ public class Buyershow {
     private String showmsg;
     //图片
     private String img;
+    //秀的时间
+    private String showtime;
 
     public Buyershow() {
     }
@@ -24,6 +26,14 @@ public class Buyershow {
 
     public void setShowid(int showid) {
         this.showid = showid;
+    }
+
+    public String getShowtime() {
+        return showtime;
+    }
+
+    public void setShowtime(String showtime) {
+        this.showtime = showtime;
     }
 
     public int getUid() {
@@ -75,6 +85,7 @@ public class Buyershow {
                 ", title='" + title + '\'' +
                 ", showmsg='" + showmsg + '\'' +
                 ", img='" + img + '\'' +
+                ", showtime='" + showtime + '\'' +
                 '}';
     }
 }

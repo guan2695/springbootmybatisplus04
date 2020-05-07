@@ -3,8 +3,19 @@
 <mapper namespace="com.zt.mapper.Carmapper">
 
 
-    <resultMap id="" type="">
-
+    <resultMap id="carinfo" type="com.zt.entity.Car">
+        <id property="cid" column="cid"></id>
+        <result property="bid" column="bid"></result>
+        <result property="csid" column="csid"></result>
+        <result property="corol" column="corol"></result>
+        <result property="uid" column="uid"></result>
+        <result property="oprice" column="oprice"></result>
+        <result property="price" column="price"></result>
+        <result property="putstate" column="putstate"></result>
+        <result property="assesstate" column="assesstate"></result>
+        <result property="address" column="address"></result>
+        <result property="carage" column="carage"></result>
+        <result property="img" column="img"></result>
 
 
     </resultMap>

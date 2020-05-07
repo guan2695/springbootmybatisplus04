@@ -12,5 +12,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface Adminmapper  extends BaseMapper<Admin> {
+    /**
+     * 管理员登录
+     * @param admin
+     * @return
+     */
     public Admin adminlogin(Admin admin);
 }
