@@ -1,10 +1,7 @@
 package com.zt.mapper;
 
 import com.zt.entity.Brand;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -31,4 +28,29 @@ public interface BrandMapper {
             @Result(column = "bid",property = "cardseries",many = @Many(select = "com.zt.mapper.CardseriesMapper.getCardSeriesByBrand"))
     })
     public Brand getOneBrandById(int bid);
+
+    /**
+     * 修改车品牌
+     * @param bname
+     * @param bid
+     * @return
+     */
+    @Update("UPDATE brand SET bname=#{bname} where bid=#{bid}")
+    public int updatebrand(@Param("bname") String bname,@Param("bid") int bid);
+
+    /**
+     * 添加品牌
+     * @param bname
+     * @return
+     */
+    @Insert("INSERT INTO brand(bname) VALUE (#{bname})")
+    public int insertbrand(@Param("bname") String bname);
+
+    /**
+     * 删除品牌
+     * @param bid
+     * @return
+     */
+    @Delete("DELETE FROM brand WHERE bid = #{bid}")
+    public int deletebrand(@Param("bid") int bid);
 }
