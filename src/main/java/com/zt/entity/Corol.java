@@ -5,7 +5,7 @@ package com.zt.entity;
  * @create 2020-05-07 17:18
  */
 public class Corol {
-    private  int  corolid;
+    private int corolid;
     private String corol;
 
     public Corol() {

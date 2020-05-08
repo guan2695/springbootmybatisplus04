@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<mapper namespace="com.zt.mapper.Usersmapper">
+<mapper namespace="com.zt.mapper.UsersMapper">
 
-<select id="selectlogin" resultType="com.zt.entity.User" parameterType="com.zt.entity.User">
-SELECT * FROM user WHERE uname=#{uname} and upwd=#{upwd}
-</select>
+    <select id="selectlogin" resultType="com.zt.entity.User" parameterType="com.zt.entity.User">
+        SELECT * FROM user WHERE uname=#{uname} and upwd=#{upwd}
+    </select>
 
     <select id="selectall" resultType="com.zt.entity.User" >
         SELECT * FROM user
     </select>
+    <!--注册-->
+    <insert id="userregister" parameterType="com.zt.entity.User">
+        INSERT INTO USER (uname,upwd,phone)
+        VALUES
+        (#{uname},#{upwd},#{phone})
+    </insert>
 
 </mapper>

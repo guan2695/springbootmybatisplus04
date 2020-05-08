@@ -10,7 +10,7 @@ public class Car {
      private int cid;
     private int bid;
     private int csid;
-    private int corol;
+    private int corolid;
     //车主
     private int uid;
     private Double oprice;
@@ -19,7 +19,7 @@ public class Car {
     private int putstate;
    // 地区外键
     private int assesstate;
-
+    private int addressid;
     //车龄
     private int carage;
     //车图片
@@ -34,8 +34,32 @@ public class Car {
    //一个车对应一个用户
    private User user;
    //地区一对多
-   private List<Address> addresslist;
+   private Address address;
+   private Corol corol;
 
+    public Corol getCorolz() {
+        return corol;
+    }
+
+    public void setCorolz(Corol corolz) {
+        this.corol = corolz;
+    }
+
+    public int getAddressid() {
+        return addressid;
+    }
+
+    public void setAddressid(int addressid) {
+        this.addressid = addressid;
+    }
+
+    public Corol getCorol() {
+        return corol;
+    }
+
+    public void setCorol(Corol corol) {
+        this.corol = corol;
+    }
 
     public Brand getBrand() {
         return brand;
@@ -69,12 +93,12 @@ public class Car {
         this.user = user;
     }
 
-    public List<Address> getAddresslist() {
-        return addresslist;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddresslist(List<Address> addresslist) {
-        this.addresslist = addresslist;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Car() {
@@ -104,12 +128,12 @@ public class Car {
         this.csid = csid;
     }
 
-    public int getCorol() {
-        return corol;
+    public int getCorolid() {
+        return corolid;
     }
 
-    public void setCorol(int corol) {
-        this.corol = corol;
+    public void setCorolid(int corolid) {
+        this.corolid = corolid;
     }
 
     public int getUid() {
@@ -174,19 +198,21 @@ public class Car {
                 "cid=" + cid +
                 ", bid=" + bid +
                 ", csid=" + csid +
-                ", corol=" + corol +
+                ", corolid=" + corolid +
                 ", uid=" + uid +
                 ", oprice=" + oprice +
                 ", price=" + price +
                 ", putstate=" + putstate +
                 ", assesstate=" + assesstate +
+                ", addressid=" + addressid +
                 ", carage=" + carage +
                 ", img='" + img + '\'' +
                 ", brand=" + brand +
                 ", cardseries=" + cardseries +
                 ", imagesList=" + imagesList +
                 ", user=" + user +
-                ", addresslist=" + addresslist +
+                ", address=" + address +
+                ", corol=" + corol +
                 '}';
     }
 }

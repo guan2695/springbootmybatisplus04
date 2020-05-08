@@ -1,7 +1,7 @@
 package com.zt.controller;
 
 import com.zt.entity.User;
-import com.zt.mapper.Usersmapper;
+import com.zt.mapper.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +14,13 @@ import java.util.List;
  * @create 2020-04-24 14:54
  */
 @Controller
-public class Usercontroller {
+public class UserController {
     @Autowired
-    private Usersmapper usersmapper;
+    private UsersMapper usersmapper;
 
     /**
      * 得到所有用户
+     *
      * @param modelmap
      * @return
      */
@@ -36,6 +37,7 @@ public class Usercontroller {
 
     /**
      * 用户登录
+     *
      * @param modelmap
      * @param user
      * @return
@@ -48,6 +50,24 @@ public class Usercontroller {
         modelmap.addAttribute("list2", list2);
         return "success";
 
+    }
+
+    /**
+     * 用户注册
+     * @param user
+     * @param model
+     * @return
+     */
+
+    @RequestMapping("/register")
+    public String add(User user, Model model) {
+        System.out.println("页面传送的uname是" + user.getUname());
+        int num = usersmapper.userregister(user);
+        System.out.println("num的值为" + num);
+        if (num == 0) {
+            return "login";
+        }
+        return "login";
     }
 //    @RequestMapping("/delete")
 //    public String delete(Users users){
@@ -102,19 +122,7 @@ public class Usercontroller {
 //    }
 //
 //
-//    @RequestMapping("/add")
-//    public String add(Users users,Model model){
-//        System.out.println("add()");
-//        System.out.println("页面传送的uid是"+users.getUid());
-//        System.out.println("页面传送的uname是"+users.getUname());
-//
-//        int num= usersmapper.insert(users);
-//        System.out.println("num的值为"+num);
-//        if(num==0){
-//            return "succes";
-//        }
-//        return  "forward:/free";
-//    }
+
 //    //分页
 //    @RequestMapping("fenye")
 //    public String fentye(Integer pageindex,Model model){

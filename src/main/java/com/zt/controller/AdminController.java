@@ -1,7 +1,7 @@
 package com.zt.controller;
 
 import com.zt.entity.Admin;
-import com.zt.mapper.Adminmapper;
+import com.zt.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +14,9 @@ import javax.servlet.http.HttpSession;
  * @create 2020-05-07 19:08
  */
 @Controller
-public class Admincontroller {
+public class AdminController {
     @Autowired
-    private Adminmapper adminmapper;
+    private AdminMapper adminmapper;
 
     /**
      * 管理员登录

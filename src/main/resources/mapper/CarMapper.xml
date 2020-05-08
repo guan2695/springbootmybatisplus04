@@ -1,29 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<mapper namespace="com.zt.mapper.Carmapper">
+<mapper namespace="com.zt.mapper.CarMapper">
 
 
     <resultMap id="carinfo" type="com.zt.entity.Car">
         <id property="cid" column="cid"></id>
         <result property="bid" column="bid"></result>
         <result property="csid" column="csid"></result>
-        <result property="corol" column="corol"></result>
+        <result property="corolid" column="corolid"></result>
         <result property="uid" column="uid"></result>
         <result property="oprice" column="oprice"></result>
         <result property="price" column="price"></result>
         <result property="putstate" column="putstate"></result>
         <result property="assesstate" column="assesstate"></result>
-        <result property="address" column="address"></result>
+        <result property="addressid" column="addressid"></result>
         <result property="carage" column="carage"></result>
         <result property="img" column="img"></result>
-
+        <!--一对多-->
+        <association property="brand" javaType="com.zt.entity.Brand">
+            <id property="bid" column="bid"></id>
+            <result property="bname" column="bname"></result>
+        </association>
+        <association property="cardseries" javaType="com.zt.entity.Cardseries">
+            <id property="csid" column="csid"></id>
+            <result property="bid" column="bid"></result>
+            <result property="csname" column="csname"></result>
+        </association>
+        <association property="user" javaType="com.zt.entity.User">
+            <id property="uid" column="uid"></id>
+            <result property="uname" column="uname"></result>
+            <result property="upwd" column="upwd"></result>
+            <result property="money" column="money"></result>
+            <result property="phone" column="phone"></result>
+        </association>
+        <association property="corol" javaType="com.zt.entity.Corol">
+            <id property="corolid" column="corolid"></id>
+            <result property="corol" column="corol"></result>
+        </association>
+        <association property="address" javaType="com.zt.entity.Address">
+            <id property="addid" column="addid"></id>
+            <result property="address" column="address"></result>
+        </association>
+        <collection property="imagesList" ofType="com.zt.entity.Images">
+            <id property="iid" column="iid"></id>
+            <result property="cid" column="cid"></result>
+            <result property="src" column="src"></result>
+        </collection>
 
     </resultMap>
 
-<select id="selectlimit" resultMap="carinfo" parameterType="com.zt.entity.Car">
-
-</select>
-
+    <select id="selectlimit" resultMap="carinfo">
+        SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
+        FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
+        AND c.putstate=1
+        GROUP BY c.cid
+        LIMIT 0,9
+    </select>
 
 
 </mapper>

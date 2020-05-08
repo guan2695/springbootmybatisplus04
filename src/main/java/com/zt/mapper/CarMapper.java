@@ -8,7 +8,7 @@ import java.util.List;
  * @author guan
  * @create 2020-05-07 19:43
  */
-public interface Carmapper {
+public interface CarMapper {
     /**
      * 首页查询九辆车
      * @return

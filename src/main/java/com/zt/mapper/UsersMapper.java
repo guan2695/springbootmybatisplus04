@@ -12,7 +12,7 @@ import java.util.List;
  * @create 2020-04-26 11:35
  */
 @Mapper
-public interface Usersmapper extends BaseMapper<User> {
+public interface UsersMapper extends BaseMapper<User> {
     /**
      * 用户登录
      * @param user
@@ -26,4 +26,8 @@ public interface Usersmapper extends BaseMapper<User> {
      */
 
     public List<User> selectall();
+    /**
+     * 用户注册
+     */
+    public int userregister(User user);
 }

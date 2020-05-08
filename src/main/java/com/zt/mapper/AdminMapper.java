@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @create 2020-05-07 17:45
  */
 @Mapper
-public interface Adminmapper  extends BaseMapper<Admin> {
+public interface AdminMapper extends BaseMapper<Admin> {
     /**
      * 管理员登录
      * @param admin
