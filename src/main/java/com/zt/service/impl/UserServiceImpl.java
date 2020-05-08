@@ -1,5 +1,6 @@
 package com.zt.service.impl;
 
+import com.zt.entity.History;
 import com.zt.entity.User;
 import com.zt.mapper.UsersMapper;
 import com.zt.service.UserService;
@@ -29,5 +30,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public int userregister(User user) {
         return usersMapper.userregister(user);
+    }
+
+    @Override
+    public User getOneUserById(int uid) {
+        return usersMapper.getOneUserById(uid);
+    }
+
+    @Override
+    public List<History> getAllHistoryByUser(int uid) {
+        return usersMapper.getAllHistoryByUser(uid);
     }
 }

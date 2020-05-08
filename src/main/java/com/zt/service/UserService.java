@@ -1,5 +1,6 @@
 package com.zt.service;
 
+import com.zt.entity.History;
 import com.zt.entity.User;
 
 import java.util.List;
@@ -21,4 +22,8 @@ public interface UserService {
      * 用户注册
      */
     public int userregister(User user);
+
+
+    public User getOneUserById(int uid);
+    public List<History> getAllHistoryByUser(int uid);
 }

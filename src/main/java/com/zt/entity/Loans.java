@@ -17,7 +17,29 @@ public class Loans {
     //0贷款失败 1 成功
     private  int lstate;
 
+    //贷款的用户
+    private User user;
+
+    //贷款的银行
+    private Banks banks;
+
     public Loans() {
+    }
+
+    public Banks getBanks() {
+        return banks;
+    }
+
+    public void setBanks(Banks banks) {
+        this.banks = banks;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getLid() {
@@ -77,6 +99,8 @@ public class Loans {
                 ", ishavehouse=" + ishavehouse +
                 ", bankid=" + bankid +
                 ", lstate=" + lstate +
+                ", user=" + user +
+                ", banks=" + banks +
                 '}';
     }
 }

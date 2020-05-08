@@ -12,7 +12,18 @@ public class History {
     //浏览时间
     private  String hdate;
 
+    //浏览记录对应的车
+    private Car car;
+
     public History() {
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public int getHid() {
@@ -54,6 +65,7 @@ public class History {
                 ", uid=" + uid +
                 ", cid=" + cid +
                 ", hdate='" + hdate + '\'' +
+                ", car=" + car +
                 '}';
     }
 }
