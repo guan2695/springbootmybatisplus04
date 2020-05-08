@@ -28,6 +28,8 @@ public class AdminController {
      */
     @RequestMapping("/adminlogin")
     public String adminlogin(Admin admin, Model model, HttpSession session) {
+        System.out.println("aaa");
+        System.out.println("bbb");
         System.out.println("进入管理员登录");
         Admin admin1 = adminService.adminlogin(admin);
         session.setAttribute("admin1", admin1);
