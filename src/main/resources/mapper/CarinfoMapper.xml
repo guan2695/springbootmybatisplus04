@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.zt.mapper.CarinfoMapper">
+
+<insert id="insertCarinfo"  parameterType="com.zt.entity.Carinfo">
+    INSERT INTO carinfo(cid,length,width,height,mass)
+    VALUES(#{cid},#{length},#{width},#{height},#{mass})
+</insert>
+
+
+
+</mapper>

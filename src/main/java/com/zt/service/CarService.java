@@ -10,4 +10,10 @@ import java.util.List;
  */
 public interface CarService {
     public List<Car> selectlimit();
+
+    /**
+     * 卖车
+     *
+     */
+    public int insertCar(Car car);
 }

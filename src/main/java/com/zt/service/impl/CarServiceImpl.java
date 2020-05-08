@@ -20,4 +20,9 @@ public class CarServiceImpl implements CarService {
     public List<Car> selectlimit() {
         return carMapper.selectlimit();
     }
+
+    @Override
+    public int insertCar(Car car) {
+        return carMapper.insertCar(car);
+    }
 }
