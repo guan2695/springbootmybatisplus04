@@ -57,6 +57,12 @@
         GROUP BY c.cid
         LIMIT 0,9
     </select>
+    <insert id="insertCar"  parameterType="com.zt.entity.Car">
+        INSERT INTO car(bid,csid,corolid,uid,oprice,price,addressid,carage,img)
+        VALUES
+        (#{bid},#{csid},#{corolid},#{uid},#{oprice},#{price},#{addressid},#{carage},#{img})
+
+    </insert>
 
 
 </mapper>
