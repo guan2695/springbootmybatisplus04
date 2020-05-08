@@ -1,6 +1,7 @@
 package com.zt.mapper;
 
 import com.zt.entity.Cardseries;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @author xyq
  * @create 2020-05-08 9:10
  */
+@Mapper
 public interface CardseriesMapper {
 
     /**

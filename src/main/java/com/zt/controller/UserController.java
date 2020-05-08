@@ -59,7 +59,6 @@ public class UserController {
      * @param model
      * @return
      */
-
     @RequestMapping("/register")
     public String add(User user, Model model) {
         System.out.println("页面传送的uname是" + user.getUname());

@@ -1,10 +1,7 @@
 package com.zt.mapper;
 
 import com.zt.entity.Brand;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -12,6 +9,7 @@ import java.util.List;
  * @author xyq
  * @create 2020-05-08 9:08
  */
+@Mapper
 public interface BrandMapper {
 
     /**

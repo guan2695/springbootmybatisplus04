@@ -2,7 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="com.zt.mapper.CarMapper">
 
+    <resultMap id="usercar" type="com.zt.entity.Car">
+        <id property="cid" column="cid"></id>
+        <result property="bid" column="bid"></result>
+        <result property="csid" column="csid"></result>
+        <result property="corolid" column="corolid"></result>
+        <result property="uid" column="uid"></result>
+        <result property="oprice" column="oprice"></result>
+        <result property="price" column="price"></result>
+        <result property="putstate" column="putstate"></result>
+        <result property="assesstate" column="assesstate"></result>
+        <result property="addressid" column="addressid"></result>
+        <result property="carage" column="carage"></result>
+        <result property="img" column="img"></result>
+        <!--一对多-->
+        <association property="brand" javaType="com.zt.entity.Brand">
+            <id property="bid" column="bid"></id>
+            <result property="bname" column="bname"></result>
+        </association>
+        <association property="cardseries" javaType="com.zt.entity.Cardseries">
+            <id property="csid" column="csid"></id>
+            <result property="bid" column="bid"></result>
+            <result property="csname" column="csname"></result>
+        </association>
+        <association property="user" javaType="com.zt.entity.User">
+            <id property="uid" column="uid"></id>
+            <result property="uname" column="uname"></result>
+            <result property="upwd" column="upwd"></result>
+            <result property="money" column="money"></result>
+            <result property="phone" column="phone"></result>
+        </association>
+        <association property="corol" javaType="com.zt.entity.Corol">
+            <id property="corolid" column="corolid"></id>
+            <result property="corol" column="corol"></result>
+        </association>
+        <association property="address" javaType="com.zt.entity.Address">
+            <id property="addid" column="addid"></id>
+            <result property="address" column="address"></result>
+        </association>
 
+    </resultMap>
     <resultMap id="carinfo" type="com.zt.entity.Car">
         <id property="cid" column="cid"></id>
         <result property="bid" column="bid"></result>
@@ -46,9 +85,9 @@
             <result property="cid" column="cid"></result>
             <result property="src" column="src"></result>
         </collection>
-
     </resultMap>
 
+    <!-- 首页查询前九辆-->
     <select id="selectlimit" resultMap="carinfo">
         SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
         FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
@@ -57,12 +96,38 @@
         GROUP BY c.cid
         LIMIT 0,9
     </select>
+
     <insert id="insertCar"  parameterType="com.zt.entity.Car">
         INSERT INTO car(bid,csid,corolid,uid,oprice,price,addressid,carage,img)
         VALUES
         (#{bid},#{csid},#{corolid},#{uid},#{oprice},#{price},#{addressid},#{carage},#{img})
-
     </insert>
 
+    <!--修改评估状态-->
+    <update id="updateCarassesstate" parameterType="com.zt.entity.Car">
+        UPDATE Car SET assesstate=#{assesstate} WHERE cid=#{cid}
+    </update>
+
+    <!--修改上架状态-->
+    <update id="updateCarputstate" parameterType="com.zt.entity.Car">
+        UPDATE Car SET putstate=#{putstate} WHERE cid=#{cid}
+    </update>
+
+    <!--查询评估完成的车辆或者未完成的车辆-->
+    <select id="selectgetAssesstate" resultMap="carinfo" parameterType="com.zt.entity.Car" >
+        SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
+        FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
+        AND c.assesstate=#{assesstate}
+        GROUP BY c.cid
+    </select>
+    <!-- 查询已评估未上架的车辆或已上架的车辆-->
+    <select id="selectgetPutstate" resultMap="carinfo" parameterType="com.zt.entity.Car">
+        SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img
+        FROM car c,brand b,cardseries cs,USER u,address ad,corol co
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.uid=u.uid AND  c.addressid=ad.addid AND c.corolid=co.corolid
+        AND c.putstate=#{putstate} AND c.assesstate=1
+        GROUP BY c.cid
+    </select>
 
 </mapper>

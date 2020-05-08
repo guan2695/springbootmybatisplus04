@@ -15,10 +15,11 @@ public class Car {
     private int uid;
     private Double oprice;
     private Double price;
-    //评估状态 0 未 1完成
+    //上架 0 未 1完成
     private int putstate;
-   // 地区外键
+    //评估状态 0 未 1完成
     private int assesstate;
+    // 地区外键
     private int addressid;
     //车龄
     private int carage;

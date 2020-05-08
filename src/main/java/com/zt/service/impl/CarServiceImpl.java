@@ -25,4 +25,24 @@ public class CarServiceImpl implements CarService {
     public int insertCar(Car car) {
         return carMapper.insertCar(car);
     }
+
+    @Override
+    public int updateCarassesstate(Car car) {
+        return carMapper.updateCarassesstate(car);
+    }
+
+    @Override
+    public int updateCarputstate(Car car) {
+        return carMapper.updateCarputstate(car);
+    }
+
+    @Override
+    public List<Car> selectgetAssesstate(Car car) {
+        return carMapper.selectgetAssesstate( car);
+    }
+
+    @Override
+    public List<Car> selectgetPutstate(Car car) {
+        return carMapper.selectgetPutstate(car);
+    }
 }

@@ -24,8 +24,8 @@ public interface UsersMapper extends BaseMapper<User> {
      * 查询所有用户
      * @return
      */
-
     public List<User> selectall();
+
     /**
      * 用户注册
      */
