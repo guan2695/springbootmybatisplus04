@@ -4,11 +4,13 @@ import com.zt.entity.Cardinfomax;
 import com.zt.mapper.CardinfomaxMapper;
 import com.zt.service.CardinfomaxService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author guan
  * @create 2020-05-08 17:05
  */
+@Service
 public class CardinfomaxServiceImpl implements CardinfomaxService {
     @Autowired
     private CardinfomaxMapper cardinfomaxMapper;

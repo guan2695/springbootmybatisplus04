@@ -1,9 +1,9 @@
 package com.zt.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zt.entity.History;
 import com.zt.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -24,10 +24,37 @@ public interface UsersMapper extends BaseMapper<User> {
      * 查询所有用户
      * @return
      */
-
     public List<User> selectall();
+
     /**
      * 用户注册
      */
     public int userregister(User user);
+
+    /**
+     * 根据用户id得到一个用户
+     * @param uid
+     * @return
+     */
+    @Select("SELECT * FROM USER WHERE uid=#{uid}")
+    public User getOneUserById(int uid);
+
+    /**
+     * 查询用户的浏览记录
+     * @param uid
+     * @return
+     */
+    @Select("SELECT * FROM history WHERE uid=#{uid}")
+    @Results({
+            @Result(column = "cid",property = "car",one = @One(select = "com.zt.mapper"))
+    })
+    public List<History> getAllHistoryByUser(int uid);
+
+    /**
+     * 删除用户的浏览记录
+     * @param uid
+     * @return
+     */
+    @Delete("DELETE FROM history WHERE uid=#{uid}")
+    public int delHistoryByUser(int uid);
 }

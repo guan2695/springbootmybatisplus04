@@ -17,7 +17,18 @@ public class Buyershow {
     //秀的时间
     private String showtime;
 
+    //一对一，发布买家秀的用户
+    private User user;
+
     public Buyershow() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getShowid() {
@@ -86,6 +97,7 @@ public class Buyershow {
                 ", showmsg='" + showmsg + '\'' +
                 ", img='" + img + '\'' +
                 ", showtime='" + showtime + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

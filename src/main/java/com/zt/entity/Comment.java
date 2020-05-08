@@ -16,7 +16,18 @@ public class Comment {
     //时间
     private String cdate;
 
+    //发布评论的用户
+    private User user;
+
     public Comment() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getCommid() {
@@ -67,6 +78,7 @@ public class Comment {
                 ", uid=" + uid +
                 ", comment='" + comment + '\'' +
                 ", cdate='" + cdate + '\'' +
+                ", user=" + user +
                 '}';
     }
 }
