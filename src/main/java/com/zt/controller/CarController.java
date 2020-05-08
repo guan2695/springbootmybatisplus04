@@ -2,6 +2,7 @@ package com.zt.controller;
 
 import com.zt.entity.Car;
 import com.zt.mapper.CarMapper;
+import com.zt.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ import java.util.List;
 @Controller
 public class CarController {
     @Autowired
-    private CarMapper carMapper;
+    private CarService carService;
 
     /**
      *  首页的查询车辆
@@ -28,7 +29,7 @@ public class CarController {
     @ResponseBody
     public List<Car> homePage(Model model){
         System.out.println("进入多表查询车");
-        List<Car> carList = carMapper.selectlimit();
+        List<Car> carList = carService.selectlimit();
         carList.forEach(System.out::println);
         System.out.println("一共输出了"+carList.size()+"条数据");
         return carList;

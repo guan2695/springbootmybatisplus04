@@ -2,6 +2,7 @@ package com.zt.controller;
 
 import com.zt.entity.User;
 import com.zt.mapper.UsersMapper;
+import com.zt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,7 @@ import java.util.List;
 @Controller
 public class UserController {
     @Autowired
-    private UsersMapper usersmapper;
+    private UserService userService;
 
     /**
      * 得到所有用户
@@ -27,7 +28,7 @@ public class UserController {
     @RequestMapping("/selectAll")
     public String testfreemake(Model modelmap) {
         System.out.println(" --------Select--------- ");
-        List<User> list = usersmapper.selectList(null);
+        List<User> list = userService.selectall();
         for (User users : list) {
         }
         modelmap.addAttribute("list", list);
@@ -46,7 +47,7 @@ public class UserController {
     public String login(Model modelmap, User user) {
         System.out.println(" --------login--------- ");
         System.out.println("uname" + user.getUname());
-        User list2 = usersmapper.selectlogin(user);
+        User list2 = userService.selectlogin(user);
         modelmap.addAttribute("list2", list2);
         return "success";
 
@@ -62,7 +63,7 @@ public class UserController {
     @RequestMapping("/register")
     public String add(User user, Model model) {
         System.out.println("页面传送的uname是" + user.getUname());
-        int num = usersmapper.userregister(user);
+        int num = userService.userregister(user);
         System.out.println("num的值为" + num);
         if (num == 0) {
             return "login";
