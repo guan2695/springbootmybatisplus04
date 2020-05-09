@@ -51,5 +51,19 @@ public class BuyershowController {
         return buyershow;
     }
 
+    /**
+     * 添加评论
+     * @param comment
+     * @return
+     */
+    @RequestMapping("addComment")
+    @ResponseBody
+    public int addComment(Comment comment){
+        System.out.println("进入添加评论方法");
+        int num= buyershowService.addComment(comment);
+        System.out.println(num);
+        return num;
+    }
+
 
 }
