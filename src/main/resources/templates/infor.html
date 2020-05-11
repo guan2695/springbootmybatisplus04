@@ -66,14 +66,22 @@ $(function () {
 <body>
 <div class="egc-top">
   <div class="nav-cent">
-    <div class="top-r"> <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
+
+    <#if (list2.uname)??>
+    <div class="top-r">
+      <a href="index" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+    <#else>
+    <div class="top-r">
+      <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
+  </#if>
+
     <div class="top-l">全国统一客服热线：000-000-0000</div>
     <div class="clear_fix"></div>
   </div>
 </div>
 <div class="navigation">
   <div class="nav-cent">
-    <div class="logo"><a href="index.html"><img src="images/123.png" width="215"height="85px" /></a></div>
+    <div class="logo"><a href="index.html"><img src="images/logo.png" width="215"height="85px" /></a></div>
     <div class="city"> 
       <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
         <div id="JS_header_city_bar_box" class="hide_city_group">
@@ -123,22 +131,25 @@ $(function () {
   <div class="car-top">
     <div class="row">
       <div class="mainpic">
-		  <a href="#" class="img01"><img  class="imgshow" src="images/c12css01.jpg" width="580px" height="350px"/></a>
-		  	<a href="#" class="img02"><img  class="imgshow" src="images/c12css02.jpg" width="580px" height="350px"/></a>
-		  	<a href="#" class="img03"><img  class="imgshow" src="images/c12css03.jpg" width="580px" height="350px"/></a>
+
+
+		  <a href="#" class="img01"><img  class="imgshow" src="images/${string1}" width="580px" height="350px"/></a>
+		  	<a href="#" class="img02"><img  class="imgshow" src="images/${string2}" width="580px" height="350px"/></a>
+		  	<a href="#" class="img03"><img  class="imgshow" src="images/${string3}" width="580px" height="350px"/></a>
 		  	
 		  	 <div class="left01" ><img src="images/in_l.png"width="40px"height="40px" ></div><div class="right01"><img src="images/in_r.png"width="40px"height="40px" ></div>
 		  	  <div class="imgsize">
-		  	  <div ><img class="img_not1" src="images/c12css01.jpg"width="110px" height="80px"/></div>
-		  	  <div ><img  class="img_not2" src="images/c12css02.jpg"width="110px" height="80px"/></div>
-		  	  <div ><img class="img_not3" src="images/c12css03.jpg"width="110px" height="80px"/></div>
+		  	  <div ><img class="img_not1" src="images/${string1}"width="110px" height="80px"/></div>
+		  	  <div ><img  class="img_not2" src="images/${string2}"width="110px" height="80px"/></div>
+		  	  <div ><img class="img_not3" src="images/${string3}"width="110px" height="80px"/></div>
+
 	  </div>
 	  </div>
       <div class="carinfor">
-        <h3 class="car-allname">夏利N52011款 夏利N5 1.3L 手动 豪华型带气囊</h3>
+        <h3 class="car-allname">${getone.brand.bname} ${getone.cardseries.csname} ${getone.cid} ${carinfomax.cardinfomax.pailiang} ${carinfomax.cardinfomax.dangtype} ${carinfomax.cardinfomax.youtype} </h3>
         <div class="price-box">
           <div class="price-infor">
-            <p><span class="nowprice">2.30万元</span></p>
+            <p><span class="nowprice">${getone.price}万元</span></p>
           </div>
           <div class="price_button" id="sendprice">点击进行分期</div>
         </div>
@@ -146,7 +157,7 @@ $(function () {
         <div class="item-box">
           <div class="itemlist rightline">
             <p class="text-muted">上牌城市</p>
-            <p>合肥</p>
+            <p>${getone.address.address}</p>
           </div>
           <div class="itemlist rightline">
             <p class="text-muted">上牌时间</p>
@@ -158,11 +169,11 @@ $(function () {
           </div>
           <div class="itemlist rightline">
             <p class="text-muted">排量</p>
-            <p>1.3</p>
+            <p>${carinfomax.cardinfomax.pailiang}</p>
           </div>
           <div class="itemlist">
             <p class="text-muted">变速箱</p>
-            <p>5挡 手动</p>
+            <p>5挡 ${carinfomax.cardinfomax.dangtype}</p>
           </div>
         </div>
         <div class="row">
@@ -305,22 +316,22 @@ $(function () {
       <h2>车俩图片</h2>
     </div>
     <ul class="carpiclist">
-      <li class="fl"><img src="images/c12css01.jpg" width="590" height="400" />
+      <li class="fl"><img src="images/${string1}" width="590" height="400" />
         <p class="top-banner"> <span class="desc">车身内饰干净整洁</span> </p>
       </li>
-      <li class="fr"><img src="images/c12css02.jpg" width="590" height="400" />
+      <li class="fr"><img src="images/${string2}" width="590" height="400" />
         <p class="top-banner">  <span class="desc">车身内饰干净整洁</span> </p>
       </li>
-      <li class="fl"><img src="images/c12css03.jpg" width="590" height="400" />
+      <li class="fl"><img src="images/${string3}" width="590" height="400" />
         <p class="top-banner">  <span class="desc">车身内饰干净整洁</span> </p>
       </li>
-      <li class="fr"><img src="images/c12in01.jpg" width="590" height="400" />
+      <li class="fr"><img src="images/${string4}" width="590" height="400" />
         <p class="top-banner">  <span class="desc">车身内饰干净整洁</span> </p>
       </li>
-      <li class="fl"><img src="images/c12in02.jpg" width="590" height="400" />
+      <li class="fl"><img src="images/${string5}" width="590" height="400" />
         <p class="top-banner">  <span class="desc">车身内饰干净整洁</span> </p>
       </li>
-      <li class="fr"><img src="images/c12in03.jpg" width="590" height="400" />
+      <li class="fr"><img src="images/${string6}" width="590" height="400" />
         <p class="top-banner">  <span class="desc">车身内饰干净整洁</span> </p>
       </li>
     </ul>
@@ -397,25 +408,26 @@ $(function () {
 </div>
 
 <div class="modimg">
-	<div class="but-up"><a href="#"><img src="images/guanbi.png"width="40px"height="40px" ></a></div>
-	 <div class="left02" ><img src="images/in_l.png"width="40px"height="40px" ></div><div class="right02"><img src="images/in_r.png"width="40px"height="40px" ></div>
-	<div class="img-pad1"><img src="images/c12css01.jpg" width="700px"height="470px"></div>
-	<div class="img-pad2"><img src="images/c12css02.jpg" width="700px"height="470px"></div>
-	<div class="img-pad3"><img src="images/c12css03.jpg" width="700px"height="470px"></div>
-	<div class="img-pad4"><img src="images/c12in01.jpg" width="700px"height="470px"></div>
-	<div class="img-pad5"><img src="images/c12in02.jpg" width="700px"height="470px"></div>
-	<div class="img-pad6"><img src="images/c12in03.jpg" width="700px"height="470px"></div>
-	<div class="sizefont1">车身外观</div><div class="sizefont2">中控内饰</div>
-	<div class="imgsize02">
-	<div><img class="img_not4" src="images/c12css01.jpg"width="110px"height="80px"></div>
-	<div><img class="img_not5" src="images/c12css02.jpg"width="110px" height="80px"/></div>
-	<div><img class="img_not6" src="images/c12css03.jpg"width="110px" height="80px"/></div>
-	<div><img class="img_not7"src="images/c12in01.jpg" width="110px" height="80px"/></div>
-	<div><img class="img_not8"src="images/c12in02.jpg" width="110px" height="80px"/></div>
-	<div><img class="img_not9"src="images/c12in03.jpg" width="110px" height="80px"/></div>
-	
-	</div>  
+  <div class="but-up"><a href="#"><img src="images/guanbi.png"width="40px"height="40px" ></a></div>
+  <div class="left02" ><img src="images/in_l.png"width="40px"height="40px" ></div><div class="right02"><img src="images/in_r.png"width="40px"height="40px" ></div>
+  <div class="img-pad1"><img src="images/${string1}" width="700px"height="470px"></div>
+  <div class="img-pad2"><img src="images/${string2}" width="700px"height="470px"></div>
+  <div class="img-pad3"><img src="images/${string3}" width="700px"height="470px"></div>
+  <div class="img-pad4"><img src="images/${string4}" width="700px"height="470px"></div>
+  <div class="img-pad5"><img src="images/${string5}" width="700px"height="470px"></div>
+  <div class="img-pad6"><img src="images/${string6}" width="700px"height="470px"></div>
+  <div class="sizefont1">车身外观</div>
+  <div class="sizefont2">中控内饰</div>
+  <div class="imgsize02">
+    <div><img class="img_not4" src="images/${string1}"width="110px"height="80px"></div>
+    <div><img class="img_not5" src="images/${string2}"width="110px" height="80px"/></div>
+    <div><img class="img_not6" src="images/${string3}"width="110px" height="80px"/></div>
+    <div><img class="img_not7"src="images/${string4}" width="110px" height="80px"/></div>
+    <div><img class="img_not8"src="images/${string5}" width="110px" height="80px"/></div>
+    <div><img class="img_not9"src="images/${string6}" width="110px" height="80px"/></div>
+  </div>
 </div>
+
 <script type="text/javascript" src="script/3c-menu.js"></script> 
 <script type="text/javascript" src="script/lg_reg.js"></script> 
 <!--会员登录和注册弹出框开始-->

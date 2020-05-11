@@ -133,21 +133,39 @@ public class CarController {
      * @return
      */
     @RequestMapping("/getCarone")
-        public String getCarone(Model model, Car car, HttpSession session,Images images){
-        car.setCid(1);
+        public String getCarone(Model model, Car car, HttpSession session,Images images,int cid){
+        System.out.println("车的id"+cid);
+        car.setCid(cid);
         Car getone = carService.getCarone(car);
         model.addAttribute("getone",getone);
         System.out.println("车的id"+car.getCid());
         images.setCid(car.getCid());
         List<Images> listimages = imagesService.getimgesone(images);
-        model.addAttribute("listimages",listimages);
+        String string1 =listimages.get(0).getSrc();
+        String string2 =listimages.get(1).getSrc();
+        String string3 =listimages.get(2).getSrc();
+        String string4 =listimages.get(3).getSrc();
+        String string5 =listimages.get(4).getSrc();
+        String string6 =listimages.get(5).getSrc();
+
+        model.addAttribute("string1",string1);
+        model.addAttribute("string2",string2);
+        model.addAttribute("string3",string3);
+        model.addAttribute("string4",string4);
+        model.addAttribute("string5",string5);
+        model.addAttribute("string6",string6);
+        //model.addAttribute("listimages",listimages);
+
+
         Car carone1 = carService.getCarinfo(car);
         Car carinfomax =carService.getCardinfomax(car);
       // System.out.println("共1"+carone+"条数据");
+        //基本数据类型长宽高
         model.addAttribute("carinfo1",carone1);
+        //详细
         model.addAttribute("carinfomax",carinfomax);
         System.out.println(carone1.getCarinfo().getLength());
-        return "showcar";
+        return "infor";
     }
 
 

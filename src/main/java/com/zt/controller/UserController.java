@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -45,12 +46,12 @@ public class UserController {
      * @return
      */
     @RequestMapping("/login")
-    public String login(Model modelmap, User user) {
+    public String login(HttpSession session, User user) {
         System.out.println(" --------login--------- ");
         System.out.println("phone" + user.getPhone());
         User list2 = userService.selectlogin(user);
-        modelmap.addAttribute("list2", list2);
-        return "index";
+        session.setAttribute("list2", list2);
+        return "forward:index";
 
     }
 
