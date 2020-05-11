@@ -13,4 +13,5 @@ public interface BuyershowService {
     public List<Buyershow> getAllShow();
     public Buyershow getOneShow(int showid);
     public List<Comment> getAllCommentByshow(int showid);
+    public int addComment(Comment comment);
 }

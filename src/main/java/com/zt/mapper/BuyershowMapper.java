@@ -2,14 +2,12 @@ package com.zt.mapper;
 
 import com.zt.entity.Buyershow;
 import com.zt.entity.Comment;
-import org.apache.ibatis.annotations.One;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 /**
+ * 买家秀和评论
  * @author xyq
  * @create 2020-05-08 18:55
  */
@@ -46,4 +44,12 @@ public interface BuyershowMapper {
             @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById"))
     })
     public List<Comment> getAllCommentByshow(int showid);
+
+    /**
+     * 对当前买家秀添加评论
+     * @param comment
+     * @return
+     */
+    @Insert("INSERT INTO COMMENT VALUES(DEFAULT,#{showid},#{uid},#{comment},DEFAULT)")
+    public int addComment(Comment comment);
 }

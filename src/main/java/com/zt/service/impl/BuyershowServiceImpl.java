@@ -33,4 +33,9 @@ public class BuyershowServiceImpl implements BuyershowService {
     public List<Comment> getAllCommentByshow(int showid) {
         return buyershowMapper.getAllCommentByshow(showid);
     }
+
+    @Override
+    public int addComment(Comment comment) {
+        return buyershowMapper.addComment(comment);
+    }
 }
