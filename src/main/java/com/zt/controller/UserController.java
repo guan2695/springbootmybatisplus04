@@ -19,6 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     /**
      * 得到所有用户
      *
@@ -46,10 +47,10 @@ public class UserController {
     @RequestMapping("/login")
     public String login(Model modelmap, User user) {
         System.out.println(" --------login--------- ");
-        System.out.println("uname" + user.getUname());
+        System.out.println("phone" + user.getPhone());
         User list2 = userService.selectlogin(user);
         modelmap.addAttribute("list2", list2);
-        return "success";
+        return "index";
 
     }
 
@@ -65,9 +66,9 @@ public class UserController {
         int num = userService.userregister(user);
         System.out.println("num的值为" + num);
         if (num == 0) {
-            return "login";
+            return "index";
         }
-        return "login";
+        return "index";
     }
 //    @RequestMapping("/delete")
 //    public String delete(Users users){

@@ -1,15 +1,19 @@
 package com.zt.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zt.entity.Car;
+import com.zt.entity.Images;
 import com.zt.entity.User;
 import com.zt.mapper.CarMapper;
 import com.zt.service.CarService;
+import com.zt.service.ImagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -20,20 +24,26 @@ import java.util.List;
 public class CarController {
     @Autowired
     private CarService carService;
+    @Autowired
+    private ImagesService imagesService;
 
     /**
      *  首页的查询车辆
      * @param model
      * @return
      */
-    @RequestMapping("/HomePage")
-    @ResponseBody
-    public List<Car> homePage(Model model){
+    @RequestMapping("/index")
+    public String  homePage(Model model){
         System.out.println("进入多表查询车");
         List<Car> carList = carService.selectlimit();
         carList.forEach(System.out::println);
+        model.addAttribute("carList",carList);
+        List<Car> carListagr=carService.selectCarage();
+        model.addAttribute("carListagr",carListagr);
+        List<Car> carlistPrice=carService.selectOprice();
+        model.addAttribute("carlistPrice",carlistPrice);
         System.out.println("一共输出了"+carList.size()+"条数据");
-        return carList;
+        return "index";
     }
 
     /**
@@ -85,4 +95,60 @@ public class CarController {
         }
         return "show2";
     }
+    @RequestMapping("/manyConditions")
+    public String manyConditions(Model model,Car car){
+        car.setBid(2);
+        car.setCsid(5);
+        /**
+         * 区间 0-3是(1)
+         * 区间 3-5是(2)
+         * 区间 5-10是(3)
+         * 区间 10-20是(4)
+         * 区间 大于20万是(5)
+         */
+
+        car.setPrice(3D);
+        car.setAddressid(3);
+        car.setCorolid(9);
+        /**
+         * 区间 0-3是(1)
+         * 区间 3-5是(2)
+         * 区间 5-10是(3)
+         * 区间 大于10万是(4)
+         */
+        car.setCarage(3);
+        System.out.println("价格"+car.getPrice());
+        List<Car> listmanyQuery =carService.manyConditions(car);
+        model.addAttribute("listmanyQuery",listmanyQuery);
+        System.out.println("多条件查询共"+listmanyQuery.size()+"条数据");
+        return "show3";
+    }
+
+    /**
+     * 查询一辆车的详细信息
+     * @param model
+     * @param car
+     * @param session
+     * @param images
+     * @return
+     */
+    @RequestMapping("/getCarone")
+        public String getCarone(Model model, Car car, HttpSession session,Images images){
+        car.setCid(1);
+        Car getone = carService.getCarone(car);
+        model.addAttribute("getone",getone);
+        System.out.println("车的id"+car.getCid());
+        images.setCid(car.getCid());
+        List<Images> listimages = imagesService.getimgesone(images);
+        model.addAttribute("listimages",listimages);
+        Car carone1 = carService.getCarinfo(car);
+        Car carinfomax =carService.getCardinfomax(car);
+      // System.out.println("共1"+carone+"条数据");
+        model.addAttribute("carinfo1",carone1);
+        model.addAttribute("carinfomax",carinfomax);
+        System.out.println(carone1.getCarinfo().getLength());
+        return "showcar";
+    }
+
+
 }

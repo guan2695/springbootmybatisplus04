@@ -2,6 +2,7 @@ package com.zt.service.impl;
 
 import com.zt.entity.Car;
 import com.zt.mapper.CarMapper;
+import com.zt.mapper.UsersMapper;
 import com.zt.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,16 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> selectlimit() {
         return carMapper.selectlimit();
+    }
+
+    @Override
+    public List<Car> selectCarage() {
+        return carMapper.selectCarage();
+    }
+
+    @Override
+    public List<Car> selectOprice() {
+        return carMapper.selectOprice();
     }
 
     @Override
@@ -44,5 +55,25 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> selectgetPutstate(Car car) {
         return carMapper.selectgetPutstate(car);
+    }
+
+    @Override
+    public List<Car> manyConditions(Car car) {
+        return carMapper.manyConditions(car);
+    }
+
+    @Override
+    public Car getCarone(Car car) {
+        return carMapper.getCarone(car);
+    }
+
+    @Override
+    public Car getCarinfo(Car car) {
+        return carMapper.getCarinfo(car);
+    }
+
+    @Override
+    public Car getCardinfomax(Car car) {
+        return carMapper.getCardinfomax(car);
     }
 }

@@ -16,32 +16,24 @@
         <result property="carage" column="carage"></result>
         <result property="img" column="img"></result>
         <!--一对多-->
-        <association property="brand" javaType="com.zt.entity.Brand">
-            <id property="bid" column="bid"></id>
-            <result property="bname" column="bname"></result>
+        <association property="carinfo" javaType="com.zt.entity.Carinfo">
+            <id property="cinfoid" column="cinfoid"></id>
+            <result property="cid" column="cid"></result>
+            <result property="length" column="length"></result>
+            <result property="width" column="width"></result>
+            <result property="height" column="height"></result>
+            <result property="mass" column="mass"></result>
         </association>
-        <association property="cardseries" javaType="com.zt.entity.Cardseries">
-            <id property="csid" column="csid"></id>
-            <result property="bid" column="bid"></result>
-            <result property="csname" column="csname"></result>
+        <association property="cardinfomax" javaType="com.zt.entity.Cardinfomax">
+            <id property="infomaxid" column="infomaxid"></id>
+            <result property="cid" column="cid"></result>
+            <result property="pailiang" column="pailiang"></result>
+            <result property="youtype" column="youtype"></result>
+            <result property="youname" column="youname"></result>
+            <result property="dangtype" column="dangtype"></result>
         </association>
-        <association property="user" javaType="com.zt.entity.User">
-            <id property="uid" column="uid"></id>
-            <result property="uname" column="uname"></result>
-            <result property="upwd" column="upwd"></result>
-            <result property="money" column="money"></result>
-            <result property="phone" column="phone"></result>
-        </association>
-        <association property="corol" javaType="com.zt.entity.Corol">
-            <id property="corolid" column="corolid"></id>
-            <result property="corol" column="corol"></result>
-        </association>
-        <association property="address" javaType="com.zt.entity.Address">
-            <id property="addid" column="addid"></id>
-            <result property="address" column="address"></result>
-        </association>
-
     </resultMap>
+
     <resultMap id="carinfo" type="com.zt.entity.Car">
         <id property="cid" column="cid"></id>
         <result property="bid" column="bid"></result>
@@ -94,9 +86,29 @@
         WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
         AND c.putstate=1
         GROUP BY c.cid
+        ORDER BY c.price
+        LIMIT 0,9
+    </select>
+    <select id="selectCarage" resultMap="carinfo">
+        SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
+        FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
+        AND c.putstate=1 AND c.`carage` BETWEEN 0 AND 3
+        GROUP BY c.`cid`
+        ORDER BY c.carage
         LIMIT 0,9
     </select>
 
+    <select id="selectOprice" resultMap="carinfo">
+        SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src,c.`oprice`-c.`price` chajia
+        FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
+        AND c.putstate=1 AND c.`oprice`>c.`price`+10
+        GROUP BY c.`cid`
+        ORDER BY chajia DESC
+        LIMIT 0,9
+    </select>
+    <!--插入一个车-->
     <insert id="insertCar"  parameterType="com.zt.entity.Car">
         INSERT INTO car(bid,csid,corolid,uid,oprice,price,addressid,carage,img)
         VALUES
@@ -128,6 +140,134 @@
         WHERE c.bid=b.bid AND c.csid=cs.csid AND c.uid=u.uid AND  c.addressid=ad.addid AND c.corolid=co.corolid
         AND c.putstate=#{putstate} AND c.assesstate=1
         GROUP BY c.cid
+    </select>
+    <!--多条件查询车-->
+    <select id="manyConditions" parameterType="com.zt.entity.Car" resultMap="carinfo">
+        SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
+        FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid
+        AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
+
+    <if test="bid!=null and bid!=''">
+        AND b.bid=#{bid}
+    </if>
+    <if test="csid!=null and csid!=''">
+        AND c.csid=#{csid}
+    </if>
+        <if test="price==1.0 ">
+            and c.price between 0 and 3
+        </if>
+        <if test="price==2.0">
+            AND  c.price between 3 and 5
+        </if>
+        <if test="price==3.0 ">
+            AND  c.price between 5 and 10
+        </if>
+        <if test="price==4.0 ">
+            AND  c.price between 10 and 20
+        </if>
+        <if test="price==5.0 ">
+            AND  c.price>20
+        </if>
+        <if test="addressid==1">
+            AND c.addressid=1
+        </if>
+
+        <if test="addressid==2">
+            AND c.addressid=2
+        </if>
+        <if test="addressid==3">
+            AND c.addressid=3
+        </if>
+        <if test="addressid==4">
+            AND c.addressid=4
+        </if>
+        <if test="addressid==5">
+            AND c.addressid=5
+        </if>
+        <if test="addressid==6">
+            AND c.addressid=6
+        </if>
+        <if test="addressid==7">
+            AND c.addressid=7
+        </if>
+        <if test="addressid==8">
+            AND c.addressid=8
+        </if>
+        <if test="addressid==9">
+            AND c.addressid=9
+        </if>
+        <if test="addressid==10">
+            AND c.addressid=10
+        </if>
+        <if test="addressid==11">
+            AND c.addressid=11
+        </if>
+        <if test="addressid==12">
+            AND c.addressid=12
+        </if>
+        <if test="addressid==13">
+            AND c.addressid=13
+        </if>
+        <if test="corolid==1">
+            AND c.corolid=1
+        </if>
+        <if test="corolid==2">
+            AND c.corolid=2
+        </if>
+        <if test="corolid==3">
+            AND c.corolid=3
+        </if>
+        <if test="corolid==4">
+            AND c.corolid=4
+        </if>
+        <if test="corolid==5">
+            AND c.corolid=5
+        </if>
+        <if test="corolid==6">
+            AND c.corolid=6
+        </if>
+        <if test="corolid==7">
+            AND c.corolid=7
+        </if>
+        <if test="corolid==8">
+        AND c.corolid=8
+        </if>
+        <if test="corolid==9">
+            AND c.corolid=9
+        </if>
+        <if test="carage==1">
+            AND  c.carage between 0 and 3
+        </if>
+        <if test="carage==2">
+            AND  c.carage between 3 and 5
+        </if>
+        <if test="carage==3">
+            AND  c.carage between 5 and 10
+        </if>
+        <if test="carage==4">
+            AND  c.carage>10
+        </if>
+
+
+        GROUP BY c.cid
+    </select>
+    <select id="getCarone" resultMap="carinfo" parameterType="com.zt.entity.Car">
+        SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img
+        FROM car c,brand b,cardseries cs,USER u,address ad,corol co
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.uid=u.uid AND  c.addressid=ad.addid AND c.corolid=co.corolid
+        AND c.cid=#{cid}
+    </select>
+
+    <select id="getCarinfo" resultMap="usercar" parameterType="com.zt.entity.Car">
+        SELECT c.cid,info.* FROM car c,carinfo info
+        WHERE c.cid=info.cid
+        AND c.cid=#{cid}
+    </select>
+    <select id="getCardinfomax" resultMap="usercar" parameterType="com.zt.entity.Car">
+        SELECT c.cid,infom.* FROM car c,cardinfomax infom
+        WHERE  c.cid=infom.cid
+        AND c.cid=#{cid}
     </select>
 
 </mapper>

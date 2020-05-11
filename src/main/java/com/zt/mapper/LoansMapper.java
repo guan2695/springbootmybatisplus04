@@ -17,10 +17,10 @@ public interface LoansMapper {
      * 得到所有贷款
      * @return
      */
-    @Select("SELECT * FROM loans")
-    @Results({
-            @Result(column = "uid",property = "user",one = @One(select = "")),
-            @Result(column = "bankid",property = "banks",one = @One(select = ""))
-    })
-    public List<Loans> getAllLoans();
+//    @Select("SELECT * FROM loans")
+//    @Results({
+//            @Result(column = "uid",property = "user",one = @One(select = "")),
+//            @Result(column = "bankid",property = "banks",one = @One(select = ""))
+//    })
+//    public List<Loans> getAllLoans();
 }

@@ -15,6 +15,16 @@ public interface CarService {
      */
     public List<Car> selectlimit();
 
+    /**首页根据车龄查询
+     *
+     */
+    public List<Car> selectCarage();
+
+    /**首页根据降价大于十万查询
+     *
+     */
+    public List<Car> selectOprice();
+
     /**
      * 卖车
      */
@@ -39,4 +49,24 @@ public interface CarService {
      * 查询已评估未上架的车辆或已上架的车辆
      */
     public List<Car> selectgetPutstate(Car car);
+
+    /**
+     * 多条件查询车辆
+     */
+    public List<Car> manyConditions(Car car);
+
+    /**
+     * 查询一辆车的六张图片
+     * 后续跳进查询一辆车的详细信息方法
+     */
+    public Car getCarone(Car car);
+
+    /**
+     * 查询一辆车的详细信息
+     */
+    public Car getCarinfo(Car car);
+    /**
+     * 查询一辆车的详细信息max
+     */
+    public Car getCardinfomax(Car car);
 }

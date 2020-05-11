@@ -94,6 +94,55 @@
             <artifactId>TypeBuilder</artifactId>
             <version>1.0</version>
         </dependency>
+        <!--上传commons-fileupload-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <!--上传commons-io-->
+         <dependency>
+             <groupId>commons-io</groupId>
+             <artifactId>commons-io</artifactId>
+             <version>2.2</version>
+         </dependency>
+               <dependency>
+                   <groupId>javax.servlet</groupId>
+                   <artifactId>servlet-api</artifactId>
+                   <version>2.5</version>
+                   <scope>provided</scope>
+               </dependency>
+               <dependency>
+                   <groupId>javax.servlet</groupId>
+                   <artifactId>jsp-api</artifactId>
+                   <version>2.0</version>
+                   <scope>provided</scope>
+               </dependency>
+               <!-- 日志 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+        <!-- jstl -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!--异步刷新-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.1.15</version>
+        </dependency>
+        <!-- 上传commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
 
 
     </dependencies>

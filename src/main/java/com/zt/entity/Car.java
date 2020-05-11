@@ -36,7 +36,28 @@ public class Car {
    private User user;
    //地区一对多
    private Address address;
+   //颜色一对一
    private Corol corol;
+   //车详细信息
+   private  Carinfo carinfo;
+   private  Cardinfomax cardinfomax;
+
+
+    public Carinfo getCarinfo() {
+        return carinfo;
+    }
+
+    public void setCarinfo(Carinfo carinfo) {
+        this.carinfo = carinfo;
+    }
+
+    public Cardinfomax getCardinfomax() {
+        return cardinfomax;
+    }
+
+    public void setCardinfomax(Cardinfomax cardinfomax) {
+        this.cardinfomax = cardinfomax;
+    }
 
     public Corol getCorolz() {
         return corol;
@@ -214,6 +235,8 @@ public class Car {
                 ", user=" + user +
                 ", address=" + address +
                 ", corol=" + corol +
+                ", carinfo=" + carinfo +
+                ", cardinfomax=" + cardinfomax +
                 '}';
     }
 }
