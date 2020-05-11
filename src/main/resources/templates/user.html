@@ -141,7 +141,10 @@ $(function () {
 <body>
 <div class="egc-top">
   <div class="nav-cent">
-    <div class="top-r"> <a href="#" id="b-regist">朱先生</a>|<a href="#" id="b-login" class="b-login">退出</a> </div>
+    <#if Session["list2"]="edit">
+<#else>
+    <div class="top-r"> <a href="#" id="b-regist">${list2.uname} </a>|<a href="#" id="b-login" class="b-login">退出</a> </div>
+  </#if>
     <div class="top-l">全国统一客服热线：000-000-0000</div>
     <div class="clear_fix"></div>
   </div>

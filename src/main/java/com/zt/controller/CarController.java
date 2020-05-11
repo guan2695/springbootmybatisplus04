@@ -7,6 +7,7 @@ import com.zt.entity.User;
 import com.zt.mapper.CarMapper;
 import com.zt.service.CarService;
 import com.zt.service.ImagesService;
+import com.zt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,8 @@ public class CarController {
     private CarService carService;
     @Autowired
     private ImagesService imagesService;
+    @Autowired
+    private UserService userService;
 
     /**
      *  首页的查询车辆
@@ -163,6 +166,8 @@ public class CarController {
         //基本数据类型长宽高
         model.addAttribute("carinfo1",carone1);
         //详细
+
+
         model.addAttribute("carinfomax",carinfomax);
         System.out.println(carone1.getCarinfo().getLength());
         return "infor";

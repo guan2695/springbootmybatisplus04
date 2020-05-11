@@ -41,7 +41,7 @@ public class UserController {
     /**
      * 用户登录
      *
-     * @param modelmap
+     * @param
      * @param user
      * @return
      */
@@ -49,10 +49,31 @@ public class UserController {
     public String login(HttpSession session, User user) {
         System.out.println(" --------login--------- ");
         System.out.println("phone" + user.getPhone());
-        User list2 = userService.selectlogin(user);
-        session.setAttribute("list2", list2);
+        User userlist2 = userService.selectlogin(user);
+        session.setAttribute("list2", userlist2);
         return "forward:index";
 
+    }
+    @RequestMapping("/remove")
+    public String login2(HttpSession session, User user) {
+        session.setAttribute("list2",null);
+        return "forward:index";
+    }
+    @RequestMapping("/login3")
+    public String login3(HttpSession session, User user) {
+        System.out.println(" --------login--------- ");
+        System.out.println("phone" + user.getPhone());
+        User list2 = userService.selectlogin(user);
+        session.setAttribute("list2", list2);
+        return "user_account";
+    }
+    @RequestMapping("/login4")
+    public String login4(HttpSession session, User user) {
+        System.out.println(" --------login--------- ");
+        System.out.println("phone" + user.getPhone());
+        User list2 = userService.selectlogin(user);
+        session.setAttribute("list2", list2);
+        return "user_bus";
     }
 
     /**

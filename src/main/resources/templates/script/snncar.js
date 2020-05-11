@@ -18,4 +18,5 @@ $(function () {
    for (var i=0;i<lists.length;i++){
       lists[i].innerHTML=(year-lists[i].innerHTML)+"年上牌";
    }
+
 })
