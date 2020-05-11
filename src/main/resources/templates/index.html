@@ -70,9 +70,9 @@
 <div class="egc-top">
   <div class="nav-cent">
 
-    <#if (list2.uname)??>
+    <#if (list2)??>
     <div class="top-r">
-      <a href="remove" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+      <a href="remove" id="b-regist">退出</a>|<a href="userinfo" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
     <#else>
     <div class="top-r">
       <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
@@ -115,15 +115,15 @@
     <div class="sea">
       <div class="egc-sea-box">
         <input type="text" class="sea-ipt-txt" placeholder="搜索您想要的车" />
-        <a href="#" class="search-btn">搜索</a> </div>
+        <a href="listhtml" class="search-btn">搜索</a> </div>
     </div>
     <div class="hot-phone"> <i></i> <span class="js-change-phone">000-000-0000</span> </div>
   </div>
 </div>
 <ul class="navmenu">
-  <li class="active"><a href="index.html">首页</a><span></span></li>
-  <li><a href="list.html">我要买车</a><span></span></li>
-  <li><a href="wymc.html">我要卖车</a><span></span></li>
+  <li class="active"><a href="index">首页</a><span></span></li>
+  <li><a href="listhtml">我要买车</a><span></span></li>
+  <li><a href="wymchtml">我要卖车</a><span></span></li>
   <li><a href="#">车主晒单</a><span></span></li>
   <li><a href="#">关于我们</a><span></span></li>
 </ul>
@@ -133,16 +133,16 @@
   <div class="nav-cents">
     <ul>
       <li class="logo"><a href="index.html"><img src="images/logo.png"  width="180"/></a></li>
-      <li><a href="index.html">首页</a></li>
-      <li><a href="list.html">我要买车</a></li>
-      <li><a href="wymc.html">我要卖车</a></li>
+      <li><a href="index">首页</a></li>
+      <li><a href="listhtml">我要买车</a></li>
+      <li><a href="wymchtml">我要卖车</a></li>
       <li><a href="#">阳光联盟</a></li>
       <li><a href="#">我要加盟</a></li>
     </ul>
     <div class="seas">
       <div class="egc-sea-box">
         <input type="text" class="sea-ipt-txt" placeholder="搜索您想要的车">
-        <a href="#" class="search-btn">搜索</a> </div>
+        <a href="listhtml" class="search-btn">搜索</a> </div>
     </div>
   </div>
 </div>
@@ -157,11 +157,11 @@
           <h3>
             <div class="border"><a href="">品牌</a></div>
             <ul>
-              <li><a href="#">大众</a></li>
-              <li><a href="#">丰田</a></li>
-              <li><a href="#">日产</a></li>
-              <li><a href="#">奔驰</a></li>
-              <li><a href="#">本田</a></li>
+              <li><a href="listhtml">大众</a></li>
+              <li><a href="listhtml">丰田</a></li>
+              <li><a href="listhtml">日产</a></li>
+              <li><a href="listhtml">奔驰</a></li>
+              <li><a href="listhtml">本田</a></li>
             </ul>
           </h3>
 
@@ -170,10 +170,10 @@
           <h3>
             <div class="border"><a href="">价格</a></div>
             <ul>
-              <li><a href="#">5万以下</a></li>
-              <li><a href="#">5-10万</a></li>
-              <li><a href="#">10-15万</a></li>
-              <li><a href="#">15-20万</a></li>
+              <li><a href="listhtml">5万以下</a></li>
+              <li><a href="listhtml">5-10万</a></li>
+              <li><a href="listhtml">10-15万</a></li>
+              <li><a href="listhtml">15-20万</a></li>
             </ul>
           </h3>
         </div>
@@ -181,13 +181,13 @@
           <h3 style="border-bottom:0px;">
             <div class="border"><a href="">车型</a></div>
             <ul>
-              <li><a href="#">**</a></li>
-              <li><a href="#">**</a></li>
-              <li><a href="#">**</a></li>
-              <li><a href="#">**</a></li>
-              <li><a href="#">**</a></li>
-              <li><a href="#">**</a></li>
-              <li><a href="#">**</a></li>
+              <li><a href="listhtml">**</a></li>
+              <li><a href="listhtml">**</a></li>
+              <li><a href="listhtml">**</a></li>
+              <li><a href="listhtml">**</a></li>
+              <li><a href="listhtml">**</a></li>
+              <li><a href="listhtml">**</a></li>
+              <li><a href="listhtml">**</a></li>
             </ul>
           </h3>
         </div>
@@ -235,7 +235,7 @@
       <!--我要买车-->
       <div class="buy-tit">我要买车</div>
       <div class="sell-car-box">
-        <form action="" class="clearfix">
+        <form action="listhtml" class="clearfix">
           <input type="text" class="sell-phone-input" data-role="sellPhone" placeholder="请输入手机号码"required="required">
           <button type="submit" class="sell-phone-submit">我要卖车</button>
         </form>
@@ -309,32 +309,32 @@
     <img src="images/sun_banner.jpg"> </a> </div>
   <div class="active-blocks fr">
     <ul>
-      <li class="li_01"><a href="list.html" title="实用代步车" target="_blank">
+      <li class="li_01"><a href="listhtml" title="实用代步车" target="_blank">
         <p class="title">实用代步车</p>
         <p class="content">驾驭想象 聆听声音</p>
         <div class="pic"><img src="images/car1.jpg" alt="保值车型"></div>
       </a></li>
-      <li class="li_02"><a href="list.html" title="5-8万能买啥" target="_blank">
+      <li class="li_02"><a href="listhtml" title="5-8万能买啥" target="_blank">
         <p class="title">5-8万能买啥</p>
         <p class="content">驾有所值，动气强劲</p>
         <div class="pic"><img src="images/201601221218531455.jpg" alt="5-8万能买啥"></div>
       </a></li>
-      <li class="li_03"><a href="list.html" title="12-16万能买啥" target="_blank">
+      <li class="li_03"><a href="listhtml" title="12-16万能买啥" target="_blank">
         <p class="title">12-16万能买啥</p>
         <p class="content">风范，与自由同行</p>
         <div class="pic"><img src="images/201601221218599350.jpg" alt="12-16万能买啥"></div>
       </a></li>
-      <li class="li_04"><a href="list.html" title="奥迪车库" target="_blank">
+      <li class="li_04"><a href="listhtml" title="奥迪车库" target="_blank">
         <p class="title">奔驰车库</p>
         <p class="content">奔驰—— Audi</p>
         <div class="pic"><img src="images/benchi.png"alt="奔驰车库"></div>
       </a></li>
-      <li class="li_05"><a href="list.html" title="大众车库" target="_blank">
+      <li class="li_05"><a href="listhtml" title="大众车库" target="_blank">
         <p class="title">大众车库</p>
         <p class="content">大众 — Volkswagen</p>
         <div class="pic"><img src="images/201601221219156607.jpg" alt="大众车库"></div>
       </a></li>
-      <li class="li_06"><a href="list.html" title="岂止于大" target="_blank">
+      <li class="li_06"><a href="listhtml" title="岂止于大" target="_blank">
         <p class="title">岂止于大</p>
         <p class="content">我所钟爱的思域</p>
         <div class="pic"><img src="images/201601221219239104.jpg" alt="岂止于大"></div>
@@ -345,7 +345,7 @@
 <!--车类列表-->
 <div class="car_feature">
   <div class="menucar">
-    <div class="more" id="11"><a href="list.html">查看全部>></a></div>
+    <div class="more" id="11"><a href="listhtml">查看全部>></a></div>
     <ul>
       <li class="hover" id="tabs2_0" onmousemove="isShow4('tabs2_0','divs2_0','block','<a href=list.html>查看全部>></a>');">热卖好车</li>
       <li id="tabs2_1" onmousemove="isShow4('tabs2_1','divs2_1','block','<a href=list.html>查看全部>></a>');">最新上架</li>
@@ -385,7 +385,7 @@
       <ul class="carList">
         <#list carList as clist>
         <li>
-          <div class="list-infoBox"> <a title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}  车龄${clist.carage}年  " target="_blank" class="imgtype" href="getCarone?cid=${clist.cid}"> <img width="290" height="194" src="images/${clist.img}" alt="${clist.brand.bname}${clist.cardseries.csname}  车龄${clist.carage}年 "> </a>
+          <div class="list-infoBox"> <a title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}  车龄${clist.carage}年  " target="_self" class="imgtype" href="getCarone?cid=${clist.cid}"> <img width="290" height="194" src="images/${clist.img}" alt="${clist.brand.bname}${clist.cardseries.csname}  车龄${clist.carage}年 "> </a>
             <p class="infoBox"> <a  title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}   车龄${clist.carage}年 " href="getCarone?cid=${clist.cid}" target="_blank" class="info-title">${clist.brand.bname}-${clist.cardseries.csname}${clist.cid}   车龄${clist.carage}年
             <p class="fc-gray"> <span class="tag-gray">${clist.address.address}</span> <span class="">车龄${clist.carage}年</span> <em class="shuxian">|</em> 颜色:${clist.corol.corol} </p>
             <p class="priType-s"> <span> <i class="fc-org priType"> ${clist.price}万 </i> </span> <s>${clist.oprice}万</s> </p></a> </p>

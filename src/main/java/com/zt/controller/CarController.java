@@ -36,7 +36,7 @@ public class CarController {
      * @return
      */
     @RequestMapping("/index")
-    public String  homePage(Model model){
+    public String  homePage(Model model,HttpSession session){
         System.out.println("进入多表查询车");
         List<Car> carList = carService.selectlimit();
         carList.forEach(System.out::println);
@@ -46,6 +46,27 @@ public class CarController {
         List<Car> carlistPrice=carService.selectOprice();
         model.addAttribute("carlistPrice",carlistPrice);
         System.out.println("一共输出了"+carList.size()+"条数据");
+        return "index";
+    }
+
+    /**
+     * 账户退出时走的方法
+     * @param model
+     * @param session
+     * @return
+     */
+    @RequestMapping("/index2")
+    public String  homePage2(Model model,HttpSession session){
+        System.out.println("进入多表查询车");
+        List<Car> carList = carService.selectlimit();
+        carList.forEach(System.out::println);
+        model.addAttribute("carList",carList);
+        List<Car> carListagr=carService.selectCarage();
+        model.addAttribute("carListagr",carListagr);
+        List<Car> carlistPrice=carService.selectOprice();
+        model.addAttribute("carlistPrice",carlistPrice);
+        System.out.println("一共输出了"+carList.size()+"条数据");
+        session.removeAttribute("list2");
         return "index";
     }
 
@@ -78,6 +99,13 @@ public class CarController {
         System.out.println("成功"+num+"失败"+num);
         return "login";
     }
+
+    /**
+     * 查询评估或者未评估的车辆
+     * @param model
+     * @param car
+     * @return
+     */
     @RequestMapping("/getAssesstate")
     public String getAssesstate(Model model,Car car){
         car.setAssesstate(0);
@@ -88,6 +116,13 @@ public class CarController {
                }
        return "show";
     }
+
+    /**
+     * 查询上架或者下架的车辆
+     * @param model
+     * @param car
+     * @return
+     */
     @RequestMapping("/getPutstate")
     public String getPutstate(Model model,Car car){
         car.setPutstate(0);
@@ -98,6 +133,13 @@ public class CarController {
         }
         return "show2";
     }
+
+    /**
+     * 多条件查询
+     * @param model
+     * @param car
+     * @return
+     */
     @RequestMapping("/manyConditions")
     public String manyConditions(Model model,Car car){
         car.setBid(2);

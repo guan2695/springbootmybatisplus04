@@ -142,13 +142,14 @@ $(function () {
 <div class="egc-top">
   <div class="nav-cent">
 
-      <#if (list2.uname)??>
+      <#if Session["list2"]="edit">
       <div class="top-r">
-          <a href="index" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
-      <#else>
-      <div class="top-r">
-          <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
-  </#if>
+
+          <#else>
+          <div class="top-r">
+              <a href="remove" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+
+      </#if>
     <div class="top-l">全国统一客服热线：000-000-0000</div>
     <div class="clear_fix"></div>
   </div>
@@ -223,9 +224,9 @@ $(function () {
 		<div class="meb-cont clearfix mainbox">
 			<div class="meb-nav fl dInline">
 				<ul class="clearfix">
-					<li ><a href="user.html">用户中心</a></li>
-					<li class="on"><a href="user_bus.html">我的业务</a></li>
-					<li><a href="user_account.html">账户管理</a></li>				
+                    <li class="on"><a href="userinfo">用户中心</a></li>
+                    <li><a href="userinfoCar">我的业务</a></li>
+                    <li><a href="userinfoPwd">账户管理</a></li>
                 </ul>
 			</div>
 			<div class="meb-right fr dInline">

@@ -142,8 +142,12 @@ $(function () {
 <div class="egc-top">
   <div class="nav-cent">
     <#if Session["list2"]="edit">
-<#else>
-    <div class="top-r"> <a href="#" id="b-regist">${list2.uname} </a>|<a href="#" id="b-login" class="b-login">退出</a> </div>
+    <div class="top-r">
+
+    <#else>
+    <div class="top-r">
+      <a href="remove" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+
   </#if>
     <div class="top-l">全国统一客服热线：000-000-0000</div>
     <div class="clear_fix"></div>
@@ -217,9 +221,9 @@ $(function () {
 		<div class="meb-cont clearfix mainbox">
 			<div class="meb-nav fl dInline">
 				<ul class="clearfix">
-					<li class="on"><a href="user.html">用户中心</a></li>
-					<li><a href="user_bus.html">我的业务</a></li>
-					<li><a href="user_account.html">账户管理</a></li>				
+					<li class="on"><a href="userinfo">用户中心</a></li>
+					<li><a href="userinfoCar">我的业务</a></li>
+					<li><a href="userinfoPwd">账户管理</a></li>
                 </ul>
 			</div>
 			<div class="meb-right fr dInline">
@@ -229,9 +233,9 @@ $(function () {
             <img src="images/photo.png">
         </span>
         <div class="mr-infor fl dInline">
-            <h2>中午好，尊敬的用户 <b>朱先生</b></h2>
+            <h2>中午好，尊敬的用户 <b>${list2.uname}</b></h2>
             <p>
-                手机：15138911875   邮箱：  |  [ <a href="#">管理账户信息</a> ]
+                手机：${list2.phone}  邮箱：  |  [ <a href="#">管理账户信息</a> ]
             </p>
         </div>
     </div>
