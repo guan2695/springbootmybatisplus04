@@ -62,7 +62,7 @@ public class BuyershowController {
      * @param comment
      * @return
      */
-    @RequestMapping("addComment")
+    @RequestMapping("/addComment")
     @ResponseBody
     public int addComment(Comment comment){
         System.out.println("进入添加评论方法");
@@ -71,12 +71,10 @@ public class BuyershowController {
         return num;
     }
 
-    @RequestMapping(value ="/jlpageindex")
-    @ResponseBody
-    public List<Buyershow> Jlpageindex(HttpSession session1){
-        Integer first1=0;
+    @RequestMapping("/jlpageindex")
+    public String Jlpageindex(int first1,Model medel,HttpSession session1){
         //分页
-        int pageSize=3;
+        int pageSize=6;
         //查询页码
         System.out.println(first1);
         int first=0;
@@ -107,13 +105,17 @@ public class BuyershowController {
         System.out.println("显示页数"+first2);
 
         List<Buyershow> accountlist= buyershowService.getPageIndex(first, pageSize);
+        accountlist.forEach(System.out::println);
         //存值
-        session1.setAttribute("accountlist", accountlist);
-        session1.setAttribute("first", first);  //实际页码
-        session1.setAttribute("firstxs", first2);  //显示页码
-        session1.setAttribute("count", count);  //实际页数
+        medel.addAttribute("accountlist",accountlist);  //保存数组
+        medel.addAttribute("count",count);              //总页数
+        medel.addAttribute("firstxs",first2);              //页码
 
-        return accountlist;
+        session1.setAttribute("first", first);  //实际页码
+
+
+        //转发跳转（不经过后端控制器）
+        return "carsun";
     }
 
 
