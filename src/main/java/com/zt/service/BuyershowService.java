@@ -2,6 +2,7 @@ package com.zt.service;
 
 import com.zt.entity.Buyershow;
 import com.zt.entity.Comment;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,4 +15,7 @@ public interface BuyershowService {
     public Buyershow getOneShow(int showid);
     public List<Comment> getAllCommentByshow(int showid);
     public int addComment(Comment comment);
+
+    public int getPageCount();
+    public List<Buyershow> getPageIndex(@Param("first") int first, @Param("pageSize") int pageSize);
 }

@@ -52,4 +52,24 @@ public interface BuyershowMapper {
      */
     @Insert("INSERT INTO COMMENT VALUES(DEFAULT,#{showid},#{uid},#{comment},DEFAULT)")
     public int addComment(Comment comment);
+
+    /**
+     * 得到分页总页数
+     * @return
+     */
+    @Select("SELECT COUNT(showid) FROM  buyershow")
+    public int getPageCount();
+
+
+    /**
+     * 分页
+     * @param first
+     * @param pageSize
+     * @return
+     */
+    @Select("SELECT * FROM  buyershow limit #{first},#{pageSize}")
+    @Results({
+            @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById"))
+    })
+    public List<Buyershow> getPageIndex(@Param("first") int first,@Param("pageSize") int pageSize);
 }
