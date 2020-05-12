@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>买家秀评论</title>
+		<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css/bootstrap-theme.min.css">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.css/bootstrap.min.css">
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	</head>
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		.container-fluid{
+			background-color: #f5f5f5;
+		}
+		
+		.row {
+			height: 100px;
+			line-height: 100px;
+			font-size: 20px;
+			color: gray;
+			background-color: white;
+		}
+		
+		.row div:hover {
+			color: red;
+			/*font-weight: bolder;*/
+			font-size: 22px;
+		}
+		
+		#middle{
+			margin-left: 16.7%;
+			margin-top: 10px;
+			width: 65%;
+			background-color: white;
+		}
+		.middle_zi{
+			width: 88%;
+			font-size: 22px;
+			color: gray;
+			margin-left: 6%;
+			padding-top: 50px;
+		}
+		.middle_zi p:nth-of-type(1){
+			color: black;
+			font-size: 30px;
+		}
+		.middle_zi img{
+			margin-top: 10px;
+			width: 100%;
+		}
+		
+		
+		
+		/*评论区《头》*/
+		.middle_comment{
+			width: 88%;
+			margin-left: 6%;
+			padding-top: 20px;
+		}
+		.comment_kan{
+			
+		}
+		.comment_kan ul{
+			background-color: gainsboro;
+			text-indent: 1em;
+		}
+		.comment_kan li{
+			list-style: none;
+			height: 30px;
+			line-height: 30px;
+			border-bottom: ghostwhite 1px dashed;
+		}
+		.comment_kan li:nth-of-type(2){
+			height: 45px;
+			line-height: 45px;
+			color: darkslateblue;
+			font-weight: bold;
+		}
+		.comment_kan li span:nth-of-type(2){
+			float: right;
+			margin-right: 15px;
+		}	
+			
+		.comment_xie{
+			height: 140px;
+		}
+		.comment_xie ul{
+			list-style: none;
+		}
+		.comment_xie li{
+			
+		}
+		.comment_xie li:nth-of-type(1){
+			height: 80px;
+			text-indent: 1em;
+			background-color: gainsboro;
+		}		
+		.comment_xie li:nth-of-type(2){
+			height: 40px;
+			width: 100%;
+		}
+		.comment_xie li:nth-of-type(2) span{
+			display: inline-block;
+			height: 40px;
+			width: 120px;			
+			line-height: 40px;	
+			border-radius: 5px;	
+			background-color: gainsboro;
+			margin-top: 10px;
+			margin-left: 45%;
+			text-align: center;
+		}	
+		/*评论区《尾》*/
+				
+		/*下载网页《头》*/		
+		.ftWrap {
+			width: 100%;
+			margin-left: -10px;
+			background: gainsboro;
+			padding: 30px 0 0px 0;
+			margin-top: 10px;
+		}
+		
+		.foot {
+			width: 1200px;
+			margin: 10px auto;
+		}
+		
+		.foot .relate {
+			zoom: 1;
+			overflow: hidden;
+			margin: 0;
+		}
+		
+		.foot .items {
+			width: 15%;
+			float: left;
+		}
+		
+		.foot .items.last {
+			width: 25%;
+			zoom: 1;
+			overflow: hidden;
+		}
+		
+		.foot .items .tit {
+			color: #333;
+			padding: 0 0 10px 0;
+			font-size: 16px;
+			zoom: 1;
+			overflow: hidden;
+		}
+		
+		.foot .items .tit i {
+			float: right;
+			margin-right: 20px;
+			font-size: 14px;
+			display: none;
+		}
+		
+		.foot .items .con {
+			padding: 0 0 10px 0;
+			font-size: 14px;
+		}
+		
+		.foot .items .con a {
+			display: block;
+			color: #666;
+			padding: 5px 0 0 0;
+		}
+		
+		.foot .items .con a:hover {
+			color: #0075b3;
+		}
+		
+		.foot .items .tel {
+			text-align: center;
+			margin: 0;
+			position: relative;
+			border-left: 1px solid #ddd;
+			padding-left: 30px;
+			height: 126px;
+		}
+		
+		.foot .items .tel h1 {
+			font-size: 20px;
+			font-weight: normal;
+			padding: 0 0 5px 0;
+			color: #ee7800;
+			font-family: Arial;
+			min-width: 128px;
+		}
+		
+		.foot .items .tel p {
+			color: #666;
+		}
+		
+		.foot .items .tel a {
+			border: 1px solid #ee7800;
+			background: #fff;
+			display: block;
+			width: 93px;
+			height: 28px;
+			padding-left: 25px;
+			text-align: center;
+			margin: 15px auto auto auto;
+			font-size: 12px;
+			line-height: 28px;
+			color: #ee7800;
+			position: relative;
+		}
+		
+		.foot .items .tel a i.kf-icon {
+			position: absolute;
+			left: 15px;
+			top: 5px;
+			width: 23px;
+			height: 18px;
+			background: url(images/mb-kf-icon.png) 0 0 no-repeat;
+		}
+		
+		.foot .items .tel a:hover {
+			color: #F30;
+			background: #ee7800;
+			color: #fff;
+			transition: background-color 0.5s ease;
+		}
+		
+		.foot .items .tel a:hover i.kf-icon {
+			background-position: 0 -18px;
+		}
+		
+		.app-section {
+			width: 320px;
+			float: left;
+			margin: 0px;
+		}
+		
+		.app-section .title {
+			font-size: 16px;
+			color: #333;
+			font-weight: 100;
+			margin: 0;
+			line-height: 34px
+		}
+		
+		.app-section img {
+			width: 100px;
+			height: 100px;
+			margin-right: 10px;
+			float: left;
+			margin-top: 7px;
+			border: 2px solid #fff;
+		}
+		
+		.app-section p {
+			float: left;
+			width: 200px;
+			font-size: 12px;
+			line-height: 24px;
+			color: #999;
+			display: block;
+			text-align: left;
+			word-wrap: break-word
+		}
+		
+		.tel-mb {
+			width: 100%;
+			margin: 10px 0;
+			display: none;
+			zoom: 1;
+			overflow: hidden;
+		}
+		
+		.tel-mb span {
+			color: #ee7800;
+			float: left;
+			padding: 0 5px 0 0;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 14px;
+		}
+		
+		.tel-mb p {
+			color: red;
+			float: left;
+			line-height: 30px;
+			margin-right: 20px;
+		}
+		
+		.tel-mb a {
+			float: right;
+			border: 1px solid #ee7800;
+			background: #fff;
+			display: block;
+			width: 93px;
+			height: 28px;
+			padding-left: 25px;
+			text-align: center;
+			font-size: 12px;
+			line-height: 28px;
+			color: #ee7800;
+			position: relative;
+		}
+		
+		.tel-mb a i.kf-icon {
+			position: absolute;
+			left: 15px;
+			top: 5px;
+			width: 23px;
+			height: 18px;
+			background: url(images/mb-kf-icon.png) 0 0 no-repeat;
+		}
+		
+		.tel-mb a:hover {
+			color: #F30;
+			background: #ee7800;
+			color: #fff;
+			transition: background-color 0.5s ease;
+		}
+		
+		.tel-mb a:hover i.kf-icon {
+			background-position: 0 -18px;
+		}
+		
+		.copyright {
+			margin: 20px 0px 0px;
+			width: 100%;
+			background: #444444;
+		}
+		
+		.copyright .cent {
+			width: 1200px;
+			margin: 0 auto;
+			padding: 20px 0;
+			zoom: 1;
+			overflow: hidden;
+			color: #b4b4b4;
+			text-align: center;
+		}
+		/*下载网页《尾》*/
+		
+		/*固定栏《头》*/
+		/*#fixed{
+			display: inline-block;
+			width: 20%;
+			height: 400px;
+			background-color: white;
+			position: fixed;
+			top: 170px;
+			left: 75%;
+		}
+		#fixed div:nth-of-type(1){
+			text-indent: 1.5em;
+			height: 80px;
+			line-height: 80px;
+			border-bottom:1px gainsboro solid ;
+			font-size: 22px;
+		}
+		#fixed div:nth-of-type(2) img{
+			width: 100%;
+		}
+		#fixed dd{
+			line-height: 30px;
+			text-indent: 1.5em;
+		}
+		#fixed dd span:nth-of-type(1){
+			color: red;
+		}
+		#fixed dd span:nth-of-type(2){
+			float: right;
+			margin-right: 15px;
+		}*/
+		/*固定栏《尾》*/
+	</style>
+	
+	<script type="text/javascript">
+		<!--单击页面跳转-->
+		function tiao(urc) {
+			location.href = urc;
+		};
+	</script>
+	
+	<body>
+		<div class="container-fluid">   <!--布局的容器-->		
+			
+			<!--<div id="fixed">   固定定位-->	
+				<!--<div>车主同款</div>
+				<div>
+					<dl>
+						<dt><img src="img/c29css01.jpg" /> </dt>
+						<dd><span>首付1.10万</span> <span>月供3388元</span></dd>
+					</dl>
+				</div>
+			</div>-->
+
+			<div class="row">    <!--头部-->				
+				<div class="col-md-2" onclick="tiao('index.html')"></div>
+				<div class="col-md-1"><img src="img/10025.jpg" /> </div>
+				<div class="col-md-1" onclick="tiao('index.html')">首页</div>
+				<div class="col-md-1" onclick="tiao('index.html')">全部车型</div>
+				<div class="col-md-1" onclick="tiao('index.html')">车主晒单</div>
+				<div class="col-md-1" onclick="tiao('index.html')">APP下载</div>
+				<div class="col-md-1" onclick="tiao('index.html')">关于我们</div>
+				<div class="col-md-4" onclick="tiao('index.html')"></div>
+			</div>
+			
+			<div id="middle">   <!--身体-->	
+				
+				<div class="middle_zi">
+					<p>车已经准备好了，就等女朋友来了</p>
+					<p><span>苏先生</span>  <span>务工</span> <span style="float: right;">2019.11.10</span></p>
+					<p>买个车现在方便一点吧，打算也出去转一转玩一玩，生活质量可以提高很多，最好是有车了找个女朋友也好找点吧，现在还单身呢。</p>
+					<img src="images/ren.jpg" />
+				</div>				
+				
+				<!--评论区《头》-->
+				<div class="middle_comment">
+					<h3>评论区</h3>
+					<div class="comment_kan">
+						<ul>
+							<li><span>李四</span> <span>2020-01-12 14:21:53</span></li>
+							<li>真好看啊！</li>
+						</ul>
+						
+						<ul>
+							<li><span>张三</span> <span>2020-01-12 14:21:53</span></li>
+							<li>不错，很省油</li>
+						</ul>
+						
+						<ul>
+							<li><span>轩二</span> <span>2020-01-12 14:21:53</span></li>
+							<li>捡到宝了，跟新车一样</li>
+						</ul>
+					</div>
+					<h3>说说你的看法</h3>
+					<div class="comment_xie">
+						<ul>
+							<li>说点什么吧.....</li>
+							<li><span onclick="tiao('index.html')">发布</span></li>
+						</ul>
+					</div>
+				</div>
+				<!--评论区《尾》-->
+			</div>
+			
+			
+			<!--下载尾部网页《头》-->
+			<div class="ftWrap">
+				<div class="foot">
+					<div class="cent">
+						<div class="relate">
+							<div class="items">
+								<div class="tit"><i class="icon-angle-right"></i>交易帮助</div>
+								<div class="con">
+									<a href="#">买车帮助</a>
+									<a href="#">卖车帮助</a>
+									<a href="#">过户帮助</a>
+								</div>
+							</div>
+							<div class="items">
+								<div class="tit"><i class="icon-angle-right"></i>客服中心</div>
+								<div class="con">
+									<a href="abut.html">网站合作</a>
+									<a href="about.html">关于我们</a>
+									<a href="contact.html">联系我们</a>
+								</div>
+							</div>
+							<div class="items">
+								<div class="tit"><i class="icon-angle-right"></i>购车指南</div>
+								<div class="con">
+									<a href="#">购车帮助</a>
+								</div>
+							</div>
+							<div class="app-section"> <img class="js-delayed-img" src="img/er.jpg">
+								<div class="title">扫码关注微信</div>
+								<p> 随时随地，秒杀好车<br /> 优质个人二手车 </p>
+							</div>
+							<div class="items last">
+								<div class="tel">
+									<h1>000-000-0000</h1>
+									<p>周一至周日 8:00-18:00</p>
+									<p>免费咨询(咨询、建议、投诉)</p>
+									<a href="#" class="kf"><i class="kf-icon"></i>在线客服</a>
+								</div>
+								<div class="tel-mb">
+									<p><span>400-710-8886</span>周一至周日 8:00-18:00(仅收市话费)</p>
+									<a href="#" class="kf"><i class="kf-icon"></i>在线客服</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="copyright">
+					<div class="cent"> Copyright 2016-2017, snncar.com,All Rights Reserved 皖ICP备16022456号-1</div>
+				</div>
+			</div>
+			<!--下载尾部网页《尾》-->
+						
+		</div>	
+	</body>
+</html>

@@ -3,12 +3,14 @@ package com.zt.controller;
 import com.zt.entity.User;
 import com.zt.mapper.UsersMapper;
 import com.zt.service.UserService;
+import org.apache.ibatis.lang.UsesJava7;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.transform.Source;
 import java.util.List;
 
 /**
@@ -84,10 +86,7 @@ public class UserController {
     public String userinfoPwd(HttpSession session, User user) {
         return "user_account";
     }
-    @RequestMapping("/listhtml")
-    public String listhtml(HttpSession session, User user) {
-        return "list";
-    }
+
     @RequestMapping("/wymchtml")
     public String wymchtml(HttpSession session, User user) {
         return "wymc";
@@ -108,7 +107,18 @@ public class UserController {
         }
         return "index";
     }
-
+    /**
+     * 修改用户密码
+     */
+    @RequestMapping("/updatepwd")
+    public String updateUpwd(Model model, User user,int uid){
+        user.setUid(uid);
+        int num = userService.updateUserpwd(user);
+        if(num==0){
+            return "404";
+        }
+        return "user";
+    }
 //    //分页
 //    @RequestMapping("fenye")
 //    public String fentye(Integer pageindex,Model model){

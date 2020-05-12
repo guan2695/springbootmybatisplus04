@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService {
     public List<History> getAllHistoryByUser(int uid) {
         return usersMapper.getAllHistoryByUser(uid);
     }
+
+    @Override
+    public int updateUserpwd(User user) {
+        return usersMapper.updateUserpwd(user);
+    }
 }

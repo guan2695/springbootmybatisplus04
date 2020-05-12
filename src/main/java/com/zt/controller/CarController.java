@@ -170,6 +170,15 @@ public class CarController {
     }
 
     /**
+     *
+     */
+    @RequestMapping("/listhtml")
+    public String listhtml(HttpSession session, User user) {
+        System.out.println(" --------进入查询--------- ");
+        return "list";
+    }
+
+    /**
      * 查询一辆车的详细信息
      * @param model
      * @param car

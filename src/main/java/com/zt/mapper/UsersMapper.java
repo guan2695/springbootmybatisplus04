@@ -57,4 +57,9 @@ public interface UsersMapper extends BaseMapper<User> {
      */
     @Delete("DELETE FROM history WHERE uid=#{uid}")
     public int delHistoryByUser(int uid);
+    /**
+     * 修改用户密码
+     */
+    @Update("UPDATE USER SET upwd=#{upwd} WHERE uid =#{uid}")
+    public int updateUserpwd(User user);
 }

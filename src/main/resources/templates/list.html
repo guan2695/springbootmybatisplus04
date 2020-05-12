@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>二手车</title>
-<link rel="stylesheet" type="text/css" href="css/base.css"/>
-<link rel="stylesheet" type="text/css" href="css/home.css"/>
-<link rel="stylesheet" type="text/css" href="css/city.css">
+<link rel="stylesheet" type="text/css" href="css2/base.css"/>
+<link rel="stylesheet" type="text/css" href="css2/home.css"/>
+<link rel="stylesheet" type="text/css" href="css2/city.css">
 <script type="text/javascript" src="script/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="script/home_ban.js"></script>
 <script type="text/javascript" src="script/eg_top_search.js"></script>
@@ -53,7 +53,7 @@ $(function () {
 <script type="text/javascript">
 $(function () {
 	var wind_wd = $(window).width();
-	if(wind_wd&lt;=735){
+	if(wind_wd<=735){
 		/* $submenu.first().delay(400).slideDown(700);*/
 			$('.relate .tit').on('click', function() {
 			$(this).next('.con').slideToggle()
@@ -65,7 +65,7 @@ $(function () {
 			}
 	$(window).resize(function(){
  		var wind_wd = $(window).width();
-		if(wind_wd&lt;=735){
+		if(wind_wd<=735){
 		/* $submenu.first().delay(400).slideDown(700);*/
 			$('.relate .tit').on('click', function() {
 			$(this).next('.con').slideToggle()
@@ -124,7 +124,7 @@ $(function () {
 	var scroll_heitht = $('body').offset().top;
 	var isShow = true;
 	$(window).scroll(function () {
-       if ($(window).scrollTop() > scroll_heitht &amp;&amp; isShow) {
+       if ($(window).scrollTop() > scroll_heitht && isShow) {
 			 $('.stress-search-box').slideDown(200);
        }else{
 		   $('.stress-search-box').slideUp(200);
@@ -136,19 +136,115 @@ $(function () {
 	   });
 });
 </script>
+
+<style type="text/css">	
+	#page{
+			width: 60%;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			margin-left: 20%;
+			background-color: #f5f5f5;
+			border-radius: 5px;
+			color: dodgerblue;
+		}
+		#page a{
+			color: dodgerblue;
+			font-weight: bold;
+		}		
+		#page a:nth-of-type(1){
+			float: left;			
+			margin-left: 15px;
+		}
+		#page a:nth-of-type(2){
+			
+			margin-right: 300px;
+		}
+		#page a:nth-of-type(3){
+			margin-left: 300px;		
+			
+		}
+		#page a:nth-of-type(4){
+			float: right;
+			margin-right: 15px;
+		}
+		
+		.j1{
+			background:#f9f9f9;
+			color:#666;	
+		}
+		
+		.j2{
+			background:#eeeeee;
+			color:red;
+			
+		}
+		
+</style>
+
+<script type="text/javascript">
+$(function () {
+	
+	var bname=0,csname=0,price=0,carage=0,corol=0,address=0;
+	//导航栏搜索单击selecter
+	$(".fliter-bd a").click(function(){
+		$(this).parent().find("a").css({"background-color":"#f9f9f9","color":"#666"});  //清理样式
+		$(this).parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
+		
+		$(this).css({"background-color":"#eeeeee","color":"red"});       //添加样式
+		$(this).attr({"class":"xzz"});     //添加class  
+		$(this).parent().find(".on").css({"background-color":"#00002e","color":"#fff","text-decoration":"none"});
+		
+		//得到数据		
+		getdate();	
+	});
+	
+	//下拉搜索单击
+	$(".selecter li a").click(function(){
+		$(this).parent().parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
+		$(this).attr({"class":"xzz"});     //添加class 
+		//得到数据
+		getdate();				
+	});
+	
+	//得到数据	函数
+	function getdate(){
+		var ass=window.document.getElementsByClassName("xzz");			
+		for(var i=0;i<ass.length;i++){
+			var zi=ass[i].title.substring(-1,1);
+			var ziid=ass[i].title.substring(1);
+			if(zi=="p"){
+			    bname=ziid;
+			}
+			if(zi=="c"){
+			    csname=ziid;
+			}
+			if(zi=="j"){
+				price=ziid;
+			}
+			if(zi=="s"){
+				carage=ziid;
+			}
+			if(zi=="y"){
+				corol=ziid;
+			}
+			if(zi=="d"){
+				address=ziid;
+			}
+		}
+		alert("bname"+bname+"\t"+"csname"+csname+"\t"+"price"+price+"\t"+"carage"+carage+"\t"+"corol"+corol+"\t"+"address"+address);		
+	}
+			
+});//窗体
+
+</script>
+
 </head>
 <body>
 <div class="egc-top">
   <div class="nav-cent">
-
-      <#if (list2.uname)??>
-      <div class="top-r">
-          <a href="index" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
-      <#else>
-      <div class="top-r">
-          <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
-  </#if>
-      <div class="top-l">全国统一客服热线：000-000-0000</div>
+    <div class="top-r"> <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
+    <div class="top-l">全国统一客服热线：000-000-0000</div>
     <div class="clear_fix"></div>
   </div>
 </div>
@@ -223,161 +319,79 @@ $(function () {
   <!--搜索条件-->
   <div class="comfilter-bd">
     <div class="filterBox">
+    	
       <dl class="fliter-bd clearfix">
         <dt>品牌：</dt>
-        <dd class="clickBrandWidget"> <a class="on" href="#">不限</a> 
-		<a  class="" href="#" title="大众二手车"> 大众 </a> 
-		<a  class="" href="#" title="奔腾二手车"> 奔腾 </a> 
-		<a  class="" href="#" title="丰田二手车"> 丰田 </a>  
-		<a  class="" href="#" title="本田二手车"> 本田 </a>  
-		<a  class="" href="#" title="日产二手车"> 日产 </a>  
-       
+        <dd class="clickBrandWidget"> 
+        <a  class="on" href="#" title="0">不限</a> 
+		<a  class="xz" name="aa" href="#" title="p1"> 大众 </a> 
+		<a  class="xz" name="aa" href="#" title="p2"> 本田 </a> 
+		<a  class="xz" name="aa" href="#" title="p3"> 奔驰 </a>  
+		<a  class="xz" name="aa" href="#" title="p4"> 丰田 </a>  
+		<a  class="xz" name="aa" href="#" title="p5"> 日产 </a>        
+        </dd>
+      </dl>
+      
+      <dl class="fliter-bd clearfix">
+        <dt>车系：</dt>
+        <dd class="clickTagWidget">
+        <a  class="on" href="#" title="0">不限</a> 
+        <a  class="xz" name="aa" href="#" title="c1"> 高尔夫 </a> 
+        <a  class="xz" name="aa" href="#" title="c2"> 朗逸 </a>
+        </dd>
+      </dl>
+      
+      <dl class="fliter-bd clearfix">
+        <dt>价格：</dt>
+        <dd class="clickTagWidget"> 
+        	<a  class="on" href="#" title="0">不限</a> 
+        	<a  class="xz" name="aa" href="#" title="j1"> 3万以下 </a> 
+            <a  class="xz" name="aa" href="#" title="j2"> 3~5万 </a> 
+            <a  class="xz" name="aa" href="#" title="j3"> 5~10万 </a> 
+            <a  class="xz" name="aa" href="#" title="j4"> 10~20万 </a> 
+            <a  class="xz" name="aa" href="#" title="j5"> 20万以上 </a> 
         </dd>
       </dl>
       <dl class="fliter-bd clearfix">
-        <dt>车系：</dt>
-        <dd class="clickTagWidget"> <a  class="on" href="#">不限</a> <a  class="" href="#" title="高尔夫"> 高尔夫 </a> 
-      </dl>
-      <dl class="fliter-bd clearfix">
-        <dt>价格：</dt>
-        <dd> <a  class="on" href="#">不限</a> <a  class="" href="#" title="3万以下二手车"> 3万以下 </a> <span class="input-box clearfix rangeFilter">
-          <label>
-            <input type="text" value="" data-default-value="0" size="4" class="js-begin" maxlength="3" id="my_price_b" name="b">
-          </label>
-          <label><i class="input-line">-</i></label>
-          <label>
-            <input type="text" value="" data-default-value="999" size="4" class="js-end" maxlength="3" id="my_price_e" name="e">
-          </label>
-          <label class="input-unit">万</label>
-          <label><a gjalog="" href="#" class="input-btn js-btn">筛选</a></label>
-          </span> </dd>
-      </dl>
-      <dl class="fliter-bd clearfix">
         <dt>车龄：</dt>
-        <dd> <a data-role="filterItemAge" data-value="" class="on" href="#">不限</a> <a  class="" href="#" title="5年以上二手车"> 5年以上 </a> <a class="" href="#" title="5年内二手车"> 5年内 </a> <a  class="" href="#" title="3年内二手车"> 3年内 </a> <a  class="" href="#" title="1年以内二手车"> 1年以内 </a> </dd>
+        <dd> 
+        	<a data-role="filterItemAge" data-value="" class="on" href="#">不限</a> 
+        	<a  class="xz" name="aa" href="#" title="s1"> 5年以上 </a> 
+        	<a  class="xz" name="aa" href="#" title="s2"> 5年内 </a> 
+        	<a  class="xz" name="aa" href="#" title="s3"> 3年内 </a> 
+        	<a  class="xz" name="aa" href="#" title="s4"> 1年以内 </a> 
+        </dd>
       </dl>
       <div class="moreitem clearfix">
         <span>更多：</span>
-        <dl class="selecter">
-		<dt>车型</dt>
-		<dd>
-			<ul>
-				<li><a href="javascript:void(0);">不限</a></li>
-				<li><a href="javascript:void(0);"> 两厢轿车 </a></li>
-				<li><a href="javascript:void(0);"> 三厢轿车 </a></li>
-				<li><a href="javascript:void(0);"> 跑车 </a></li>
-				<li><a href="javascript:void(0);"> SUV </a></li>
-				<li><a href="javascript:void(0);" > MPV </a></li>
-			</ul>
-		</dd>
-	</dl>
-    <dl class="selecter">
-		<dt>座位</dt>
-		<dd>
-			<ul>
-				<li><a href="javascript:void(0);">不限</a></li>
-				<li><a href="javascript:void(0);" > 2座 </a></li>
-				<li><a href="javascript:void(0);"> 4座 </a></li>
-				<li><a href="javascript:void(0);"> 5座 </a></li>
-				<li><a href="javascript:void(0);"> 6座 </a></li>
-				<li><a href="javascript:void(0);"> 7座及以上 </a></li>
-			</ul>
-		</dd>
-	</dl>
-    <dl class="selecter">
-		<dt>行驶里程</dt>
-		<dd>
-			<ul>
-				<li><a href="javascript:void(0);">不限</a></li>
-				<li><a href="javascript:void(0);"> 1万公里内 </a></li>
-				<li><a href="javascript:void(0);"> 3万公里内 </a></li>
-				<li><a href="javascript:void(0);"> 5万公里内 </a></li>
-				<li><a href="javascript:void(0);"> 5万公里以上 </a></li>
-			</ul>
-		</dd>
-	</dl>
-    <dl class="selecter">
-		<dt>变速箱</dt>
-		<dd>
-			<ul>
-				<li><a href="javascript:void(0);">不限</a>  </li>
-				<li><a href="javascript:void(0);"> 手动 </a></li>
-				<li><a href="javascript:void(0);"> 自动 </a></li>
-			</ul>
-		</dd>
-	</dl>
-    <dl class="selecter">
-		<dt>排量</dt>
-		<dd>
-			<ul>
-				<li><a href="javascript:void(0);">不限</a></li>
-				<li><a href="javascript:void(0);"> 1.0L以下 </a></li>
-				<li><a href="javascript:void(0);"> 1.0-1.6L </a></li>
-				<li><a href="javascript:void(0);"> 1.6-2.0L </a></li>
-				<li><a href="javascript:void(0);"> 2.0-3.0L </a></li>
-                <li><a href="javascript:void(0);"> 3.0L以上 </a></li>
-			</ul>
-		</dd>
-	</dl>
-    <dl class="selecter">
-		<dt>排放标准</dt>
-		<dd>
-			<ul>
-				<li><a href="javascript:void(0);">不限</a> </li>
-				<li><a href="javascript:void(0);"> 国二及以上 </a></li>
-				<li><a href="javascript:void(0);"> 国三及以上 </a></li>
-				<li><a href="javascript:void(0);"> 国四及以上 </a></li>
-				<li><a href="javascript:void(0);"> 国五 </a></li>
-			</ul>
-		</dd>
-	</dl>
-    <dl class="selecter">
-		<dt>燃油类型</dt>
-		<dd>
-			<ul>
-				<li><a href="javascript:void(0);">不限</a></li>
-				<li><a href="javascript:void(0);"> 汽油 </a></li>
-				<li><a href="javascript:void(0);"> 柴油 </a></li>
-				<li><a href="javascript:void(0);"> 电动 </a></li>
-				<li><a href="javascript:void(0);"> 油电混合 </a></li>
-                <li><a href="javascript:void(0);"> 其他 </a></li>
-			</ul>
-		</dd>
-	</dl>
+        
+    
     <dl class="selecter">
 		<dt>颜色</dt>
 		<dd>
 			<ul>
-				<li><a href="javascript:void(0);">不限</a></li>
-				<li><a href="javascript:void(0);"> <i class="c-lump03"></i>黑色 </a> </li>
-				<li><a href="javascript:void(0);"> <i class="c-lump04"></i>白色 </a></li>
-				<li><a href="javascript:void(0);"> <i class="c-lump10"></i>银灰色 </a></li>
-				<li><a href="javascript:void(0);"> <i class="c-lump09"></i>红色 </a> </li>
-                <li><a href="javascript:void(0);"> <i class="c-lump15"></i>深灰色 </a></li>
-                <li><a href="javascript:void(0);"> <i class="c-lump11"></i>橙色 </a></li>
-                <li><a href="javascript:void(0);"> <i class="c-lump02"></i>绿色 </a></li>
-                <li><a href="javascript:void(0);" > <i class="c-lump05"></i>蓝色 </a></li>
-                <li><a href="javascript:void(0);"> <i class="c-lump06"></i>咖啡色 </a></li>
-                <li><a href="javascript:void(0);"> <i class="c-lump07"></i>紫色 </a></li>
-                <li><a href="javascript:void(0);"> <i class="c-lump08"></i>香槟色 </a></li>
-                <li><a href="javascript:void(0);"> <i class="c-lump12"></i>多彩色 </a></li>
-                <li><a href="javascript:void(0);"> <i class="c-lump13"></i>黄色 </a></li>
-                <li><a href="javascript:void(0);"> <i class="c-lump14"></i>其它 </a></li>
+				<li><a href="javascript:void(0);" title="0">不限</a></li>
+				<li><a class="xz" name="aa" href="javascript:void(0);" title="y1">黑色 </a> </li>
+				<li><a class="xz" name="aa" href="javascript:void(0);" title="y2">白色 </a></li>
+				<li><a class="xz" name="aa" href="javascript:void(0);" title="y3">银灰色 </a></li>
+				<li><a class="xz" name="aa" href="javascript:void(0);" title="y4">红色 </a> </li>
+                <li><a class="xz" name="aa" href="javascript:void(0);" title="y5">深灰色 </a></li>
+                <li><a class="xz" name="aa" href="javascript:void(0);" title="y6">橙色 </a></li>
+                <li><a class="xz" name="aa" href="javascript:void(0);" title="y7">绿色 </a></li>
+                <li><a class="xz" name="aa" href="javascript:void(0);" title="y8">蓝色 </a></li>
+                <li><a class="xz" name="aa" href="javascript:void(0);" title="y9">咖啡色 </a></li>
+                <li><a class="xz" name="aa" href="javascript:void(0);" title="y10">其它 </a></li>
 			</ul>
 		</dd>
 	</dl>
     <dl class="selecter">
-		<dt>国别</dt>
+		<dt>地区</dt>
 		<dd>
 			<ul>
-				<li><a href="javascript:void(0);">不限</a></li>
-				<li><a href="javascript:void(0);"> 德系 </a></li>
-				<li><a href="javascript:void(0);"> 日系 </a></li>
-				<li><a href="javascript:void(0);"> 美系 </a></li>
-				<li><a href="javascript:void(0);"> 法系 </a></li>
-                <li><a href="javascript:void(0);"> 韩系 </a></li>
-                <li><a href="javascript:void(0);"> 国产 </a></li>
-                <li><a href="javascript:void(0);"> 其他 </a></li>
+				<li><a href="javascript:void(0);" title="0">不限</a></li>
+				<li><a class="xz" name="aa" href="javascript:void(0);" title="d1"> 青山湖区 </a></li>
+				<li><a class="xz" name="aa" href="javascript:void(0);" title="d2"> 瑶湖 </a></li>				
+                <li><a class="xz" name="aa" href="javascript:void(0);" title="d3"> 其他 </a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -389,35 +403,37 @@ $(function () {
   
   <ul class="carList">
     <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img width="290" height="194" src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
+      <div class="list-infoBox"> 
+      	<a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> 
+      	<img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
         <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
         <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
         <p class="priType-s"> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
       </div>
     </li>
     <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img width="290" height="194" src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
+      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
         <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
         <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
         <p class="priType-s"> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
       </div>
     </li>
     <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img width="290" height="194" src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
+      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
         <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
         <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
         <p class="priType-s"> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
       </div>
     </li>
     <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img width="290" height="194" src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
+      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
         <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
         <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
         <p class="priType-s"> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
       </div>
     </li>
     <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img width="290" height="194" src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"><i class="sup-yellow"> <em></em> 急降<br>
+      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"><i class="sup-yellow"> <em></em> 急降<br>
         200元 </i> </a>
         <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
         <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
@@ -425,7 +441,7 @@ $(function () {
       </div>
     </li>
     <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img width="290" height="194" src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
+      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
         <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
         <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
         <p class="priType-s"> <em class="tag-red">急售</em> <em class="tag-green">准新车</em> <em class="tag-yellow">超值</em> <span> <i class="fc-org priType"> 9.45万 </i> </span> <s>13.00万</s> </p>
@@ -433,7 +449,15 @@ $(function () {
     </li>
   </ul>
 </div>
-<div class="pages"> <a class="on" href="30/p/1.html">1</a><a class="" href="30/p/2.html">2</a><a class="" href="30/p/3.html">3</a><a class="" href="30/p/4.html">4</a><a class="" href="30/p/5.html">5</a> <a href="30/p/2.html">&gt;&gt;</a> <a href="30/p/6.html">6</a> </div>
+
+<div id="page">  <!--分页-->									
+	<a href="#">首页</a>	
+	<a href="#">上一页</a>
+	<span>1/5</span>
+	<a href="#">下一页</a>
+	<a href="#">末页</a>						
+</div>
+
 <div class="clear_fix"></div>
 <!--底部-->
 <div class="ftWrap">

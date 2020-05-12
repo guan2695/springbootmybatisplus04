@@ -26,4 +26,6 @@ public interface UserService {
 
     public User getOneUserById(int uid);
     public List<History> getAllHistoryByUser(int uid);
+
+    public int updateUserpwd(User user);
 }
