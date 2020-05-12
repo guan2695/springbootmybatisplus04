@@ -157,9 +157,17 @@
           <h3>
             <div class="border"><a href="listhtml">品牌</a></div>
             <ul>
+              <#if brandList?? && (brandList?size > 0)>
             <#list brandList as brand>
               <li><a href="listhtml2?bid=${brand.bid}" >${brand.bname}</a></li>
             </#list>
+            <#else>
+            <li><a href="listhtml2?bid=1" >大众</a></li>
+            <li><a href="listhtml2?bid=2" >本田</a></li>
+            <li><a href="listhtml2?bid=3" >奔驰</a></li>
+            <li><a href="listhtml2?bid=4" >丰田</a></li>
+            <li><a href="listhtml2?bid=5" >日产</a></li>
+          </#if>
             </ul>
           </h3>
 
@@ -168,11 +176,11 @@
           <h3>
             <div class="border"><a href="">价格</a></div>
             <ul>
-              <li><a href="listhtml2?price=1.0">3万以下</a></li>
-              <li><a href="listhtml2?price=2.0">3-5万</a></li>
-              <li><a href="listhtml2?price=3.0">5-10万</a></li>
-              <li><a href="listhtml2?price=4.0">10-20万</a></li>
-              <li><a href="listhtml2?price=5.0">20以上万</a></li>
+              <li><a href="listhtml3?price=1.0">3万以下</a></li>
+              <li><a href="listhtml3?price=2.0">3-5万</a></li>
+              <li><a href="listhtml3?price=3.0">5-10万</a></li>
+              <li><a href="listhtml3?price=4.0">10-20万</a></li>
+              <li><a href="listhtml3?price=5.0">20以上万</a></li>
             </ul>
           </h3>
         </div>

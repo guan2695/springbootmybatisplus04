@@ -5,10 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zt.entity.*;
 import com.zt.mapper.CarMapper;
-import com.zt.service.BrandService;
-import com.zt.service.CarService;
-import com.zt.service.ImagesService;
-import com.zt.service.UserService;
+import com.zt.mapper.CorolMapper;
+import com.zt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +31,10 @@ public class CarController {
 
     @Autowired
     private BrandService brandService;
+    @Autowired
+    private CorolMapper corolMapper;
+    @Autowired
+    private AddressService addressService;
 
     /**
      *  首页的查询车辆
@@ -53,7 +55,7 @@ public class CarController {
         System.out.println("一共输出了"+carList.size()+"条数据");
         //车品牌
         List<Brand> brandList= brandService.getAllBrand();
-        model.addAttribute("brandList",brandList);
+        session.setAttribute("brandList",brandList);
         return "index";
     }
 
@@ -77,7 +79,7 @@ public class CarController {
         session.removeAttribute("list2");
         //车品牌
         List<Brand> brandList= brandService.getAllBrand();
-        model.addAttribute("brandList",brandList);
+        session.setAttribute("brandList",brandList);
         return "index";
     }
 
@@ -223,10 +225,16 @@ public class CarController {
         List<Cardseries> cardserieslist= brand.getCardseries();
         model.addAttribute("brand",brand);
         session.setAttribute("cardserieslist",cardserieslist);
+        //得到所有颜色
+        List<Corol> corollist=corolMapper.getAllcorol();
+        session.setAttribute("corollist",corollist);
+        //得到所有地区
+        List<Address>addresseslist = addressService.getAllAddress();
+        session.setAttribute("addresseslist",addresseslist);
         return "list";
     }
     @RequestMapping("/listhtml3")
-    public String listhtml3(Integer pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid) {
+    public String listhtml3(Integer pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid,String addid,String colorid) {
         System.out.println(" --------进入查询--------- ");
         if(bid==null){
             bid="0";
@@ -234,14 +242,24 @@ public class CarController {
         if(csid==null){
             csid="0";
         }
+        if(addid==null){
+            addid="0";
+        }
+        if(colorid==null){
+            colorid="0";
+        }
         List<Brand> brandList= brandService.getAllBrand();
         session.setAttribute("brandList",brandList);
         int bid2 =Integer.parseInt(bid);
         int csid2=Integer.parseInt(csid);
+        int addid2 = Integer.parseInt(addid);
+        int colorid2 =Integer.parseInt(colorid);
         System.out.println("车牌id为"+bid2);
         car.setBid(bid2);
         car.setCsid(csid2);
         car.setPrice(price);
+        car.setAddressid(addid2);
+        car.setCorolid(colorid2);
         if(carage==null){
             carage="0";
         }

@@ -210,11 +210,10 @@ $(function () {
 	
 	//得到数据	函数
 	function getdate(){
-	    alert("s");
 		var ass=window.document.getElementsByClassName("xzz");			
 		for(var i=0;i < ass.length;i++){
 			var zi=ass[i].title.substring(-1,1);
-			var ziid=ass[i].title.substring(1);
+			var ziid=ass[i].title.substring(ass.length-1);
 			if(zi=="p"){
 			    bname=ziid;
 			}
@@ -234,7 +233,7 @@ $(function () {
 				address=ziid;
 			}
 		}
-		alert("bname"+bname+"\t"+"csname"+csname+"\t"+"price"+price+"\t"+"carage"+carage+"\t"+"corol"+corol+"\t"+"address"+address);		
+		alert("bname"+bname+"\t"+"csname"+csname+"\t"+"price"+price+"\t"+"carage"+carage+"\t"+"corol"+corol+"\t"+"address"+address);
 	}
 			
 });//窗体
@@ -327,7 +326,7 @@ $(function () {
         <dd class="clickBrandWidget"> 
         <a  class="on" href="#" title="0">不限</a>
             <#list brandList as brand>
-            <a  class="xz" name="aa" href="listhtml2?bid=${brand.bid}" title="p1">${brand.bname} </a>
+            <a  class="xz" name="aa" href="listhtml2?bid=${brand.bid}" title="p${brand.bid}">${brand.bname} </a>
         </#list>
         </dd>
       </dl>
@@ -338,12 +337,12 @@ $(function () {
             <a  class="on" href="#" title="0">不限</a>
             <#if cardserieslist?? && (cardserieslist?size > 0)>
             <#list cardserieslist as dserieslist>
-            <a  class="xz" name="aa" href="listhtml3?csid=${dserieslist.csid}" title="c1"> ${dserieslist.csname} </a>
+            <a  class="xz" name="aa" href="listhtml3?csid=${dserieslist.csid}" title="c${dserieslist.csname}"> ${dserieslist.csname} </a>
         </#list>
           <#else>
           <a  class="on" href="#" title="0">不限</a>
-          <a  class="on" href="#" title="0">奔驰a</a>
-          <a  class="on" href="#" title="0">丰田b</a>
+          <a  class="xz" href="#" title="0">奔驰a</a>
+          <a  class="xz" href="#" title="0">丰田b</a>
       </#if>
 
         </dd>
@@ -353,21 +352,21 @@ $(function () {
         <dt>价格：</dt>
         <dd class="clickTagWidget"> 
         	<a  class="on" href="#" title="0.0">不限</a>
-        	<a  class="xz" name="aa" href="listhtml2?price=1.0" title="j1"> 3万以下 </a>
-            <a  class="xz" name="aa" href="listhtml?price=2.0" title="j2"> 3~5万 </a>
-            <a  class="xz" name="aa" href="listhtml?price=3.0" title="j3"> 5~10万 </a>
-            <a  class="xz" name="aa" href="listhtml?price=4.0" title="j4"> 10~20万 </a>
-            <a  class="xz" name="aa" href="listhtml?price=5.0" title="j5"> 20万以上 </a>
+        	<a  class="xz" name="aa" href="listhtml3?price=1.0" title="j1.0"> 3万以下 </a>
+            <a  class="xz" name="aa" href="listhtml3?price=2.0" title="j1.0"> 3~5万 </a>
+            <a  class="xz" name="aa" href="listhtml3?price=3.0" title="j1.0"> 5~10万 </a>
+            <a  class="xz" name="aa" href="listhtml3?price=4.0" title="10~20万"> 10~20万 </a>
+            <a  class="xz" name="aa" href="listhtml3?price=5.0" title="20万以上"> 20万以上 </a>
         </dd>
       </dl>
       <dl class="fliter-bd clearfix">
         <dt>车龄：</dt>
         <dd> 
         	<a data-role="filterItemAge" data-value="" class="on" href="listhtml2?carage=0">不限</a>
-        	<a  class="xz" name="aa" href="listhtml2?carage=4" title="s1"> 10年以上 </a>
-        	<a  class="xz" name="aa" href="listhtml2?carage=3" title="s2"> 5 - 10年 </a>
-        	<a  class="xz" name="aa" href="listhtml2?carage=2" title="s3"> 3 - 5年 </a>
-        	<a  class="xz" name="aa" href="listhtml2?carage=1" title="s4"> 0 - 3年 </a>
+        	<a  class="xz" name="aa" href="listhtml3?carage=4" title="10年以上"> 10年以上 </a>
+        	<a  class="xz" name="aa" href="listhtml3?carage=3" title="5 - 10年"> 5 - 10年 </a>
+        	<a  class="xz" name="aa" href="listhtml3?carage=2" title="3 - 5年 "> 3 - 5年 </a>
+        	<a  class="xz" name="aa" href="listhtml3?carage=1" title="0 - 3年"> 0 - 3年 </a>
         </dd>
       </dl>
       <div class="moreitem clearfix">
@@ -378,8 +377,14 @@ $(function () {
 		<dt>颜色</dt>
 		<dd>
 			<ul>
+                <li><a href="javascript:void(0);" title="0">不限</a></li>
+             <#if corollist?? && (corollist?size > 0)>
+                <#list corollist as corollist>
+                <li><a class="xz" name="aa" href="listhtml3?colorid=${corollist.corolid}" title="${corollist.corol}">${corollist.corol} </a> </li>
+                </#list>
+            <#else>
 				<li><a href="javascript:void(0);" title="0">不限</a></li>
-				<li><a class="xz" name="aa" href="listhtml2?carage=4" title="y1">黑色 </a> </li>
+				<li><a class="xz" name="aa" href="listhtml3?colorid=1" title="y1">黑色 </a> </li>
 				<li><a class="xz" name="aa" href="javascript:void(0);" title="y2">白色 </a></li>
 				<li><a class="xz" name="aa" href="javascript:void(0);" title="y3">银灰色 </a></li>
 				<li><a class="xz" name="aa" href="javascript:void(0);" title="y4">红色 </a> </li>
@@ -389,18 +394,26 @@ $(function () {
                 <li><a class="xz" name="aa" href="javascript:void(0);" title="y8">蓝色 </a></li>
                 <li><a class="xz" name="aa" href="javascript:void(0);" title="y9">咖啡色 </a></li>
                 <li><a class="xz" name="aa" href="javascript:void(0);" title="y10">其它 </a></li>
-			</ul>
+            </#if>
+            </ul>
 		</dd>
 	</dl>
     <dl class="selecter">
 		<dt>地区</dt>
 		<dd>
 			<ul>
+                <li><a href="javascript:void(0);" title="0">不限</a></li>
+            <#if addresseslist?? && (addresseslist?size > 0)>
+                <#list addresseslist as addresslist>
+                <li><a class="xz" name="aa" href="listhtml3?addid=${addresslist.addid}" title="${addresslist.address}"> ${addresslist.address} </a></li>
+                </#list>
+                   <#else>
 				<li><a href="javascript:void(0);" title="0">不限</a></li>
 				<li><a class="xz" name="aa" href="javascript:void(0);" title="d1"> 青山湖区 </a></li>
 				<li><a class="xz" name="aa" href="javascript:void(0);" title="d2"> 瑶湖 </a></li>				
                 <li><a class="xz" name="aa" href="javascript:void(0);" title="d3"> 其他 </a></li>
-			</ul>
+            </#if>
+        </ul>
 		</dd>
 	</dl>
       </div>
