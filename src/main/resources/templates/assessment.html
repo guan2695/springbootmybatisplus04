@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>审核页面</title>
+		<link href="css/monokai_sublime.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/heightlength.css">
+		<link rel="stylesheet" href="css/mxjs.css">
+
+	</head>
+
+	<body>
+
+		<div class="container">
+			<div class="jsbg" style="padding-left: 2%;padding-right: 2%;">
+				<div class="col-lg-12 mxlength">
+					<div class="">
+						<h2>审核</h2>
+					</div>
+				</div>
+				<div class="col-lg-12" style="padding: 0 2%;">
+					<div class="row">
+						<div class="col-md-4">
+							<a href="#" class="thumbnail">
+								<img src="img/c1css01.jpg">
+							</a>
+						</div>
+						<div class="col-md-4">
+							<a href="#" class="thumbnail">
+								<img src="img/c1css01.jpg">
+							</a>
+						</div>
+						<div class="col-md-4">
+							<a href="#" class="thumbnail">
+								<img src="img/c1css01.jpg">
+							</a>
+						</div>
+						<div class="col-md-4">
+							<a href="#" class="thumbnail">
+								<img src="img/c1css01.jpg">
+							</a>
+						</div>
+						<div class="col-md-4">
+							<a href="#" class="thumbnail">
+								<img src="img/c1css01.jpg">
+							</a>
+						</div>
+						<div class="col-md-4">
+							<a href="#" class="thumbnail">
+								<img src="img/c1css01.jpg">
+							</a>
+						</div>
+					</div>
+
+					<table class="table" border="0" style="color: white;text-align: center;">
+						<tr>
+							<td>序号</td><td>1</td>
+							<td>车品牌</td><td>奔驰</td>
+						</tr>
+						<tr>
+							<td>车系</td><td>5系</td>
+							<td>颜色</td><td>红色</td>
+						</tr>
+						<tr>
+							<td>所属用户</td><td>xiao</td>
+							<td>图片路径</td><td>c6css01.jpg</td>
+						</tr>
+						<tr>
+							<td>原价</td><td>10万元</td>
+							<td>现价</td><td>5万元</td>
+						</tr>
+						<tr>
+							<td>所属地区</td><td>瑶湖区</td>
+							<td>车龄</td><td>8年</td>
+						</tr>
+						<tr>
+							<td>是否上架</td><td>是</td>
+							<td>是否过审</td><td>是</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="col-lg-12 mxlength">
+					<div class="">
+						<h3>相关配置</h3>
+					</div>
+				</div>
+				
+				<div  class="row">
+					<div class="col-md-6">
+						<table class="table table-bordered" style="color: white;text-align: center;">
+							<th colspan="2" style="text-align: center;">基础配置</th>
+							<tr>
+								<td>长度</td><td>420 cm</td>
+							</tr>
+							<tr>
+								<td>宽度</td><td>200 cm</td>
+							</tr>
+							<tr>
+								<td>高度</td><td>120 cm</td>
+							</tr>
+							<tr>
+								<td>质量</td><td>1700 kg</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-6">
+						<table class="table table-bordered" style="color: white;text-align: center;">
+							<th colspan="2" style="text-align: center;">高级配置</th>
+							<tr>
+								<td>排量</td><td>2L</td>
+							</tr>
+							<tr>
+								<td>燃油类型</td><td>汽油</td>
+							</tr>
+							<tr>
+								<td>燃油标号</td><td>95</td>
+							</tr>
+							<tr>
+								<td>制动类型</td><td>手动挡</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				
+				<div class="col-lg-12 mxlength">
+					<div class="">
+						<h3>审核</h3>
+					</div>
+				</div>
+				
+				<div>
+					<form action="" method="post">
+					<table class="table table-bordered" style="color: white;text-align: center;">
+						<tr>
+							<td>是否过审</td>
+							<td><input onclick="assessmentState()" type="radio" name="shenhe" value="1" checked="checked"> 通过 </td>
+							<td><input onclick="assessmentState()" type="radio" name="shenhe" value="0"> 不通过 
+							<select id="shenheState" name="shenheState" style="color: white;background: #23241F;display: none;">
+								<option value="车辆信息不全">车辆信息不全</option>
+								<option value="图片与车不符">图片与车不符</option>
+								<option value="定价不合适">定价不合适</option>
+								<option value="车辆非法改装">车辆非法改装</option>
+								<option value="其他原因">其他原因</option>
+							</select>
+							</td>
+						</tr>
+						<!--<tr id="assessmentStateOver" style="display: block;">
+							<td>不通过原因</td>
+							<td colspan="2"><select name="shenheState" style="color: white;background: #23241F;">
+								<option value="车辆信息不全">车辆信息不全</option>
+								<option value="图片与车不符">图片与车不符</option>
+								<option value="定价不合适">定价不合适</option>
+								<option value="车辆非法改装">车辆非法改装</option>
+								<option value="其他原因">其他原因</option>
+							</select></td>
+						</tr>-->
+						<tr>
+							<td colspan="3"><input class="btn btn-success" type="submit" value="提交审核" /></td>
+						</tr>
+					</table>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<script src="js/jquery-1.12.4.js"></script>
+		<script src="js/highlight.min.js"></script>
+		<script src="js/smoothscroll.js"></script>
+		<script>
+			hljs.initHighlightingOnLoad();
+		</script>
+		<script src="js/mking.js"></script>
+		<script type="text/javascript" src="js/user.js"></script>
+		<script type="text/javascript" src="js/assessment.js" ></script>
+	</body>
+
+</html>

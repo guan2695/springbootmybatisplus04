@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>车辆列表</title>
+<link href="css/monokai_sublime.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/heightlength.css">
+<link rel="stylesheet" href="css/mxjs.css">
+
+</head>
+
+<body>
+
+<div class="container">
+  <div class="jsbg"  style="padding-left: 2%;padding-right: 2%;">
+    <div class="col-lg-12 mxlength">
+      <div class=""> 
+			<h2>所有车辆</h2>	
+	  	</div>
+    </div>
+   <div class="col-lg-12">
+      <table class="table table-bordered" style="color: white;text-align: center;">
+      	<tr>
+      		<td>序号</td>
+      		<td>车品牌</td>
+      		<td>车系</td>
+      		<td>颜色</td>
+      		<td>所属用户</td>
+      		<td>原价(万元)</td>
+      		<td>现价(万元)</td>
+      		<td>是否上架</td>
+      		<td>是否过审</td>
+      		<td>所属地区</td>
+      		<td>车龄(年)</td>
+      		<td>图片路径</td>
+      		<td>查看</td>
+      		<td>修改</td>
+      		<td>操作</td>
+      	</tr>
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo(1)">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar(1)">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar(1)">下架</button></td>
+      	</tr>
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo()">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar()">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar()">下架</button></td>
+      	</tr>
+      	
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo()">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar()">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar()">下架</button></td>
+      	</tr>
+      	
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo()">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar()">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar()">删除</button></td>
+      	</tr>
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo()">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar()">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar()">删除</button></td>
+      	</tr>
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo()">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar()">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar()">删除</button></td>
+      	</tr>
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo()">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar()">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar()">删除</button></td>
+      	</tr>
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo()">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar()">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar()">删除</button></td>
+      	</tr>
+      	<tr>
+      		<td>1</td>
+      		<td>奔驰</td>
+      		<td>奔驰2系</td>
+      		<td>红色</td>
+      		<td>xiao</td>
+      		<td>10</td>
+      		<td>5</td>
+      		<td>是</td>
+      		<td>是</td>
+      		<td>瑶湖区</td>
+      		<td>5</td>
+      		<td>c6css01.jpg</td>
+      		<td><button class="btn btn-info btn-xs" onclick="carinfo()">查看</button></td>
+      		<td><button class="btn btn-primary btn-xs" onclick="updcar()">修改</button></td>
+      		<td><button class="btn btn-danger btn-xs" onclick="delcar()">删除</button></td>
+      	</tr>
+      </table>
+    </div>
+    
+    <!--分页-->
+	  <div>
+	  	<nav aria-label="">
+	  	<ul class="pager">
+	    	<li class="previous"><a onclick="prePage()"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+	    	<li ><a><span id="carthisPage">1</span> &nbsp;/&nbsp; <span id="carpageCount">5</span></a></li>
+	    	<li class="next"><a onclick="nextPage()">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+	  	</ul>
+			</nav>
+	  </div>
+  </div>
+</div>
+<script src="js/jquery-1.12.4.js"></script> 
+<script src="js/highlight.min.js"></script> 
+<script src="js/smoothscroll.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="js/mking.js"></script>
+<script type="text/javascript" src="js/caradmin.js" ></script>
+</body>
+</html>

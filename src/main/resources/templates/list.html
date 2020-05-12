@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>二手车</title>
-<link rel="stylesheet" type="text/css" href="css2/base.css"/>
-<link rel="stylesheet" type="text/css" href="css2/home.css"/>
-<link rel="stylesheet" type="text/css" href="css2/city.css">
+<link rel="stylesheet" type="text/css" href="css/base.css"/>
+<link rel="stylesheet" type="text/css" href="css/home.css"/>
+<link rel="stylesheet" type="text/css" href="css/city.css">
 <script type="text/javascript" src="script/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="script/home_ban.js"></script>
 <script type="text/javascript" src="script/eg_top_search.js"></script>
@@ -53,7 +53,7 @@ $(function () {
 <script type="text/javascript">
 $(function () {
 	var wind_wd = $(window).width();
-	if(wind_wd<=735){
+	if(wind_wd&lt;=735){
 		/* $submenu.first().delay(400).slideDown(700);*/
 			$('.relate .tit').on('click', function() {
 			$(this).next('.con').slideToggle()
@@ -65,7 +65,7 @@ $(function () {
 			}
 	$(window).resize(function(){
  		var wind_wd = $(window).width();
-		if(wind_wd<=735){
+		if(wind_wd&lt;=735){
 		/* $submenu.first().delay(400).slideDown(700);*/
 			$('.relate .tit').on('click', function() {
 			$(this).next('.con').slideToggle()
@@ -124,7 +124,7 @@ $(function () {
 	var scroll_heitht = $('body').offset().top;
 	var isShow = true;
 	$(window).scroll(function () {
-       if ($(window).scrollTop() > scroll_heitht && isShow) {
+       if ($(window).scrollTop() > scroll_heitht &amp;&amp; isShow) {
 			 $('.stress-search-box').slideDown(200);
        }else{
 		   $('.stress-search-box').slideUp(200);
@@ -210,7 +210,7 @@ $(function () {
 	//得到数据	函数
 	function getdate(){
 		var ass=window.document.getElementsByClassName("xzz");			
-		for(var i=0;i<ass.length;i++){
+		for(var i=0;i&lt;ass.length;i++){
 			var zi=ass[i].title.substring(-1,1);
 			var ziid=ass[i].title.substring(1);
 			if(zi=="p"){
