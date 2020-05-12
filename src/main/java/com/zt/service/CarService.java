@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.Car;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -54,6 +55,16 @@ public interface CarService {
      * 多条件查询车辆
      */
     public List<Car> manyConditions(Car car);
+
+    /**
+     * 多条件查询且分页
+     */
+    /**
+     * 多条件查询车辆且分页
+     *
+     */
+    public List<Car> manyCar(Car car,@Param("first") int first, @Param("pageSize") int pageSize);
+
 
     /**
      * 查询一辆车的六张图片

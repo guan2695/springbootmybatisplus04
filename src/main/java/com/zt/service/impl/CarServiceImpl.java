@@ -63,6 +63,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> manyCar(Car car, int first, int pageSize) {
+         return carMapper.manyCar(car,first,pageSize);
+    }
+
+
+    @Override
     public Car getCarone(Car car) {
         return carMapper.getCarone(car);
     }

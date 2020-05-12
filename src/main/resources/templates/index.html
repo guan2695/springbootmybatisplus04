@@ -155,13 +155,11 @@
       <div class="all-sort-list">
         <div class="item">
           <h3>
-            <div class="border"><a href="">品牌</a></div>
+            <div class="border"><a href="listhtml">品牌</a></div>
             <ul>
-              <li><a href="listhtml">大众</a></li>
-              <li><a href="listhtml">丰田</a></li>
-              <li><a href="listhtml">日产</a></li>
-              <li><a href="listhtml">奔驰</a></li>
-              <li><a href="listhtml">本田</a></li>
+            <#list brandList as brand>
+              <li><a href="listhtml2?bid=${brand.bid}" >${brand.bname}</a></li>
+            </#list>
             </ul>
           </h3>
 
@@ -170,24 +168,22 @@
           <h3>
             <div class="border"><a href="">价格</a></div>
             <ul>
-              <li><a href="listhtml">5万以下</a></li>
-              <li><a href="listhtml">5-10万</a></li>
-              <li><a href="listhtml">10-15万</a></li>
-              <li><a href="listhtml">15-20万</a></li>
+              <li><a href="listhtml2?price=1.0">3万以下</a></li>
+              <li><a href="listhtml2?price=2.0">3-5万</a></li>
+              <li><a href="listhtml2?price=3.0">5-10万</a></li>
+              <li><a href="listhtml2?price=4.0">10-20万</a></li>
+              <li><a href="listhtml2?price=5.0">20以上万</a></li>
             </ul>
           </h3>
         </div>
         <div class="items">
           <h3 style="border-bottom:0px;">
-            <div class="border"><a href="">车型</a></div>
+            <div class="border"><a href="">车龄</a></div>
             <ul>
-              <li><a href="listhtml">**</a></li>
-              <li><a href="listhtml">**</a></li>
-              <li><a href="listhtml">**</a></li>
-              <li><a href="listhtml">**</a></li>
-              <li><a href="listhtml">**</a></li>
-              <li><a href="listhtml">**</a></li>
-              <li><a href="listhtml">**</a></li>
+              <li><a href="listhtml2?carage=1">0 - 3年</a></li>
+              <li><a href="listhtml2?carage=2">3 - 5年</a></li>
+              <li><a href="listhtml2?carage=3">5 - 10年</a></li>
+              <li><a href="listhtml2?carage=4">10年以上</a></li>
             </ul>
           </h3>
         </div>

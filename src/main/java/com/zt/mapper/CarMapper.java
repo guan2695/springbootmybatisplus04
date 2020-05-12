@@ -1,7 +1,9 @@
 package com.zt.mapper;
 
 import com.zt.entity.Car;
+import com.zt.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  * @create 2020-05-07 19:43
  */
 @Mapper
-public interface CarMapper {
+public interface CarMapper  {
     /**
      * 首页查询九辆车
      * @return
@@ -57,6 +59,16 @@ public int insertCar(Car car);
      * 多条件查询车辆
      */
     public List<Car> manyConditions(Car car);
+
+    /**
+     * 多条件查询车辆且分页
+     * @param car
+     * @param first
+     * @param pageSize
+     * @return
+     */
+    public List<Car> manyCar(Car car,@Param("first") int first, @Param("pageSize") int pageSize);
+
 
     /**
      * 查询一辆车的六张图片

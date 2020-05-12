@@ -12,10 +12,10 @@ function assessmentState(){
 			var num=shenhe[i].value;
 			if(num==0){
 				//不通过显示原因行
-				$("#shenheState").attr("style","color: white;background: #23241F;display: inline-block;");
+				$("#shenheState").attr("style","display: inline-block;");
 			}else{
 				//通过不显示原因行
-				$("#shenheState").attr("style","color: white;background: #23241F;display: none;");
+				$("#shenheState").attr("style","display: none;");
 			}
 		} 
 	}

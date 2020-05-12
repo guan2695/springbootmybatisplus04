@@ -1,10 +1,11 @@
 package com.zt.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sun.org.apache.xpath.internal.operations.Mod;
-import com.zt.entity.Car;
-import com.zt.entity.Images;
-import com.zt.entity.User;
+import com.zt.entity.*;
 import com.zt.mapper.CarMapper;
+import com.zt.service.BrandService;
 import com.zt.service.CarService;
 import com.zt.service.ImagesService;
 import com.zt.service.UserService;
@@ -30,6 +31,9 @@ public class CarController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BrandService brandService;
+
     /**
      *  首页的查询车辆
      * @param model
@@ -41,11 +45,15 @@ public class CarController {
         List<Car> carList = carService.selectlimit();
         carList.forEach(System.out::println);
         model.addAttribute("carList",carList);
+
         List<Car> carListagr=carService.selectCarage();
         model.addAttribute("carListagr",carListagr);
         List<Car> carlistPrice=carService.selectOprice();
         model.addAttribute("carlistPrice",carlistPrice);
         System.out.println("一共输出了"+carList.size()+"条数据");
+        //车品牌
+        List<Brand> brandList= brandService.getAllBrand();
+        model.addAttribute("brandList",brandList);
         return "index";
     }
 
@@ -67,6 +75,9 @@ public class CarController {
         model.addAttribute("carlistPrice",carlistPrice);
         System.out.println("一共输出了"+carList.size()+"条数据");
         session.removeAttribute("list2");
+        //车品牌
+        List<Brand> brandList= brandService.getAllBrand();
+        model.addAttribute("brandList",brandList);
         return "index";
     }
 
@@ -140,41 +151,107 @@ public class CarController {
      * @param car
      * @return
      */
-    @RequestMapping("/manyConditions")
-    public String manyConditions(Model model,Car car){
-        car.setBid(2);
-        car.setCsid(5);
-        /**
-         * 区间 0-3是(1)
-         * 区间 3-5是(2)
-         * 区间 5-10是(3)
-         * 区间 10-20是(4)
-         * 区间 大于20万是(5)
-         */
+    @RequestMapping("/listhtml")
+    public String manyConditions(Model model,Car car,Integer first,HttpSession session){
+        System.out.println("进入多条件查询");
+       // System.out.println(bid);
+        System.out.println(car);
+        List<Car> listmanyQuery;
 
-        car.setPrice(3D);
-        car.setAddressid(3);
-        car.setCorolid(9);
-        /**
-         * 区间 0-3是(1)
-         * 区间 3-5是(2)
-         * 区间 5-10是(3)
-         * 区间 大于10万是(4)
-         */
-        car.setCarage(3);
-        System.out.println("价格"+car.getPrice());
-        List<Car> listmanyQuery =carService.manyConditions(car);
-        model.addAttribute("listmanyQuery",listmanyQuery);
+        List<Brand> brandList= brandService.getAllBrand();
+        session.setAttribute("brandList",brandList);
+//        if(bid==null){
+//            bid="0";
+//        }
+//       int bid2 =Integer.parseInt(bid);
+//       System.out.println("车牌id为"+bid2);
+        //页面显示八个
+        int pageSize=8;
+        if(first==null){
+            first=1;
+          //  car.setBid(bid2);
+
+            listmanyQuery =carService.manyCar(car,(first-1)*pageSize,pageSize);
+        }
+
+       listmanyQuery =carService.manyCar(car,(first-1)*pageSize,pageSize);
+        int total=listmanyQuery.size();
         System.out.println("多条件查询共"+listmanyQuery.size()+"条数据");
-        return "show3";
+        int count= (int) (total%pageSize==0?total/pageSize:total/pageSize+1);
+        model.addAttribute("listmanyQuery",listmanyQuery);
+        System.out.println("总页数为"+count);
+        model.addAttribute("pageindex",first);
+        model.addAttribute("count",count);
+        return "list";
     }
+
+
 
     /**
      *
      */
-    @RequestMapping("/listhtml")
-    public String listhtml(HttpSession session, User user) {
+    //根据品牌进入
+    @RequestMapping("/listhtml2")
+    public String listhtml(Integer pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid) {
         System.out.println(" --------进入查询--------- ");
+        if(bid==null){
+            bid="0";
+        }
+        if(csid==null){
+            csid="0";
+        }
+        List<Brand> brandList= brandService.getAllBrand();
+        session.setAttribute("brandList",brandList);
+        int bid2 =Integer.parseInt(bid);
+        int csid2=Integer.parseInt(csid);
+        System.out.println("车牌id为"+bid2);
+        car.setBid(bid2);
+        car.setCsid(csid2);
+        car.setPrice(price);
+        if(carage==null){
+            carage="0";
+        }
+      int age = Integer.parseInt(carage);
+        System.out.println("车龄是区间"+age);
+        car.setCarage(car.getCarage());
+        System.out.println("价格"+car.getPrice());
+       List<Car> listmanyQuery =carService.manyConditions(car);
+        model.addAttribute("listmanyQuery",listmanyQuery);
+        System.out.println("多条件查询共"+listmanyQuery.size()+"条数据");
+        System.out.println("进入查询一个车牌和他的车系");
+        Brand brand= brandService.getOneBrandById(bid2);
+        List<Cardseries> cardserieslist= brand.getCardseries();
+        model.addAttribute("brand",brand);
+        session.setAttribute("cardserieslist",cardserieslist);
+        return "list";
+    }
+    @RequestMapping("/listhtml3")
+    public String listhtml3(Integer pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid) {
+        System.out.println(" --------进入查询--------- ");
+        if(bid==null){
+            bid="0";
+        }
+        if(csid==null){
+            csid="0";
+        }
+        List<Brand> brandList= brandService.getAllBrand();
+        session.setAttribute("brandList",brandList);
+        int bid2 =Integer.parseInt(bid);
+        int csid2=Integer.parseInt(csid);
+        System.out.println("车牌id为"+bid2);
+        car.setBid(bid2);
+        car.setCsid(csid2);
+        car.setPrice(price);
+        if(carage==null){
+            carage="0";
+        }
+        int age = Integer.parseInt(carage);
+        System.out.println("车龄是区间"+age);
+        car.setCarage(car.getCarage());
+        System.out.println("价格"+car.getPrice());
+        List<Car> listmanyQuery =carService.manyConditions(car);
+        model.addAttribute("listmanyQuery",listmanyQuery);
+        System.out.println("多条件查询共"+listmanyQuery.size()+"条数据");
         return "list";
     }
 

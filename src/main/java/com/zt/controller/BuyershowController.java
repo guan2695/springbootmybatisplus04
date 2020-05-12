@@ -83,7 +83,6 @@ public class BuyershowController {
         if(first1!=0){
             first=(first1-1)*pageSize;
         }
-
         //总页数
         int count=buyershowService.getPageCount();
         if(count<=0){

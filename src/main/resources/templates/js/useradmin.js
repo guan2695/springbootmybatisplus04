@@ -2,7 +2,7 @@
 function userinfo(uid){
 	//alert(uid);
 	//异步刷新到userinfo.html
-	location.href="userinfo.html";
+	location.href="adminUserInfo.html";
 }
 
 //删除用户方法

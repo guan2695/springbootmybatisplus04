@@ -202,15 +202,17 @@ $(function () {
 	//下拉搜索单击
 	$(".selecter li a").click(function(){
 		$(this).parent().parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
-		$(this).attr({"class":"xzz"});     //添加class 
+		$(this).attr({"class":"xzz"});
+		//添加class
 		//得到数据
 		getdate();				
 	});
 	
 	//得到数据	函数
 	function getdate(){
+	    alert("s");
 		var ass=window.document.getElementsByClassName("xzz");			
-		for(var i=0;i&lt;ass.length;i++){
+		for(var i=0;i < ass.length;i++){
 			var zi=ass[i].title.substring(-1,1);
 			var ziid=ass[i].title.substring(1);
 			if(zi=="p"){
@@ -323,43 +325,49 @@ $(function () {
       <dl class="fliter-bd clearfix">
         <dt>品牌：</dt>
         <dd class="clickBrandWidget"> 
-        <a  class="on" href="#" title="0">不限</a> 
-		<a  class="xz" name="aa" href="#" title="p1"> 大众 </a> 
-		<a  class="xz" name="aa" href="#" title="p2"> 本田 </a> 
-		<a  class="xz" name="aa" href="#" title="p3"> 奔驰 </a>  
-		<a  class="xz" name="aa" href="#" title="p4"> 丰田 </a>  
-		<a  class="xz" name="aa" href="#" title="p5"> 日产 </a>        
+        <a  class="on" href="#" title="0">不限</a>
+            <#list brandList as brand>
+            <a  class="xz" name="aa" href="listhtml2?bid=${brand.bid}" title="p1">${brand.bname} </a>
+        </#list>
         </dd>
       </dl>
       
       <dl class="fliter-bd clearfix">
         <dt>车系：</dt>
         <dd class="clickTagWidget">
-        <a  class="on" href="#" title="0">不限</a> 
-        <a  class="xz" name="aa" href="#" title="c1"> 高尔夫 </a> 
-        <a  class="xz" name="aa" href="#" title="c2"> 朗逸 </a>
+            <a  class="on" href="#" title="0">不限</a>
+            <#if cardserieslist?? && (cardserieslist?size > 0)>
+            <#list cardserieslist as dserieslist>
+            <a  class="xz" name="aa" href="listhtml3?csid=${dserieslist.csid}" title="c1"> ${dserieslist.csname} </a>
+        </#list>
+          <#else>
+          <a  class="on" href="#" title="0">不限</a>
+          <a  class="on" href="#" title="0">奔驰a</a>
+          <a  class="on" href="#" title="0">丰田b</a>
+      </#if>
+
         </dd>
       </dl>
       
       <dl class="fliter-bd clearfix">
         <dt>价格：</dt>
         <dd class="clickTagWidget"> 
-        	<a  class="on" href="#" title="0">不限</a> 
-        	<a  class="xz" name="aa" href="#" title="j1"> 3万以下 </a> 
-            <a  class="xz" name="aa" href="#" title="j2"> 3~5万 </a> 
-            <a  class="xz" name="aa" href="#" title="j3"> 5~10万 </a> 
-            <a  class="xz" name="aa" href="#" title="j4"> 10~20万 </a> 
-            <a  class="xz" name="aa" href="#" title="j5"> 20万以上 </a> 
+        	<a  class="on" href="#" title="0.0">不限</a>
+        	<a  class="xz" name="aa" href="listhtml2?price=1.0" title="j1"> 3万以下 </a>
+            <a  class="xz" name="aa" href="listhtml?price=2.0" title="j2"> 3~5万 </a>
+            <a  class="xz" name="aa" href="listhtml?price=3.0" title="j3"> 5~10万 </a>
+            <a  class="xz" name="aa" href="listhtml?price=4.0" title="j4"> 10~20万 </a>
+            <a  class="xz" name="aa" href="listhtml?price=5.0" title="j5"> 20万以上 </a>
         </dd>
       </dl>
       <dl class="fliter-bd clearfix">
         <dt>车龄：</dt>
         <dd> 
-        	<a data-role="filterItemAge" data-value="" class="on" href="#">不限</a> 
-        	<a  class="xz" name="aa" href="#" title="s1"> 5年以上 </a> 
-        	<a  class="xz" name="aa" href="#" title="s2"> 5年内 </a> 
-        	<a  class="xz" name="aa" href="#" title="s3"> 3年内 </a> 
-        	<a  class="xz" name="aa" href="#" title="s4"> 1年以内 </a> 
+        	<a data-role="filterItemAge" data-value="" class="on" href="listhtml2?carage=0">不限</a>
+        	<a  class="xz" name="aa" href="listhtml2?carage=4" title="s1"> 10年以上 </a>
+        	<a  class="xz" name="aa" href="listhtml2?carage=3" title="s2"> 5 - 10年 </a>
+        	<a  class="xz" name="aa" href="listhtml2?carage=2" title="s3"> 3 - 5年 </a>
+        	<a  class="xz" name="aa" href="listhtml2?carage=1" title="s4"> 0 - 3年 </a>
         </dd>
       </dl>
       <div class="moreitem clearfix">
@@ -371,7 +379,7 @@ $(function () {
 		<dd>
 			<ul>
 				<li><a href="javascript:void(0);" title="0">不限</a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="y1">黑色 </a> </li>
+				<li><a class="xz" name="aa" href="listhtml2?carage=4" title="y1">黑色 </a> </li>
 				<li><a class="xz" name="aa" href="javascript:void(0);" title="y2">白色 </a></li>
 				<li><a class="xz" name="aa" href="javascript:void(0);" title="y3">银灰色 </a></li>
 				<li><a class="xz" name="aa" href="javascript:void(0);" title="y4">红色 </a> </li>
@@ -400,53 +408,18 @@ $(function () {
     </div>
    
   </div>
-  
-  <ul class="carList">
+  <ul class="carList2">
+      <#list listmanyQuery as listmany>
     <li>
-      <div class="list-infoBox"> 
-      	<a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> 
-      	<img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
-        <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
-        <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
-        <p class="priType-s"> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
+      <div class="list-infoBox">
+      	<a title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" target="_self" class="imgtype" href="getCarone?cid=${listmany.cid}">
+      	<img src="images/${listmany.img}"  width="290" height="194" alt="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年"> </a>
+        <p class="infoBox"> <a  title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" href="getCarone?cid=${listmany.cid}" target="_blank" class="info-title">${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年</a> </p>
+        <p class="fc-gray"> <span class="tag-gray">${listmany.address.address}</span> <span class="">车龄${listmany.carage}年</span> <em class="shuxian">|</em> 颜色:${listmany.corol.corol} </p>
+        <p class="priType-s"> <span> <i class="fc-org priType">${listmany.price}万 </i> </span> <s>${listmany.oprice}万</s> </p>
       </div>
     </li>
-    <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
-        <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
-        <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
-        <p class="priType-s"> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
-      </div>
-    </li>
-    <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
-        <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
-        <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
-        <p class="priType-s"> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
-      </div>
-    </li>
-    <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
-        <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
-        <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
-        <p class="priType-s"> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
-      </div>
-    </li>
-    <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"><i class="sup-yellow"> <em></em> 急降<br>
-        200元 </i> </a>
-        <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
-        <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
-        <p class="priType-s"><em class="tag-blue">里程少</em> <span> <i class="fc-org priType"> 2.10万 </i> </span> <s>3.40万</s> </p>
-      </div>
-    </li>
-    <li>
-      <div class="list-infoBox"> <a title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" target="_blank" class="imgtype" href="infor.html"> <img src="images/carimg.jpg" alt="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版"> </a>
-        <p class="infoBox"> <a  title="奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版" href="infor.html" target="_blank" class="info-title">奇瑞QQ3 2012款 QQ3 0.8 手动 梦想版</a> </p>
-        <p class="fc-gray"> <span class="tag-gray">石家庄</span> <span class="">2014年11月上牌</span> <em class="shuxian">|</em> 行驶2.4万公里 </p>
-        <p class="priType-s"> <em class="tag-red">急售</em> <em class="tag-green">准新车</em> <em class="tag-yellow">超值</em> <span> <i class="fc-org priType"> 9.45万 </i> </span> <s>13.00万</s> </p>
-      </div>
-    </li>
+  </#list>
   </ul>
 </div>
 

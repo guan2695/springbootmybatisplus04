@@ -601,6 +601,7 @@
 
 
 
+
 .menucarlist{ width:900px;}
 .carList{ position: relative;right:150px; width: 1000px;height:650px;margin-left: 115px;}
 .carList li{float:left;margin-bottom:5px;position:relative;z-index:2}
@@ -625,6 +626,33 @@
 .sup-green,.sup-red,.sup-yellow{position:absolute;top:0;left:0;display:inline-block;width:44px;height:32px;padding:6px 0 2px;text-align:center;color:#fff;font-size:12px;line-height:16px}
 .sup-yellow em{border-color:#ff7e00 #ff7e00 transparent}
 .sup-green em,.sup-red em,.sup-yellow em{position:absolute;top:40px;left:0;display:block;width:0;height:0;border-color:#ff7e00 #ff7e00 transparent;border-style:solid;border-width:0 22px 8px}
+
+.menucarlist2{ width:1300px;}
+.carList2{ position: relative;right:150px; width: 1340px;height:650px;margin-left: 145px;}
+.carList2 li{float:left;margin-bottom:5px;position:relative;z-index:2}
+.carList2 li .list-infoBox{height:310px;width:290px;background:#fff;position:relative;z-index:5;border:2px solid #f5f5f5;margin-left: 6px;}
+.carList2 li .list-infoBox:hover{ border:2px solid #ee7800}
+.carList2 li .list-infoBox p{padding:0 10px}
+.carList2 li .infoBox{font-size:16px;line-height:1em;margin:12px 0 8px;overflow:hidden;text-overflow:ellipsis;-o-text-overflow:ellipsis;width:270px;white-space:nowrap}
+.carList2 li .list-infoBox .fc-gray{color:#999}
+.carList2 li .tag-gray{font-size:12px;float:right}
+.carList2 li .tag-gray{line-height:14px;padding:0 1px;border:1px solid #999;color:#999;margin-top:1px}
+.carList2 li .priType-s{margin-top:3px}
+.carList2 li .priType-s span{margin-right:5px}
+.carList2 li .priType{font-size:22px;color:#ff7e00}
+.carList2 li .priType-s s{color:#999;font-size:14px;text-decoration:line-through}
+.priType-s em.tag-red{background:#ff5b35}
+.priType-s em{height:16px;line-height:16px;padding:0 4px;color:#fff;margin-left:4px;margin-top:10px}
+.priType-s em,.tag-gray{font-size:12px;float:right}
+.priType-s em.tag-green{background:#34b869}
+.priType-s em.tag-yellow{background:#ff9947}
+.priType-s em.tag-blue{ background:#1f8de1;}
+.sup-yellow{background:#ff7e00}
+.sup-green,.sup-red,.sup-yellow{position:absolute;top:0;left:0;display:inline-block;width:44px;height:32px;padding:6px 0 2px;text-align:center;color:#fff;font-size:12px;line-height:16px}
+.sup-yellow em{border-color:#ff7e00 #ff7e00 transparent}
+.sup-green em,.sup-red em,.sup-yellow em{position:absolute;top:40px;left:0;display:block;width:0;height:0;border-color:#ff7e00 #ff7e00 transparent;border-style:solid;border-width:0 22px 8px}
+
+
 
 
 /***新闻资讯***/

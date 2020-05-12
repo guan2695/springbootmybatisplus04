@@ -1,134 +1,134 @@
-﻿<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 	<head>
+		<meta charset="UTF-8">
 		<title>管理员页面</title>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<!-- VENDOR CSS -->
-		<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/admin.css" />
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/useradmin.js" ></script>
 	</head>
 
 	<body>
-		<div id="loading">
-			<div></div>
-			<div></div>
-			<span></span>
+		<!--
+        	作者：offline
+        	时间：2020-05-12
+        	描述：头部
+        -->
+		<div id="head" class="row">
+			<img src="images/1234.png" id="headLogo" />
+			<span id="headSpan">管理员登录成功</span>
 		</div>
-		<!-- WRAPPER -->
-		<div id="wrapper">
-			<!-- NAVBAR -->
-			<nav class="navbar navbar-default navbar-fixed-top">
-				<div class="brand">
-					<a href="admin.html"><img src="images/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
-				</div>
-				<div class="container-fluid">
-					<div class="navbar-btn" style="padding: 0; padding-top: 10px;">
-						<button type="button" class="btn-toggle-fullwidth btn-toggle-mx"><img src="images/left.png" height="40px" alt=""></button>
-					</div>
-				</div>
-			</nav>
-			<!-- END NAVBAR -->
-			<!--_________________________________________________________________________________________-->
-			<!-- LEFT SIDEBAR -->
-			<div id="sidebar-nav" class="sidebar">
-				<div class="sidebar-scroll">
-					<nav>
-						<ul class="nav">
-							
-							<!--用户管理-->
-							<li>
-								<a href="useralist.html" target="_blank" class="iframe_link active"><span>用户管理</span></a>
-							</li>
-							
-							<!--车辆管理-->
-							<li>
-								<a href="javascript:;" class="nav-togg"><span>车辆管理</span></a>
-								<div>
-									<ul>
-										<li>
-											<a href="carlist.html" target="_blank" class="iframe_link">
-												<span>所有车辆</span></a>
-										</li>
-										<li>
-											<a href="assessmentlist.html" target="_blank" class="iframe_link">
-												<span>审核申请</span></a>
-										</li>
-										<li>
-											<a href="brandlist.html" target="_blank" class="iframe_link">
-												<span>所有品牌</span></a>
-										</li>
-										<li>
-											<a href="adminAddBrand.html" target="_blank" class="iframe_link">
-												<span>添加品牌</span></a>
-										</li>
-										<li>
-											<a href="corollist.html" target="_blank" class="iframe_link">
-												<span>所有颜色</span></a>
-										</li>
-										<li>
-											<a href="adminAddCorol.html" target="_blank" class="iframe_link">
-												<span>添加颜色</span></a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							
-							<!--贷款管理-->
-							<li>
-								<a href="javascript:;" class="nav-togg"> <span>贷款管理</span> </a>
-								<div>
-									<ul>
-										<li>
-											<a href="banklist.html" target="_blank" class="iframe_link">
-												<span>银行列表</span></a>
-										</li>
-										<li>
-											<a href="adminAddBank.html" target="_blank" class="iframe_link">
-												<span>添加银行</span></a>
-										</li>
-										<li>
-											<a href="loanslist.html" target="_blank" class="iframe_link">
-												<span>贷款申请</span></a>
-										</li>
-										
-									</ul>
-								</div>
-							</li>
-							
-							<!--地区管理-->
-							<li>
-								<a href="addresslist.html" target="_blank" class="iframe_link"><span>地区管理</span></a>
-							</li>
-							
-							<!--买家秀管理-->
-							<li>
-								<a href="buyerShowlist.html" target="_blank" class="iframe_link"><span>买家秀管理</span></a>
-							</li>
-							
-							<!--交易记录-->
-							<li>
-								<a href="transationlist.html" target="_blank" class="iframe_link"><span>交易记录</span></a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-			<div class="main">
-				<div class="main-content" style="height: 100%;">
-					<iframe src="useralist.html" class="iframe_mx uicss-cn"></iframe>
-				</div>
-			</div>
-		</div>
-		<script type="text/javascript" src="js/jquery-1.12.4.js" ></script>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.slimscroll.min.js"></script>
-		<script src="js/klorofil-common.js"></script>
 
+		<!--
+        	作者：offline
+        	时间：2020-05-12
+        	描述：主体
+        -->
+		<div id="body">
+			<div id="bodyLeft">
+				<ul class="nav nav-pills nav-stacked" id="leftUl">
+					<li role="presentation" class="active">
+						<a href="#">用户管理</a>
+					</li>
+					<li role="presentation">
+						<a href="#">车辆管理</a>
+					</li>
+					<li role="presentation">
+						<a href="#">审核申请</a>
+					</li>
+					<li role="presentation">
+						<a href="#">所有品牌</a>
+					</li>
+					<li role="presentation">
+						<a href="#">添加品牌</a>
+					</li>
+					<li role="presentation">
+						<a href="#">添加颜色</a>
+					</li>
+					<li role="presentation">
+						<a href="#">添加颜色</a>
+					</li>
+					<li role="presentation">
+						<a href="#">银行列表</a>
+					</li>
+					<li role="presentation">
+						<a href="#">添加银行</a>
+					</li>
+					<li role="presentation">
+						<a href="#">贷款申请</a>
+					</li>
+					<li role="presentation">
+						<a href="#">地区管理</a>
+					</li>
+					<li role="presentation">
+						<a href="#">买家秀管理</a>
+					</li>
+					<li role="presentation">
+						<a href="#">交易记录</a>
+					</li>
+				</ul>
+			</div>
+			<div id="bodyRight">
+				<h2>所有用户</h2>
+				<table class="table table-hover table-bordered" style="text-align: center;">
+						<tr>
+							<td>序号</td>
+							<td>用户名</td>
+							<td>密码</td>
+							<td>余额</td>
+							<td>手机</td>
+							<td>查看</td>
+							<!--<td>修改</td>-->
+							<td>删除</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>xiao</td>
+							<td>aaa</td>
+							<td>100万元</td>
+							<td>11111111111</td>
+							<td><button class="btn btn-info btn-xs" onclick="userinfo(1)">查看</button></td>
+							<td><button class="btn btn-danger btn-xs" onclick="deluser(1)">删除</button></td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>xiao</td>
+							<td>aaa</td>
+							<td>100万元</td>
+							<td>11111111111</td>
+							<td><button class="btn btn-info btn-xs">查看</button></td>
+							<td><button class="btn btn-danger btn-xs">删除</button></td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>xiao</td>
+							<td>aaa</td>
+							<td>100万元</td>
+							<td>11111111111</td>
+							<td><button class="btn btn-info btn-xs">查看</button></td>
+							<td><button class="btn btn-danger btn-xs">删除</button></td>
+						</tr>
+					</table>
+					
+			
+			<!--分页-->
+	  <div>
+	  	<nav aria-label="">
+	  	<ul class="pager">
+	    	<li class="previous"><a onclick="prePage()"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+	    	<li ><a><span id="userthisPage">1</span> &nbsp;/&nbsp; <span id="userpageCount">5</span></a></li>
+	    	<li class="next"><a onclick="nextPage()">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+	  	</ul>
+			</nav>
+	  </div>
+			</div>
+
+		</div>
+		
 	</body>
 
 </html>

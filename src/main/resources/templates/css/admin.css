@@ -1,0 +1,51 @@
+a{
+	cursor: pointer;
+}
+html{
+	background: white;
+}
+/*头部*/
+#head{
+	width: 100%;
+	/*padding-top: 10px;
+	padding-bottom: 10px;*/
+	padding-left: 5%;
+	padding-right: 5%;
+	background: #2B333E;
+	margin: 0px;
+	box-shadow: 5px 5px 5px white;
+}
+#headLogo{
+	width: 14%;
+	height: 80px;
+	margin-right: 50px;
+}
+#headSpan{
+	color: white;
+	font-size: 20px;
+}
+
+
+#body{
+	width: 100%;
+	margin: 0px;
+	padding-left: 5%;
+	background: white;
+	height: 650px;
+	padding-top: 10px;
+}
+#bodyLeft{
+	width: 14%;
+	height: 650px;
+	float: left;
+}
+#leftUl>li{
+	text-align: center;
+}
+#bodyRight{
+	width: 86%;
+	height: 650px;
+	background: white;
+	float: left;
+	padding: 0px 2%;
+}
