@@ -38,4 +38,15 @@ public class BuyershowServiceImpl implements BuyershowService {
     public int addComment(Comment comment) {
         return buyershowMapper.addComment(comment);
     }
+
+    @Override
+    public int getPageCount() {
+        return buyershowMapper.getPageCount();
+    }
+
+    @Override
+    public List<Buyershow> getPageIndex(int first, int pageSize) {
+        return buyershowMapper.getPageIndex(first,pageSize);
+    }
+
 }
