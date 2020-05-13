@@ -4,6 +4,22 @@ $(function () {
 	userpageCount=$("#userpageCount").html();
 })
 
+//得到用户列表总页码
+// function getUserListPageCount() {
+// 	$.ajax({
+// 			url:"/usedcar/adminUserPageCount",
+// 			type:"post",
+// 			success:function (result) {
+// 				userpageCount=eval(result);
+// 				alert("获取页码"+userpageCount);
+// 				$("#userpageCount").html(userpageCount);
+// 			},
+// 			error:function () {
+// 				alert("响应失败");
+// 			}
+// 		})
+// }
+
 //单击logo图片
 function logoGo() {
     location.href="/usedcar/adminIndex?pageIndex=1";
@@ -19,7 +35,24 @@ function userinfo(uid){
 function deluser(uid){
 	//alert(uid);
 	if(confirm("确定要删除这个用户吗？")){
-		
+		$.ajax({
+				url:"/usedcar/adminDelUser?uid="+uid,
+				type:"post",
+				dataType:"text",
+				success:function (result) {
+					// var obj=eval(result);
+					if(result=="yes"){
+						alert("删除成功");
+						// getUserListPageCount();
+						adminAllUser();
+					}else{
+						alert("删除失败");
+					}
+				},
+				error:function () {
+					alert("删除用户响应失败");
+				}
+			})
 	}
 }
 
@@ -93,9 +126,15 @@ function userFenye(thisPage) {
 					"\t\t\t\t\t\t<td>"+u.upwd+"</td>\n" +
 					"\t\t\t\t\t\t<td>"+u.money+"万元</td>\n" +
 					"\t\t\t\t\t\t<td>"+u.phone+"</td>\n" +
-					"\t\t\t\t\t\t<td><button class=\"btn btn-info btn-xs\" onclick=\"userinfo("+u.uid+")\">查看</button></td>\n" +
-					"\t\t\t\t\t\t<td><button class=\"btn btn-danger btn-xs\" onclick=\"deluser("+u.uid+")\">删除</button></td>\n" +
-					"\t\t\t\t\t</tr>";
+					"\t\t\t\t\t\t<td><button class=\"btn btn-info btn-xs\" onclick=\"userinfo("+u.uid+")\">查看</button></td>\n";
+				if(u.uid<16){
+					tr+="\t\t\t\t\t\t<td><button class=\"btn btn-danger btn-xs \"  disabled=\"disabled\" onclick=\"deluser("+u.uid+")\">删除</button></td>\n" +
+						"\t\t\t\t\t</tr>";
+				}else{
+					tr+="\t\t\t\t\t\t<td><button class=\"btn btn-danger btn-xs \"  onclick=\"deluser("+u.uid+")\">删除</button></td>\n" +
+						"\t\t\t\t\t</tr>";
+				}
+
 			}
 			$("#adminRightTable").append(tr);
 		},
@@ -107,23 +146,40 @@ function userFenye(thisPage) {
 
 /*用户拼接页码*/
 function userPageYemaAjax(thispage) {
-	$("#BodyFenYeUl").html("");
-	var ultr="<li class=\"previous\"><a onclick=\"prePage()\"><span aria-hidden=\"true\">&larr;</span> 上一页</a></li>\n" +
-		"\t    \t<li ><a><span id=\"userthisPage\">"+thispage+"</span> &nbsp;/&nbsp; <span id=\"userpageCount\">"+userpageCount+"</span></a></li>\n" +
-		"\t    \t<li class=\"next\"><a onclick=\"nextPage()\">下一页 <span aria-hidden=\"true\">&rarr;</span></a></li>\n" +
-		"\t    \t<li class=\"next\">\n" +
-		"                <select id=\"fenyeSelect\" onchange=\"fenyeSelect()\">";
-	for (var i=1;i<=userpageCount;i++) {
-		// if(i==thispage){
-		// 	ultr+="<option selected='selected' value=\""+i+"\">"+i+"</option>";
-		// }else {
-			ultr+="<option value=\""+i+"\">"+i+"</option>";
-		// }
+	// getUserListPageCount();
+	$.ajax({
+		url:"/usedcar/adminUserPageCount",
+		type:"post",
+		success:function (result) {
+			userpageCount=eval(result);
+			//alert("获取页码"+userpageCount);
+			$("#userpageCount").html(userpageCount);
 
-	}
-	ultr+="</select>\n" +
-		"            </li>";
-	$("#BodyFenYeUl").append(ultr);
+
+			//alert(userpageCount);
+			$("#BodyFenYeUl").html("");
+			var ultr="<li class=\"previous\"><a onclick=\"prePage()\"><span aria-hidden=\"true\">&larr;</span> 上一页</a></li>\n" +
+				"\t    \t<li ><a><span id=\"userthisPage\">"+thispage+"</span> &nbsp;/&nbsp; <span id=\"userpageCount\">"+userpageCount+"</span></a></li>\n" +
+				"\t    \t<li class=\"next\"><a onclick=\"nextPage()\">下一页 <span aria-hidden=\"true\">&rarr;</span></a></li>\n" +
+				"\t    \t<li class=\"next\">\n" +
+				"                <select id=\"fenyeSelect\" onchange=\"fenyeSelect()\">";
+			for (var i=1;i<=userpageCount;i++) {
+				// if(i==thispage){
+				// 	ultr+="<option selected='selected' value=\""+i+"\">"+i+"</option>";
+				// }else {
+				ultr+="<option value=\""+i+"\">"+i+"</option>";
+				// }
+
+			}
+			ultr+="</select>\n" +
+				"            </li>";
+			$("#BodyFenYeUl").append(ultr);
+		},
+		error:function () {
+			alert("响应失败");
+		}
+	});
+
 }
 
 /*改变页码下拉列表的选中项*/

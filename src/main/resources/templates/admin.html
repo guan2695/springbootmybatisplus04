@@ -93,7 +93,11 @@
 						<td>${u.money}万元</td>
 						<td>${u.phone}</td>
 						<td><button class="btn btn-info btn-xs" onclick="userinfo(${u.uid})">查看</button></td>
-						<td><button class="btn btn-danger btn-xs" onclick="deluser(${u.uid})">删除</button></td>
+						<#if u.uid lt 16>
+							<td><button class="btn btn-danger btn-xs" disabled="disabled" onclick="deluser(${u.uid})">删除</button></td>
+						<#else>
+							<td><button class="btn btn-danger btn-xs" onclick="deluser(${u.uid})">删除</button></td>
+						</#if>
 					</tr>
 					</#list>
 					</table>
