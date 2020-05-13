@@ -331,6 +331,26 @@
 		function tiao(urc) {
 			location.href = urc;
 		};
+
+		<!--单击页面跳转-->
+		var first1=0;
+		function shpage(num) {
+			if(num<=1){
+				first1=1;
+			}else{
+				first1=num-1;
+			}
+			location.href="jlpageindex?first1="+first1;
+		};
+		function xiapage(num,num2) {
+			if(num>=num2){
+				first1=num2;
+			}else{
+				first1=parseInt(num)+1;
+			}
+			location.href="jlpageindex?first1="+first1;
+		};
+
 	</script>
 
 	<body>
@@ -347,52 +367,24 @@
 				<div class="col-md-5" onclick="tiao('index.html')"></div>
 			</div>
 
-			<div id="middle">
-				<!--身体-->
-				<dl>
-					<dt><img onclick="tiao('carsundetail.html')" src="images/ren.jpg" /> <span>车已经准备好了，就等女朋友来了</span></dt>
-					<dd><span>2019-11-07</span> <span>昆明</span> <span>宝马510</span></dd>
-					<dd><span>黄先生</span> <span>务工</span></dd>
-				</dl>
+			<div id="middle"><!--身体-->
 
+				<#list accountlist as agelist>
 				<dl>
-					<dt><img onclick="tiao('carsundetail.html')" src="images/ren.jpg" /> <span>车已经准备好了，就等女朋友来了</span></dt>
-					<dd><span>2019-11-07</span> <span>昆明</span> <span>宝马510</span></dd>
-					<dd><span>黄先生</span> <span>务工</span></dd>
+					<dt><img onclick="tiao('carsundetail.html')" src="images/ren.jpg" /> <span>${agelist.title}</span></dt>
+					<dd><span>时间：</span><span>${agelist.showtime}</span> </dd>
+					<dd><span>${agelist.user.uname}</span> <span>务工</span></dd>
 				</dl>
-
-				<dl>
-					<dt><img onclick="tiao('carsundetail.html')" src="images/ren.jpg" /> <span>车已经准备好了，就等女朋友来了</span></dt>
-					<dd><span>2019-11-07</span> <span>昆明</span> <span>宝马510</span></dd>
-					<dd><span>黄先生</span> <span>务工</span></dd>
-				</dl>
-
-				<dl>
-					<dt><img onclick="tiao('carsundetail.html')" src="images/ren.jpg" /> <span>车已经准备好了，就等女朋友来了</span></dt>
-					<dd><span>2019-11-07</span> <span>昆明</span> <span>宝马510</span></dd>
-					<dd><span>黄先生</span> <span>务工</span></dd>
-				</dl>
-
-				<dl>
-					<dt><img onclick="tiao('carsundetail.html')" src="images/ren.jpg" /> <span>车已经准备好了，就等女朋友来了</span></dt>
-					<dd><span>2019-11-07</span> <span>昆明</span> <span>宝马510</span></dd>
-					<dd><span>黄先生</span> <span>务工</span></dd>
-				</dl>
-
-				<dl>
-					<dt><img onclick="tiao('carsundetail.html')" src="images/ren.jpg" /> <span>车已经准备好了，就等女朋友来了</span></dt>
-					<dd><span>2019-11-07</span> <span>昆明</span> <span>宝马510</span></dd>
-					<dd><span>黄先生</span> <span>务工</span></dd>
-				</dl>
+			    </#list>
 
 			</div>
 
 			<div id="page">  <!--分页-->									
-				<a href="#">首页</a>	
-				<a href="#">上一页</a>
-				<span>1/5</span>
-				<a href="#">下一页</a>
-				<a href="#">末页</a>						
+				<a href="jlpageindex?first1=1">首页</a>
+				<a onclick="shpage('${firstxs}')">上一页</a>
+				<span>${firstxs}/${count} </span>
+				<a onclick="xiapage('${firstxs},${count}')">下一页</a>
+				<a href="jlpageindex?first1=${count}">末页</a>
 			</div>
 
 			<!--下载尾部网页《头》-->
