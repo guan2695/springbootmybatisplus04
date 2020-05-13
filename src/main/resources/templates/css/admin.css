@@ -49,3 +49,24 @@ html{
 	float: left;
 	padding: 0px 2%;
 }
+
+
+/*下拉分页*/
+#fenyeSelect{
+	width: 40px;
+	height: 30px;
+	border: solid 1px #CCCCCC;
+	border-radius: 15px;
+	color: #337AB7;
+	text-align: center;
+	padding-left:7px;
+}
+#CarfenyeSelect{
+	width: 40px;
+	height: 30px;
+	border: solid 1px #CCCCCC;
+	border-radius: 15px;
+	color: #337AB7;
+	text-align: center;
+	padding-left:7px;
+}

@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="css/adminUserInfo.css" />
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/useradmin.js" ></script>
 	</head>
 	<body>
 		<!--
@@ -17,27 +18,27 @@
         	描述：头部
         -->
 		<div id="head" class="row">
-			<img src="images/1234.png" id="headLogo" />
+			<img src="images/1234.png" id="headLogo" onclick="logoGo()" />
 			<span id="headSpan">用户详情</span>
 		</div>
 		
 		<div id="userInfoBody">
-			<h2>xiao</h2>
+			<h2>${user.uname}</h2>
 			<table class="table table-hover table-bordered" style="text-align: center;">
       	<tr>
-      		<td>序号</td><td>1</td>
+      		<td>序号</td><td>${user.uid}</td>
       	</tr>
       	<tr>
-      		<td>用户名</td><td>xiao</td>
+      		<td>用户名</td><td>${user.uname}</td>
       	</tr>
       	<tr>
-      		<td>密码</td><td>aaa</td>
+      		<td>密码</td><td>${user.upwd}</td>
       	</tr>
       	<tr>
-      		<td>余额</td><td>100万元</td>
+      		<td>余额(万元)</td><td>${user.money}</td>
       	</tr>
       	<tr>
-      		<td>手机</td><td>1111111111111</td>
+      		<td>手机</td><td>${user.phone}</td>
       	</tr>
       </table>
 		</div>

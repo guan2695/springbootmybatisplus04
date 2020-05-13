@@ -2,6 +2,7 @@ package com.zt.mapper;
 
 import com.zt.entity.Images;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -12,4 +13,12 @@ import java.util.List;
 @Mapper
 public interface ImagesMapper {
     public List<Images> getimgesone (Images images);
+
+    /**
+     * 根据车id得到他的六张图片
+     * @param cid
+     * @return
+     */
+    @Select("SELECT * FROM images WHERE cid=#{cid}")
+    public List<Images> getImagesByCarid(int cid);
 }
