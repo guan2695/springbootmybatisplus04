@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>修改车辆</title>
+		<link rel="stylesheet" href="css/admin.css" />
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/adminUserInfo.css" />
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/useradmin.js" ></script>
+		<script type="text/javascript" src="js/adminLeftMenu.js" ></script>
+	</head>
+	<body>
+		<!--
+        	作者：offline
+        	时间：2020-05-12
+        	描述：头部
+        -->
+		<div id="head" class="row">
+			<img src="images/1234.png" id="headLogo" onclick="logoGo()" />
+			<span id="headSpan">修改车辆</span>
+		</div>
+		
+		<div id="userInfoBody">
+			<h2>${car.brand.bname}  ${car.cardseries.csname}</h2>
+			<form action="adminUpdCar" method="post">
+			<table class="table table-hover table-bordered" style="text-align: center;">
+      	<tr>
+      		<td>序号</td><td>${car.carinfo.cid}</td>
+      	</tr>
+      	<tr>
+      		<td>品牌</td>
+			<td>
+				<select name="bid" onchange="updCarBrandListSel()" id="updCarBrandList">
+				<#list brandList as b>
+					<#if b.bid == car.cardseries.bid> <option selected value="${b.bid}">${b.bname}</option>
+						<#else> <option value="${b.bid}">${b.bname}</option>
+					</#if>
+				</#list>
+				</select>
+
+			</td>
+      	</tr>
+      	<tr>
+      		<td>车系</td>
+			<td>
+				<select name="csid" id="updCarCarseriesList">
+			<#list cardseriesList as cs>
+				<#if cs.csid == car.cardseries.csid> <option selected value="${cs.csid}">${cs.csname}</option>
+					<#else> <option value="${cs.csid}">${cs.csname}</option>
+				</#if>
+			</#list>
+			</select>
+			</td>
+      	</tr>
+      	<tr>
+      		<td>颜色</td>
+			<td><select name="corolid">
+		<#list corolList as c>
+			<#if c.corolid == car.corol.corolid> <option selected value="${c.corolid}">${c.corol}</option>
+				<#else> <option value="${c.corolid}">${c.corol}</option>
+			</#if>
+		</#list></select>
+			</td>
+      	</tr>
+      	<tr>
+      		<td>地区</td>
+			<td><select name="addressid">
+		<#list addressList as a>
+			<#if a.addid == car.address.addid> <option selected value="${a.addid}">${a.address}</option>
+				<#else> <option value="${a.addid}">${a.address}</option>
+			</#if>
+		</#list></select>
+			</td>
+      	</tr>
+		<tr>
+			<td colspan="2"><input type="hidden" name="cid" value="${car.carinfo.cid}"><input type="submit" class="btn btn-primary" style="width:10%;" value="修改"></td>
+		</tr>
+      </table></form>
+		</div>
+
+	</body>
+</html>

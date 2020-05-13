@@ -22,6 +22,14 @@ function adminAllUser(){
 	// changeSelect(0);
 }
 
+/*返回车辆列表*/
+function returnCarList() {
+	location.href="/usedcar/adminIndex?pageIndex=1";
+	// alert("aaa");
+	// adminAllCar();
+	// alert("bbb");
+}
+
 /*查询所有车辆信息*/
 function adminAllCar(){
 	//alert("查询所有车辆信息");
@@ -140,9 +148,15 @@ function carPageAjax(pageIndex) {
 					"      \t\t<td>"+c.carage+"</td>\n" +
 					"      \t\t<td>"+c.img+"</td>\n" +
 					"      \t\t<td><button class=\"btn btn-info btn-xs\" onclick=\"carinfo("+c.imagesList[0].cid+")\">查看</button></td>\n" +
-					"      \t\t<td><button class=\"btn btn-primary btn-xs\" onclick=\"updcar("+c.imagesList[0].cid+")\">修改</button></td>\n" +
-					"      \t\t<td><button class=\"btn btn-danger btn-xs\" onclick=\"delcar("+c.imagesList[0].cid+")\">下架</button></td>\n" +
-					"      \t</tr>";
+					"      \t\t<td><button class=\"btn btn-primary btn-xs\" onclick=\"updcar("+c.imagesList[0].cid+")\">修改</button></td>\n";
+				if(putstate=="是"){
+					tr+="      \t\t<td><button class=\"btn btn-danger btn-xs\" onclick=\"delcar("+c.imagesList[0].cid+")\">下架</button></td>\n" +
+						"      \t</tr>";
+				}else{
+					tr+="      \t\t<td><button class=\"btn btn-danger btn-xs\" onclick=\"upcar("+c.imagesList[0].cid+")\">上架</button></td>\n" +
+						"      \t</tr>";
+				}
+
 			}
 			$("#adminRightTable").append(tr);
 
@@ -174,6 +188,84 @@ function carPageYemaAjax(carthisPage) {
 		"            </li>";
 	$("#BodyFenYeUl").append(ultr);
 
+}
+
+/*查看一辆车详情*/
+function carinfo(cid) {
+	window.open("/usedcar/adminGetOneCar?cid="+cid);
+	// location.href="/usedcar/adminGetOneCar?cid="+cid;
+}
+
+/*修改一辆车*/
+function updcar(cid) {
+	// window.open("/usedcar/adminUpdCarBefo?cid="+cid);
+	location.href="/usedcar/adminUpdCarBefo?cid="+cid;
+}
+
+/*修改一辆车时，车牌变化车系变化*/
+function updCarBrandListSel() {
+	var bid=$("#updCarBrandList").val();
+	//alert(bid);
+	$.ajax({
+			url:"/usedcar/adminByBrandCarSeries?bid="+bid,
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#updCarCarseriesList").html("");
+				var tr="";
+				for (var i=0;i<obj.length;i++){
+					var cs=obj[i];
+					tr+="<option value=\""+cs.csid+"\">"+cs.csname+"</option>";
+				}
+				$("#updCarCarseriesList").append(tr);
+			},
+			error:function () {
+				alert("响应失败");
+			}
+		})
+}
+
+/*车辆下架*/
+function delcar(cid) {
+	//alert(cid);
+	$.ajax({
+			url:"/usedcar/adminDelCar?cid="+cid,
+			type:"post",
+			dataType:"text",
+			success:function (result) {
+				// var obj=eval(result);
+				if(result=="yes"){
+					alert("下架成功");
+					adminAllCar();
+				}else {
+					alert("下架失败");
+				}
+			},
+			error:function () {
+				alert("响应失败");
+			}
+		})
+}
+
+/*车辆上架*/
+function upcar(cid) {
+	$.ajax({
+		url:"/usedcar/adminUpCar?cid="+cid,
+		type:"post",
+		dataType:"text",
+		success:function (result) {
+			// var obj=eval(result);
+			if(result=="yes"){
+				alert("上架成功");
+				adminAllCar();
+			}else {
+				alert("上架失败");
+			}
+		},
+		error:function () {
+			alert("响应失败");
+		}
+	})
 }
 
 /*查询所有审核申请*/

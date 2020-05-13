@@ -93,4 +93,14 @@ public class CarServiceImpl implements CarService {
     public List<Car> adminGetPageCount() {
         return carMapper.adminGetPageCount();
     }
+
+    @Override
+    public Car GetOneCarAllInfo(int cid) {
+        return carMapper.GetOneCarAllInfo(cid);
+    }
+
+    @Override
+    public int adminUpdCar(Car car) {
+        return carMapper.adminUpdCar(car);
+    }
 }

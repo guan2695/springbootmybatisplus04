@@ -83,4 +83,7 @@ public interface CarService {
 
     public List<Car> adminGetCarByPage(int pageIndex,int pageSize);
     public List<Car> adminGetPageCount();
+
+    public Car GetOneCarAllInfo(int cid);
+    public int adminUpdCar(Car car);
 }
