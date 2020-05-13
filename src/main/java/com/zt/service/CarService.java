@@ -80,4 +80,7 @@ public interface CarService {
      * 查询一辆车的详细信息max
      */
     public Car getCardinfomax(Car car);
+
+    public List<Car> adminGetCarByPage(int pageIndex,int pageSize);
+    public List<Car> adminGetPageCount();
 }

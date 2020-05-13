@@ -26,6 +26,9 @@ public interface UsersMapper extends BaseMapper<User> {
      */
     public List<User> selectall();
 
+    @Select("SELECT * FROM USER LIMIT #{pageIndex},#{pageSize}")
+    public List<User> selectUserByPage(@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
+
     /**
      * 用户注册
      */
@@ -62,4 +65,12 @@ public interface UsersMapper extends BaseMapper<User> {
      */
     @Update("UPDATE USER SET upwd=#{upwd} WHERE uid =#{uid}")
     public int updateUserpwd(User user);
+
+    /**
+     * 删除用户
+     * @param uid
+     * @return
+     */
+    @Delete("DELETE FROM USER WHERE uid=#{uid}")
+    public int delUserByid(int uid);
 }

@@ -2,8 +2,7 @@ package com.zt.mapper;
 
 import com.zt.entity.Car;
 import com.zt.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -87,5 +86,28 @@ public int insertCar(Car car);
     public Car getCardinfomax(Car car);
 
 
+    /**
+     * 分页遍历所有车的信息
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    @Select("SELECT * FROM car limit #{pageIndex},#{pageSize}")
+    @Results({
+            @Result(column = "bid",property = "brand",one = @One(select = "com.zt.mapper.BrandMapper.getOneBrandById")),
+            @Result(column = "csid",property = "cardseries",one = @One(select = "com.zt.mapper.CardseriesMapper.getCarseriesByid")),
+            @Result(column = "corolid",property = "corol",one = @One(select = "com.zt.mapper.CorolMapper.getCorolByid")),
+            @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById")),
+            @Result(column = "addressid",property = "address",one = @One(select = "com.zt.mapper.AddressMapper.getAddressByid")),
+            @Result(column = "cid",property = "imagesList",many = @Many(select = "com.zt.mapper.ImagesMapper.getImagesByCarid"))
+    })
+    public List<Car> adminGetCarByPage(@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
+
+    /**
+     * 得到所有的车集合，获取总条数
+     * @return
+     */
+    @Select("SELECT * FROM car")
+    public List<Car> adminGetPageCount();
 
 }

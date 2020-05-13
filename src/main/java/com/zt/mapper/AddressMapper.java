@@ -43,5 +43,11 @@ public interface AddressMapper {
     @Delete("DELETE FROM address WHERE addid = #{addid}")
     public int deleteaddress(@Param("addid") int addid);
 
-
+    /**
+     * 根据id得到一个地区
+     * @param addid
+     * @return
+     */
+    @Select("SELECT * FROM address WHERE addid=#{addid}")
+    public Address getAddressByid(int addid);
 }

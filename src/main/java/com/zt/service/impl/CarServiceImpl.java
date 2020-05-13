@@ -82,4 +82,15 @@ public class CarServiceImpl implements CarService {
     public Car getCardinfomax(Car car) {
         return carMapper.getCardinfomax(car);
     }
+
+    @Override
+    public List<Car> adminGetCarByPage(int pageIndex, int pageSize) {
+        pageIndex=(pageIndex-1)*pageSize;
+        return carMapper.adminGetCarByPage(pageIndex,pageSize);
+    }
+
+    @Override
+    public List<Car> adminGetPageCount() {
+        return carMapper.adminGetPageCount();
+    }
 }

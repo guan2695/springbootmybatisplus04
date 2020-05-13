@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/useradmin.js" ></script>
+		<script type="text/javascript" src="js/adminLeftMenu.js" ></script>
 	</head>
 
 	<body>
@@ -19,7 +20,7 @@
         	描述：头部
         -->
 		<div id="head" class="row">
-			<img src="images/1234.png" id="headLogo" />
+			<img src="images/1234.png" id="headLogo" onclick="logoGo()" />
 			<span id="headSpan">管理员登录成功</span>
 		</div>
 
@@ -32,49 +33,49 @@
 			<div id="bodyLeft">
 				<ul class="nav nav-pills nav-stacked" id="leftUl">
 					<li role="presentation" class="active">
-						<a href="#">用户管理</a>
+						<a onclick="adminAllUser()">用户管理</a>
 					</li>
 					<li role="presentation">
-						<a href="#">车辆管理</a>
+						<a onclick="adminAllCar()">车辆管理</a>
 					</li>
 					<li role="presentation">
-						<a href="#">审核申请</a>
+						<a onclick="adminAllAssessment()">审核申请</a>
 					</li>
 					<li role="presentation">
-						<a href="#">所有品牌</a>
+						<a onclick="adminAllBrand()">所有品牌</a>
 					</li>
 					<li role="presentation">
-						<a href="#">添加品牌</a>
+						<a onclick="adminAddBrand()">添加品牌</a>
 					</li>
 					<li role="presentation">
-						<a href="#">添加颜色</a>
+						<a onclick="adminAllCorol()">所有颜色</a>
 					</li>
 					<li role="presentation">
-						<a href="#">添加颜色</a>
+						<a onclick="adminAddCorol()">添加颜色</a>
 					</li>
 					<li role="presentation">
-						<a href="#">银行列表</a>
+						<a onclick="adminAllBank()">银行列表</a>
 					</li>
 					<li role="presentation">
-						<a href="#">添加银行</a>
+						<a onclick="adminAddBank()">添加银行</a>
 					</li>
 					<li role="presentation">
-						<a href="#">贷款申请</a>
+						<a onclick="adminAllLoans()">贷款申请</a>
 					</li>
 					<li role="presentation">
-						<a href="#">地区管理</a>
+						<a onclick="adminAllAddress()">地区管理</a>
 					</li>
 					<li role="presentation">
-						<a href="#">买家秀管理</a>
+						<a onclick="adminAllBuyerShow()">买家秀管理</a>
 					</li>
 					<li role="presentation">
-						<a href="#">交易记录</a>
+						<a onclick="adminAllTrancation()">交易记录</a>
 					</li>
 				</ul>
 			</div>
 			<div id="bodyRight">
-				<h2>所有用户</h2>
-				<table class="table table-hover table-bordered" style="text-align: center;">
+				<h2 id="bodyRightH">所有用户</h2>
+				<table id="adminRightTable" class="table table-hover table-bordered" style="text-align: center;">
 						<tr>
 							<td>序号</td>
 							<td>用户名</td>
@@ -82,49 +83,44 @@
 							<td>余额</td>
 							<td>手机</td>
 							<td>查看</td>
-							<!--<td>修改</td>-->
 							<td>删除</td>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>xiao</td>
-							<td>aaa</td>
-							<td>100万元</td>
-							<td>11111111111</td>
-							<td><button class="btn btn-info btn-xs" onclick="userinfo(1)">查看</button></td>
-							<td><button class="btn btn-danger btn-xs" onclick="deluser(1)">删除</button></td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>xiao</td>
-							<td>aaa</td>
-							<td>100万元</td>
-							<td>11111111111</td>
-							<td><button class="btn btn-info btn-xs">查看</button></td>
-							<td><button class="btn btn-danger btn-xs">删除</button></td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>xiao</td>
-							<td>aaa</td>
-							<td>100万元</td>
-							<td>11111111111</td>
-							<td><button class="btn btn-info btn-xs">查看</button></td>
-							<td><button class="btn btn-danger btn-xs">删除</button></td>
-						</tr>
+					<#list userList as u>
+					<tr>
+						<td>${u.uid}</td>
+						<td>${u.uname}</td>
+						<td>${u.upwd}</td>
+						<td>${u.money}万元</td>
+						<td>${u.phone}</td>
+						<td><button class="btn btn-info btn-xs" onclick="userinfo(${u.uid})">查看</button></td>
+						<td><button class="btn btn-danger btn-xs" onclick="deluser(${u.uid})">删除</button></td>
+					</tr>
+					</#list>
 					</table>
 					
 			
 			<!--分页-->
 	  <div>
 	  	<nav aria-label="">
-	  	<ul class="pager">
+	  	<ul class="pager" id="BodyFenYeUl">
 	    	<li class="previous"><a onclick="prePage()"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-	    	<li ><a><span id="userthisPage">1</span> &nbsp;/&nbsp; <span id="userpageCount">5</span></a></li>
+	    	<li ><a><span id="userthisPage">${pageIndex}</span> &nbsp;/&nbsp; <span id="userpageCount">${pageCount}</span></a></li>
 	    	<li class="next"><a onclick="nextPage()">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+            <li class="next">
+                <select id="fenyeSelect" onchange="fenyeSelect()">
+                    <#list 1..pageCount as i>
+                        <option value="${i}">${i}</option>
+                    </#list>
+                    <!--<option>1</option>-->
+                    <!--<option>2</option>-->
+                    <!--<option>3</option>-->
+                </select>
+            </li>
 	  	</ul>
 			</nav>
 	  </div>
+
+
 			</div>
 
 		</div>

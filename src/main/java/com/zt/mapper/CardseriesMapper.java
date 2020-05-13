@@ -20,4 +20,12 @@ public interface CardseriesMapper {
      */
     @Select("SELECT * FROM cardseries WHERE bid=#{bid}")
     public List<Cardseries> getCardSeriesByBrand(int bid);
+
+    /**
+     * 根据车系id得到一个车系
+     * @param csid
+     * @return
+     */
+    @Select("SELECT * FROM cardseries WHERE csid=#{csid}")
+    public Cardseries getCarseriesByid(int csid);
 }
