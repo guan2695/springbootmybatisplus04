@@ -70,7 +70,7 @@
 <div class="egc-top">
   <div class="nav-cent">
 
-    <#if (list2)??>
+    <#if (list2.uname)??>
     <div class="top-r">
       <a href="remove" id="b-regist">退出</a>|<a href="userinfo" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
     <#else>
@@ -176,11 +176,11 @@
           <h3>
             <div class="border"><a href="">价格</a></div>
             <ul>
-              <li><a href="listhtml3?price=1.0">3万以下</a></li>
-              <li><a href="listhtml3?price=2.0">3-5万</a></li>
-              <li><a href="listhtml3?price=3.0">5-10万</a></li>
-              <li><a href="listhtml3?price=4.0">10-20万</a></li>
-              <li><a href="listhtml3?price=5.0">20以上万</a></li>
+              <li><a href="listhtml2?price=1.0">3万以下</a></li>
+              <li><a href="listhtml2?price=2.0">3-5万</a></li>
+              <li><a href="listhtml2?price=3.0">5-10万</a></li>
+              <li><a href="listhtml2?price=4.0">10-20万</a></li>
+              <li><a href="listhtml2?price=5.0">20以上万</a></li>
             </ul>
           </h3>
         </div>
@@ -387,6 +387,17 @@
   <div class="menucarlist fr">
     <div id="divs2_0">
       <ul class="carList">
+        <#if (list2)??>
+        <#list carList as clist>
+        <li>
+          <div class="list-infoBox"> <a title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}  车龄${clist.carage}年  " target="_self" class="imgtype" href="getCarone?cid=${clist.cid}&uid=${list2.uid}"> <img width="290" height="194" src="images/${clist.img}" alt="${clist.brand.bname}${clist.cardseries.csname}  车龄${clist.carage}年 "> </a>
+            <p class="infoBox"> <a  title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}   车龄${clist.carage}年 " href="getCarone?cid=${clist.cid}&uid=${list2.uid}" target="_self" class="info-title">${clist.brand.bname}-${clist.cardseries.csname}${clist.cid}   车龄${clist.carage}年
+            <p class="fc-gray"> <span class="tag-gray">${clist.address.address}</span> <span class="">车龄${clist.carage}年</span> <em class="shuxian">|</em> 颜色:${clist.corol.corol} </p>
+            <p class="priType-s"> <span> <i class="fc-org priType"> ${clist.price}万 </i> </span> <s>${clist.oprice}万</s> </p></a> </p>
+          </div>
+        </li>
+      </#list>
+        <#else>
         <#list carList as clist>
         <li>
           <div class="list-infoBox"> <a title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}  车龄${clist.carage}年  " target="_self" class="imgtype" href="getCarone?cid=${clist.cid}"> <img width="290" height="194" src="images/${clist.img}" alt="${clist.brand.bname}${clist.cardseries.csname}  车龄${clist.carage}年 "> </a>
@@ -396,48 +407,88 @@
           </div>
         </li>
       </#list>
+    </#if>
       </ul>
     </div>
 
     <div id="divs2_1" style="display: none;">
       <ul class="carList">
+        <#if (list2)??>
         <#list carListagr as agelist>
         <li>
-          <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${agelist.cid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
-            <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}" target="_self" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
+          <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${agelist.cid}&uid=${list2.uid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
+            <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}&uid=${list2.uid}" target="_self" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
             <p class="fc-gray"> <span class="tag-gray">${agelist.address.address}</span> <span class="shangpai">${agelist.carage}</span> <em class="shuxian">|</em> 颜色:${agelist.corol.corol} </p>
             <p class="priType-s"> <span> <i class="fc-org priType"> ${agelist.price}万 </i> </span> <s>${agelist.oprice}万</s> </p>
           </div>
         </li>
       </#list>
+
+      <#else>
+      <#list carListagr as agelist>
+      <li>
+        <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${agelist.cid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
+          <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}" target="_self" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
+          <p class="fc-gray"> <span class="tag-gray">${agelist.address.address}</span> <span class="shangpai">${agelist.carage}</span> <em class="shuxian">|</em> 颜色:${agelist.corol.corol} </p>
+          <p class="priType-s"> <span> <i class="fc-org priType"> ${agelist.price}万 </i> </span> <s>${agelist.oprice}万</s> </p>
+        </div>
+      </li>
+    </#list>
+  </#if>
+
       </ul>
 
     </div>
     <div id="divs2_2" style="display: none;">
       <ul class="carList">
+    <#if (list2)??>
         <#list carlistPrice as pricelist>
         <li>
-          <div class="list-infoBox"> <a title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${pricelist.cid}"> <img width="290" height="194" src="images/${pricelist.img}" alt="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年"> </a>
-            <p class="infoBox"> <a  title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" href="getCarone?cid=${pricelist.cid}" target="_self" class="info-title">${pricelist.brand.bname}-${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年</a> </p>
+          <div class="list-infoBox"> <a title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${pricelist.cid}&uid=${list2.uid}"> <img width="290" height="194" src="images/${pricelist.img}" alt="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年"> </a>
+            <p class="infoBox"> <a  title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" href="getCarone?cid=${pricelist.cid}&uid=${list2.uid}" target="_self" class="info-title">${pricelist.brand.bname}-${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年</a> </p>
             <p class="fc-gray"> <span class="tag-gray">${pricelist.address.address}</span> <span class="">车龄${pricelist.carage}年</span> <em class="shuxian">|</em> 颜色:${pricelist.corol.corol} </p>
             <p class="priType-s"> <span> <i class="fc-org priType"> ${pricelist.price}万 </i> </span> <s>${pricelist.oprice}万</s> </p>
           </div>
         </li>
-      </#list>
+        </#list>
+    <#else>
+      <#list carlistPrice as pricelist>
+      <li>
+        <div class="list-infoBox"> <a title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${pricelist.cid}"> <img width="290" height="194" src="images/${pricelist.img}" alt="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年"> </a>
+          <p class="infoBox"> <a  title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" href="getCarone?cid=${pricelist.cid}" target="_self" class="info-title">${pricelist.brand.bname}-${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年</a> </p>
+          <p class="fc-gray"> <span class="tag-gray">${pricelist.address.address}</span> <span class="">车龄${pricelist.carage}年</span> <em class="shuxian">|</em> 颜色:${pricelist.corol.corol} </p>
+          <p class="priType-s"> <span> <i class="fc-org priType"> ${pricelist.price}万 </i> </span> <s>${pricelist.oprice}万</s> </p>
+        </div>
+       </li>
+    </#list>
+    </#if>
       </ul>
     </div>
 
     <div id="divs2_3" style="display: none;">
       <ul class="carList">
+        <#if (list2)??>
         <#list carListagr as agelist>
         <li>
-          <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${agelist.cid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
-            <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}" target="se" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
+          <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${agelist.cid}&uid=${list2.uid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
+            <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}&uid=${list2.uid}" target="se" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
             <p class="fc-gray"> <span class="tag-gray">${agelist.address.address}</span> <span class="">车龄${agelist.carage}年</span> <em class="shuxian">|</em> 颜色:${agelist.corol.corol} </p>
             <p class="priType-s"> <span> <i class="fc-org priType"> ${agelist.price}万 </i> </span> <s>${agelist.oprice}万</s> </p>
           </div>
         </li>
       </#list>
+      <#else>
+
+      <#list carListagr as agelist>
+      <li>
+        <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${agelist.cid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
+          <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}" target="se" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
+          <p class="fc-gray"> <span class="tag-gray">${agelist.address.address}</span> <span class="">车龄${agelist.carage}年</span> <em class="shuxian">|</em> 颜色:${agelist.corol.corol} </p>
+          <p class="priType-s"> <span> <i class="fc-org priType"> ${agelist.price}万 </i> </span> <s>${agelist.oprice}万</s> </p>
+        </div>
+      </li>
+    </#list>
+    </#if>
       </ul>
     </div>
     <div id="divs2_4" style="display: none;">
@@ -517,6 +568,12 @@
     $("#sjld").sjld("#shenfen","#chengshi");
 
   });
+   function dianjitu(cid){
+    //alert("图片");
+    // var cid=$("input[name=hcid]").val();
+    //alert(cid);
+    location.href="/usedcar/getCarone?cid="+cid;
+  }
 </script>
 <!--会员登录和注册弹出框开始-->
 <div id="popBox">
@@ -596,30 +653,54 @@
 
     <li class="licss">
 
-      <a id="history" href="">
+      <a id="history">
+        <#if (list2)??>
 
         <div class="moder">
           <div class="car_show"><h1>我看过的车</h1></div>
           <div class="boer">
             <ul class="ul1">
+              <#list listHistory as listHist>
+              <input type="hidden" name="hcid" value="${listHist.cid}">
               <li class="li_h1">
-                <div class="img_car1" ><img src="images/carimg.jpg" width="280px"height="200px"></div>
-                <p class="fontc">奇瑞QQ3 2012款 QQ3 0.8 手动 梦..</p>
-                <p class="fontc2"><span class="span1">2014年11月上牌</span> <em class="">|</em> 行驶2.4万公里 <span class="block">石家庄</span> </p>
-                <p class="fontc"> <span> <i class="red"> 2.10万 </i> </span> <s>3.40万</s> </p>
+                <div class="img_car1">  <img src="images/${listHist.car.img}" onclick="dianjitu(${listHist.cid})"  width="280px"height="200px"></div>
+                <p class="fontc">${listHist.car.brand.bname} ${listHist.car.cardseries.csname}${listHist.car.cid} 车龄${listHist.car.carage}年</p>
+                <p class="fc-gray"> <span class="tag-gray">${listHist.car.address.address}</span> <span class="shangpai">${listHist.car.carage}</span> <em class="shuxian">|</em> 颜色${listHist.car.corol.corol} </p> <p class="fontc"> <span> <i class="red"> ${listHist.car.price}万 </i> </span> <s>${listHist.car.oprice}万</s> </p>
               </li>
-              <#list carList as clist>
-              <li class="li_h1">
-                <div class="img_car1" ><img src="images/${clist.img}" width="280px"height="200px"></div>
-                <p class="fontc">${clist.brand.bname} 2012款 QQ3 0.8 手动 梦..</p>
-                <p class="fontc2"><span class="span1">2014年11月上牌</span> <em class="">|</em> 行驶2.4万公里 <span class="block">${clist.address.address}</span> </p>
-                <p class="fontc"> <span> <i class="red"> ${clist.price}万 </i> </span> <s>${clist.oprice}万</s> </p>
-              </li>
-
-
             </#list>
+            </ul>
+          </div>
+        </div>
+<img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
+<img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
+</a>
+</li>
 
-  </ul>
+<li class="licss">
+  <a href="">
+    <img src="images/foot03/ll02.png" width="166" height="49" class="hides"/>
+    <img src="images/foot03/l04.png" width="47" height="49" class="shows" />
+  </a>
+</li>
+
+<li class="licss">
+  <a class="youhui">
+    <img src="images/foot03/l02.png" width="47" height="49" class="shows" />
+    <img src="images/foot03/zfew.jpg" width="196" height="205" class="hides" usemap="#taklhtml"/>
+  </a>
+</li>
+
+            <#else>
+      <div class="moder">
+        <div class="car_show"><h1>我看过的车</h1></div>
+        <div class="boer">
+          <ul class="ul1">
+            </li>
+          </ul>
+
+          </#if>
+
+
 </div>
 </div>
 <img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
@@ -640,9 +721,13 @@
     <img src="images/foot03/zfew.jpg" width="196" height="205" class="hides" usemap="#taklhtml"/>
   </a>
 </li>
-
-
-
+<#if (list2.uname)??>
+<input id="phone1" type="hidden" value="${list.phone}">
+<input id="mima" type="hidden" value="${list.upwd}">
+<#else>
+<input id="phone1" type="hidden" value="">
+<input id="mima" type="hidden" value="">
+</#if>
 </ul>
 </div>
 <!--leftsead end-->
@@ -650,6 +735,8 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("#history").hover(function(){
+      // var phone =
+      // Location.href="/usedcar/login"
       $(this).children(".moder").show();
 
     },function(){

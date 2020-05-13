@@ -1,7 +1,9 @@
 package com.zt.controller;
 
+import com.zt.entity.History;
 import com.zt.entity.User;
 import com.zt.mapper.UsersMapper;
+import com.zt.service.HistoryService;
 import com.zt.service.UserService;
 import org.apache.ibatis.lang.UsesJava7;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private HistoryService historyService;
 
     /**
      * 得到所有用户
@@ -48,11 +51,16 @@ public class UserController {
      * @return
      */
     @RequestMapping("/login")
-    public String login(HttpSession session, User user) {
+    public String login(HttpSession session, User user,History history,Model model) {
         System.out.println(" --------login--------- ");
         System.out.println("phone" + user.getPhone());
         User userlist2 = userService.selectlogin(user);
         session.setAttribute("list2", userlist2);
+        int uid2 = userlist2.getUid();
+        history.setUid(uid2);
+        List<History> listHistory= historyService.selectHistory(history);
+        model.addAttribute("listHistory",listHistory);
+        System.out.println("查询浏览记录有"+listHistory.size());
         return "forward:index";
     }
 

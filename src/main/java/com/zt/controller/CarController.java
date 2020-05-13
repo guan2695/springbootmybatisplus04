@@ -35,6 +35,8 @@ public class CarController {
     private CorolMapper corolMapper;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private  HistoryService historyService;
 
     /**
      *  首页的查询车辆
@@ -234,7 +236,8 @@ public class CarController {
         return "list";
     }
     @RequestMapping("/listhtml3")
-    public String listhtml3(Integer pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid,String addid,String colorid) {
+    @ResponseBody
+    public List<Car> listhtml3(Integer pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid,String addid,String colorid) {
         System.out.println(" --------进入查询--------- ");
         if(bid==null){
             bid="0";
@@ -255,6 +258,12 @@ public class CarController {
         int addid2 = Integer.parseInt(addid);
         int colorid2 =Integer.parseInt(colorid);
         System.out.println("车牌id为"+bid2);
+        if(bid2!=0){
+            Brand brand= brandService.getOneBrandById(bid2);
+            List<Cardseries> cardserieslist= brand.getCardseries();
+            model.addAttribute("brand",brand);
+            session.setAttribute("cardserieslist",cardserieslist);
+        }
         car.setBid(bid2);
         car.setCsid(csid2);
         car.setPrice(price);
@@ -268,19 +277,15 @@ public class CarController {
         car.setCarage(car.getCarage());
         System.out.println("价格"+car.getPrice());
         List<Car> listmanyQuery =carService.manyConditions(car);
-        if(bid2!=0){
-            Brand brand= brandService.getOneBrandById(bid2);
-            List<Cardseries> cardserieslist= brand.getCardseries();
-            model.addAttribute("brand",brand);
-            session.setAttribute("cardserieslist",cardserieslist);
-        }
+
         model.addAttribute("listmanyQuery",listmanyQuery);
         System.out.println("多条件查询共"+listmanyQuery.size()+"条数据");
-        return "list";
+        return listmanyQuery;
     }
 
     /**
      * 查询一辆车的详细信息
+     * 并且加一条浏览记录
      * @param model
      * @param car
      * @param session
@@ -288,7 +293,7 @@ public class CarController {
      * @return
      */
     @RequestMapping("/getCarone")
-        public String getCarone(Model model, Car car, HttpSession session,Images images,int cid){
+        public String getCarone(Model model, Car car, HttpSession session,Images images,int cid,String uid,History history){
         System.out.println("车的id"+cid);
         car.setCid(cid);
         Car getone = carService.getCarone(car);
@@ -321,7 +326,24 @@ public class CarController {
 
 
         model.addAttribute("carinfomax",carinfomax);
-        System.out.println(carone1.getCarinfo().getLength());
+        //System.out.println(carone1.getCarinfo().getLength());
+        /**
+         * 判断用户是否登录
+         * 加一条浏览记录
+         */
+        if(uid==null){
+           uid="0";
+           }else {
+            int uid2 = Integer.parseInt(uid);
+            history.setUid(uid2);
+            history.setCid(cid);
+            int num = historyService.insertHistory(history);
+            if (num > 0) {
+                System.out.println("插入数据成功");
+            }
+        }
+
+
         return "infor";
     }
 

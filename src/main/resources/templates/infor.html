@@ -430,7 +430,7 @@ $(function () {
     <div class="p-tab"> <a>用户登录<i></i></a><a>用户注册<i></i></a> </div>
     <div class="p-detail">
       <div class="p-dl">
-        <form onsubmit="return check();" enctype="multipart/form-data" method="post" name="form" id="form">
+        <form onsubmit="return check();" action="login" enctype="multipart/form-data" method="post" name="form" id="form">
           <ul class="login-items">
             <li>
               <label>用户名(手机号)</label>
@@ -453,7 +453,7 @@ $(function () {
         </form>
       </div>
       <div class="p-dl">
-        <form class="registForm" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
+        <form class="registForm" onsubmit="return regcheck();" action="register"  enctype="multipart/form-data" method="post" name="reg" id="reg">
           <ul class="login-items">
             <li class="clearfix">
               <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">

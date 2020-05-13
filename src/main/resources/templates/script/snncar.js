@@ -22,21 +22,27 @@ $(function () {
    //异步刷新判断用户是否登录成功
    $("#pingpai").click(function(){
       var bid=$("input[name=bid]").val();
+      var csid=$("input[name=csid]").val();
       alert(bid);
+      alert(csid);
       $.ajax({
          type : 'post',
-         url  : 'listhtml2',
-         data : 'bid='+bid,
+         url  : 'listhtml3',
+         data : 'bid='+bid+'&csid='+csid,
          success : function(obj) {
             var list = eval(obj);
             alert("成功");
             $("#addcar1").html("");
             for(i=0;i<list.length;i++ ){
                var l=list[i];
-              li+=" <div class='list-infoBox'><a href='getCarone?"+l.cid+"'>" +
-                  "\t<img src='images"+l.img+"'  width='290' height='194'</a>"
+              li1+=tr+="<li>" +
+                  "<div class='list-infoBox'>" +
+                  "<a target='_parent' href='#'><img src='"+img+"' width='290' height='194' /></a>" +
+                  "<p class='infoBox'></p>" +
+                  "</div>" +
+                  "<li>";
             }
-            $("#addcar1").append(li);
+            $("#addcar1").append(li1);
          },
          error:function () {
             alert("失败");
