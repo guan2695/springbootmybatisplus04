@@ -18,6 +18,7 @@ public interface UserService {
      */
 
     public List<User> selectall();
+    public List<User> selectUserByPage(int pageIndex,int pageSize);
     /**
      * 用户注册
      */
@@ -28,4 +29,5 @@ public interface UserService {
     public List<History> getAllHistoryByUser(int uid);
 
     public int updateUserpwd(User user);
+    public int delUserByid(int uid);
 }

@@ -38,4 +38,12 @@ public interface CorolMapper {
      */
     @Delete("DELETE FROM corol WHERE corolid = #{corolid}")
     public int deletecorol(@Param("corolid") int corolid);
+
+    /**
+     * 根据颜色id得到一个颜色
+     * @param corolid
+     * @return
+     */
+    @Select("SELECT * FROM corol WHERE corolid=#{corolid}")
+    public Corol getCorolByid(int corolid);
 }

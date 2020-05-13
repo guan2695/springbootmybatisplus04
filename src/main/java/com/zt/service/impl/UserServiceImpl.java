@@ -28,6 +28,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> selectUserByPage(int pageIndex, int pageSize) {
+        pageIndex=(pageIndex-1)*pageSize;
+        return usersMapper.selectUserByPage(pageIndex,pageSize);
+    }
+
+    @Override
     public int userregister(User user) {
         return usersMapper.userregister(user);
     }
@@ -45,5 +51,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateUserpwd(User user) {
         return usersMapper.updateUserpwd(user);
+    }
+
+    @Override
+    public int delUserByid(int uid) {
+        return usersMapper.delUserByid(uid);
     }
 }
