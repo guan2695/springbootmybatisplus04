@@ -155,7 +155,7 @@
       <div class="all-sort-list">
         <div class="item">
           <h3>
-            <div class="border"><a href="listhtml">品牌</a></div>
+            <div class="border"><a href="listhtml?first=1">品牌</a></div>
             <ul>
               <#if brandList?? && (brandList?size > 0)>
             <#list brandList as brand>
@@ -186,7 +186,7 @@
         </div>
         <div class="items">
           <h3 style="border-bottom:0px;">
-            <div class="border"><a href="">车龄</a></div>
+            <div class="border"><a href="listhtml2?carage=0">车龄</a></div>
             <ul>
               <li><a href="listhtml2?carage=1">0 - 3年</a></li>
               <li><a href="listhtml2?carage=2">3 - 5年</a></li>
@@ -313,32 +313,32 @@
     <img src="images/sun_banner.jpg"> </a> </div>
   <div class="active-blocks fr">
     <ul>
-      <li class="li_01"><a href="listhtml" title="实用代步车" target="_blank">
+      <li class="li_01"><a href="listhtml2" title="实用代步车" target="_self">
         <p class="title">实用代步车</p>
         <p class="content">驾驭想象 聆听声音</p>
         <div class="pic"><img src="images/car1.jpg" alt="保值车型"></div>
       </a></li>
-      <li class="li_02"><a href="listhtml" title="5-8万能买啥" target="_blank">
+      <li class="li_02"><a href="listhtml2" title="5-8万能买啥" target="_self">
         <p class="title">5-8万能买啥</p>
         <p class="content">驾有所值，动气强劲</p>
         <div class="pic"><img src="images/201601221218531455.jpg" alt="5-8万能买啥"></div>
       </a></li>
-      <li class="li_03"><a href="listhtml" title="12-16万能买啥" target="_blank">
+      <li class="li_03"><a href="listhtml2" title="12-16万能买啥" target="_self">
         <p class="title">12-16万能买啥</p>
         <p class="content">风范，与自由同行</p>
         <div class="pic"><img src="images/201601221218599350.jpg" alt="12-16万能买啥"></div>
       </a></li>
-      <li class="li_04"><a href="listhtml" title="奥迪车库" target="_blank">
+      <li class="li_04"><a href="listhtml2" title="奥迪车库" target="_self">
         <p class="title">奔驰车库</p>
         <p class="content">奔驰—— Audi</p>
         <div class="pic"><img src="images/benchi.png"alt="奔驰车库"></div>
       </a></li>
-      <li class="li_05"><a href="listhtml" title="大众车库" target="_blank">
+      <li class="li_05"><a href="listhtml2" title="大众车库" target="_self">
         <p class="title">大众车库</p>
         <p class="content">大众 — Volkswagen</p>
         <div class="pic"><img src="images/201601221219156607.jpg" alt="大众车库"></div>
       </a></li>
-      <li class="li_06"><a href="listhtml" title="岂止于大" target="_blank">
+      <li class="li_06"><a href="listhtml2" title="岂止于大" target="_self">
         <p class="title">岂止于大</p>
         <p class="content">我所钟爱的思域</p>
         <div class="pic"><img src="images/201601221219239104.jpg" alt="岂止于大"></div>
@@ -390,7 +390,7 @@
         <#list carList as clist>
         <li>
           <div class="list-infoBox"> <a title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}  车龄${clist.carage}年  " target="_self" class="imgtype" href="getCarone?cid=${clist.cid}"> <img width="290" height="194" src="images/${clist.img}" alt="${clist.brand.bname}${clist.cardseries.csname}  车龄${clist.carage}年 "> </a>
-            <p class="infoBox"> <a  title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}   车龄${clist.carage}年 " href="getCarone?cid=${clist.cid}" target="_blank" class="info-title">${clist.brand.bname}-${clist.cardseries.csname}${clist.cid}   车龄${clist.carage}年
+            <p class="infoBox"> <a  title="${clist.brand.bname}${clist.cardseries.csname}${clist.cid}   车龄${clist.carage}年 " href="getCarone?cid=${clist.cid}" target="_self" class="info-title">${clist.brand.bname}-${clist.cardseries.csname}${clist.cid}   车龄${clist.carage}年
             <p class="fc-gray"> <span class="tag-gray">${clist.address.address}</span> <span class="">车龄${clist.carage}年</span> <em class="shuxian">|</em> 颜色:${clist.corol.corol} </p>
             <p class="priType-s"> <span> <i class="fc-org priType"> ${clist.price}万 </i> </span> <s>${clist.oprice}万</s> </p></a> </p>
           </div>
@@ -403,8 +403,8 @@
       <ul class="carList">
         <#list carListagr as agelist>
         <li>
-          <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_blank" class="imgtype" href="getCarone?cid=${agelist.cid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
-            <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}" target="_blank" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
+          <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${agelist.cid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
+            <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}" target="_self" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
             <p class="fc-gray"> <span class="tag-gray">${agelist.address.address}</span> <span class="shangpai">${agelist.carage}</span> <em class="shuxian">|</em> 颜色:${agelist.corol.corol} </p>
             <p class="priType-s"> <span> <i class="fc-org priType"> ${agelist.price}万 </i> </span> <s>${agelist.oprice}万</s> </p>
           </div>
@@ -417,8 +417,8 @@
       <ul class="carList">
         <#list carlistPrice as pricelist>
         <li>
-          <div class="list-infoBox"> <a title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" target="_blank" class="imgtype" href="getCarone?cid=${pricelist.cid}"> <img width="290" height="194" src="images/${pricelist.img}" alt="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年"> </a>
-            <p class="infoBox"> <a  title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" href="getCarone?cid=${pricelist.cid}" target="_blank" class="info-title">${pricelist.brand.bname}-${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年</a> </p>
+          <div class="list-infoBox"> <a title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${pricelist.cid}"> <img width="290" height="194" src="images/${pricelist.img}" alt="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年"> </a>
+            <p class="infoBox"> <a  title="${pricelist.brand.bname}${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年" href="getCarone?cid=${pricelist.cid}" target="_self" class="info-title">${pricelist.brand.bname}-${pricelist.cardseries.csname}${pricelist.cid}  车龄${pricelist.carage}年</a> </p>
             <p class="fc-gray"> <span class="tag-gray">${pricelist.address.address}</span> <span class="">车龄${pricelist.carage}年</span> <em class="shuxian">|</em> 颜色:${pricelist.corol.corol} </p>
             <p class="priType-s"> <span> <i class="fc-org priType"> ${pricelist.price}万 </i> </span> <s>${pricelist.oprice}万</s> </p>
           </div>
@@ -431,8 +431,8 @@
       <ul class="carList">
         <#list carListagr as agelist>
         <li>
-          <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_blank" class="imgtype" href="getCarone?cid=${agelist.cid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
-            <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}" target="_blank" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
+          <div class="list-infoBox"> <a title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" target="_self" class="imgtype" href="getCarone?cid=${agelist.cid}"> <img width="290" height="194" src="images/${agelist.img}" alt="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年"> </a>
+            <p class="infoBox"> <a  title="${agelist.brand.bname}${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年" href="getCarone?cid=${agelist.cid}" target="se" class="info-title">${agelist.brand.bname}-${agelist.cardseries.csname}${agelist.cid}  车龄${agelist.carage}年</a> </p>
             <p class="fc-gray"> <span class="tag-gray">${agelist.address.address}</span> <span class="">车龄${agelist.carage}年</span> <em class="shuxian">|</em> 颜色:${agelist.corol.corol} </p>
             <p class="priType-s"> <span> <i class="fc-org priType"> ${agelist.price}万 </i> </span> <s>${agelist.oprice}万</s> </p>
           </div>

@@ -159,7 +159,6 @@ public class CarController {
        // System.out.println(bid);
         System.out.println(car);
         List<Car> listmanyQuery;
-
         List<Brand> brandList= brandService.getAllBrand();
         session.setAttribute("brandList",brandList);
 //        if(bid==null){
@@ -172,7 +171,6 @@ public class CarController {
         if(first==null){
             first=1;
           //  car.setBid(bid2);
-
             listmanyQuery =carService.manyCar(car,(first-1)*pageSize,pageSize);
         }
 
@@ -221,10 +219,12 @@ public class CarController {
         model.addAttribute("listmanyQuery",listmanyQuery);
         System.out.println("多条件查询共"+listmanyQuery.size()+"条数据");
         System.out.println("进入查询一个车牌和他的车系");
-        Brand brand= brandService.getOneBrandById(bid2);
-        List<Cardseries> cardserieslist= brand.getCardseries();
-        model.addAttribute("brand",brand);
-        session.setAttribute("cardserieslist",cardserieslist);
+        if(bid2!=0){
+            Brand brand= brandService.getOneBrandById(bid2);
+            List<Cardseries> cardserieslist= brand.getCardseries();
+            model.addAttribute("brand",brand);
+            session.setAttribute("cardserieslist",cardserieslist);
+        }
         //得到所有颜色
         List<Corol> corollist=corolMapper.getAllcorol();
         session.setAttribute("corollist",corollist);
@@ -268,6 +268,12 @@ public class CarController {
         car.setCarage(car.getCarage());
         System.out.println("价格"+car.getPrice());
         List<Car> listmanyQuery =carService.manyConditions(car);
+        if(bid2!=0){
+            Brand brand= brandService.getOneBrandById(bid2);
+            List<Cardseries> cardserieslist= brand.getCardseries();
+            model.addAttribute("brand",brand);
+            session.setAttribute("cardserieslist",cardserieslist);
+        }
         model.addAttribute("listmanyQuery",listmanyQuery);
         System.out.println("多条件查询共"+listmanyQuery.size()+"条数据");
         return "list";

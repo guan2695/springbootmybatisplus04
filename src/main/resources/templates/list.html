@@ -324,10 +324,13 @@ $(function () {
       <dl class="fliter-bd clearfix">
         <dt>品牌：</dt>
         <dd class="clickBrandWidget"> 
-        <a  class="on" href="#" title="0">不限</a>
+        <a  class="on" href="#" title="0" >不限</a>
+
             <#list brandList as brand>
-            <a  class="xz" name="aa" href="listhtml2?bid=${brand.bid}" title="p${brand.bid}">${brand.bname} </a>
+            <input type="hidden"  name="bid" value="${brand.bid}"/>
+            <a  class="xz" name="aa"   href="listhtml3?bid=${brand.bid}" title="p${brand.bid}">${brand.bname} </a>
         </#list>
+          <p id="pingpai" >1</p>
         </dd>
       </dl>
       
@@ -340,9 +343,10 @@ $(function () {
             <a  class="xz" name="aa" href="listhtml3?csid=${dserieslist.csid}" title="c${dserieslist.csname}"> ${dserieslist.csname} </a>
         </#list>
           <#else>
-          <a  class="on" href="#" title="0">不限</a>
-          <a  class="xz" href="#" title="0">奔驰a</a>
-          <a  class="xz" href="#" title="0">丰田b</a>
+          <a  class="xz" href="listhtml3?csid=1" title="0">高尔夫</a>
+          <a  class="xz" href="listhtml3?csid=9" title="0">奔驰A级</a>
+          <a  class="xz" href="listhtml3?csid=13" title="0">丰田卡罗拉</a>
+          <a  class="xz" href="listhtml3?csid=17" title="0">轩逸</a>
       </#if>
 
         </dd>
@@ -421,7 +425,8 @@ $(function () {
     </div>
    
   </div>
-  <ul class="carList2">
+
+  <ul id="addcar1" class="carList2">
       <#list listmanyQuery as listmany>
     <li>
       <div class="list-infoBox">
@@ -434,6 +439,7 @@ $(function () {
     </li>
   </#list>
   </ul>
+
 </div>
 
 <div id="page">  <!--分页-->									

@@ -19,4 +19,32 @@ $(function () {
       lists[i].innerHTML=(year-lists[i].innerHTML)+"年上牌";
    }
 
+   //异步刷新判断用户是否登录成功
+   $("#pingpai").click(function(){
+      var bid=$("input[name=bid]").val();
+      alert(bid);
+      $.ajax({
+         type : 'post',
+         url  : 'listhtml2',
+         data : 'bid='+bid,
+         success : function(obj) {
+            var list = eval(obj);
+            alert("成功");
+            $("#addcar1").html("");
+            for(i=0;i<list.length;i++ ){
+               var l=list[i];
+              li+=" <div class='list-infoBox'><a href='getCarone?"+l.cid+"'>" +
+                  "\t<img src='images"+l.img+"'  width='290' height='194'</a>"
+            }
+            $("#addcar1").append(li);
+         },
+         error:function () {
+            alert("失败");
+            }
+
+
+
+      })
+   })
+
 })
