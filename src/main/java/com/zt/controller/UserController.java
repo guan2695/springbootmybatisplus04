@@ -59,6 +59,26 @@ public class UserController {
         int uid2 = userlist2.getUid();
         history.setUid(uid2);
         List<History> listHistory= historyService.selectHistory(history);
+        session.setAttribute("listHistory",listHistory);
+        System.out.println("查询浏览记录有"+listHistory.size());
+        return "forward:index";
+    }
+    @RequestMapping("/login2")
+    public String login2(HttpSession session, User user,History history,Model model,String phone,String upwd) {
+        System.out.println(" --------login2--------- ");
+        if(phone==null){
+            phone="11111111111";
+        }
+        if(upwd==null){
+            upwd="123";
+        }
+        user.setPhone(phone);
+        user.setUpwd(upwd);
+        User userlist2 = userService.selectlogin(user);
+        session.setAttribute("list2", userlist2);
+        int uid2 = userlist2.getUid();
+        history.setUid(uid2);
+        List<History> listHistory= historyService.selectHistory(history);
         model.addAttribute("listHistory",listHistory);
         System.out.println("查询浏览记录有"+listHistory.size());
         return "forward:index";

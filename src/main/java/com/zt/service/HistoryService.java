@@ -19,4 +19,9 @@ public interface HistoryService {
      * 查询登录用户的浏览记录
      */
     public List<History> selectHistory(History history);
+
+    /**
+     * 清空该用户的浏览记录
+     */
+    public int deleteUidHistory(History history);
 }

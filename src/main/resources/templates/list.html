@@ -77,6 +77,12 @@ $(function () {
 			}
 	});
 });
+function dianjitu(cid){
+    //alert("图片");
+    // var cid=$("input[name=hcid]").val();
+    //alert(cid);
+    location.href="/usedcar/getCarone?cid="+cid;
+}
 </script>
 
 <!--搜搜框获取焦点-->
@@ -526,11 +532,11 @@ $(function () {
           <ul class="login-items">
             <li>
               <label>用户名(手机号)</label>
-              <input class="input" type="text" value="" maxlength="32"  name="username" placeholder="请输入您的手机号" autofocus="autofocus" required="required">
+              <input class="input" type="text" value="" maxlength="32"  name="phone" placeholder="请输入您的手机号" autofocus="autofocus" required="required">
             </li>
             <li>
               <label>密码</label>
-              <input class="input" type="password" value="" maxlength="16"  name="password"required="required">
+              <input class="input" type="password" value="" maxlength="16"  name="upwd" required="required">
             </li>
           </ul>
           <div class="login-check">
@@ -550,14 +556,14 @@ $(function () {
         <form class="registForm" action="register" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
           <ul class="login-items">
             <li class="clearfix">
-              <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）"required="required">
+              <input class="input" name="phone" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）"required="required">
             </li>
             <li class="clearfix">
               <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;"required="required" />
               <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
             </li>
             <li class="clearfix">
-              <input class="input" type="text" value=""  name="realname" placeholder="姓名"required="required">
+              <input class="input" type="text" value=""  name="uname" placeholder="姓名"required="required">
             </li>
             <li class="clearfix sex">
               <input type="radio" checked="" name="gender" value="M" />
@@ -565,7 +571,7 @@ $(function () {
               <input type="radio" name="gender" value="F" />
               女 </li>
             <li class="clearfix">
-              <input id="" class="input" type="password" name="password" value="" placeholder="输入密码"required="required">
+              <input id="" class="input" type="password" name="upwd" value="" placeholder="输入密码"required="required">
             </li>
           </ul>
           <div class="login-button">
@@ -604,6 +610,34 @@ $(".hoverWidget").each(function() {
 					$(this).removeClass("active")
 				})
 			});
+function dianjitu2(cid){
+    //alert("图片");
+    // var cid=$("input[name=hcid]").val();
+    //alert(cid);
+    location.href="/usedcar/getCarone?cid="+cid;
+};
+function qingkong(uid) {
+    alert("清空");
+    $.ajax({
+        type: 'post',
+        url: 'deleteHistory',
+        data: 'uid=' + uid,
+        success: function (obj) {
+            var num = eval(obj);
+            if (num > 0) {
+                alert("成功");
+                $("#historyuid").html("");
+            } else {
+                alert("清空失败");
+            }
+
+
+        },
+        error: function () {
+            alert("失败");
+        }
+    })
+}
 </script>
 <div id="leftsead">
 	<ul>
@@ -614,31 +648,61 @@ $(".hoverWidget").each(function() {
 			</a>
 		</li>
 
-		<li class="licss">
-			
-			<a id="history" href="">
-				
-				<div class="moder">
-				<div class="car_show"><h1>我看过的车</h1></div>
-				<div class="boer">
-				<ul class="ul1">
-					<li class="li_h1">
-						<div class="img_car1" ><img src="images/carimg.jpg" width="280px"height="200px"></div>
-						<p class="fontc">奇瑞QQ3 2012款 QQ3 0.8 手动 梦..</p>
-						<p class="fontc2"><span class="span1">2014年11月上牌</span> <em class="">|</em> 行驶2.4万公里 <span class="block">石家庄</span> </p>
-						<p class="fontc"> <span> <i class="red"> 2.10万 </i> </span> <s>3.40万</s> </p>
-					</li>
-					<li class="li_h1">
-						<div class="img_car1" ><img src="images/carimg.jpg" width="280px"height="200px"></div>
-						<p class="fontc">奇瑞QQ3 2012款 QQ3 0.8 手动 梦..</p>
-						<p class="fontc2"><span class="span1">2014年11月上牌</span> <em class="">|</em> 行驶2.4万公里 <span class="block">石家庄</span> </p>
-						<p class="fontc"> <span> <i class="red"> 2.10万 </i> </span> <s>3.40万</s> </p>
-					</li>
-					
-					
-				</ul>
-				</div>
-				</div>
+
+
+        <li class="licss">
+
+            <a id="history">
+                <#if listHistory?? && (listHistory?size > 0)>
+                <div class="moder">
+                    <div class="car_show"><h1>我看过的车</h1>
+                        <h2  onclick="qingkong(${list2.uid})" style="margin-left: 70%;">清空浏览记录</h2>
+                    </div>
+                    <div class="boer">
+                        <ul class="ul1">
+                            <#list listHistory as listHist>
+                            <input type="hidden" name="hcid" value="${listHist.cid}">
+                            <li class="li_h1">
+                                <div class="img_car1">  <img src="images/${listHist.car.img}" onclick="dianjitu2(${listHist.cid})"  width="280px"height="200px"></div>
+                                <p class="fontc">${listHist.car.brand.bname} ${listHist.car.cardseries.csname}${listHist.car.cid} 车龄${listHist.car.carage}年</p>
+                                <p class="fc-gray"> <span class="tag-gray">${listHist.car.address.address}</span> <span class="">
+                                    车龄${listHist.car.carage}年</span> <em class="shuxian">|</em> 颜色:${listHist.car.corol.corol} </p> <p class="fontc"> <span> <i class="red"> ${listHist.car.price}万 </i> </span> <s>${listHist.car.oprice}万</s> </p>
+                            </li>
+                        </#list>
+                      </ul>
+                  </div>
+            </div>
+                <img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
+                    <img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
+                        </a>
+                </li>
+<li class="licss">
+    <a href="">
+        <img src="images/foot03/ll02.png" width="166" height="49" class="hides"/>
+        <img src="images/foot03/l04.png" width="47" height="49" class="shows" />
+    </a>
+</li>
+
+<li class="licss">
+    <a class="youhui">
+        <img src="images/foot03/l02.png" width="47" height="49" class="shows" />
+        <img src="images/foot03/zfew.jpg" width="196" height="205" class="hides" usemap="#taklhtml"/>
+    </a>
+</li>
+
+
+<#else>
+<div class="moder">
+    <div class="car_show"><h1>我看过的车</h1></div>
+    <div class="boer">
+        <ul class="ul1">
+            </li>
+        </ul>
+
+    </#if>
+
+            </div>
+            </div>
 				<img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
 				<img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
 			</a>
@@ -664,10 +728,11 @@ $(".hoverWidget").each(function() {
 </div>
 
 
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#history").hover(function(){
-				$(this).children(".moder").show();
+	$(this).children(".moder").show();
 		
 	},function(){
 		$(this).children(".moder").hide();

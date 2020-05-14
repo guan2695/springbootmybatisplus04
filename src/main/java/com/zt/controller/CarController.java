@@ -335,14 +335,19 @@ public class CarController {
            uid="0";
            }else {
             int uid2 = Integer.parseInt(uid);
+
             history.setUid(uid2);
             history.setCid(cid);
             int num = historyService.insertHistory(history);
             if (num > 0) {
                 System.out.println("插入数据成功");
             }
-        }
+            history.setUid(uid2);
+            List<History> listHistory= historyService.selectHistory(history);
+            session.setAttribute("listHistory",listHistory);
+            System.out.println("查询浏览记录有"+listHistory.size());
 
+        }
 
         return "infor";
     }

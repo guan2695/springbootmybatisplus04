@@ -25,6 +25,7 @@ $(function () {
       var csid=$("input[name=csid]").val();
       alert(bid);
       alert(csid);
+      var li1="";
       $.ajax({
          type : 'post',
          url  : 'listhtml3',
@@ -47,10 +48,30 @@ $(function () {
          error:function () {
             alert("失败");
             }
-
-
-
       })
-   })
+   });
+  function qingkong(uid){
+     alert("清空");
+     $.ajax({
+        type : 'post',
+        url  : 'deleteHistory',
+        data : 'uid='+uid,
+        success : function(obj) {
+           var num = eval(obj);
+         if(num>0){
+            alert("成功");
+            $("#history").html("");
+         }else{
+            alert("清空失败");
+         }
+
+
+        },
+        error : function () {
+           alert("失败");
+        }
+     })
+  }
+
 
 })

@@ -26,4 +26,9 @@ public class HistoryServiceImpl implements HistoryService {
     public List<History> selectHistory(History history) {
         return historyMapper.selectHistory(history);
     }
+
+    @Override
+    public int deleteUidHistory(History history) {
+        return historyMapper.deleteUidHistory(history);
+    }
 }

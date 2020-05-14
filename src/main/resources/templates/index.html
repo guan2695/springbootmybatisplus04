@@ -573,6 +573,28 @@
     // var cid=$("input[name=hcid]").val();
     //alert(cid);
     location.href="/usedcar/getCarone?cid="+cid;
+  };
+  function qingkong(uid) {
+    alert("清空");
+    $.ajax({
+      type: 'post',
+      url: 'deleteHistory',
+      data: 'uid=' + uid,
+      success: function (obj) {
+        var num = eval(obj);
+        if (num > 0) {
+          alert("成功");
+          $("#historyuid").html("");
+        } else {
+          alert("清空失败");
+        }
+
+
+      },
+      error: function () {
+        alert("失败");
+      }
+    })
   }
 </script>
 <!--会员登录和注册弹出框开始-->
@@ -655,20 +677,26 @@
 
       <a id="history">
         <#if (list2)??>
-
         <div class="moder">
-          <div class="car_show"><h1>我看过的车</h1></div>
-          <div class="boer">
-            <ul class="ul1">
+          <div class="car_show"><h1>我看过的车</h1>
+            <h2  onclick="qingkong(${list2.uid})" style="margin-left: 70%;">清空浏览记录</h2>
+         </div>
+           <div class="boer">
+            <ul class="ul1" id="historyuid">
               <#list listHistory as listHist>
               <input type="hidden" name="hcid" value="${listHist.cid}">
               <li class="li_h1">
                 <div class="img_car1">  <img src="images/${listHist.car.img}" onclick="dianjitu(${listHist.cid})"  width="280px"height="200px"></div>
                 <p class="fontc">${listHist.car.brand.bname} ${listHist.car.cardseries.csname}${listHist.car.cid} 车龄${listHist.car.carage}年</p>
-                <p class="fc-gray"> <span class="tag-gray">${listHist.car.address.address}</span> <span class="shangpai">${listHist.car.carage}</span> <em class="shuxian">|</em> 颜色${listHist.car.corol.corol} </p> <p class="fontc"> <span> <i class="red"> ${listHist.car.price}万 </i> </span> <s>${listHist.car.oprice}万</s> </p>
-              </li>
-            </#list>
+                <p class="fc-gray"> <span class="tag-gray">${listHist.car.address.address}</span> <span class="">车龄${listHist.car.carage}年</span>
+                  <em class="shuxian">|</em> 颜色:${listHist.car.corol.corol} </p>
+
+
+                <p class="fontc"> <span> <i class="red"> ${listHist.car.price}万 </i> </span> <s>${listHist.car.oprice}万</s> </p>
+              </li></#list>
+
             </ul>
+
           </div>
         </div>
 <img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
@@ -722,11 +750,11 @@
   </a>
 </li>
 <#if (list2.uname)??>
-<input id="phone1" type="hidden" value="${list.phone}">
-<input id="mima" type="hidden" value="${list.upwd}">
+<input name="phone1" type="hidden" value="${list2.phone}">
+<input name="mima" type="hidden" value="${list2.upwd}">
 <#else>
-<input id="phone1" type="hidden" value="">
-<input id="mima" type="hidden" value="">
+<input name="phone1" type="hidden" value="">
+<input name="mima" type="hidden" value="">
 </#if>
 </ul>
 </div>
@@ -735,14 +763,11 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("#history").hover(function(){
-      // var phone =
-      // Location.href="/usedcar/login"
       $(this).children(".moder").show();
-
-    },function(){
+    },function() {
       $(this).children(".moder").hide();
+    })
 
-    }) ;
 
     $("#leftsead a").hover(function(){
       if($(this).prop("className")=="youhui"){
@@ -762,7 +787,7 @@
 
     $("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({scrollTop: 0}, 600);});
 
-  });
+  })
 </script>
 </body>
 </html>

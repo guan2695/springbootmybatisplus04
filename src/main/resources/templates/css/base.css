@@ -2,7 +2,7 @@
 
 /******基础样式开始******/
 
-body{background:#fff;background-image:url(about:blank);background-attachment:fixed; height:100%;  font-family:Helvetica Neue,Helvetica Neue,Microsoft YaHei,Verdana, Arial, Lucida, Helvetica, sans-serif; font-size:12px; color:#666;}
+body{background:#fff;background-image:url(about:black);background-attachment:fixed; height:100%;  font-family:Helvetica Neue,Helvetica Neue,Microsoft YaHei,Verdana, Arial, Lucida, Helvetica, sans-serif; font-size:12px; color:#666;}
 html{height:100%;}
 html,body,div,span,p,h1,h2,h3,h4,h5,h6,em,img,strong,blockquote,sub,sup,tt,i,b,dd,dl,dt,form,label,table,caption,tbody, tfoot, thead,tr,th,td,ul,li,p,a,ol{margin:0;padding:0;}
 s,i,em{ font-style:normal; text-decoration:none;}
@@ -68,3 +68,6 @@ input{font-family:"Microsoft YaHei","宋体";}
 /*input*/
 .ipt-check{margin:0 5px 3px 0; vertical-align:middle;}
 
+#.h2color{
+     color: #2aabd2;
+ }

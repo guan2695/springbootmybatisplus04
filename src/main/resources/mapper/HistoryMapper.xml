@@ -48,12 +48,15 @@
 </insert>
 
 <select id="selectHistory" resultMap="Historyinfo" parameterType="com.zt.entity.History">
-    SELECT  DISTINCT h.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
+    SELECT  DISTINCT  h.hdate,h.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
     FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad,history h
     WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
     AND h.cid=c.cid  AND h.uid=#{uid}
-    GROUP BY h.cid
+    GROUP BY h.cid ORDER BY h.hdate
 </select>
 
+<delete id="deleteUidHistory" parameterType="com.zt.entity.History">
+        DELETE FROM history WHERE uid=#{uid}
+</delete>
 
 </mapper>

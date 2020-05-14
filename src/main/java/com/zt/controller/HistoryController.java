@@ -31,7 +31,18 @@ public class HistoryController {
            List<History> listHistory= historyService.selectHistory(history);
            model.addAttribute("listHistory",listHistory);
         }
-
         return "forward:index";
     }
+    @RequestMapping("/deleteHistory")
+    @ResponseBody
+    public int deleteHistory(History history,int uid){
+        System.out.println("进入删除浏览记录");
+        history.setUid(uid);
+       int num= historyService.deleteUidHistory(history);
+        return num;
+
+    }
+
+
+
 }
