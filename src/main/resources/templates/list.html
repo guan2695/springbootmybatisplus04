@@ -182,63 +182,7 @@ $(function () {
 		
 </style>
 
-<script type="text/javascript">
-$(function () {
-	
-	var bname=0,csname=0,price=0,carage=0,corol=0,address=0;
-	//导航栏搜索单击selecter
-	$(".fliter-bd a").click(function(){
-		$(this).parent().find("a").css({"background-color":"#f9f9f9","color":"#666"});  //清理样式
-		$(this).parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
-		
-		$(this).css({"background-color":"#eeeeee","color":"red"});       //添加样式
-		$(this).attr({"class":"xzz"});     //添加class  
-		$(this).parent().find(".on").css({"background-color":"#00002e","color":"#fff","text-decoration":"none"});
-		
-		//得到数据		
-		getdate();	
-	});
-	
-	//下拉搜索单击
-	$(".selecter li a").click(function(){
-		$(this).parent().parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
-		$(this).attr({"class":"xzz"});
-		//添加class
-		//得到数据
-		getdate();				
-	});
-	
-	//得到数据	函数
-	function getdate(){
-		var ass=window.document.getElementsByClassName("xzz");			
-		for(var i=0;i < ass.length;i++){
-			var zi=ass[i].title.substring(-1,1);
-			var ziid=ass[i].title.substring(ass.length-1);
-			if(zi=="p"){
-			    bname=ziid;
-			}
-			if(zi=="c"){
-			    csname=ziid;
-			}
-			if(zi=="j"){
-				price=ziid;
-			}
-			if(zi=="s"){
-				carage=ziid;
-			}
-			if(zi=="y"){
-				corol=ziid;
-			}
-			if(zi=="d"){
-				address=ziid;
-			}
-		}
-		alert("bname"+bname+"\t"+"csname"+csname+"\t"+"price"+price+"\t"+"carage"+carage+"\t"+"corol"+corol+"\t"+"address"+address);
-	}
-			
-});//窗体
-
-</script>
+<script type="text/javascript" src="js/listdao01.js"></script>
 
 </head>
 <body>
@@ -324,55 +268,53 @@ $(function () {
       <dl class="fliter-bd clearfix">
         <dt>品牌：</dt>
         <dd class="clickBrandWidget"> 
-        <a  class="on" href="#" title="0" >不限</a>
-
-            <#list brandList as brand>
-            <input type="hidden"  name="bid" value="${brand.bid}"/>
-            <a  class="xz" name="aa"   href="listhtml3?bid=${brand.bid}" title="p${brand.bid}">${brand.bname} </a>
+        <a  class="on" title="p-0">不限</a>
+        <#list brandList as brand>
+        <a  class="xz" name="aa" title="p-${brand.bid}" onclick="cardseries()">${brand.bname} </a>
         </#list>
-          <p id="pingpai" >1</p>
         </dd>
       </dl>
       
       <dl class="fliter-bd clearfix">
         <dt>车系：</dt>
-        <dd class="clickTagWidget">
-            <a  class="on" href="#" title="0">不限</a>
+        <dd class="clickTagWidget mycardseries">
+            <a  class="on" href="#" title="c-0">不限</a>
             <#if cardserieslist?? && (cardserieslist?size > 0)>
             <#list cardserieslist as dserieslist>
-            <a  class="xz" name="aa" href="listhtml3?csid=${dserieslist.csid}" title="c${dserieslist.csname}"> ${dserieslist.csname} </a>
-        </#list>
-          <#else>
-          <a  class="xz" href="listhtml3?csid=1" title="0">高尔夫</a>
-          <a  class="xz" href="listhtml3?csid=9" title="0">奔驰A级</a>
-          <a  class="xz" href="listhtml3?csid=13" title="0">丰田卡罗拉</a>
-          <a  class="xz" href="listhtml3?csid=17" title="0">轩逸</a>
-      </#if>
-
+            <a  class="xz" name="aa" title="c-${dserieslist.csid}"> ${dserieslist.csname} </a>
+            </#list>
+            <#else>
+            <a  class="xz" href="listhtml3?csid=1">高尔夫</a>
+            <a  class="xz" href="listhtml3?csid=9">奔驰A级</a>
+            <a  class="xz" href="listhtml3?csid=13">丰田卡罗拉</a>
+            <a  class="xz" href="listhtml3?csid=17">轩逸</a>
+            </#if>
         </dd>
       </dl>
       
       <dl class="fliter-bd clearfix">
         <dt>价格：</dt>
         <dd class="clickTagWidget"> 
-        	<a  class="on" href="#" title="0.0">不限</a>
-        	<a  class="xz" name="aa" href="listhtml3?price=1.0" title="j1.0"> 3万以下 </a>
-            <a  class="xz" name="aa" href="listhtml3?price=2.0" title="j1.0"> 3~5万 </a>
-            <a  class="xz" name="aa" href="listhtml3?price=3.0" title="j1.0"> 5~10万 </a>
-            <a  class="xz" name="aa" href="listhtml3?price=4.0" title="10~20万"> 10~20万 </a>
-            <a  class="xz" name="aa" href="listhtml3?price=5.0" title="20万以上"> 20万以上 </a>
+        	<a  class="on" title="j-0">不限</a>
+        	<a  class="xz" name="aa" title="j-1"> 3万以下 </a>
+            <a  class="xz" name="aa" title="j-2"> 3~5万 </a>
+            <a  class="xz" name="aa" title="j-3"> 5~10万 </a>
+            <a  class="xz" name="aa" title="j-4"> 10~20万 </a>
+            <a  class="xz" name="aa" title="j-5"> 20万以上 </a>
         </dd>
       </dl>
+
       <dl class="fliter-bd clearfix">
         <dt>车龄：</dt>
         <dd> 
-        	<a data-role="filterItemAge" data-value="" class="on" href="listhtml2?carage=0">不限</a>
-        	<a  class="xz" name="aa" href="listhtml3?carage=4" title="10年以上"> 10年以上 </a>
-        	<a  class="xz" name="aa" href="listhtml3?carage=3" title="5 - 10年"> 5 - 10年 </a>
-        	<a  class="xz" name="aa" href="listhtml3?carage=2" title="3 - 5年 "> 3 - 5年 </a>
-        	<a  class="xz" name="aa" href="listhtml3?carage=1" title="0 - 3年"> 0 - 3年 </a>
+        	<a data-role="filterItemAge" data-value="" class="on" title="s-0">不限</a>
+        	<a  class="xz" name="aa" title="s-1"> 3年以下 </a>
+        	<a  class="xz" name="aa" title="s-2"> 3 - 5年 </a>
+        	<a  class="xz" name="aa" title="s-3"> 5 - 10年 </a>
+        	<a  class="xz" name="aa" title="s-4"> 10以上年 </a>
         </dd>
       </dl>
+
       <div class="moreitem clearfix">
         <span>更多：</span>
         
@@ -381,42 +323,36 @@ $(function () {
 		<dt>颜色</dt>
 		<dd>
 			<ul>
-                <li><a href="javascript:void(0);" title="0">不限</a></li>
-             <#if corollist?? && (corollist?size > 0)>
+                <li><a href="javascript:void(0);" title="y-0">不限</a></li>
+                <#if corollist?? && (corollist?size > 0)>
                 <#list corollist as corollist>
-                <li><a class="xz" name="aa" href="listhtml3?colorid=${corollist.corolid}" title="${corollist.corol}">${corollist.corol} </a> </li>
+                <li><a class="xz" name="aa" title="y-${corollist.corolid}">${corollist.corol} </a> </li>
                 </#list>
-            <#else>
-				<li><a href="javascript:void(0);" title="0">不限</a></li>
-				<li><a class="xz" name="aa" href="listhtml3?colorid=1" title="y1">黑色 </a> </li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="y2">白色 </a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="y3">银灰色 </a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="y4">红色 </a> </li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y5">深灰色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y6">橙色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y7">绿色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y8">蓝色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y9">咖啡色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y10">其它 </a></li>
+                <#else>
+				<li><a class="xz" name="aa">黑色 </a> </li>
+				<li><a class="xz" name="aa">白色 </a></li>
+				<li><a class="xz" name="aa">银灰色 </a></li>
+
+                <li><a class="xz" name="aa">其它 </a></li>
             </#if>
             </ul>
 		</dd>
 	</dl>
+
     <dl class="selecter">
 		<dt>地区</dt>
 		<dd>
 			<ul>
-                <li><a href="javascript:void(0);" title="0">不限</a></li>
-            <#if addresseslist?? && (addresseslist?size > 0)>
+                <li><a href="javascript:void(0);" title="d-0">不限</a></li>
+                <#if addresseslist?? && (addresseslist?size > 0)>
                 <#list addresseslist as addresslist>
-                <li><a class="xz" name="aa" href="listhtml3?addid=${addresslist.addid}" title="${addresslist.address}"> ${addresslist.address} </a></li>
+                <li><a class="xz" name="aa" title="d-${addresslist.addid}"> ${addresslist.address} </a></li>
                 </#list>
-                   <#else>
-				<li><a href="javascript:void(0);" title="0">不限</a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="d1"> 青山湖区 </a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="d2"> 瑶湖 </a></li>				
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="d3"> 其他 </a></li>
-            </#if>
+                <#else>
+				<li><a class="xz" name="aa"> 青山湖区 </a></li>
+				<li><a class="xz" name="aa"> 瑶湖 </a></li>
+                <li><a class="xz" name="aa"> 其他 </a></li>
+               </#if>
         </ul>
 		</dd>
 	</dl>
@@ -428,26 +364,26 @@ $(function () {
 
   <ul id="addcar1" class="carList2">
       <#list listmanyQuery as listmany>
-    <li>
-      <div class="list-infoBox">
-      	<a title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" target="_self" class="imgtype" href="getCarone?cid=${listmany.cid}">
-      	<img src="images/${listmany.img}"  width="290" height="194" alt="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年"> </a>
-        <p class="infoBox"> <a  title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" href="getCarone?cid=${listmany.cid}" target="_blank" class="info-title">${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年</a> </p>
-        <p class="fc-gray"> <span class="tag-gray">${listmany.address.address}</span> <span class="">车龄${listmany.carage}年</span> <em class="shuxian">|</em> 颜色:${listmany.corol.corol} </p>
-        <p class="priType-s"> <span> <i class="fc-org priType">${listmany.price}万 </i> </span> <s>${listmany.oprice}万</s> </p>
-      </div>
-    </li>
-  </#list>
+        <li>
+          <div class="list-infoBox">
+            <a target="_self" class="imgtype" href="getCarone?cid=${listmany.cid}">
+            <img src="images/${listmany.img}"  width="290" height="194" alt="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年"> </a>
+            <p class="infoBox"> <a  title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" target="_blank" class="info-title">${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年</a> </p>
+            <p class="fc-gray"> <span class="tag-gray">${listmany.address.address}</span> <span class="">车龄${listmany.carage}年</span> <em class="shuxian">|</em> 颜色:${listmany.corol.corol} </p>
+            <p class="priType-s"> <span> <i class="fc-org priType">${listmany.price}万 </i> </span> <s>${listmany.oprice}万</s> </p>
+          </div>
+        </li>
+      </#list>
   </ul>
 
 </div>
 
 <div id="page">  <!--分页-->									
-	<a href="#">首页</a>	
-	<a href="#">上一页</a>
-	<span>1/5</span>
-	<a href="#">下一页</a>
-	<a href="#">末页</a>						
+	<a onclick="carpage('1')">首页</a>
+	<a onclick="carpage('2')">上一页</a>
+	<span class="pagei"><i>1</i>/<i>${jiangconnt}</i></span>
+	<a onclick="carpage('3')">下一页</a>
+	<a onclick="carpage('4')">末页</a>
 </div>
 
 <div class="clear_fix"></div>

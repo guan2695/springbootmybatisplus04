@@ -63,6 +63,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> jiangPageconut(Car car) {
+        return carMapper.jiangPageconut(car);
+    }
+
+    @Override
     public List<Car> manyCar(Car car, int first, int pageSize) {
          return carMapper.manyCar(car,first,pageSize);
     }

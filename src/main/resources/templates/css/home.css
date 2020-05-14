@@ -478,7 +478,7 @@
 
 
 /*foot*/
-.ftWrap{width:100%; background:#f5f5f5; padding:30px 0 0px 0;}
+.ftWrap{width:100%; background:#f5f5f5; padding:30px 0 0px 0; margin-top: 15px;}
 .foot{width:1200px; margin:10px auto;}
 .foot .relate{zoom:1; overflow:hidden; margin:0;}
 .foot .items{width:15%; float:left;}

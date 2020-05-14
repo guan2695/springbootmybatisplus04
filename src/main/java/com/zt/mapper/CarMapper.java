@@ -4,6 +4,7 @@ import com.zt.entity.Car;
 import com.zt.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -56,9 +57,16 @@ public int insertCar(Car car);
     public List<Car> selectgetPutstate(Car car);
 
     /**
-     * 多条件查询车辆
+     * 多条件查询车辆加分页
      */
     public List<Car> manyConditions(Car car);
+
+    /**
+     * 多条件查询车辆得总页数
+     */
+    public List<Car> jiangPageconut(Car car);
+
+
 
     /**
      * 多条件查询车辆且分页

@@ -26,6 +26,11 @@ public class Car {
     //车图片
     private String img;
 
+
+    //分页limit #{first},#{pageSize}
+    private int first;
+    private int pageSize;
+
     //一对一品牌
     private Brand brand;
     //一辆车有一个系列
@@ -42,6 +47,22 @@ public class Car {
    private  Carinfo carinfo;
    private  Cardinfomax cardinfomax;
 
+
+    public int getFirst() {
+        return first;
+    }
+
+    public void setFirst(int first) {
+        this.first = first;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
     public Carinfo getCarinfo() {
         return carinfo;

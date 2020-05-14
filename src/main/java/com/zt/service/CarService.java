@@ -57,6 +57,11 @@ public interface CarService {
     public List<Car> manyConditions(Car car);
 
     /**
+     * 多条件查询车辆得总页数
+     */
+    public List<Car> jiangPageconut(Car car);
+
+    /**
      * 多条件查询且分页
      */
     /**

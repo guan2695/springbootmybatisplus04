@@ -249,6 +249,117 @@
             AND  c.carage>10
         </if>
          GROUP BY c.cid
+         limit #{first},#{pageSize}
+    </select>
+
+    <!--多条件查询车-->
+    <select id="jiangPageconut" parameterType="com.zt.entity.Car" resultMap="carinfo">
+        SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
+        FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid
+        AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
+
+        <if test="bid!=null and bid!=''">
+            AND c.bid=#{bid}
+        </if>
+        <if test="csid!=null and csid!=''">
+            AND c.csid=#{csid}
+        </if>
+        <if test="price==1.0 ">
+            and c.price between 0 and 3
+        </if>
+        <if test="price==2.0">
+            AND  c.price between 3 and 5
+        </if>
+        <if test="price==3.0 ">
+            AND  c.price between 5 and 10
+        </if>
+        <if test="price==4.0 ">
+            AND  c.price between 10 and 20
+        </if>
+        <if test="price==5.0 ">
+            AND  c.price>20
+        </if>
+        <if test="addressid==1">
+            AND c.addressid=1
+        </if>
+
+        <if test="addressid==2">
+            AND c.addressid=2
+        </if>
+        <if test="addressid==3">
+            AND c.addressid=3
+        </if>
+        <if test="addressid==4">
+            AND c.addressid=4
+        </if>
+        <if test="addressid==5">
+            AND c.addressid=5
+        </if>
+        <if test="addressid==6">
+            AND c.addressid=6
+        </if>
+        <if test="addressid==7">
+            AND c.addressid=7
+        </if>
+        <if test="addressid==8">
+            AND c.addressid=8
+        </if>
+        <if test="addressid==9">
+            AND c.addressid=9
+        </if>
+        <if test="addressid==10">
+            AND c.addressid=10
+        </if>
+        <if test="addressid==11">
+            AND c.addressid=11
+        </if>
+        <if test="addressid==12">
+            AND c.addressid=12
+        </if>
+        <if test="addressid==13">
+            AND c.addressid=13
+        </if>
+        <if test="corolid==1">
+            AND c.corolid=1
+        </if>
+        <if test="corolid==2">
+            AND c.corolid=2
+        </if>
+        <if test="corolid==3">
+            AND c.corolid=3
+        </if>
+        <if test="corolid==4">
+            AND c.corolid=4
+        </if>
+        <if test="corolid==5">
+            AND c.corolid=5
+        </if>
+        <if test="corolid==6">
+            AND c.corolid=6
+        </if>
+        <if test="corolid==7">
+            AND c.corolid=7
+        </if>
+        <if test="corolid==8">
+            AND c.corolid=8
+        </if>
+        <if test="corolid==9">
+            AND c.corolid=9
+        </if>
+        <if test="carage==1">
+            AND  c.carage between 0 and 3
+        </if>
+        <if test="carage==2">
+            AND  c.carage between 3 and 5
+        </if>
+        <if test="carage==3">
+            AND  c.carage between 5 and 10
+        </if>
+        <if test="carage==4">
+            AND  c.carage>10
+        </if>
+        GROUP BY c.cid
     </select>
 
     <!--多条件查询车-->
