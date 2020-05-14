@@ -20,4 +20,15 @@ public class CorolServiceImpl implements CorolService {
     public List<Corol> getAllcorol() {
         return corolMapper.getAllcorol();
     }
+
+    @Override
+    public int insertcorol(String corol) {
+        return corolMapper.insertcorol(corol);
+    }
+
+    @Override
+    public int deletecorol(int corolid) {
+        return corolMapper.deletecorol(corolid);
+    }
+
 }
