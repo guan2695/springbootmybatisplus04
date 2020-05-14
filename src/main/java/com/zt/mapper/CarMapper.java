@@ -104,10 +104,36 @@ public int insertCar(Car car);
     public List<Car> adminGetCarByPage(@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
 
     /**
+     * 得到一辆车的所有信息，所有！！！
+     * @param cid
+     * @return
+     */
+    @Select("SELECT * FROM car where cid=#{cid}")
+    @Results({
+            @Result(column = "bid",property = "brand",one = @One(select = "com.zt.mapper.BrandMapper.getOneBrandById")),
+            @Result(column = "csid",property = "cardseries",one = @One(select = "com.zt.mapper.CardseriesMapper.getCarseriesByid")),
+            @Result(column = "corolid",property = "corol",one = @One(select = "com.zt.mapper.CorolMapper.getCorolByid")),
+            @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById")),
+            @Result(column = "addressid",property = "address",one = @One(select = "com.zt.mapper.AddressMapper.getAddressByid")),
+            @Result(column = "cid",property = "imagesList",many = @Many(select = "com.zt.mapper.ImagesMapper.getImagesByCarid")),
+            @Result(column = "cid",property = "carinfo",one = @One(select = "com.zt.mapper.CarinfoMapper.getOneCarinfo")),
+            @Result(column = "cid",property = "cardinfomax",one = @One(select = "com.zt.mapper.CardinfomaxMapper.getOneCardinfoMax"))
+    })
+    public Car GetOneCarAllInfo(@Param("cid") int cid);
+
+    /**
      * 得到所有的车集合，获取总条数
      * @return
      */
     @Select("SELECT * FROM car")
     public List<Car> adminGetPageCount();
+
+    /**
+     * 管理员修改车的四个属性
+     * @param car
+     * @return
+     */
+    @Update("UPDATE car SET bid=#{bid},csid=#{csid},corolid=#{corolid},addressid=#{addressid} WHERE cid=#{cid}")
+    public int adminUpdCar(Car car);
 
 }

@@ -2,6 +2,7 @@ package com.zt.mapper;
 
 import com.zt.entity.Cardinfomax;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author guan
@@ -15,4 +16,12 @@ public interface CardinfomaxMapper {
      * @return
      */
     public int insertCardinfomax(Cardinfomax cardinfomax);
+
+    /**
+     * 得到一辆车的高级信息
+     * @param cid
+     * @return
+     */
+    @Select("SELECT * FROM cardinfomax WHERE cid=#{cid}")
+    public Cardinfomax getOneCardinfoMax(int cid);
 }

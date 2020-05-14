@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="css/adminUserInfo.css" />
 		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/adminLeftMenu.js" ></script>
 	</head>
 	<body>
 		<!--
@@ -17,66 +18,76 @@
         	描述：头部
         -->
 		<div id="head" class="row">
-			<img src="images/1234.png" id="headLogo" />
+			<img src="images/1234.png" id="headLogo" onclick="returnCarList()" />
 			<span id="headSpan">车辆详情</span>
 		</div>
 		
 		<div id="userInfoBody">
 			<div class="row">
-						<div class="col-md-4">
-							<a href="#" class="thumbnail">
-								<img src="images/c1css01.jpg">
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="#" class="thumbnail">
-								<img src="images/c1css01.jpg">
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="#" class="thumbnail">
-								<img src="images/c1css01.jpg">
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="#" class="thumbnail">
-								<img src="images/c1css01.jpg">
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="#" class="thumbnail">
-								<img src="images/c1css01.jpg">
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="#" class="thumbnail">
-								<img src="images/c1css01.jpg">
-							</a>
-						</div>
+				<#list car.imagesList as i>
+					<div class="col-md-4">
+						<a href="#" class="thumbnail">
+							<img src="images/${i.src}">
+						</a>
+					</div>
+				</#list>
+						<!--<div class="col-md-4">-->
+							<!--<a href="#" class="thumbnail">-->
+								<!--<img src="images/c1css01.jpg">-->
+							<!--</a>-->
+						<!--</div>-->
+						<!--<div class="col-md-4">-->
+							<!--<a href="#" class="thumbnail">-->
+								<!--<img src="images/c1css01.jpg">-->
+							<!--</a>-->
+						<!--</div>-->
+						<!--<div class="col-md-4">-->
+							<!--<a href="#" class="thumbnail">-->
+								<!--<img src="images/c1css01.jpg">-->
+							<!--</a>-->
+						<!--</div>-->
+						<!--<div class="col-md-4">-->
+							<!--<a href="#" class="thumbnail">-->
+								<!--<img src="images/c1css01.jpg">-->
+							<!--</a>-->
+						<!--</div>-->
+						<!--<div class="col-md-4">-->
+							<!--<a href="#" class="thumbnail">-->
+								<!--<img src="images/c1css01.jpg">-->
+							<!--</a>-->
+						<!--</div>-->
+						<!--<div class="col-md-4">-->
+							<!--<a href="#" class="thumbnail">-->
+								<!--<img src="images/c1css01.jpg">-->
+							<!--</a>-->
+						<!--</div>-->
 					<table class="table table-hover table-bordered" border="0" style="text-align: center;">
 						<tr>
-							<td>序号</td><td>1</td>
-							<td>车品牌</td><td>奔驰</td>
+							<td>序号</td><td>${car.carinfo.cid}</td>
+							<td>车品牌</td><td>${car.brand.bname}</td>
 						</tr>
 						<tr>
-							<td>车系</td><td>5系</td>
-							<td>颜色</td><td>红色</td>
+							<td>车系</td><td>${car.cardseries.csname}</td>
+							<td>颜色</td><td>${car.corol.corol}</td>
 						</tr>
 						<tr>
-							<td>所属用户</td><td>xiao</td>
-							<td>图片路径</td><td>c6css01.jpg</td>
+							<td>所属用户</td><td>${car.user.uname}</td>
+							<td>图片路径</td><td>${car.img}</td>
 						</tr>
 						<tr>
-							<td>原价</td><td>10万元</td>
-							<td>现价</td><td>5万元</td>
+							<td>原价</td><td>${car.oprice}万元</td>
+							<td>现价</td><td>${car.price}万元</td>
 						</tr>
 						<tr>
-							<td>所属地区</td><td>瑶湖区</td>
-							<td>车龄</td><td>8年</td>
+							<td>所属地区</td><td>${car.address.address}</td>
+							<td>车龄</td><td>${car.carage}年</td>
 						</tr>
 						<tr>
-							<td>是否上架</td><td>是</td>
-							<td>是否过审</td><td>是</td>
+							<td>是否上架</td><td><#if car.putstate == 1>是</#if>
+												<#if car.putstate == 0>否</#if>
+							</td>
+							<td>是否过审</td><td><#if car.assesstate == 1>是</#if>
+												<#if car.assesstate == 0>否</#if></td>
 						</tr>
 					</table>
 				</div>
@@ -89,16 +100,16 @@
 						<table class="table table-hover table-bordered" style=";text-align: center;">
 							<th colspan="2" style="text-align: center;">基础配置</th>
 							<tr>
-								<td>长度</td><td>420 cm</td>
+								<td>长度</td><td>${car.carinfo.length} cm</td>
 							</tr>
 							<tr>
-								<td>宽度</td><td>200 cm</td>
+								<td>宽度</td><td>${car.carinfo.width} cm</td>
 							</tr>
 							<tr>
-								<td>高度</td><td>120 cm</td>
+								<td>高度</td><td>${car.carinfo.height} cm</td>
 							</tr>
 							<tr>
-								<td>质量</td><td>1700 kg</td>
+								<td>质量</td><td>${car.carinfo.mass} kg</td>
 							</tr>
 						</table>
 					</div>
@@ -106,16 +117,16 @@
 						<table class="table table-hover table-bordered" style="text-align: center;">
 							<th colspan="2" style="text-align: center;">高级配置</th>
 							<tr>
-								<td>排量</td><td>2L</td>
+								<td>排量</td><td>${car.cardinfomax.pailiang}L</td>
 							</tr>
 							<tr>
-								<td>燃油类型</td><td>汽油</td>
+								<td>燃油类型</td><td>${car.cardinfomax.youtype}</td>
 							</tr>
 							<tr>
-								<td>燃油标号</td><td>95</td>
+								<td>燃油标号</td><td>${car.cardinfomax.youname}</td>
 							</tr>
 							<tr>
-								<td>制动类型</td><td>手动挡</td>
+								<td>制动类型</td><td>${car.cardinfomax.dangtype}</td>
 							</tr>
 						</table>
 					</div>

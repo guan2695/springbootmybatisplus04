@@ -2,6 +2,7 @@ package com.zt.mapper;
 
 import com.zt.entity.Carinfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author guan
@@ -15,4 +16,12 @@ public interface CarinfoMapper {
      * @return
      */
     public int insertCarinfo(Carinfo carinfo);
+
+    /**
+     * 得到一辆车的基本信息
+     * @param cid
+     * @return
+     */
+    @Select("SELECT * FROM carinfo WHERE cid=#{cid}")
+    public Carinfo getOneCarinfo(int cid);
 }
