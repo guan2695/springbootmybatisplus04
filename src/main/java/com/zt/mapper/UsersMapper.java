@@ -73,4 +73,8 @@ public interface UsersMapper extends BaseMapper<User> {
      */
     @Delete("DELETE FROM USER WHERE uid=#{uid}")
     public int delUserByid(int uid);
+    /**
+     * 修改
+     */
+   public int updateuser(User user);
 }

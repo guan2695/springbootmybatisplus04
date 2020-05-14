@@ -15,5 +15,8 @@
         VALUES
         (#{uname},#{upwd},#{phone})
     </insert>
-
+<!--修改个人信息-->
+    <update id="updateuser" parameterType="com.zt.entity.User">
+        UPDATE USER SET uname=#{uname},phone=#{phone} WHERE uid=#{uid}
+    </update>
 </mapper>

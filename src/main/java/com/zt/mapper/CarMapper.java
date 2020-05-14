@@ -1,7 +1,12 @@
 package com.zt.mapper;
 
 import com.zt.entity.Car;
+import com.zt.entity.Transaction;
 import com.zt.entity.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -136,4 +141,18 @@ public int insertCar(Car car);
     @Update("UPDATE car SET bid=#{bid},csid=#{csid},corolid=#{corolid},addressid=#{addressid} WHERE cid=#{cid}")
     public int adminUpdCar(Car car);
 
+    /**
+     * 查询对应用户所买的车
+     *
+     */
+    public List<Car> selectTranction(Transaction transaction);
+    /**
+     *  查询对应用户所卖的车
+     */
+    public List<Car> selectTranctionseller(Transaction transaction);
+
+    /**
+     * 多条件查询车辆得总页数
+     */
+    public List<Car> jiangPageconut(Car car);
 }

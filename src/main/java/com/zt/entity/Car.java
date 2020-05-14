@@ -41,7 +41,35 @@ public class Car {
    //车详细信息
    private  Carinfo carinfo;
    private  Cardinfomax cardinfomax;
+   //交易表
+    private  Transaction transaction;
+    //分页limit #{first},#{pageSize}
+    private int first;
+    private int pageSize;
 
+    public int getFirst() {
+        return first;
+    }
+
+    public void setFirst(int first) {
+        this.first = first;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
 
     public Carinfo getCarinfo() {
         return carinfo;
@@ -214,6 +242,7 @@ public class Car {
         this.img = img;
     }
 
+
     @Override
     public String toString() {
         return "Car{" +
@@ -237,6 +266,7 @@ public class Car {
                 ", corol=" + corol +
                 ", carinfo=" + carinfo +
                 ", cardinfomax=" + cardinfomax +
+                ", transaction=" + transaction +
                 '}';
     }
 }

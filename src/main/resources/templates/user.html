@@ -146,7 +146,7 @@ $(function () {
 
     <#else>
     <div class="top-r">
-      <a href="remove" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+      <a href="remove" id="b-regist">退出</a>|<a href="#" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
 
   </#if>
     <div class="top-l">全国统一客服热线：000-000-0000</div>
@@ -222,7 +222,7 @@ $(function () {
 			<div class="meb-nav fl dInline">
 				<ul class="clearfix">
 					<li class="on"><a href="userinfo">用户中心</a></li>
-					<li><a href="userinfoCar">我的业务</a></li>
+					<li><a href="selectTranction?uid=${list2.uid}">我的业务</a></li>
 					<li><a href="userinfoPwd">账户管理</a></li>
                 </ul>
 			</div>
@@ -240,12 +240,56 @@ $(function () {
         </div>
     </div>
 </div>
-				<div class="mr-detail">
-					
-				</div>
-			</div>
-		</div>
-	</div>
+
+              <div class="mr-detail">
+                <div class="mr-tab clearfix">
+                  <a>用户信息</a>
+                </div>
+                <div class="me-box me-box1">
+                  <div class="me-dl">
+                    <div class="me-one">
+                      <div class="accForm">
+                        <form action="updateuser?uid=${list2.uid}" enctype="multipart/form-data" name="editP" method="post" onsubmit="return checkPasspost();">
+                          <div class="afl clearfix">
+                            <label class="fl">
+                              用户名
+                            </label>
+                            <div class="af-r fl dInline">
+                              <input type="text" class="ar-txt" name="uname" placeholder="" value="${list2.uname}">
+                            </div>
+                          </div>
+                          <div class="afl clearfix">
+                            <label class="fl">
+                              余额
+                            </label>
+                            <div class="af-r fl dInline">
+                              <p class="ar-txt" name="upwd">${list2.money}</p>
+                            </div>
+                          </div>
+                          <div class="afl clearfix">
+                            <label class="fl">
+                              手机号
+                            </label>
+                            <div class="af-r fl dInline">
+                              <input type="text" class="ar-txt" name="phone" placeholder="" value="${list2.phone}">
+                            </div>
+                          </div>
+                          <div class="afl clearfix">
+                            <label class="fl">
+                            </label>
+                            <div class="af-r fl dInline">
+                              <input type="submit" value="提 交" class="ar-btn">
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+</div>
 <div class="clear_fix"></div>
 <!--底部-->
 <div class="ftWrap">

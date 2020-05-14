@@ -147,7 +147,7 @@ $(function () {
 
           <#else>
           <div class="top-r">
-              <a href="remove" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+              <a href="remove" id="b-regist">退出</a>|<a href="#" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
 
       </#if>
     <div class="top-l">全国统一客服热线：000-000-0000</div>
@@ -224,9 +224,9 @@ $(function () {
 		<div class="meb-cont clearfix mainbox">
 			<div class="meb-nav fl dInline">
 				<ul class="clearfix">
-                    <li class="on"><a href="userinfo">用户中心</a></li>
-                    <li><a href="userinfoCar">我的业务</a></li>
-                    <li><a href="userinfoPwd">账户管理</a></li>
+                    <li ><a href="userinfo">用户中心</a></li>
+                    <li><a href="selectTranction?uid=${list2.uid}">我的业务</a></li>
+                    <li class="on"><a href="userinfoPwd">账户管理</a></li>
                 </ul>
 			</div>
 			<div class="meb-right fr dInline">
@@ -251,13 +251,13 @@ $(function () {
                         <div class="me-dl">
 							<div class="me-one">
 								<div class="accForm">
-									<form action="updatepwd" enctype="multipart/form-data" name="editP" method="post" onsubmit="return checkPasspost();">
+									<form enctype="multipart/form-data" name="editP" method="post" onsubmit="return checkPasspost();">
 										<div class="afl clearfix">
 											<label class="fl">
 												当前密码
 											</label>
 											<div class="af-r fl dInline">
-												<input type="password" class="ar-txt" name="upwd" placeholder="请输入当前密码" value="">
+												<input type="password" class="ar-txt" name="password1" placeholder="请输入当前密码" value="">
 											</div>
 										</div>
 										<div class="afl clearfix">
@@ -265,7 +265,7 @@ $(function () {
 												新密码
 											</label>
 											<div class="af-r fl dInline">
-												<input type="password" class="ar-txt" name="password1" placeholder="请输入新密码" value="">
+												<input type="password" class="ar-txt" name="upwd" placeholder="请输入新密码" value="">
 											</div>
 										</div>
 										<div class="afl clearfix">
@@ -273,6 +273,7 @@ $(function () {
 												确认新密码
 											</label>
 											<div class="af-r fl dInline">
+                                                <input type="hidden" name="uid" value="${list2.uid}"/>
 												<input type="password" class="ar-txt" name="password2" placeholder="请确认输入的新密码" value="">
 											</div>
 										</div>
@@ -280,7 +281,7 @@ $(function () {
 											<label class="fl">
 											</label>
 											<div class="af-r fl dInline">
-												<input type="submit" value="提 交" class="ar-btn">
+												<input type="submit" onclick="updateupwd(${list2.uid})" value="提 交" class="ar-btn">
 											</div>
 										</div>
 									</form>
@@ -340,11 +341,16 @@ $(function () {
 <script>
 
 function checkPasspost(){
-	var upwd=editP.password.value;//性别
-	var password1=editP.password1.value;//密码
+	var upwd=editP.password1.value;//性别
+	var password1=editP.upwd.value;//密码
 	var password2=editP.password2.value;//密码
 	var Ypass=/\S{6,}/;//密码验证
 	var url='/Member/manage/channel/7/list/15';
+    if(!upwd){
+        alert("请输入密码");
+        editP.password1.focus();
+        return false;
+    }
 	if(!password1){
 		alert("请输入新密码");
 		editP.password1.focus();
@@ -365,17 +371,32 @@ function checkPasspost(){
 		editP.password1.focus();
 		return false;
 	}
+
+	var uid = $("input[name=uid]").val();
+	alert(uid);
 	$.ajax({
-		 type: "POST",
-		 url: url,
-		 data: {upwd:upwd,password1:password1},
-		 dataType: "json",
-		 success: function(data){
-			 alert(data.msg);
-		}
-	 });
-	 return false;
+        type:'post',
+        url:'updatepwd',
+        data:'uid='+uid,
+    success:function (result) {
+            var num=eval(result);
+            alert(num);
+            if(num>0){
+                alert("修改密码成功");
+            }else{
+                alert("修改密码失败");
+            }
+
+
+    },
+    error : function () {
+        alert("修改密码失败")
+    }
+
+    })
+    return true;
 }
+
 </script>
 
 </body>

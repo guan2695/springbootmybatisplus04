@@ -30,4 +30,8 @@ public interface UserService {
 
     public int updateUserpwd(User user);
     public int delUserByid(int uid);
+    /**
+     * 修改
+     */
+    public int updateuser(User user);
 }

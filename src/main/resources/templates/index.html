@@ -72,7 +72,7 @@
 
     <#if (list2.uname)??>
     <div class="top-r">
-      <a href="remove" id="b-regist">退出</a>|<a href="userinfo" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+      <a href="remove" id="b-regist">退出</a>|<a href="userinfo" id="b-login" class="b-login"> ${list2.uname}  个人中心</a> </div>
     <#else>
     <div class="top-r">
       <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
@@ -683,6 +683,7 @@
          </div>
            <div class="boer">
             <ul class="ul1" id="historyuid">
+
               <#list listHistory as listHist>
               <input type="hidden" name="hcid" value="${listHist.cid}">
               <li class="li_h1">

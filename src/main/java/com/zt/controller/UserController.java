@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import javax.xml.transform.Source;
@@ -25,6 +26,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private HistoryService historyService;
+    @Autowired
+    private UsersMapper usersMapper;
 
     /**
      * 得到所有用户
@@ -55,6 +58,9 @@ public class UserController {
         System.out.println(" --------login--------- ");
         System.out.println("phone" + user.getPhone());
         User userlist2 = userService.selectlogin(user);
+        if(userlist2==null){
+            return "404";
+        }
         session.setAttribute("list2", userlist2);
         int uid2 = userlist2.getUid();
         history.setUid(uid2);
@@ -104,6 +110,7 @@ public class UserController {
      */
     @RequestMapping("/userinfo")
     public String userinfo(HttpSession session, User user) {
+
         return "user";
     }
     @RequestMapping("/userinfoCar")
@@ -139,11 +146,18 @@ public class UserController {
      * 修改用户密码
      */
     @RequestMapping("/updatepwd")
-    public String updateUpwd(Model model, User user,int uid){
+    @ResponseBody
+    public int updateUpwd(Model model, User user,int uid){
         user.setUid(uid);
-        int num = userService.updateUserpwd(user);
+        int num = usersMapper.updateUserpwd(user);
+        return num;
+    }
+    @RequestMapping("/updateuser")
+    public String updateuser(Model model, User user,int uid){
+        user.setUid(uid);
+        int num = userService.updateuser(user);
         if(num==0){
-            return "404";
+            return "forward:userinfo";
         }
         return "user";
     }

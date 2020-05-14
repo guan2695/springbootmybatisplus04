@@ -1,6 +1,7 @@
 package com.zt.service.impl;
 
 import com.zt.entity.Car;
+import com.zt.entity.Transaction;
 import com.zt.mapper.CarMapper;
 import com.zt.mapper.UsersMapper;
 import com.zt.service.CarService;
@@ -102,5 +103,20 @@ public class CarServiceImpl implements CarService {
     @Override
     public int adminUpdCar(Car car) {
         return carMapper.adminUpdCar(car);
+    }
+
+    @Override
+    public List<Car> selectTranction(Transaction transaction) {
+        return carMapper.selectTranction(transaction);
+    }
+
+    @Override
+    public List<Car> selectTranctionseller(Transaction transaction) {
+        return carMapper.selectTranctionseller(transaction);
+    }
+
+    @Override
+    public List<Car> jiangPageconut(Car car) {
+        return carMapper.jiangPageconut(car);
     }
 }

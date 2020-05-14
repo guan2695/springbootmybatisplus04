@@ -1,652 +1,563 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>二手车</title>
-<link rel="stylesheet" type="text/css" href="css/base.css"/>
-<link rel="stylesheet" type="text/css" href="css/home.css"/>
-<link rel="stylesheet" type="text/css" href="css/city.css">
-<script type="text/javascript" src="script/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="script/home_ban.js"></script>
-<script type="text/javascript" src="script/eg_top_search.js"></script>
-<script type="text/javascript" src="script/city.js"></script>
-<script type="text/javascript" src="script/snncar.js"></script>
-<script type="text/javascript">
-$(function(){
-	$('.navmenu li').hover(function(){
-		$('span',this).stop().css('height','2px');
-		$('span',this).animate({
-			left:'0',
-			width:'100%',
-			right:'0'
-		},200);
-	},function(){
-		$('span',this).stop().animate({
-			left:'50%',
-			width:'0'
-		},200);
-	});
-});
-</script>
-<!--导航登陆网页版下拉-->
-<script type="text/javascript">
-$(function () {
-	var setTime;
-	$(".egc-top .nav-cent .operate").hover(function () {
-		var _this = $(this);
-		setTime = setTimeout(function () {
-			_this.find(".sec-version").slideDown(200);
-			_this.find("i").removeClass("icon-angle-down").addClass("icon-angle-up");
-		}, 200);
-	}, function () {
-		if (setTime) {
-			clearTimeout(setTime);
-		}
-		$(".egc-top .nav-cent .sec-version").slideUp(200);
-		$(".egc-top .nav-cent .operate i").removeClass("icon-angle-up").addClass("icon-angle-down");
-	});
-});
-</script>
-<!--底部信息下拉-->
-<script type="text/javascript">
-$(function () {
-	var wind_wd = $(window).width();
-	if(wind_wd&lt;=735){
-		/* $submenu.first().delay(400).slideDown(700);*/
-			$('.relate .tit').on('click', function() {
-			$(this).next('.con').slideToggle()
-			$(this).parent().siblings('.items').find('.con').slideUp();
-			});
-		}else{
-			 $('.relate .tit').unbind("click");
-			 $('.relate .con').show();
-			}
-	$(window).resize(function(){
- 		var wind_wd = $(window).width();
-		if(wind_wd&lt;=735){
-		/* $submenu.first().delay(400).slideDown(700);*/
-			$('.relate .tit').on('click', function() {
-			$(this).next('.con').slideToggle()
-			$(this).parent().siblings('.items').find('.con').slideUp();
-			});
-		}else{
-			 $('.relate .tit').unbind("click");
-			 $('.relate .con').show();
-			}
-	});
-});
-function dianjitu(cid){
-    //alert("图片");
-    // var cid=$("input[name=hcid]").val();
-    //alert(cid);
-    location.href="/usedcar/getCarone?cid="+cid;
-}
-</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>二手车</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="css/home.css"/>
+    <link rel="stylesheet" type="text/css" href="css/city.css">
+    <script type="text/javascript" src="script/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="script/home_ban.js"></script>
+    <script type="text/javascript" src="script/eg_top_search.js"></script>
+    <script type="text/javascript" src="script/city.js"></script>
+    <script type="text/javascript" src="script/snncar.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.navmenu li').hover(function(){
+                $('span',this).stop().css('height','2px');
+                $('span',this).animate({
+                    left:'0',
+                    width:'100%',
+                    right:'0'
+                },200);
+            },function(){
+                $('span',this).stop().animate({
+                    left:'50%',
+                    width:'0'
+                },200);
+            });
+        });
+    </script>
+    <!--导航登陆网页版下拉-->
+    <script type="text/javascript">
+        $(function () {
+            var setTime;
+            $(".egc-top .nav-cent .operate").hover(function () {
+                var _this = $(this);
+                setTime = setTimeout(function () {
+                    _this.find(".sec-version").slideDown(200);
+                    _this.find("i").removeClass("icon-angle-down").addClass("icon-angle-up");
+                }, 200);
+            }, function () {
+                if (setTime) {
+                    clearTimeout(setTime);
+                }
+                $(".egc-top .nav-cent .sec-version").slideUp(200);
+                $(".egc-top .nav-cent .operate i").removeClass("icon-angle-up").addClass("icon-angle-down");
+            });
+        });
+    </script>
+    <!--底部信息下拉-->
+    <script type="text/javascript">
+        $(function () {
+            var wind_wd = $(window).width();
+            if(wind_wd&lt;=735){
+                /* $submenu.first().delay(400).slideDown(700);*/
+                $('.relate .tit').on('click', function() {
+                    $(this).next('.con').slideToggle()
+                    $(this).parent().siblings('.items').find('.con').slideUp();
+                });
+            }else{
+                $('.relate .tit').unbind("click");
+                $('.relate .con').show();
+            }
+            $(window).resize(function(){
+                var wind_wd = $(window).width();
+                if(wind_wd&lt;=735){
+                    /* $submenu.first().delay(400).slideDown(700);*/
+                    $('.relate .tit').on('click', function() {
+                        $(this).next('.con').slideToggle()
+                        $(this).parent().siblings('.items').find('.con').slideUp();
+                    });
+                }else{
+                    $('.relate .tit').unbind("click");
+                    $('.relate .con').show();
+                }
+            });
+        });
+    </script>
 
-<!--搜搜框获取焦点-->
-<script type="text/javascript">
-$(function () {
-$('.sea-ipt-txt').focus(function() { 
-$(this).addClass("on");
-$('.search-btn').addClass("on"); 
-}); 
-$('.sea-ipt-txt').blur(function() { 
-$(this).removeClass("on");
-$('.search-btn').removeClass("on");
-}); 
-});
-</script>
-<!--下拉导航关闭-->
-<script type="text/javascript">
-$(function () {
- $('.menu-mb i').click(function() { 
-   $(".navigation-mb-list").slideDown(300);
- }); 
- $('.navigation-mb-list .list-close-btn').click(function() { 
-   $(".navigation-mb-list").slideUp(300);
- });
-});
-</script>
-<!--stress搜索关闭-->
-<script type="text/javascript">
-$(function () {
-	var setTime;
-	$(".sercat .weixin").hover(function () {
-		setTime = setTimeout(function () {
-			$(".sercat .wxewm").show();
-		}, 300);
-	}, function () {
-		if (setTime) {
-			clearTimeout(setTime);
-		}
-		$(".sercat .wxewm").hide();
-	});
-});
-</script>
-<script type="text/javascript">
-$(function () {
-	var scroll_heitht = $('body').offset().top;
-	var isShow = true;
-	$(window).scroll(function () {
-       if ($(window).scrollTop() > scroll_heitht &amp;&amp; isShow) {
-			 $('.stress-search-box').slideDown(200);
-       }else{
-		   $('.stress-search-box').slideUp(200);
-		   }
-       });
-   $('.stress-close a').click(function(){
-	   isShow=false;
-	   $('.stress-search-box').slideUp(200).unbind(window,aa);
-	   });
-});
-</script>
+    <!--搜搜框获取焦点-->
+    <script type="text/javascript">
+        $(function () {
+            $('.sea-ipt-txt').focus(function() {
+                $(this).addClass("on");
+                $('.search-btn').addClass("on");
+            });
+            $('.sea-ipt-txt').blur(function() {
+                $(this).removeClass("on");
+                $('.search-btn').removeClass("on");
+            });
+        });
+    </script>
+    <!--下拉导航关闭-->
+    <script type="text/javascript">
+        $(function () {
+            $('.menu-mb i').click(function() {
+                $(".navigation-mb-list").slideDown(300);
+            });
+            $('.navigation-mb-list .list-close-btn').click(function() {
+                $(".navigation-mb-list").slideUp(300);
+            });
+        });
+    </script>
+    <!--stress搜索关闭-->
+    <script type="text/javascript">
+        $(function () {
+            var setTime;
+            $(".sercat .weixin").hover(function () {
+                setTime = setTimeout(function () {
+                    $(".sercat .wxewm").show();
+                }, 300);
+            }, function () {
+                if (setTime) {
+                    clearTimeout(setTime);
+                }
+                $(".sercat .wxewm").hide();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var scroll_heitht = $('body').offset().top;
+            var isShow = true;
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > scroll_heitht &amp;&amp; isShow) {
+                    $('.stress-search-box').slideDown(200);
+                }else{
+                    $('.stress-search-box').slideUp(200);
+                }
+            });
+            $('.stress-close a').click(function(){
+                isShow=false;
+                $('.stress-search-box').slideUp(200).unbind(window,aa);
+            });
+        });
+    </script>
 
-<style type="text/css">	
-	#page{
-			width: 60%;
-			height: 50px;
-			line-height: 50px;
-			text-align: center;
-			margin-left: 20%;
-			background-color: #f5f5f5;
-			border-radius: 5px;
-			color: dodgerblue;
-		}
-		#page a{
-			color: dodgerblue;
-			font-weight: bold;
-		}		
-		#page a:nth-of-type(1){
-			float: left;			
-			margin-left: 15px;
-		}
-		#page a:nth-of-type(2){
-			
-			margin-right: 300px;
-		}
-		#page a:nth-of-type(3){
-			margin-left: 300px;		
-			
-		}
-		#page a:nth-of-type(4){
-			float: right;
-			margin-right: 15px;
-		}
-		
-		.j1{
-			background:#f9f9f9;
-			color:#666;	
-		}
-		
-		.j2{
-			background:#eeeeee;
-			color:red;
-			
-		}
-		
-</style>
+    <style type="text/css">
+        #page{
+            width: 60%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin-left: 20%;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            color: dodgerblue;
+        }
+        #page a{
+            color: dodgerblue;
+            font-weight: bold;
+        }
+        #page a:nth-of-type(1){
+            float: left;
+            margin-left: 15px;
+        }
+        #page a:nth-of-type(2){
 
-<script type="text/javascript">
-$(function () {
-	
-	var bname=0,csname=0,price=0,carage=0,corol=0,address=0;
-	//导航栏搜索单击selecter
-	$(".fliter-bd a").click(function(){
-		$(this).parent().find("a").css({"background-color":"#f9f9f9","color":"#666"});  //清理样式
-		$(this).parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
-		
-		$(this).css({"background-color":"#eeeeee","color":"red"});       //添加样式
-		$(this).attr({"class":"xzz"});     //添加class  
-		$(this).parent().find(".on").css({"background-color":"#00002e","color":"#fff","text-decoration":"none"});
-		
-		//得到数据		
-		getdate();
+            margin-right: 300px;
+        }
+        #page a:nth-of-type(3){
+            margin-left: 300px;
 
+        }
+        #page a:nth-of-type(4){
+            float: right;
+            margin-right: 15px;
+        }
 
-	});
-	
-	//下拉搜索单击
-	$(".selecter li a").click(function(){
-		$(this).parent().parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
-		$(this).attr({"class":"xzz"});
-		//添加class
-		//得到数据
-		getdate();				
-	});
-	
-	//得到数据	函数
-	function getdate(){
-		var ass=window.document.getElementsByClassName("xzz");			
-		for(var i=0;i < ass.length;i++){
-			var zi=ass[i].title.substring(-1,1);
-			var ziid=ass[i].title.substring(ass.length-1);
-			if(zi=="p"){
-			    bname=ziid;
-			}
-			if(zi=="c"){
-			    csname=ziid;
-			}
-			if(zi=="j"){
-				price=ziid;
-			}
-			if(zi=="s"){
-				carage=ziid;
-			}
-			if(zi=="y"){
-				corol=ziid;
-			}
-			if(zi=="d"){
-				address=ziid;
-			}
-		}
-		alert("bname"+bname+"\t"+"csname"+csname+"\t"+"price"+price+"\t"+"carage"+carage+"\t"+"corol"+corol+"\t"+"address"+address);
-	}
-			
-});//窗体
+        .j1{
+            background:#f9f9f9;
+            color:#666;
+        }
 
-</script>
+        .j2{
+            background:#eeeeee;
+            color:red;
+
+        }
+
+    </style>
+
+    <script type="text/javascript" src="js/listdao01.js"></script>
 
 </head>
 <body>
 <div class="egc-top">
-  <div class="nav-cent">
-      <#if (list2.uname)??>
-      <div class="top-r">
-          <a href="remove" id="b-regist">退出</a>|<a href="userinfo" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
-      <#else>
-      <div class="top-r">
-          <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
-  </#if>
-      <div class="top-l">全国统一客服热线：000-000-0000</div>
-    <div class="clear_fix"></div>
-  </div>
+    <div class="nav-cent">
+        <#if (list2.uname)??>
+        <div class="top-r">
+            <a href="remove" id="b-regist">退出</a>|<a href="userinfo" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+        <#else>
+        <div class="top-r">
+            <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
+    </#if><div class="top-l">全国统一客服热线：000-000-0000</div>
+        <div class="clear_fix"></div>
+    </div>
 </div>
 <div class="navigation">
-  <div class="nav-cent">
-    <div class="logo"><a href="index.html"><img src="images/123.png" width="215"height="85px" /></a></div>
-    <div class="city"> 
-      <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
-        <div id="JS_header_city_bar_box" class="hide_city_group">
-          <div class="hideMap">
-            <div class="showPanel clearfix">
-              <div class="Left mycity">
-               
-                <div id="JS_default_city_delete" style="display: none;"></div>
-              </div>
+    <div class="nav-cent">
+        <div class="logo"><a href="index.html"><img src="images/123.png" width="215"height="85px" /></a></div>
+        <div class="city">
+            <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
+                <div id="JS_header_city_bar_box" class="hide_city_group">
+                    <div class="hideMap">
+                        <div class="showPanel clearfix">
+                            <div class="Left mycity">
+
+                                <div id="JS_default_city_delete" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="showPanel showPanel2 clearfix">
+                            <div class="hot_city" id="JS_header_city_hot"> </div>
+                            <div class="city_words mt10" id="JS_header_city_char"> </div>
+                        </div>
+                        <div class="scrollBody">
+                            <div class="cityMap clearfix">
+                                <table id="JS_header_city_list" class="city_list" style="margin-top: 0px;">
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="scrollBar"> <span id="JS_header_city_bar" style="margin-top: 0px;"></span> </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="showPanel showPanel2 clearfix">
-              <div class="hot_city" id="JS_header_city_hot"> </div>
-              <div class="city_words mt10" id="JS_header_city_char"> </div>
-            </div>
-            <div class="scrollBody">
-              <div class="cityMap clearfix">
-                <table id="JS_header_city_list" class="city_list" style="margin-top: 0px;">
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-              <div class="scrollBar"> <span id="JS_header_city_bar" style="margin-top: 0px;"></span> </div>
-            </div>
-          </div>
+            <span class="common-bg city-logo"></span> </div>
+        <div class="sea">
+            <div class="egc-sea-box">
+                <input type="text" class="sea-ipt-txt" placeholder="搜索您想要的车" />
+                <a href="#" class="search-btn">搜索</a> </div>
         </div>
-      </div>
-      <span class="common-bg city-logo"></span> </div>
-    <div class="sea">
-      <div class="egc-sea-box">
-        <input type="text" class="sea-ipt-txt" placeholder="搜索您想要的车" />
-        <a href="#" class="search-btn">搜索</a> </div>
+        <div class="hot-phone"> <i></i> <span class="js-change-phone">000-000-0000</span> </div>
     </div>
-    <div class="hot-phone"> <i></i> <span class="js-change-phone">000-000-0000</span> </div>
-  </div>
 </div>
 <ul class="navmenu">
-  <li class="active"><a href="index.html">首页</a><span></span></li>
-  <li><a href="list.html">我要买车</a><span></span></li>
-  <li><a href="wymc.html">我要卖车</a><span></span></li>
-  <li><a href="#">车主晒单</a><span></span></li>
-  <li><a href="about.html">关于我们</a><span></span></li>
+    <li class="active"><a href="index.html">首页</a><span></span></li>
+    <li><a href="list.html">我要买车</a><span></span></li>
+    <li><a href="wymc.html">我要卖车</a><span></span></li>
+    <li><a href="#">车主晒单</a><span></span></li>
+    <li><a href="about.html">关于我们</a><span></span></li>
 </ul>
 <div class="clear_fix"></div>
 <div class="stress-search-box row">
-  <div class="stress-close"><a href="javascript:;"></a></div>
-  <div class="nav-cents">
-    <ul>
-      <li class="logo"><a href="index.html"><img src="images/123.png"  width="180"height="70px"/></a></li>
-      <li><a href="index.html">首页</a></li>
-      <li><a href="list.html">我要买车</a></li>
-      <li><a href="wymc.html">我要卖车</a></li>
-      <li><a href="#">车主晒单</a></li>
-      <li><a href="about.html">关于我们</a></li>
-    </ul>
-    <div class="seas">
-      <div class="egc-sea-box">
-        <input type="text" class="sea-ipt-txt" placeholder="搜索您想要的车">
-        <a href="#" class="search-btn">搜索</a> </div>
+    <div class="stress-close"><a href="javascript:;"></a></div>
+    <div class="nav-cents">
+        <ul>
+            <li class="logo"><a href="index.html"><img src="images/123.png"  width="180"height="70px"/></a></li>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="list.html">我要买车</a></li>
+            <li><a href="wymc.html">我要卖车</a></li>
+            <li><a href="#">车主晒单</a></li>
+            <li><a href="about.html">关于我们</a></li>
+        </ul>
+        <div class="seas">
+            <div class="egc-sea-box">
+                <input type="text" class="sea-ipt-txt" placeholder="搜索您想要的车">
+                <a href="#" class="search-btn">搜索</a> </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="clear_fix"></div>
 <!--所在位置-->
 <div class="crumbp"> <a href="index.html">首页</a> <em>&gt;</em> <span>个人二手车</span> </div>
-<div class="mainbox"> 
-  <!--搜索条件-->
-  <div class="comfilter-bd">
-    <div class="filterBox">
-    	
-      <dl class="fliter-bd clearfix">
-        <dt>品牌：</dt>
-        <dd class="clickBrandWidget"> 
-        <a  class="on" href="#" title="0" >不限</a>
+<div class="mainbox">
+    <!--搜索条件-->
+    <div class="comfilter-bd">
+        <div class="filterBox">
 
-            <#list brandList as brand>
-            <input type="hidden"  name="bid" value="${brand.bid}"/>
-            <a  class="xz" name="aa"   href="listhtml3?bid=${brand.bid}" title="p${brand.bid}">${brand.bname} </a>
-        </#list>
-          <p id="pingpai" >1</p>
-        </dd>
-      </dl>
-      
-      <dl class="fliter-bd clearfix">
-        <dt>车系：</dt>
-        <dd class="clickTagWidget">
-            <a  class="on" href="#" title="0">不限</a>
-            <#if cardserieslist?? && (cardserieslist?size > 0)>
-
-            <#list cardserieslist as dserieslist>
-            <input type="hidden"  name="csid" value="${dserieslist.csid}"/>
-            <a  class="xz" name="aa" href="listhtml3?csid=${dserieslist.csid}" title="c${dserieslist.csname}"> ${dserieslist.csname} </a>
-        </#list>
-          <#else>
-          <a  class="xz" href="listhtml3?csid=1" title="0">高尔夫</a>
-          <a  class="xz" href="listhtml3?csid=9" title="0">奔驰A级</a>
-          <a  class="xz" href="listhtml3?csid=13" title="0">丰田卡罗拉</a>
-          <a  class="xz" href="listhtml3?csid=17" title="0">轩逸</a>
-      </#if>
-
-        </dd>
-      </dl>
-      
-      <dl class="fliter-bd clearfix">
-        <dt>价格：</dt>
-        <dd class="clickTagWidget"> 
-        	<a  class="on" href="#" title="0.0">不限</a>
-        	<a  class="xz" name="aa" href="listhtml3?price=1.0" title="j1.0"> 3万以下 </a>
-            <a  class="xz" name="aa" href="listhtml3?price=2.0" title="j1.0"> 3~5万 </a>
-            <a  class="xz" name="aa" href="listhtml3?price=3.0" title="j1.0"> 5~10万 </a>
-            <a  class="xz" name="aa" href="listhtml3?price=4.0" title="10~20万"> 10~20万 </a>
-            <a  class="xz" name="aa" href="listhtml3?price=5.0" title="20万以上"> 20万以上 </a>
-        </dd>
-      </dl>
-      <dl class="fliter-bd clearfix">
-        <dt>车龄：</dt>
-        <dd> 
-        	<a data-role="filterItemAge" data-value="" class="on" href="listhtml2?carage=0">不限</a>
-        	<a  class="xz" name="aa" href="listhtml3?carage=4" title="10年以上"> 10年以上 </a>
-        	<a  class="xz" name="aa" href="listhtml3?carage=3" title="5 - 10年"> 5 - 10年 </a>
-        	<a  class="xz" name="aa" href="listhtml3?carage=2" title="3 - 5年 "> 3 - 5年 </a>
-        	<a  class="xz" name="aa" href="listhtml3?carage=1" title="0 - 3年"> 0 - 3年 </a>
-        </dd>
-      </dl>
-      <div class="moreitem clearfix">
-        <span>更多：</span>
-        
-    
-    <dl class="selecter">
-		<dt>颜色</dt>
-		<dd>
-			<ul>
-                <li><a href="javascript:void(0);" title="0">不限</a></li>
-             <#if corollist?? && (corollist?size > 0)>
-                <#list corollist as corollist>
-                <li><a class="xz" name="aa" href="listhtml3?colorid=${corollist.corolid}" title="${corollist.corol}">${corollist.corol} </a> </li>
+            <dl class="fliter-bd clearfix">
+                <dt>品牌：</dt>
+                <dd class="clickBrandWidget">
+                    <a  class="on" title="p-0">不限</a>
+                    <#list brandList as brand>
+                    <a  class="xz" name="aa" title="p-${brand.bid}" onclick="cardseries()">${brand.bname} </a>
                 </#list>
-            <#else>
-				<li><a href="javascript:void(0);" title="0">不限</a></li>
-				<li><a class="xz" name="aa" href="listhtml3?colorid=1" title="y1">黑色 </a> </li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="y2">白色 </a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="y3">银灰色 </a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="y4">红色 </a> </li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y5">深灰色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y6">橙色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y7">绿色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y8">蓝色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y9">咖啡色 </a></li>
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="y10">其它 </a></li>
-            </#if>
-            </ul>
-		</dd>
-	</dl>
-    <dl class="selecter">
-		<dt>地区</dt>
-		<dd>
-			<ul>
-                <li><a href="javascript:void(0);" title="0">不限</a></li>
-            <#if addresseslist?? && (addresseslist?size > 0)>
-                <#list addresseslist as addresslist>
-                <li><a class="xz" name="aa" href="listhtml3?addid=${addresslist.addid}" title="${addresslist.address}"> ${addresslist.address} </a></li>
-                </#list>
-                   <#else>
-				<li><a href="javascript:void(0);" title="0">不限</a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="d1"> 青山湖区 </a></li>
-				<li><a class="xz" name="aa" href="javascript:void(0);" title="d2"> 瑶湖 </a></li>				
-                <li><a class="xz" name="aa" href="javascript:void(0);" title="d3"> 其他 </a></li>
-            </#if>
-        </ul>
-		</dd>
-	</dl>
-      </div>
-     
-    </div>
-   
-  </div>
+                </dd>
+            </dl>
 
-  <ul id="addcar1" class="carList2">
-      <#if (list2.uname)??>
-      <#list listmanyQuery as listmany>
-    <li>
-      <div class="list-infoBox">
-      	<a title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" target="_self" class="imgtype" href="getCarone?cid=${listmany.cid}&uid=${list2.uid}">
-      	<img src="images/${listmany.img}"  width="290" height="194" alt="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年"> </a>
-        <p class="infoBox"> <a  title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" href="getCarone?cid=${listmany.cid}&uid=${list2.uid}" target="_self" class="info-title">${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年</a> </p>
-        <p class="fc-gray"> <span class="tag-gray">${listmany.address.address}</span> <span class="">车龄${listmany.carage}年</span> <em class="shuxian">|</em> 颜色:${listmany.corol.corol} </p>
-        <p class="priType-s"> <span> <i class="fc-org priType">${listmany.price}万 </i> </span> <s>${listmany.oprice}万</s> </p>
-      </div>
-    </li>
-  </#list>
-    <#else>
-    <#list listmanyQuery as listmany>
-    <li>
-        <div class="list-infoBox">
-            <a title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" target="_self" class="imgtype" href="getCarone?cid=${listmany.cid}">
-                <img src="images/${listmany.img}"  width="290" height="194" alt="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年"> </a>
-            <p class="infoBox"> <a  title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" href="getCarone?cid=${listmany.cid}" target="_self" class="info-title">${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年</a> </p>
-            <p class="fc-gray"> <span class="tag-gray">${listmany.address.address}</span> <span class="">车龄${listmany.carage}年</span> <em class="shuxian">|</em> 颜色:${listmany.corol.corol} </p>
-            <p class="priType-s"> <span> <i class="fc-org priType">${listmany.price}万 </i> </span> <s>${listmany.oprice}万</s> </p>
+            <dl class="fliter-bd clearfix">
+                <dt>车系：</dt>
+                <dd class="clickTagWidget mycardseries">
+                    <a  class="on" href="#" title="c-0">不限</a>
+                    <#if cardserieslist?? && (cardserieslist?size > 0)>
+                    <#list cardserieslist as dserieslist>
+                    <a  class="xz" name="aa" title="c-${dserieslist.csid}"> ${dserieslist.csname} </a>
+                </#list>
+                <#else>
+                <a  class="xz" href="listhtml3?csid=1">高尔夫</a>
+                <a  class="xz" href="listhtml3?csid=9">奔驰A级</a>
+                <a  class="xz" href="listhtml3?csid=13">丰田卡罗拉</a>
+                <a  class="xz" href="listhtml3?csid=17">轩逸</a>
+            </#if>
+            </dd>
+            </dl>
+
+            <dl class="fliter-bd clearfix">
+                <dt>价格：</dt>
+                <dd class="clickTagWidget">
+                    <a  class="on" title="j-0">不限</a>
+                    <a  class="xz" name="aa" title="j-1"> 3万以下 </a>
+                    <a  class="xz" name="aa" title="j-2"> 3~5万 </a>
+                    <a  class="xz" name="aa" title="j-3"> 5~10万 </a>
+                    <a  class="xz" name="aa" title="j-4"> 10~20万 </a>
+                    <a  class="xz" name="aa" title="j-5"> 20万以上 </a>
+                </dd>
+            </dl>
+
+            <dl class="fliter-bd clearfix">
+                <dt>车龄：</dt>
+                <dd>
+                    <a data-role="filterItemAge" data-value="" class="on" title="s-0">不限</a>
+                    <a  class="xz" name="aa" title="s-1"> 3年以下 </a>
+                    <a  class="xz" name="aa" title="s-2"> 3 - 5年 </a>
+                    <a  class="xz" name="aa" title="s-3"> 5 - 10年 </a>
+                    <a  class="xz" name="aa" title="s-4"> 10以上年 </a>
+                </dd>
+            </dl>
+
+            <div class="moreitem clearfix">
+                <span>更多：</span>
+
+
+                <dl class="selecter">
+                    <dt>颜色</dt>
+                    <dd>
+                        <ul>
+                            <li><a href="javascript:void(0);" title="y-0">不限</a></li>
+                            <#if corollist?? && (corollist?size > 0)>
+                            <#list corollist as corollist>
+                            <li><a class="xz" name="aa" title="y-${corollist.corolid}">${corollist.corol} </a> </li>
+                        </#list>
+                        <#else>
+                        <li><a class="xz" name="aa">黑色 </a> </li>
+                        <li><a class="xz" name="aa">白色 </a></li>
+                        <li><a class="xz" name="aa">银灰色 </a></li>
+
+                        <li><a class="xz" name="aa">其它 </a></li>
+                    </#if>
+                    </ul>
+                    </dd>
+                </dl>
+
+                <dl class="selecter">
+                    <dt>地区</dt>
+                    <dd>
+                        <ul>
+                            <li><a href="javascript:void(0);" title="d-0">不限</a></li>
+                            <#if addresseslist?? && (addresseslist?size > 0)>
+                            <#list addresseslist as addresslist>
+                            <li><a class="xz" name="aa" title="d-${addresslist.addid}"> ${addresslist.address} </a></li>
+                        </#list>
+                        <#else>
+                        <li><a class="xz" name="aa"> 青山湖区 </a></li>
+                        <li><a class="xz" name="aa"> 瑶湖 </a></li>
+                        <li><a class="xz" name="aa"> 其他 </a></li>
+                    </#if>
+                    </ul>
+                    </dd>
+                </dl>
+            </div>
+
         </div>
-    </li>
-</#list>
-</#if>
-  </ul>
+
+    </div>
+
+    <ul id="addcar1" class="carList2">
+        <#list listmanyQuery as listmany>
+        <li>
+            <div class="list-infoBox">
+                <a target="_self" class="imgtype" href="getCarone?cid=${listmany.cid}">
+                    <img src="images/${listmany.img}"  width="290" height="194" alt="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年"> </a>
+                <p class="infoBox"> <a  title="${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年" target="_blank" class="info-title">${listmany.brand.bname}-${listmany.cardseries.csname}${listmany.cid}  车龄${listmany.carage}年</a> </p>
+                <p class="fc-gray"> <span class="tag-gray">${listmany.address.address}</span> <span class="">车龄${listmany.carage}年</span> <em class="shuxian">|</em> 颜色:${listmany.corol.corol} </p>
+                <p class="priType-s"> <span> <i class="fc-org priType">${listmany.price}万 </i> </span> <s>${listmany.oprice}万</s> </p>
+            </div>
+        </li>
+    </#list>
+    </ul>
 
 </div>
 
-<div id="page">  <!--分页-->									
-	<a href="#">首页</a>	
-	<a href="#">上一页</a>
-	<span>1/5</span>
-	<a href="#">下一页</a>
-	<a href="#">末页</a>						
+<div id="page">  <!--分页-->
+    <a onclick="carpage('1')">首页</a>
+    <a onclick="carpage('2')">上一页</a>
+    <span class="pagei"><i>1</i>/<i>${jiangconnt}</i></span>
+    <a onclick="carpage('3')">下一页</a>
+    <a onclick="carpage('4')">末页</a>
 </div>
 
 <div class="clear_fix"></div>
 <!--底部-->
 <div class="ftWrap">
-  <div class="foot">
-    <div class="cent">
-      <div class="relate">
-        <div class="items">
-          <div class="tit"><i class="icon-angle-right"></i>交易帮助</div>
-          <div class="con"> <a href="#">买车帮助</a> <a href="#">卖车帮助</a> <a href="#">过户帮助</a> </div>
+    <div class="foot">
+        <div class="cent">
+            <div class="relate">
+                <div class="items">
+                    <div class="tit"><i class="icon-angle-right"></i>交易帮助</div>
+                    <div class="con"> <a href="#">买车帮助</a> <a href="#">卖车帮助</a> <a href="#">过户帮助</a> </div>
+                </div>
+                <div class="items">
+                    <div class="tit"><i class="icon-angle-right"></i>客服中心</div>
+                    <div class="con"> <a href="abut.html">网站合作</a> <a href="about.html">关于我们</a> <a href="contact.html">联系我们</a> </div>
+                </div>
+                <div class="items">
+                    <div class="tit"><i class="icon-angle-right"></i>购车指南</div>
+                    <div class="con"> <a href="#">购车帮助</a></div>
+                </div>
+                <div class="app-section"> <img class="js-delayed-img"  src="images/f_wx.jpg">
+                    <div class="title">扫码关注微信</div>
+                    <p> 随时随地，秒杀好车<br />
+                        优质个人二手车 </p>
+                </div>
+                <div class="items last">
+                    <div class="tel">
+                        <h1>000-000-0000</h1>
+                        <p>周一至周日 8:00-18:00</p>
+                        <p>免费咨询(咨询、建议、投诉)</p>
+                        <a href="#" class="kf"><i class="kf-icon"></i>在线客服</a> </div>
+                    <div class="tel-mb">
+                        <p><span>400-710-8886</span>周一至周日 8:00-18:00(仅收市话费)</p>
+                        <a href="#" class="kf"><i class="kf-icon"></i>在线客服</a> </div>
+                </div>
+            </div>
         </div>
-        <div class="items">
-          <div class="tit"><i class="icon-angle-right"></i>客服中心</div>
-          <div class="con"> <a href="abut.html">网站合作</a> <a href="about.html">关于我们</a> <a href="contact.html">联系我们</a> </div>
-        </div>
-        <div class="items">
-          <div class="tit"><i class="icon-angle-right"></i>购车指南</div>
-          <div class="con"> <a href="#">购车帮助</a></div>
-        </div>
-        <div class="app-section"> <img class="js-delayed-img"  src="images/f_wx.jpg">
-          <div class="title">扫码关注微信</div>
-          <p> 随时随地，秒杀好车<br />
-            优质个人二手车 </p>
-        </div>
-        <div class="items last">
-          <div class="tel">
-            <h1>000-000-0000</h1>
-            <p>周一至周日 8:00-18:00</p>
-            <p>免费咨询(咨询、建议、投诉)</p>
-            <a href="#" class="kf"><i class="kf-icon"></i>在线客服</a> </div>
-          <div class="tel-mb">
-            <p><span>400-710-8886</span>周一至周日 8:00-18:00(仅收市话费)</p>
-            <a href="#" class="kf"><i class="kf-icon"></i>在线客服</a> </div>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="copyright">
-    <div class="cent"> Copyright © 2016-2017, snncar.com,All Rights Reserved 皖ICP备16022456号-1</div>
-  </div>
+    <div class="copyright">
+        <div class="cent"> Copyright © 2016-2017, snncar.com,All Rights Reserved 皖ICP备16022456号-1</div>
+    </div>
 </div>
-<script type="text/javascript" src="script/3c-menu.js"></script> 
-<script type="text/javascript" src="script/lg_reg.js"></script> 
+<script type="text/javascript" src="script/3c-menu.js"></script>
+<script type="text/javascript" src="script/lg_reg.js"></script>
 <!--会员登录和注册弹出框开始-->
 <div id="popBox">
-  <div class="popCont"> <a class="p_closed">关闭</a>
-    <div class="p-tab"> <a><span class="vip">用户登录</span><i></i></a><a><span class="vip01">用户注册</span><i></i></a> </div>
-    <div class="p-detail">
-      <div class="p-dl">
-        <form onsubmit="return check();"  action="login" enctype="multipart/form-data" method="post" name="form" id="form">
-          <ul class="login-items">
-            <li>
-              <label>用户名(手机号)</label>
-              <input class="input" type="text" value="" maxlength="32"  name="phone" placeholder="请输入您的手机号" autofocus="autofocus" required="required">
-            </li>
-            <li>
-              <label>密码</label>
-              <input class="input" type="password" value="" maxlength="16"  name="upwd" required="required">
-            </li>
-          </ul>
-          <div class="login-check">
-            <input type="checkbox" name="checkbox" style=" width:auto;" />
-            <label>记住我</label>
-            <a href="Meet/editPass">忘记登录密码？</a> </div>
-          <div class="login-button">
-            <input type="hidden" value="" name="carid" class="ordercarid" />
-            <input type="hidden" value="" name="carstatus" class="orderstatus" />
-            <input type="submit"  value="登&nbsp;&nbsp;&nbsp;&nbsp;陆" class="fM" onclick="$('#form').submit()" />
-          </div>
-          <!---校验-->
-         
-        </form>
-      </div>
-      <div class="p-dl">
-        <form class="registForm" action="register" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
-          <ul class="login-items">
-            <li class="clearfix">
-              <input class="input" name="phone" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）"required="required">
-            </li>
-            <li class="clearfix">
-              <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;"required="required" />
-              <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
-            </li>
-            <li class="clearfix">
-              <input class="input" type="text" value=""  name="uname" placeholder="姓名"required="required">
-            </li>
-            <li class="clearfix sex">
-              <input type="radio" checked="" name="gender" value="M" />
-              男&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="radio" name="gender" value="F" />
-              女 </li>
-            <li class="clearfix">
-              <input id="" class="input" type="password" name="upwd" value="" placeholder="输入密码"required="required">
-            </li>
-          </ul>
-          <div class="login-button">
-            <input type="hidden" value="" name="carid" class="ordercarid" />
-            <input type="hidden" value="" name="carstatus" class="orderstatus" />
-            <input type="submit"  value="立即注册" class="fM" onclick="$('#reg').submit()" />
-          </div>
-         <!---校验-->
-         
-        </form>
-      </div>
+    <div class="popCont"> <a class="p_closed">关闭</a>
+        <div class="p-tab"> <a><span class="vip">用户登录</span><i></i></a><a><span class="vip01">用户注册</span><i></i></a> </div>
+        <div class="p-detail">
+            <div class="p-dl">
+                <form onsubmit="return check();"  action="login" enctype="multipart/form-data" method="post" name="form" id="form">
+                    <ul class="login-items">
+                        <li>
+                            <label>用户名(手机号)</label>
+                            <input class="input" type="text" value="" maxlength="32"  name="phone" placeholder="请输入您的手机号" autofocus="autofocus" required="required">
+                        </li>
+                        <li>
+                            <label>密码</label>
+                            <input class="input" type="password" value="" maxlength="16"  name="upwd" required="required">
+                        </li>
+                    </ul>
+                    <div class="login-check">
+                        <input type="checkbox" name="checkbox" style=" width:auto;" />
+                        <label>记住我</label>
+                        <a href="Meet/editPass">忘记登录密码？</a> </div>
+                    <div class="login-button">
+                        <input type="hidden" value="" name="carid" class="ordercarid" />
+                        <input type="hidden" value="" name="carstatus" class="orderstatus" />
+                        <input type="submit"  value="登&nbsp;&nbsp;&nbsp;&nbsp;陆" class="fM" onclick="$('#form').submit()" />
+                    </div>
+                    <!---校验-->
+
+                </form>
+            </div>
+            <div class="p-dl">
+                <form class="registForm" action="register" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
+                    <ul class="login-items">
+                        <li class="clearfix">
+                            <input class="input" name="phone" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）"required="required">
+                        </li>
+                        <li class="clearfix">
+                            <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;"required="required" />
+                            <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
+                        </li>
+                        <li class="clearfix">
+                            <input class="input" type="text" value=""  name="uname" placeholder="姓名"required="required">
+                        </li>
+                        <li class="clearfix sex">
+                            <input type="radio" checked="" name="gender" value="M" />
+                            男&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="gender" value="F" />
+                            女 </li>
+                        <li class="clearfix">
+                            <input id="" class="input" type="password" name="upwd" value="" placeholder="输入密码"required="required">
+                        </li>
+                    </ul>
+                    <div class="login-button">
+                        <input type="hidden" value="" name="carid" class="ordercarid" />
+                        <input type="hidden" value="" name="carstatus" class="orderstatus" />
+                        <input type="submit"  value="立即注册" class="fM" onclick="$('#reg').submit()" />
+                    </div>
+                    <!---校验-->
+
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-<!--会员登录和注册弹出框结束--> 
+<!--会员登录和注册弹出框结束-->
 <script>
-$(function(){
-	var t=null,$this,i=0;
-	//品牌
-	$(".brand-all").bind({
-		mouseenter:function(){
-			$(this).find(".otherbrand").show();
-		},
-		mouseleave:function(){
-			$(this).find(".otherbrand").hide();
-		}
-	});
-	
-});
-</script> 
-<script type="text/javascript">
-$(".hoverWidget").each(function() {
-				$(this).mouseenter(function() {
-					$(this).addClass("active")
-				}).mouseleave(function() {
-					$(this).removeClass("active")
-				})
-			});
-function dianjitu2(cid){
-    //alert("图片");
-    // var cid=$("input[name=hcid]").val();
-    //alert(cid);
-    location.href="/usedcar/getCarone?cid="+cid;
-};
-function qingkong(uid) {
-    alert("清空");
-    $.ajax({
-        type: 'post',
-        url: 'deleteHistory',
-        data: 'uid=' + uid,
-        success: function (obj) {
-            var num = eval(obj);
-            if (num > 0) {
-                alert("成功");
-                $("#historyuid").html("");
-            } else {
-                alert("清空失败");
+    $(function(){
+        var t=null,$this,i=0;
+        //品牌
+        $(".brand-all").bind({
+            mouseenter:function(){
+                $(this).find(".otherbrand").show();
+            },
+            mouseleave:function(){
+                $(this).find(".otherbrand").hide();
             }
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    $(".hoverWidget").each(function() {
+        $(this).mouseenter(function() {
+            $(this).addClass("active")
+        }).mouseleave(function() {
+            $(this).removeClass("active")
+        })
+    });
+    function dianjitu2(cid){
+        //alert("图片");
+        // var cid=$("input[name=hcid]").val();
+        //alert(cid);
+        location.href="/usedcar/getCarone?cid="+cid;
+    };
+    function qingkong(uid) {
+        alert("清空");
+        $.ajax({
+            type: 'post',
+            url: 'deleteHistory',
+            data: 'uid=' + uid,
+            success: function (obj) {
+                var num = eval(obj);
+                if (num > 0) {
+                    alert("成功");
+                    $("#historyuid").html("");
+                } else {
+                    alert("清空失败");
+                }
 
 
-        },
-        error: function () {
-            alert("失败");
-        }
-    })
-}
+            },
+            error: function () {
+                alert("失败");
+            }
+        })
+    }
 </script>
 <div id="leftsead">
-	<ul>
-	     <li class="licss">
-			<a id="top_btn">
-				<img src="images/foot03/ll06.png" width="47" height="49" class="hides"/>
-				<img src="images/foot03/l06.png" width="47" height="49" class="shows" />
-			</a>
-		</li>
+    <ul>
+        <li class="licss">
+            <a id="top_btn">
+                <img src="images/foot03/ll06.png" width="47" height="49" class="hides"/>
+                <img src="images/foot03/l06.png" width="47" height="49" class="shows" />
+            </a>
+        </li>
 
 
 
@@ -669,13 +580,13 @@ function qingkong(uid) {
                                     车龄${listHist.car.carage}年</span> <em class="shuxian">|</em> 颜色:${listHist.car.corol.corol} </p> <p class="fontc"> <span> <i class="red"> ${listHist.car.price}万 </i> </span> <s>${listHist.car.oprice}万</s> </p>
                             </li>
                         </#list>
-                      </ul>
-                  </div>
-            </div>
-                <img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
-                    <img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
-                        </a>
-                </li>
+    </ul>
+</div>
+</div>
+<img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
+<img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
+</a>
+</li>
 <li class="licss">
     <a href="">
         <img src="images/foot03/ll02.png" width="166" height="49" class="hides"/>
@@ -701,78 +612,78 @@ function qingkong(uid) {
 
     </#if>
 
-            </div>
-            </div>
-				<img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
-				<img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
-			</a>
-		</li>
+</div>
+</div>
+<img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
+<img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
+</a>
+</li>
 
-		<li class="licss">
-			<a href="">
-					<img src="images/foot03/ll02.png" width="166" height="49" class="hides"/>
-				<img src="images/foot03/l04.png" width="47" height="49" class="shows" />
-			</a>
-		</li>
+<li class="licss">
+    <a href="">
+        <img src="images/foot03/ll02.png" width="166" height="49" class="hides"/>
+        <img src="images/foot03/l04.png" width="47" height="49" class="shows" />
+    </a>
+</li>
 
-		<li class="licss">
-			<a class="youhui">
-				<img src="images/foot03/l02.png" width="47" height="49" class="shows" />
-				<img src="images/foot03/zfew.jpg" width="196" height="205" class="hides" usemap="#taklhtml"/>
-			</a>
-		</li>
-	
-	
-	
-	</ul>
+<li class="licss">
+    <a class="youhui">
+        <img src="images/foot03/l02.png" width="47" height="49" class="shows" />
+        <img src="images/foot03/zfew.jpg" width="196" height="205" class="hides" usemap="#taklhtml"/>
+    </a>
+</li>
+
+
+
+</ul>
 </div>
 
 
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#history").hover(function(){
-	$(this).children(".moder").show();
-		
-	},function(){
-		$(this).children(".moder").hide();
-		
-	}) ;
+    $(document).ready(function(){
+        $("#history").hover(function(){
+            $(this).children(".moder").show();
 
-	$("#leftsead a").hover(function(){
-		if($(this).prop("className")=="youhui"){
-			$(this).children("img.hides").show();
-		}else{
-			$(this).children("img.hides").show();
-			$(this).children("img.shows").hide();
-			$(this).children("img.hides").animate({marginRight:'0px'},'slow'); 
-		}
-	},function(){ 
-		if($(this).prop("className")=="youhui"){
-			$(this).children("img.hides").hide('slow');
-		}else{
-			$(this).children("img.hides").animate({marginRight:'-143px'},'slow',function(){$(this).hide();$(this).next("img.shows").show();});
-		}
-	});
+        },function(){
+            $(this).children(".moder").hide();
 
-	$("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({scrollTop: 0}, 600);});
+        }) ;
 
-});
+        $("#leftsead a").hover(function(){
+            if($(this).prop("className")=="youhui"){
+                $(this).children("img.hides").show();
+            }else{
+                $(this).children("img.hides").show();
+                $(this).children("img.shows").hide();
+                $(this).children("img.hides").animate({marginRight:'0px'},'slow');
+            }
+        },function(){
+            if($(this).prop("className")=="youhui"){
+                $(this).children("img.hides").hide('slow');
+            }else{
+                $(this).children("img.hides").animate({marginRight:'-143px'},'slow',function(){$(this).hide();$(this).next("img.shows").show();});
+            }
+        });
+
+        $("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({scrollTop: 0}, 600);});
+
+    });
 </script>
 <script type="text/javascript">
-$(function(){
-	$(".selecter").each(function(){
-		var s=$(this);
-		var z=parseInt(s.css("z-index"));
-		var dt=$(this).children("dt");
-		var dd=$(this).children("dd");
-		var _show=function(){dd.slideDown(200);dt.addClass("cur");s.css("z-index",z+1);};   //展开效果
-		var _hide=function(){dd.slideUp(200);dt.removeClass("cur");s.css("z-index",z);};    //关闭效果
-		dt.click(function(){dd.is(":hidden")?_show():_hide();});
-		dd.find("a").click(function(){dt.html($(this).html());_hide();});     //选择效果（如需要传值，可自定义参数，在此处返回对应的“value”值 ）
-		$("body").click(function(i){ !$(i.target).parents(".selecter").first().is(s) ? _hide():"";});
-	})
-})
+    $(function(){
+        $(".selecter").each(function(){
+            var s=$(this);
+            var z=parseInt(s.css("z-index"));
+            var dt=$(this).children("dt");
+            var dd=$(this).children("dd");
+            var _show=function(){dd.slideDown(200);dt.addClass("cur");s.css("z-index",z+1);};   //展开效果
+            var _hide=function(){dd.slideUp(200);dt.removeClass("cur");s.css("z-index",z);};    //关闭效果
+            dt.click(function(){dd.is(":hidden")?_show():_hide();});
+            dd.find("a").click(function(){dt.html($(this).html());_hide();});     //选择效果（如需要传值，可自定义参数，在此处返回对应的“value”值 ）
+            $("body").click(function(i){ !$(i.target).parents(".selecter").first().is(s) ? _hide():"";});
+        })
+    })
 </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.Car;
+import com.zt.entity.Transaction;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -86,4 +87,15 @@ public interface CarService {
 
     public Car GetOneCarAllInfo(int cid);
     public int adminUpdCar(Car car);
+    /**
+     * 查询对应用户所买的车
+     *
+     */
+    public List<Car> selectTranction(Transaction transaction);
+
+    /**
+     *  查询对应用户所卖的车
+     */
+    public List<Car> selectTranctionseller(Transaction transaction);
+    public List<Car> jiangPageconut(Car car);
 }
