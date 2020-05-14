@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.Corol;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,4 +11,6 @@ import java.util.List;
  */
 public interface CorolService {
     public List<Corol> getAllcorol();
+    public int insertcorol(String corol);
+    public int deletecorol(int corolid);
 }

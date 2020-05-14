@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.transform.Source;
 import java.util.List;
 
 /**
@@ -40,6 +41,13 @@ public class AdminController {
 
     @Autowired
     private CarseriesService carseriesService;
+
+    @Autowired
+    private AssessmentService assessmentService;
+
+    @Autowired
+    private BanksService banksService;
+
 
 
     private int userpageSize=3;
@@ -190,19 +198,7 @@ public class AdminController {
     @RequestMapping("/adminUpdCarBefo")
     public String adminUpdCarBefo(int cid,Model model){
         System.out.println("修改车之前："+cid);
-        Car car= carService.GetOneCarAllInfo(cid);
-        System.out.println(car);
-        model.addAttribute("car",car);
-
-        List<Brand> brandList=brandService.getAllBrand();
-        List<Cardseries> cardseriesList=car.getBrand().getCardseries();
-        List<Corol> corolList=corolService.getAllcorol();
-        List<Address> addressList= addressService.getAllAddress();
-
-        model.addAttribute("brandList",brandList);
-        model.addAttribute("cardseriesList",cardseriesList);
-        model.addAttribute("corolList",corolList);
-        model.addAttribute("addressList",addressList);
+        getOneCar(cid, model);
         return "adminUpdCar";
     }
 
@@ -269,6 +265,215 @@ public class AdminController {
             return "no";
         }
 
+    }
+
+    /**
+     * 管理员查看所有卖车申请表
+     * @return
+     */
+    @RequestMapping("/adminGetAllAssess")
+    @ResponseBody
+    public List<Assessment> adminGetAllAssessment(){
+        System.out.println("进入管理员查看卖车申请方法");
+        List<Assessment> assessmentList= assessmentService.getAllAssessmet();
+        assessmentList.forEach(System.out::println);
+        return assessmentList;
+    }
+
+    /**
+     * 管理员去审核方法
+     * @param cid
+     * @param model
+     * @return
+     */
+    @RequestMapping("/adminGoAssessment")
+    public String adminGoAssessment(int cid,int aid,Model model){
+        System.out.println("管理员去审核");
+        getOneCar(cid, model);
+        model.addAttribute("aid",aid);
+        return "adminShenheCar";
+    }
+
+    /**
+     * 管理员开始审核
+     * @return
+     */
+    @RequestMapping("/adminGoShenheCar")
+    public String adminGoShenheCar(int shenhe,String shenheState,int aid,int cid){
+        System.out.println("审核状态:"+shenhe+"审核失败原因："+shenheState+"审核id："+aid+"车id："+cid);
+        if(shenhe==1){
+            System.out.println("通过审核");
+            assessmentService.updAssessState(1,aid);//更改审核表状态已审核
+
+            Car car=new Car();
+            car.setPutstate(1);car.setCid(cid);
+            carService.updateCarputstate(car);          //修改车上架状态为已上架
+
+            Car car2=new Car();
+            car2.setAssesstate(1);
+            car2.setCid(cid);
+            System.out.println("Car2:"+car2);
+            int num= carService.updateCarassesstate(car2);     //修改车审核状态为已审核
+            System.out.println(num);
+        }else{
+            System.out.println("不通过审核:"+shenheState);
+            assessmentService.updAssessState(1,aid);//更改审核表状态
+            //增加审核失败原因
+            assessmentService.addAssessOver(aid,shenheState);
+        }
+        return "redirect:adminIndex?pageIndex=1";
+    }
+
+    /**
+     * 管理员获得所有品牌
+     * @return
+     */
+    @RequestMapping("/adminGetAllBrand")
+    @ResponseBody
+    public List<Brand> adminGetAllBrand(){
+        System.out.println("进入管理员获取品牌");
+        List<Brand> brandList=brandService.getAllBrand();
+        return brandList;
+    }
+
+    /**
+     * 管理员根据车品牌id得到车系
+     * @param bid
+     * @return
+     */
+    @RequestMapping("/adminGetCarseriesByBrand")
+    @ResponseBody
+    public List<Cardseries> adminGetCarseriesByBrand(int bid){
+        System.out.println("进入管理员得到车系");
+        Brand brand= brandService.getOneBrandById(bid);
+        List<Cardseries> cardseriesList=brand.getCardseries();
+        cardseriesList.forEach(System.out::println);
+        return cardseriesList;
+    }
+
+    /**
+     * 管理员添加品牌
+     * @param
+     * @return
+     */
+    @RequestMapping("/adminAddBrand")
+    @ResponseBody
+    public String adminAddBrandName(String name){
+        System.out.println("进入管理员添加品牌："+name);
+        int num= brandService.insertbrand(name);
+        if(num>0){
+            return "yes";
+        }
+        return "no";
+    }
+
+    /**
+     * 管理员修改品牌名
+     * @param adminUpdBrandText
+     * @param adminUpdBrandIdHidden
+     * @return
+     */
+    @RequestMapping("/adminUpdBrandName")
+    public String adminUpdBrandName(String adminUpdBrandText,int adminUpdBrandIdHidden){
+        System.out.println("修改车品牌名："+adminUpdBrandText+"  "+adminUpdBrandIdHidden);
+        brandService.updatebrand(adminUpdBrandText,adminUpdBrandIdHidden);
+        return "redirect:adminIndex?pageIndex=1";
+    }
+
+    /**
+     * 管理员删除品牌
+     * @param bid
+     * @return
+     */
+    @RequestMapping("/adminDelBrand")
+    @ResponseBody
+    public String adminDelBrand(int bid){
+        System.out.println("管理员删除品牌："+bid);
+        int num= brandService.deletebrand(bid);
+        if(num>0){
+            return "yes";
+        }else {
+            return "no";
+        }
+
+    }
+
+    /**
+     * 管理员获得所有颜色
+     * @return
+     */
+    @RequestMapping("/adminGetAllCorol")
+    @ResponseBody
+    public List<Corol> adminGetAllCorol(){
+        System.out.println("管理员所有颜色");
+        List<Corol> corolList= corolService.getAllcorol();
+//        corolList.forEach(System.out::println);
+        return corolList;
+    }
+
+    /**
+     * 管理员添加颜色
+     * @param name
+     * @return
+     */
+    @RequestMapping("/adminAddCorol")
+    @ResponseBody
+    public String adminAddCorol(String name){
+        System.out.println("管理员添加颜色"+name);
+        int num=corolService.insertcorol(name);
+        if(num>0){
+            return "yes";
+        }
+        return "no";
+    }
+
+    /**
+     * 管理员删除颜色
+     * @param corolid
+     * @return
+     */
+    @RequestMapping("/adminDelCorol")
+    @ResponseBody
+    public String adminDelCorol(int corolid){
+        System.out.println("管理员删除颜色："+corolid);
+        int num= corolService.deletecorol(corolid);
+        if(num>0){
+            return "yes";
+        }
+        return "no";
+    }
+
+    /**
+     * 管理员得到所有银行
+     * @return
+     */
+    @RequestMapping("/adminGetAllBank")
+    @ResponseBody
+    public List<Banks> adminGetAllBank(){
+        System.out.println("管理员所有银行");
+        List<Banks> banksList= banksService.getAllBanks();
+        banksList.forEach(System.out::println);
+        return banksList;
+    }
+
+
+    /**
+     * 抽取得到一辆车信息的方法
+     * @param cid
+     * @param model
+     */
+    private void getOneCar(int cid, Model model) {
+        Car car = carService.GetOneCarAllInfo(cid);
+        System.out.println(car);
+        model.addAttribute("car", car);
+        List<Brand> brandList = brandService.getAllBrand();
+        List<Cardseries> cardseriesList = car.getBrand().getCardseries();
+        List<Corol> corolList = corolService.getAllcorol();
+        List<Address> addressList = addressService.getAllAddress();
+        model.addAttribute("brandList", brandList);
+        model.addAttribute("cardseriesList", cardseriesList);
+        model.addAttribute("corolList", corolList);
+        model.addAttribute("addressList", addressList);
     }
 
 }

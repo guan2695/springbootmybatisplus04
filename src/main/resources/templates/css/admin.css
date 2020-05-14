@@ -48,6 +48,7 @@ html{
 	background: white;
 	float: left;
 	padding: 0px 2%;
+	overflow: auto;
 }
 
 

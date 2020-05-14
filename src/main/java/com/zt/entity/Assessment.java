@@ -12,6 +12,34 @@ public class Assessment {
     private int cid;
     //评估状态
     private int assstate;
+    //一对一用户
+    private User user;
+    private Admin admin;
+    private Car car;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
 
     public Assessment() {
     }
@@ -64,6 +92,9 @@ public class Assessment {
                 ", adminid=" + adminid +
                 ", cid=" + cid +
                 ", assstate=" + assstate +
+                ", user=" + user +
+                ", admin=" + admin +
+                ", car=" + car +
                 '}';
     }
 }

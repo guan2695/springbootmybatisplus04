@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zt.entity.Admin;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 
 /**
@@ -18,4 +19,12 @@ public interface AdminMapper extends BaseMapper<Admin> {
      * @return
      */
     public Admin adminlogin(Admin admin);
+
+    /**
+     * 根据管理员id得到一个管理员
+     * @param adminid
+     * @return
+     */
+    @Select("SELECT * FROM admin WHERE adminid=#{adminid}")
+    public Admin getOneAdminByid(int adminid);
 }

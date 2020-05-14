@@ -13,6 +13,7 @@ $(function(){
 
 /*查询所有用户*/
 function adminAllUser(){
+	$("#bodyRight>#adminAddCorol").remove();
 	//alert("查询所有用户");
 	// location.href="/usedcar/adminIndex?pageIndex=1";
 	$("#bodyRightH").html("所有用户");
@@ -32,6 +33,7 @@ function returnCarList() {
 
 /*查询所有车辆信息*/
 function adminAllCar(){
+	$("#bodyRight>#adminAddCorol").remove();
 	//alert("查询所有车辆信息");
 	//获取总页码
 	$.ajax({
@@ -270,32 +272,369 @@ function upcar(cid) {
 
 /*查询所有审核申请*/
 function adminAllAssessment(){
-	alert("查询所有审核申请");
+	$("#bodyRight>#adminAddCorol").remove();
+	// alert("查询所有审核申请");
+    $("#bodyRightH").html("卖车申请");
+    $.ajax({
+    		url:"/usedcar/adminGetAllAssess",
+    		type:"post",
+    		success:function (result) {
+    			var obj=eval(result);
+    			$("#adminRightTable").html("");
+    			var tr="<tr>\n" +
+                    "      \t\t<td>序号</td>\n" +
+                    "      \t\t<td>用户</td>\n" +
+                    "      \t\t<td>管理员</td>\n" +
+                    "      \t\t<td>车id</td>\n" +
+                    "      \t\t<td>审核状态</td>\n" +
+                    "      \t</tr>";
+    			for (var i=0;i<obj.length;i++){
+                    var ass=obj[i];
+
+                    tr+="<tr>\n" +
+                        "      \t\t<td>"+ass.aid+"</td>\n" +
+                        "      \t\t<td>"+ass.user.uname+"</td>\n" +
+                        "      \t\t<td>"+ass.admin.adminname+"</td>\n" +
+                        "      \t\t<td><a  onclick=\"carinfo("+ass.car.carinfo.cid+")\">"+ass.car.carinfo.cid+"</a></td>\n";
+                    if(ass.assstate==0){
+                        tr+="      \t\t<td><a  onclick=\"goAssessment("+ass.car.carinfo.cid+","+ass.aid+")\">去审核</a></td>\n" +
+                        "      \t</tr>";
+                    }else {
+                        tr+="      \t\t<td><a>已审核</a></td>\n" +
+                            "      \t</tr>";
+                    }
+
+
+    			}
+                $("#adminRightTable").append(tr);
+    			$("#BodyFenYeUl").html("");
+    		},
+    		error:function () {
+    			alert("申请列表响应失败");
+    		}
+    	})
 }
+
+/*去审核方法*/
+function goAssessment(cid,aid) {
+    location.href="/usedcar/adminGoAssessment?cid="+cid+"&aid="+aid;
+}
+
+//判断审核单选按钮是否通过，不通过显示原因
+//进行审核
+function assessmentState(){
+    //alert("aaa");
+    var shenhe= document.getElementsByName("shenhe");
+    //根据 name集合长度 遍历name集合
+    for(var i=0;i<shenhe.length;i++)
+    {
+        //判断那个单选按钮为选中状态
+        if(shenhe[i].checked)
+        {
+            //单选按钮的值
+            var num=shenhe[i].value;
+            if(num==0){
+                //不通过显示原因行
+                $("#shenheState").attr("style","display: inline-block;");
+            }else{
+                //通过不显示原因行
+                $("#shenheState").attr("style","display: none;");
+            }
+        }
+    }
+}
+
 
 /*查询所有品牌*/
 function adminAllBrand(){
-	alert("查询所有品牌");
+	$("#BodyFenYeUl").html("");
+	$("#bodyRight>#adminAddCorol").remove();
+	// alert("查询所有品牌");
+	$("#bodyRightH").html("所有品牌");
+	$.ajax({
+			url:"/usedcar/adminGetAllBrand",
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#adminRightTable").html("");
+				var tr="<tr>\n" +
+					"      \t\t<td>序号</td>\n" +
+					"      \t\t<td>品牌</td>\n" +
+					"      \t\t<td>修改</td>\n" +
+					"      \t\t<td>删除</td>\n" +
+					"      \t</tr>";
+				for (var i=0;i<obj.length;i++){
+	                var b=obj[i];
+	                tr+="<tr>\n" +
+						"      \t\t<td>"+b.bid+"</td>\n" +
+						"      \t\t<td>\n" +
+						"      \t\t\t<button onclick=\"brandCarseries("+b.bid+")\" type=\"button\" class=\"btn btn-info btn-xs\" data-toggle=\"modal\" data-target=\"#myModal\">\n" +
+						"      \t\t\t\t"+b.bname+"\n" +
+						"\t\t\t\t\t\t</button></td>\n" +
+						"<td>\n" +
+						"\t\t\t\t\t\t\t<button onclick=\"adminUpdBrand('"+b.bname+"',"+b.bid+")\" type=\"button\" class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#adminUpdBrandMotai\">\n" +
+						"      \t\t\t\t修改\n" +
+						"\t\t\t\t\t\t</button>\n" +
+						"\t\t\t\t\t\t</td>\n";
+	                if(b.bid<=10){
+						tr+="\t\t\t\t\t\t<td>\n"+
+							"\t\t\t\t\t\t\t<button onclick=\"adminDelBrand("+b.bid+")\" disabled=\"disabled\" type=\"button\" class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"\">\n" +
+							"      \t\t\t\t删除\n" +
+							"\t\t\t\t\t\t</button>\n" +
+							"\t\t\t\t\t\t</td>" +
+							"      \t</tr>";
+					}else {
+						tr+="\t\t\t\t\t\t<td>\n"+
+							"\t\t\t\t\t\t\t<button onclick=\"adminDelBrand("+b.bid+")\" type=\"button\" class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"\">\n" +
+							"      \t\t\t\t删除\n" +
+							"\t\t\t\t\t\t</button>\n" +
+							"\t\t\t\t\t\t</td>" +
+							"      \t</tr>";
+					}
+
+	    		}
+				$("#adminRightTable").append(tr);
+				$("#BodyFenYeUl").html("");
+			},
+			error:function () {
+				alert("获取品牌响应失败");
+			}
+		})
+}
+
+/*根据车品牌得到车系，赋值给模态框*/
+function brandCarseries(bid) {
+	$.ajax({
+			url:"/usedcar/adminGetCarseriesByBrand?bid="+bid,
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#adminCarSerciesMotal").html("");
+				var tr="";
+				for (var i=0;i<obj.length;i++){
+	                var cs=obj[i];
+					tr+="<li class=\"list-group-item\">"+cs.csname+"</li>";
+	    		}
+				$("#adminCarSerciesMotal").append(tr);
+			},
+			error:function () {
+				alert("获取车系响应失败");
+			}
+		})
+}
+
+/*修改品牌*/
+function adminUpdBrand(bname,bid) {
+	$("#adminUpdBrandText").val(bname);
+	$("#adminUpdBrandIdHidden").val(bid);
+}
+
+/*删除品牌*/
+function adminDelBrand(bid) {
+	if(confirm("确定要删除这个品牌吗？")){
+		$.ajax({
+				url:"/usedcar/adminDelBrand?bid="+bid,
+				type:"post",
+				dataType:"text",
+				success:function (result) {
+					if(result=="yes"){
+						alert("删除成功");
+					}else {
+						alert("删除失败");
+					}
+					adminAllBrand();
+					$("#leftUl:eq(3)>li>a").click();
+				},
+				error:function () {
+					alert("删除响应失败");
+				}
+			})
+	}
 }
 
 /*添加品牌*/
 function adminAddBrand(){
-	alert("添加品牌");
+	// alert("添加品牌");
+	$("#bodyRightH").html("添加品牌");
+	$("#adminRightTable").html("");
+	$("#BodyFenYeUl").html("");
+	$("#bodyRight>#adminAddCorol").remove();
+	var tr="<div class=\"col-lg-12\" id=\"adminAddCorol\" style=\"margin-bottom: 50px;\">\n" +
+		"\t\t\t\t\t<form method=\"post\"  class=\"form-inline\">\n" +
+		"\t\t\t\t\t\t<div class=\"form-group\">\n" +
+		"\t\t\t\t\t\t\t<div class=\"input-group\">\n" +
+		"\t\t\t\t\t\t\t\t<div class=\"input-group-addon\">品牌名</div>\n" +
+		"\t\t\t\t\t\t\t\t<input type=\"text\" name=\"adminAddBrandName\" class=\"form-control\" id=\"exampleInputAmount\" placeholder=\"Brand\">\n" +
+		"\t\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t\t<button type=\"button\" onclick=\"adminAddBrandFun()\" class=\"btn btn-primary\">添加</button>\n" +
+		"\t\t\t\t\t</form>\n" +
+		"\t\t\t\t</div>";
+	$("#bodyRight").append(tr);
+}
+
+/*添加品牌异步刷新*/
+function adminAddBrandFun() {
+	var name=$("input[name='adminAddBrandName']").val();
+	$.ajax({
+			url:"/usedcar/adminAddBrand?name="+name,
+			type:"post",
+			dataType:"text",
+			success:function (result) {
+				if(result=="yes"){
+					alert("添加成功");
+				}else {
+					alert("添加失败");
+				}
+				$("#leftUl>li:eq(3)>a").click();
+				adminAllBrand();
+
+			},
+			error:function () {
+				alert("响应失败");
+			}
+		})
 }
 
 /*查询所有颜色*/
 function adminAllCorol(){
-	alert("查询所有颜色");
+	$("#BodyFenYeUl").html("");
+	// alert("查询所有颜色");
+	$("#bodyRightH").html("所有颜色");
+	$("#bodyRight>#adminAddCorol").remove();
+	$.ajax({
+			url:"/usedcar/adminGetAllCorol",
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#adminRightTable").html("");
+				var tr="<tr>\n" +
+					"      \t\t<td>序号</td>\n" +
+					"      \t\t<td>颜色</td>\n" +
+					"      \t\t<td>删除</td>\n" +
+					"      \t</tr>";
+				for (var i=0;i<obj.length;i++){
+	                var co=obj[i];
+	                tr+="<tr>\n" +
+						"      \t\t<td>"+co.corolid+"</td>\n" +
+						"      \t\t<td>"+co.corol+"</td>\n";
+
+					if(co.corolid<=9){
+						tr+="\t\t\t\t\t\t<td>\n"+
+							"\t\t\t\t\t\t\t<button onclick=\"adminDelCorol("+co.corolid+")\" disabled=\"disabled\" type=\"button\" class=\"btn btn-danger btn-xs\" >\n" +
+							"      \t\t\t\t删除\n" +
+							"\t\t\t\t\t\t</button>\n" +
+							"\t\t\t\t\t\t</td>" +
+							"      \t</tr>";
+					}else {
+						tr+="\t\t\t\t\t\t<td>\n"+
+							"\t\t\t\t\t\t\t<button onclick=\"adminDelCorol("+co.corolid+")\" type=\"button\" class=\"btn btn-danger btn-xs\" >\n" +
+							"      \t\t\t\t删除\n" +
+							"\t\t\t\t\t\t</button>\n" +
+							"\t\t\t\t\t\t</td>" +
+							"      \t</tr>";
+					}
+	    		}
+				$("#adminRightTable").append(tr);
+			},
+			error:function () {
+				alert("所有颜色响应失败");
+			}
+		})
+}
+
+/*删除颜色异步刷新*/
+function adminDelCorol(corolid) {
+	if(confirm("确定要删除这个颜色吗？")){
+	$.ajax({
+			url:"/usedcar/adminDelCorol?corolid="+corolid,
+			type:"post",
+			dataType:"text",
+			success:function (result) {
+				if(result=="yes"){
+					alert("删除颜色成功");
+				}else{
+					alert("删除颜色失败");
+				}
+				adminAllCorol();
+			},
+			error:function () {
+				alert("删除颜色响应失败");
+			}
+		})
+	}
 }
 
 /*添加颜色*/
 function adminAddCorol(){
-	alert("添加颜色");
+	$("#bodyRightH").html("添加颜色");
+	$("#adminRightTable").html("");
+	$("#BodyFenYeUl").html("");
+	$("#bodyRight>#adminAddCorol").remove();
+	var tr="<div class=\"col-lg-12\" id=\"adminAddCorol\" style=\"margin-bottom: 50px;\">\n" +
+		"\t\t\t\t\t<form method=\"post\" class=\"form-inline\">\n" +
+		"\t\t\t\t\t\t<div class=\"form-group\">\n" +
+		"\t\t\t\t\t\t\t<div class=\"input-group\">\n" +
+		"\t\t\t\t\t\t\t\t<div class=\"input-group-addon\">颜色名</div>\n" +
+		"\t\t\t\t\t\t\t\t<input type=\"text\" name=\"adminAddCorolName\" class=\"form-control\" id=\"exampleInputAmount\" placeholder=\"Corol\">\n" +
+		"\t\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t\t<button type=\"button\" onclick=\"adminAddCorolFun()\" class=\"btn btn-primary\">添加</button>\n" +
+		"\t\t\t\t\t</form>\n" +
+		"\t\t\t\t</div>";
+	$("#bodyRight").append(tr);
+}
+/*添加颜色异步刷新*/
+function adminAddCorolFun() {
+	var name=$("input[name='adminAddCorolName']").val();
+	$.ajax({
+			url:"/usedcar/adminAddCorol?name="+name,
+			type:"post",
+			dataType:"text",
+			success:function (result) {
+				if(result=="yes"){
+					alert("添加成功");
+				}else {
+					alert("添加失败");
+				}
+				$("#leftUl>li:eq(5)>a").click();
+				adminAllCorol();
+			},
+			error:function () {
+				alert("响应失败");
+			}
+		})
 }
 
 /*查询所有银行*/
 function adminAllBank(){
-	alert("查询所有银行");
+	// alert("查询所有银行");
+	$("#BodyFenYeUl").html("");
+	$("#bodyRightH").html("所有银行");
+	$("#bodyRight>#adminAddCorol").remove();
+	$.ajax({
+			url:"/usedcar/adminGetAllBank",
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#adminRightTable").html("");
+				var tr="<tr>\n" +
+					"      \t\t<td>序号</td>\n" +
+					"      \t\t<td>银行名称</td>\n" +
+					"      \t</tr>";
+				for (var i=0;i<obj.length;i++){
+	                var b=obj[i];
+	                tr+="<tr>\n" +
+						"      \t\t<td>"+b.bankid+"</td>\n" +
+						"      \t\t<td>"+b.bankname+"</td>\n" +
+						"      \t</tr>";
+	    		}
+				$("#adminRightTable").append(tr);
+			},
+			error:function () {
+				alert("所有银行响应失败");
+			}
+		})
 }
 
 /*添加银行*/

@@ -27,4 +27,19 @@ public class BrandServiceImpl implements BrandService {
     public Brand getOneBrandById(int bid) {
         return brandMapper.getOneBrandById(bid);
     }
+
+    @Override
+    public int insertbrand(String bname) {
+        return brandMapper.insertbrand(bname);
+    }
+
+    @Override
+    public int updatebrand(String bname, int bid) {
+        return brandMapper.updatebrand(bname,bid);
+    }
+
+    @Override
+    public int deletebrand(int bid) {
+        return brandMapper.deletebrand(bid);
+    }
 }
