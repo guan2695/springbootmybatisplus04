@@ -2,18 +2,12 @@ var bname=0,csname=0,price=0,carage=0,corol=0,address=0,pnum=0;
 $(function () {
     //导航栏搜索单击selecter
     $(".fliter-bd").on("click",".fliter-bd a",function(){
-        var mb=$(this).html();
-        alert(mb);
-        if(mb=="不限"){
-            return;
-        }
 
         $(this).parent().find("a").css({"background-color":"#f9f9f9","color":"#666"});  //清理样式
         $(this).parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
 
-        $(this).css({"background-color":"#eeeeee","color":"red"});       //添加样式
+        $(this).css({"background-color":"#00002e","color":"#fff","text-decoration":"none"});       //添加样式
         $(this).attr({"class":"xzz"});     //添加class
-        $(this).parent().find(".on").css({"background-color":"#00002e","color":"#fff","text-decoration":"none"});
 
         //得到数据
         getdate();
@@ -63,12 +57,15 @@ $(function () {
                     var obj=result[i];
                     var caname2=obj.csid;
                     if(caname2==csname){
-                        tt+="<a style='background-color:#eeeeee;color:red;'  class='xzz' name='aa' title='c-"+obj.csid+"'>"+obj.csname+" </a>";
+                        tt+="<a style='background-color:#00002e;color:#fff;text-decoration:none;'  class='xzz' name='aa' title='c-"+obj.csid+"'>"+obj.csname+" </a>";
                     }else{
                         tt+="<a  class='xz' name='aa' title='c-"+obj.csid+"'>"+obj.csname+" </a>";
                     }
                 }
                 $(".mycardseries").append(tt);
+                if(csname!=0){
+                    $(".mycardseries").find("a:eq(0)").attr({"class":"xz"});  //清理车系样式
+                }
 
             },
             error:function(){
@@ -164,9 +161,9 @@ $(function () {
 });//窗体
     //重新选择
     function cardseries() {
-        bname=0;csname=0;price=0;carage=0;corol=0;address=0;pnum=0;
-        $(".xzz").css({"background-color":"#f9f9f9","color":"#666"});  //清理样式
-        $(".xzz").attr({"class":"xz"});
+        bname=0;csname=0;
+        $(".mycardseries .xzz").css({"background-color":"#f9f9f9","color":"#666"});  //清理样式
+        $(".mycardseries .xzz").attr({"class":"xz"});
     }
 
     //多条件分页
