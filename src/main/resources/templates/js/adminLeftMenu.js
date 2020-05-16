@@ -637,29 +637,216 @@ function adminAllBank(){
 		})
 }
 
-/*添加银行*/
-function adminAddBank(){
-	alert("添加银行");
-}
-
 /*所有贷款申请*/
 function adminAllLoans(){
-	alert("所有贷款申请");
+	// alert("所有贷款申请");
+	$("#BodyFenYeUl").html("");
+	$("#bodyRightH").html("所有贷款申请");
+	$("#bodyRight>#adminAddCorol").remove();
+	$.ajax({
+			url:"/usedcar/adminGetAllLoans",
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#adminRightTable").html("");
+				var tr="<tr>\n" +
+					"      \t\t<td>序号</td>\n" +
+					"      \t\t<td>用户姓名</td>\n" +
+					"      \t\t<td>手机号码</td>\n" +
+					"      \t\t<td>贷款金额(万元)</td>\n" +
+					"      \t\t<td>是否有房</td>\n" +
+					"      \t\t<td>贷款银行</td>\n" +
+					"      \t\t<td>贷款状态</td>\n" +
+					"      \t</tr>";
+				for (var i=0;i<obj.length;i++){
+	                var l=obj[i];
+	                var housestate="是";
+	                if(l.ishavehouse==0){
+						housestate="否";
+					}
+	                tr+="<tr>\n" +
+						"      \t\t<td>"+l.lid+"</td>\n" +
+						"      \t\t<td>"+l.user.uname+"</td>\n" +
+						"      \t\t<td>"+l.idcard+"</td>\n" +
+						"      \t\t<td>"+l.lmoney+"</td>\n" +
+						"      \t\t<td>"+housestate+"</td>\n" +
+						"      \t\t<td>"+l.banks.bankname+"</td>\n";
+	                if(l.lstate==0){
+	                	tr+="      \t\t<td><button type=\"button\" onclick=\"adminGoShenheLoans("+l.lid+")\" class=\"btn btn-warning btn-xs\" data-toggle=\"modal\" data-target=\"#loansMotai\">\n" +
+							"\t\t\t\t\t\t\t 去审核\n";
+					}else if(l.lstate==1){
+						tr+="      \t\t<td><button type=\"button\" class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"\">\n" +
+							"\t\t\t\t\t\t\t 贷款失败\n";
+					}else{
+						tr+="      \t\t<td><button type=\"button\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\" data-target=\"\">\n" +
+							"\t\t\t\t\t\t\t 贷款成功\n";
+					}
+	                tr+="\t\t\t\t\t\t\t</button>\n" +
+						"      \t\t</td>\n" +
+						"      \t</tr>";
+	    		}
+				$("#adminRightTable").append(tr);
+			},
+			error:function () {
+				alert("响应失败");
+			}
+		})
+}
+
+/*管理员去审核模态框*/
+function adminGoShenheLoans(lid) {
+	// alert(lid);
+	$("input[name='LoansTestId']").val(lid);
+}
+//贷款审核是否通过下拉列表改变方法
+function shenheTong(){
+	var num=$("#shenheName").val();
+	//alert(num);
+	if(num==1){
+		$("#shibai").attr("style","display:block");
+	}else{
+		$("#shibai").attr("style","display:none");
+	}
+}
+
+
+/*管理员审核*/
+function adminShenheLoansBtn() {
+	var lid=$("input[name='LoansTestId']").val();
+	var state=$("#shenheName").val();
+	var baca=$("#butongguoBecause").val();
+	$.ajax({
+			url:"/usedcar/adminGoLoans?lid="+lid+"&lstate="+state+"&lmsgbecause="+baca,
+			type:"post",
+			dataType:"text",
+			success:function (result) {
+				if(result=="yes"){
+					alert("贷款审核成功，结果结果是：成功");
+				}else{
+					alert("贷款审核成功，结果结果是：失败");
+				}
+				$("#loansMotai").modal('hide');
+				adminAllLoans();
+			},
+			error:function () {
+				alert("审核响应失败");
+			}
+		})
+
 }
 
 /*查询所有地区*/
 function adminAllAddress(){
-	alert("查询所有地区");
+	// alert("查询所有地区");
+	$("#BodyFenYeUl").html("");
+	$("#bodyRightH").html("地区列表");
+	$("#bodyRight>#adminAddCorol").remove();
+	$.ajax({
+			url:"/usedcar/adminGetAllAddress",
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#adminRightTable").html("");
+				var tr="<tr>\n" +
+					"      \t\t<td>序号</td>\n" +
+					"      \t\t<td>地区名称</td>\n" +
+					"      \t</tr>";
+				for (var i=0;i<obj.length;i++){
+	                var a=obj[i];
+	                tr+="<tr>\n" +
+						"      \t\t<td>"+a.addid+"</td>\n" +
+						"      \t\t<td>"+a.address+"</td>\n" +
+						"      \t</tr>";
+	    		}
+				$("#adminRightTable").append(tr);
+			},
+			error:function () {
+				alert("所有地区响应失败");
+			}
+		})
+
 }
 
 /*所有买家秀*/
 function adminAllBuyerShow(){
-	alert("所有买家秀");
+	// alert("所有买家秀");
+	$("#BodyFenYeUl").html("");
+	$("#bodyRightH").html("买家秀");
+	$("#bodyRight>#adminAddCorol").remove();
+	$.ajax({
+			url:"/usedcar/adminGetBuyerShow",
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#adminRightTable").html("");
+				var tr="<tr>\n" +
+					"      \t\t<td>序号</td>\n" +
+					"      \t\t<td>用户</td>\n" +
+					"      \t\t<td>所购车</td>\n" +
+					"      \t\t<td>标题</td>\n" +
+					"      \t\t<td>发布时间</td>\n" +
+					"      \t</tr>";
+				for (var i=0;i<obj.length;i++){
+	                var show=obj[i];
+	                tr+="<tr>\n" +
+						"      \t\t<td>"+show.showid+"</td>\n" +
+						"      \t\t<td>"+show.user.uname+"</td>\n" +
+						"      \t\t<td><a onclick=\"carinfo("+show.car.carinfo.cid+")\">"+show.car.brand.bname+""+show.car.cardseries.csname+""+show.car.carinfo.cid+"</a></td>\n" +
+						"      \t\t<td><a onclick=\"adminBuyerShowInfo("+show.showid+")\">"+show.title+"</a></td>\n" +
+						"      \t\t<td>"+show.showtime+"</td>\n" +
+						"      \t</tr>";
+	    		}
+				$("#adminRightTable").append(tr);
+			},
+			error:function () {
+				alert("买家秀响应失败");
+			}
+		})
+}
+
+/*管理员查看买家秀详情*/
+function adminBuyerShowInfo(showid) {
+	// alert(showid);
+	window.open("/usedcar/adminGetOneBuyerShow?showid="+showid);
 }
 
 /*交易记录*/
 function adminAllTrancation(){
-	alert("交易记录");
+	// alert("交易记录");
+	$("#BodyFenYeUl").html("");
+	$("#bodyRightH").html("交易记录");
+	$("#bodyRight>#adminAddCorol").remove();
+	$.ajax({
+			url:"/usedcar/adminGetAllTransation",
+			type:"post",
+			success:function (result) {
+				var obj=eval(result);
+				$("#adminRightTable").html("");
+				var tr="<tr>\n" +
+					"      \t\t<td>序号</td>\n" +
+					"      \t\t<td>车辆</td>\n" +
+					"      \t\t<td>买家</td>\n" +
+					"      \t\t<td>卖家</td>\n" +
+					"      \t\t<td>交易金额(万元)</td>\n" +
+					"      \t\t<td>交易时间</td>\n" +
+					"      \t</tr>";
+				for (var i=0;i<obj.length;i++){
+	                var t=obj[i];
+	                tr+="<tr>\n" +
+						"      \t\t<td>"+t.tid+"</td>\n" +
+						"      \t\t<td><a onclick=\"carinfo("+t.car.carinfo.cid+")\">"+t.car.carinfo.cid+"</a></td>\n" +
+						"      \t\t<td>"+t.buyuser.uname+"</td>\n" +
+						"      \t\t<td>"+t.selluser.uname+"</td>\n" +
+						"      \t\t<td>"+t.tmoney+"</td>\n" +
+						"      \t\t<td>"+t.tdate+"</td>\n" +
+						"      \t</tr>";
+	    		}
+				$("#adminRightTable").append(tr);
+			},
+			error:function () {
+				alert("响应失败");
+			}
+		})
 }
 
 

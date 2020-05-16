@@ -42,4 +42,12 @@ public interface BanksMapper {
      */
     @Delete("DELETE FROM banks WHERE bankid = #{bankid}")
     public int deletebanks(@Param("bankid") int bankid);
+
+    /**
+     * 根据id得到一个银行
+     * @param bankid
+     * @return
+     */
+    @Select("select * from banks where bankid=#{bankid}")
+    public Banks getOneBankById(int bankid);
 }
