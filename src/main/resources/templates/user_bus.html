@@ -14,6 +14,10 @@
 <script type="text/javascript" src="script/eg_top_search.js"></script>
 <script type="text/javascript" src="script/city.js"></script>
 <script type="text/javascript" src="script/snncar.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
 
@@ -302,6 +306,7 @@ $(function () {
                                     </div>
                                     <div class="cs_bt clearfix">
                                         <a href="javascript:void(0)" onclick="delNeedThis('287')">已购买</a>
+                                        <a type="button"  data-toggle="modal" data-target="#myModal2" name="doupdate" >秀一波</a>
                                     </div>
                                 </div>
                                 </li>
@@ -403,7 +408,35 @@ $(function () {
   <div class="copyright">
     <div class="cent"> Copyright © 2016-2017, snncar.com,All Rights Reserved 皖ICP备16022456号-1</div>
   </div>
+    <!-- Modal修改菜品的模态框 -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">上传评论信息</h4>
+                </div>
+                <div class="modal-body" id="modiv">
+                    <form action="updatefoodprice" enctype="multipart/form-data" method="post">
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">uid：</span> <input type="text" name="uid" value="${list2.uid}" style="width: 40%;height: 40px; "><br>
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">cid：</span> <input type="text" name="cid" style="width: 40%;height: 40px; "><br>
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">标题：</span> <input type="text" name="uname" style="width: 40%;height: 40px; "><br>
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">   内容 ：</span><input type="text" name="price"  style="width: 40%;height: 40px;margin-top:30px ; "><br>
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;margin-top:60px ;">   上传车图</span><input type="file" name="pic" style="width: 40%;height: 40px;margin-top:20px ; ">
+                       <!-- --><input type="submit" value="上传" style="width: 50px;height: 40px;margin-left:250px;background-color: #3379b5;color: white;border-color:#3379b5  ">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!--   <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                      <button type="button" class="btn btn-primary" >修改</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <script type="text/javascript" src="script/3c-menu.js"></script> 
 <script type="text/javascript" src="script/lg_reg.js"></script> 
 

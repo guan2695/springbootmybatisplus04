@@ -1,8 +1,10 @@
 package com.zt.controller;
 
+import com.zt.entity.Car;
 import com.zt.entity.History;
 import com.zt.entity.User;
 import com.zt.mapper.UsersMapper;
+import com.zt.service.CarService;
 import com.zt.service.HistoryService;
 import com.zt.service.UserService;
 import org.apache.ibatis.lang.UsesJava7;
@@ -28,6 +30,8 @@ public class UserController {
     private HistoryService historyService;
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private CarService carService;
 
     /**
      * 得到所有用户
@@ -108,8 +112,14 @@ public class UserController {
      * @param user
      * @return
      */
+    @RequestMapping("/userinfo2")
+    public String userinfo2(HttpSession session, User user,Model model) {
+      User list2= userService.selectlogin(user);
+      session.setAttribute("list2",list2);
+        return "user";
+    }
     @RequestMapping("/userinfo")
-    public String userinfo(HttpSession session, User user) {
+    public String userinfo(HttpSession session, User user,Model model) {
 
         return "user";
     }
@@ -120,6 +130,14 @@ public class UserController {
     @RequestMapping("/userinfoPwd")
     public String userinfoPwd(HttpSession session, User user) {
         return "user_account";
+    }
+    @RequestMapping("/peynow")
+    public String loans(Model model, User user,Car car) {
+        System.out.println(car);
+        Car getone = carService.getCarone(car);
+        model.addAttribute("getone",getone);
+        System.out.println("进入购买页面");
+        return "peynow";
     }
 
     @RequestMapping("/wymchtml")
@@ -146,11 +164,17 @@ public class UserController {
      * 修改用户密码
      */
     @RequestMapping("/updatepwd")
-    @ResponseBody
-    public int updateUpwd(Model model, User user,int uid){
+    public String  updateUpwd(Model model, User user,int uid,String upwd){
+        if(upwd==null){
+            System.out.println("upwd无参数");
+        }
+        user.setUpwd(upwd);
         user.setUid(uid);
         int num = usersMapper.updateUserpwd(user);
-        return num;
+        if(num==0){
+            return "forward:userinfo";
+        }
+        return "remove";
     }
     @RequestMapping("/updateuser")
     public String updateuser(Model model, User user,int uid){
@@ -159,7 +183,7 @@ public class UserController {
         if(num==0){
             return "forward:userinfo";
         }
-        return "user";
+        return "forward:userinfo";
     }
 //    //分页
 //    @RequestMapping("fenye")

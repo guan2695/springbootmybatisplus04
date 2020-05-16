@@ -77,4 +77,10 @@ public interface UsersMapper extends BaseMapper<User> {
      * 修改
      */
    public int updateuser(User user);
+
+    /**
+     * 买好车修改用户金额
+     *
+     */
+    public int updateMoney(User user);
 }

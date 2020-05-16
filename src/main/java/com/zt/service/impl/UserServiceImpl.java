@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService {
     public int updateuser(User user) {
         return usersMapper.updateuser(user);
     }
+
+    @Override
+    public int updateMoney(User user) {
+        return usersMapper.updateMoney(user);
+    }
 }

@@ -10,6 +10,7 @@ import com.zt.mapper.CorolMapper;
 import com.zt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +39,8 @@ public class CarController {
     private AddressService addressService;
     @Autowired
     private  HistoryService historyService;
+    @Autowired
+    private TransactionService transactionService;
 
     /**
      *  首页的查询车辆
@@ -194,7 +197,7 @@ public class CarController {
      *
      */
     //根据品牌进入
-    @RequestMapping("listhtml2")
+    @RequestMapping("/listhtml2")
     public String listhtml(String pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid) {
         System.out.println(" --------进入查询--------- ");
         if(bid==null){
@@ -517,6 +520,57 @@ public class CarController {
         System.out.println("交易记录有"+transactionlistseller.size());
         return "user_bus";
     }
+    /**
+     * 买车控制器
+     */
+    @Transactional
+    @RequestMapping("/buyCar")
+    public String buyCar(Car car,int uid,double money,int cid,int cuid,User user,Double umoney,Double cmoney,Transaction transaction){
+    System.out.println("进入买车");
+    System.out.println("买家id"+uid);
+    System.out.println(money);
+    System.out.println(car);
+    System.out.println(cuid);
+    System.out.println(cid);
+    System.out.println("用户余额"+umoney);
+    System.out.println("车主余额"+cmoney);
+    //给买家减少钱
+   Double money1 = umoney-money;
+    User user1 = new User();
+    user1.setUid(uid);
+    user1.setMoney(money1);
+    int num=userService.updateMoney(user1);
+    System.out.println("用户减少金额"+num);
 
+
+    Double cmoney2=cmoney+money;
+    User user2 = new User();
+    user2.setUid(cuid);
+    user2.setMoney(cmoney2);
+    int num2=userService.updateMoney(user2);
+    System.out.println("车主增加金额"+num2);
+
+    /**
+     * 添加交易记录
+     */
+    transaction.setCid(cid);
+    transaction.setBuyer(uid);
+    transaction.setSeller(cuid);
+    transaction.setTmoney(money);
+     int num3 = transactionService.insertTransaction(transaction);
+    System.out.println("交易表插入"+num3);
+    /**
+     * 车下架
+     */
+
+    car.setCid(cid);
+    car.setPutstate(0);
+    int num4=carService.updateCarputstate(car);
+    System.out.println("车辆下架"+num4);
+    if(cuid==uid){
+        return "404";
+    }
+    return "forward:index";
+}
 
 }

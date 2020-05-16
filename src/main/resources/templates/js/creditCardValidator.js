@@ -1,3 +1,23 @@
+$(function(){
+  alert(aa);
+  var umoney = $("input[id=u-money]").val();
+  var  cprice =$("input[id=c-price]").val();
+  if(umoney>cprice){
+    var yue= umoney-cprice;
+    $("#yue").html(yue);
+  }
+  $("#yue").html("余额不足");
+
+  $("#zhifu").click(function () {
+    alert("s");
+    var a=$("#yue").html();
+    if(a=="余额不足"){
+      location.href="/usedcar/loans.html"
+    }
+  });
+})
+
+
 var $cc = {}
 $cc.validate = function(e){
 
