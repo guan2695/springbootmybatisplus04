@@ -18,4 +18,8 @@ public interface BuyershowService {
 
     public int getPageCount();
     public List<Buyershow> getPageIndex(@Param("first") int first, @Param("pageSize") int pageSize);
+    /**
+     * 买家秀的插入
+     */
+    public int insertBuyershow(Buyershow buyershow);
 }

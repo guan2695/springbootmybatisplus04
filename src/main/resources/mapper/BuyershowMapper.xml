@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.zt.mapper.BuyershowMapper">
+
+<insert id="insertBuyershow"  parameterType="com.zt.entity.Buyershow">
+    INSERT  INTO buyershow (uid,cid,title,showmsg,img,showtime)
+    VALUES(#{uid},#{cid},#{title},#{showmsg},#{img},NOW());
+</insert>
+
+
+
+</mapper>

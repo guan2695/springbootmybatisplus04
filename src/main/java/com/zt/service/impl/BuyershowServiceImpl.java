@@ -3,6 +3,7 @@ package com.zt.service.impl;
 import com.zt.entity.Buyershow;
 import com.zt.entity.Comment;
 import com.zt.mapper.BuyershowMapper;
+import com.zt.mapper.UsersMapper;
 import com.zt.service.BuyershowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,11 @@ public class BuyershowServiceImpl implements BuyershowService {
     @Override
     public List<Buyershow> getPageIndex(int first, int pageSize) {
         return buyershowMapper.getPageIndex(first,pageSize);
+    }
+
+    @Override
+    public int insertBuyershow(Buyershow buyershow) {
+        return buyershowMapper.insertBuyershow(buyershow);
     }
 
 }

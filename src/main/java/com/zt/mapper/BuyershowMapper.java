@@ -74,4 +74,9 @@ public interface BuyershowMapper {
             @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById"))
     })
     public List<Buyershow> getPageIndex(@Param("first") int first,@Param("pageSize") int pageSize);
+
+    /**
+     * 买家秀的插入
+     */
+    public int insertBuyershow(Buyershow buyershow);
 }

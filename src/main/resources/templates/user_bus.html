@@ -302,11 +302,12 @@ $(function () {
                                         <span class="num1 fl" style="height:43px;padding-top:10px;">
 					<em>新车价：${transalist.oprice}万元(含${transalist.oprice}00元购置税)</em><br>
 					<input type="hidden" class="CarValue_287" value="{img:'/',id:'224',price:'28.2',status:'',title:'奥迪A4L 2013 款 2.0T CVT 35TFSI 技术型',url:'#'}">
-					</span>
+					<input type="hidden" id="c-cid"  value="${transalist.cid}"/>
+                                        </span>
                                     </div>
                                     <div class="cs_bt clearfix">
                                         <a href="javascript:void(0)" onclick="delNeedThis('287')">已购买</a>
-                                        <a type="button"  data-toggle="modal" data-target="#myModal2" name="doupdate" >秀一波</a>
+                                        <a type="button"  data-toggle="modal" onclick="cargetcid()" data-target="#myModal2" name="doupdate" >秀一波</a>
                                     </div>
                                 </div>
                                 </li>
@@ -417,11 +418,11 @@ $(function () {
                     <h4 class="modal-title" id="myModalLabel">上传评论信息</h4>
                 </div>
                 <div class="modal-body" id="modiv">
-                    <form action="updatefoodprice" enctype="multipart/form-data" method="post">
+                    <form action="insertBuyshow" enctype="multipart/form-data" method="post">
                         <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">uid：</span> <input type="text" name="uid" value="${list2.uid}" style="width: 40%;height: 40px; "><br>
                         <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">cid：</span> <input type="text" name="cid" style="width: 40%;height: 40px; "><br>
-                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">标题：</span> <input type="text" name="uname" style="width: 40%;height: 40px; "><br>
-                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">   内容 ：</span><input type="text" name="price"  style="width: 40%;height: 40px;margin-top:30px ; "><br>
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">标题：</span> <input type="text" name="title" style="width: 40%;height: 40px; "><br>
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">   内容 ：</span><input type="text" name="showmsg"  style="width: 40%;height: 40px;margin-top:30px ; "><br>
                         <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;margin-top:60px ;">   上传车图</span><input type="file" name="pic" style="width: 40%;height: 40px;margin-top:20px ; ">
                        <!-- --><input type="submit" value="上传" style="width: 50px;height: 40px;margin-left:250px;background-color: #3379b5;color: white;border-color:#3379b5  ">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -643,6 +644,12 @@ function delOrder(act,meb){
 		}
 	});
 	return false;
+};
+function cargetcid() {
+    alert($("input[id=c-cid]").val());
+    var cid=$("input[id=c-cid]").val()
+    $("input[name=cid]").val(cid);
+
 }
 </script>
 
