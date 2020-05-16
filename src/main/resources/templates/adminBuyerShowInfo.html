@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>买家秀详情</title>
+		<link rel="stylesheet" href="css/admin.css" />
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/adminUserInfo.css" />
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/adminLeftMenu.js" ></script>
+	</head>
+	<body>
+		<!--
+        	作者：offline
+        	时间：2020-05-12
+        	描述：头部
+        -->
+		<div id="head" class="row">
+			<img src="images/1234.png" id="headLogo" onclick="returnCarList()" />
+			<span id="headSpan">买家秀详情</span>
+		</div>
+		
+		<div id="userInfoBody">
+			<div class="col-lg-12" style="padding: 0 2%;">
+				<img src="images/${buyershow.img}" class="img-thumbnail">
+
+				<div class="jumbotron" style="margin-top: 30px;">
+					<h3>${buyershow.title}</h3>
+					<p class="text-info">${buyershow.showmsg}</p>
+
+				</div>
+			</div>
+
+
+			<div class="col-lg-12 mxlength">
+				<div class="">
+					<h3>相关评论</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				<table class="table table-bordered" style="text-align: center;width:94%;margin-left: 3%;">
+					<tr>
+						<td>评论者</td>
+						<td>评论内容</td>
+						<td>评论时间</td>
+					</tr>
+					<#list commentList as com>
+						<tr>
+						<td>${com.user.uname}</td>
+						<td>${com.comment}</td>
+						<td>${com.cdate}</td>
+						</tr>
+					</#list>
+					<!--<tr>-->
+						<!--<td>aaa</td>-->
+						<!--<td>sssssssssssssssssssssssss</td>-->
+						<!--<td>2015-02-08</td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td>aaa</td>-->
+						<!--<td>sssssssssssssssssssssssss</td>-->
+						<!--<td>2015-02-08</td>-->
+					<!--</tr>-->
+				</table>
+			</div>
+				
+				
+
+		</div>
+	</body>
+</html>

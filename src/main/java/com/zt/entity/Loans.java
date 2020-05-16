@@ -8,13 +8,14 @@ package com.zt.entity;
 public class Loans {
     private  int lid;
     private  int uid;
+    private String idcard;
     //贷款金额万
     private Double lmoney;
     //0无 1有房产
     private  int ishavehouse;
     //银行id外键
     private  int bankid;
-    //0贷款失败 1 成功
+    //0未审核，1贷款失败，2贷款成功
     private  int lstate;
 
     //贷款的用户
@@ -24,6 +25,14 @@ public class Loans {
     private Banks banks;
 
     public Loans() {
+    }
+
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
     }
 
     public Banks getBanks() {
@@ -95,6 +104,7 @@ public class Loans {
         return "Loans{" +
                 "lid=" + lid +
                 ", uid=" + uid +
+                ", idcard='" + idcard + '\'' +
                 ", lmoney=" + lmoney +
                 ", ishavehouse=" + ishavehouse +
                 ", bankid=" + bankid +

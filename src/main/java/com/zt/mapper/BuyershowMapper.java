@@ -19,7 +19,8 @@ public interface BuyershowMapper {
      */
     @Select("SELECT * FROM  buyershow")
     @Results({
-            @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById"))
+            @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById")),
+            @Result(column = "cid",property = "car",one = @One(select = "com.zt.mapper.CarMapper.GetOneCarAllInfo"))
     })
     public List<Buyershow> getAllShow();
 
@@ -30,7 +31,8 @@ public interface BuyershowMapper {
      */
     @Select("SELECT * FROM buyershow WHERE showid=#{showid}")
     @Results({
-            @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById"))
+            @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById")),
+            @Result(column = "cid",property = "car",one = @One(select = "com.zt.mapper.CarMapper.GetOneCarAllInfo"))
     })
     public Buyershow getOneShow(int showid);
 
@@ -57,7 +59,7 @@ public interface BuyershowMapper {
      * 得到分页总页数
      * @return
      */
-    @Select("SELECT COUNT(showid) FROM  buyershow")
+    @Select("SELECT COUNT(showid) FROM buyershow")
     public int getPageCount();
 
 
