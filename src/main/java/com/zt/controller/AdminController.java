@@ -48,6 +48,15 @@ public class AdminController {
     @Autowired
     private BanksService banksService;
 
+    @Autowired
+    private LoansService loansService;
+
+    @Autowired
+    private BuyershowService buyershowService;
+
+    @Autowired
+    private TransationService transationService;
+
 
 
     private int userpageSize=3;
@@ -454,6 +463,97 @@ public class AdminController {
         List<Banks> banksList= banksService.getAllBanks();
         banksList.forEach(System.out::println);
         return banksList;
+    }
+
+
+    /**
+     * 管理员得到所有的贷款申请
+     * @return
+     */
+    @RequestMapping("/adminGetAllLoans")
+    @ResponseBody
+    public List<Loans> adminGetAllLoans(){
+        System.out.println("管理员得到所有贷款");
+        List<Loans> loansList= loansService.getAllLoans();
+        loansList.forEach(System.out::println);
+        return loansList;
+    }
+
+    /**
+     * 管理员审核贷款
+     * @return
+     */
+    @RequestMapping("/adminGoLoans")
+    @ResponseBody
+    public String adminShenheLoans(Loans loans,String lmsgbecause){
+        System.out.println("管理员审核贷款："+loans+"  "+lmsgbecause);
+        if(loans.getLstate()==1){//不通过
+            System.out.println("不通过");
+            loansService.updLoansState(loans.getLid(),loans.getLstate());//改变贷款审核状态
+            loansService.addLoansOverBeca(loans.getLid(),lmsgbecause);//添加失败原因
+            return "no";
+        }else {//通过
+            System.out.println("通过");
+            loansService.updLoansState(loans.getLid(),loans.getLstate());//改变贷款审核状态
+            return "yes";
+        }
+    }
+
+    /**
+     * 管理员得到所有地区
+     * @return
+     */
+    @RequestMapping("/adminGetAllAddress")
+    @ResponseBody
+    public List<Address> adminGetAllAddress(){
+        System.out.println("管理员所有地区");
+        List<Address> addressList= addressService.getAllAddress();
+        addressList.forEach(System.out::println);
+        return addressList;
+    }
+
+    /**
+     * 管理员得到所有买家秀
+     * @return
+     */
+    @RequestMapping("/adminGetBuyerShow")
+    @ResponseBody
+    public List<Buyershow> adminGetBuyerShow(){
+        System.out.println("管理员买家秀");
+        List<Buyershow> buyershowList= buyershowService.getAllShow();
+        buyershowList.forEach(System.out::println);
+        return buyershowList;
+    }
+
+    /**
+     * 管理员得到一个买家秀
+     * @param showid
+     * @return
+     */
+    @RequestMapping("/adminGetOneBuyerShow")
+    public String adminGetOneBuyerShow(int showid,Model model){
+        System.out.println("得到一个买家秀");
+        Buyershow buyershow= buyershowService.getOneShow(showid);
+        System.out.println(buyershow);
+        List<Comment> commentList= buyershowService.getAllCommentByshow(showid);
+        commentList.forEach(System.out::println);
+
+        model.addAttribute("buyershow",buyershow);
+        model.addAttribute("commentList",commentList);
+        return "adminBuyerShowInfo";
+    }
+
+    /**
+     * 管理员得到所有交易记录
+     * @return
+     */
+    @RequestMapping("/adminGetAllTransation")
+    @ResponseBody
+    public List<Transaction> adminGetAllTransation(){
+        System.out.println("管理员交易记录");
+        List<Transaction> transactionList= transationService.getAllTransation();
+        transactionList.forEach(System.out::println);
+        return transactionList;
     }
 
 

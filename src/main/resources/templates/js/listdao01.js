@@ -76,11 +76,6 @@ $(function () {
 
     //下拉搜索单击
     $(".selecter li a").click(function(){
-        var mb=$(this).html();
-        alert(mb);
-        if(mb=="不限"){
-            return;
-        }
         $(this).parent().parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
         $(this).attr({"class":"xzz"});
         //添加class

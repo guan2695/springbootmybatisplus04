@@ -17,7 +17,36 @@ public class Transaction {
     //交易时间
     private String tdate;
 
+    private Car car;
+
+    private User buyuser;//买家
+    private User selluser;//卖家
+
     public Transaction() {
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public User getBuyuser() {
+        return buyuser;
+    }
+
+    public void setBuyuser(User buyuser) {
+        this.buyuser = buyuser;
+    }
+
+    public User getSelluser() {
+        return selluser;
+    }
+
+    public void setSelluser(User selluser) {
+        this.selluser = selluser;
     }
 
     public int getTid() {
@@ -77,6 +106,9 @@ public class Transaction {
                 ", seller=" + seller +
                 ", tmoney=" + tmoney +
                 ", tdate='" + tdate + '\'' +
+                ", car=" + car +
+                ", buyuser=" + buyuser +
+                ", selluser=" + selluser +
                 '}';
     }
 }

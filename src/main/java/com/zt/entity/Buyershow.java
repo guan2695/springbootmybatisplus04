@@ -20,7 +20,17 @@ public class Buyershow {
     //一对一，发布买家秀的用户
     private User user;
 
+    private Car car;
+
     public Buyershow() {
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public User getUser() {
@@ -98,6 +108,7 @@ public class Buyershow {
                 ", img='" + img + '\'' +
                 ", showtime='" + showtime + '\'' +
                 ", user=" + user +
+                ", car=" + car +
                 '}';
     }
 }

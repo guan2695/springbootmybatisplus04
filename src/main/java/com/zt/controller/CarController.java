@@ -424,7 +424,9 @@ public class CarController {
             cardserieslist= brand.getCardseries();
         }
         //输出集合
-        cardserieslist.forEach(System.out::println);
+        if(cardserieslist!=null){
+            cardserieslist.forEach(System.out::println);
+        }
 
         return cardserieslist;
     }
