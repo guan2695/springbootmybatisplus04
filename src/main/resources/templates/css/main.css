@@ -87,7 +87,7 @@ ul li{
 	height: 34px;
 	margin-left: 13px;
 	border-radius: 2px;
-	background: url(../images/own_head.jpg);
+	background: url(../images/me.png);
 	background-size:34px;
 }
 
@@ -308,6 +308,7 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 
 .user_head img{
 	width: 40px;
+	height: 40px;
 }
 
 .user_text{
@@ -349,8 +350,15 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 
 .user_time{
 	float: right;
-	color: #999;
 	font-size: 12px;
+	font-weight: bold;
+	color: white;
+	text-align:center;
+	line-height:20px;
+	background: red;
+	width: 20px;
+	height:20px;
+	border-radius:10px;
 }
 
 .zUIpanelScrollBox,.zUIpanelScrollBar{
