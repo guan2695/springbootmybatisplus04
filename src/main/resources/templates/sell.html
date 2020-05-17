@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#upBox{
+				text-align: center;
+				width:500px;
+				padding: 20px;
+				border: 1px solid #f4f4f4;
+				margin: auto;
+				margin-bottom: 200px;
+				position: relative;
+				border-radius: 10px;
+			}
+			#inputBox{
+				width: 100%;
+				height: 40px;
+				border: 1px solid #FF6600;
+				color: #FF6600;
+				border-radius: 20px;
+				position: relative;
+				text-align: center;
+				line-height: 40px;
+				overflow: hidden;
+				font-size: 16px;
+			}
+			#inputBox input{
+				width: 114%;
+				height: 40px;
+				opacity: 0;
+				cursor: pointer;
+				position: absolute;
+				top: 0;
+				left: -14%;
+				border:1px silver solid;
+				
+			}
+			#imgBox{
+				text-align: left;
+			}
+			.imgContainer{
+				display: inline-block;
+				width: 32%;
+				height: 150px;
+				margin-left: 1%;
+				border: 1px solid #666666;
+				position: relative;
+				margin-top: 30px;
+				box-sizing: border-box;
+			}
+			.imgContainer img{
+				width: 100%;
+				height: 150px;
+				cursor: pointer;
+			}
+			.imgContainer p{
+				position: absolute;
+				bottom: -1px;
+				left: 0;
+				width: 100%;
+				height: 30px;
+				background: black;
+				text-align: center;
+				line-height: 30px;
+				color: white;
+				font-size: 16px;
+				font-weight: bold;
+				cursor: pointer;
+				display: none;
+			}
+			.imgContainer:hover p{
+				display: block;
+			}
+			#btn{
+				outline: none;
+				width: 100px;
+				height: 30px;
+				background: cornflowerblue;
+				border: 1px solid cornflowerblue;
+				color: white;
+				cursor: pointer;
+				margin-top: 30px;
+				border-radius: 5px;
+			}
+			html{
+				width: 100%;
+			height:650px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/imgsrc.css"/>
+		<script type="text/javascript"src="js/jquery-1.8.0.min.js"></script>
+		<script src="js/imgsrc.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		<div>
+			
+		<div class="imgsrc" style="width:650px;height:600px;position: relative;
+	bottom: 100px;	float: left;top: 50px;">
+			<div id="upBox">
+			 <div id="inputBox"><input type="file" title="请选择图片" id="file" multiple accept="image/png,image/jpg,image/gif,image/JPEG"/>点击选择图片</div>
+		     
+			 <div id="imgBox">
+				 
+			 </div>
+		     
+			</div>
+			
+		</div>
+		<div class="tc"><a href="wymc.html">退出</a></div>
+		<div class="now">
+			<ul class="ul01">
+				<li class="li01">
+					<span class="tlti">基本信息：</span>
+					<ul class="ul02">
+						<li>地区:<span>东湖区</span><span>瑶湖区</span><span>青云谱区</span><span>新建区</span><span>湾里区</span><span>青山湖区</span><span>西湖区</span><span>红谷滩</span></li>
+						<li >车牌:<span class="mo1">大众</span><span class="mo2">本田</span><span class="mo3">奔驰</span><span class="mo4">丰田</span><span class="mo5">日产</span></li>
+						<li class="show">车系:<span>高尔夫</span><span>朗逸</span><span>POLO</span><span>迈腾</span></li>
+						<li class="hide1">车系:<span>雅阁</span><span>思域</span><span>飞度</span><span>凌派</span></li>
+						<li class="hide2">车系:<span>奔驰A</span><span>奔驰B</span><span>奔驰C</span><span>奔驰S</span></li>
+						<li class="hide3">车系:<span>卡罗拉</span><span>雷凌</span><span>凯美瑞</span><span>汉兰达</span></li>
+						<li class="hide4">车系:<span>轩逸</span><span>天籁</span><span>奇骏</span><span>逍客</span></li>
+						<li class="se">颜色:
+						<div class="select">
+								<select name="cars">
+									<option value="">白色</option>
+									<option value="">黑色</option>
+									<option value="">灰色</option>
+									<option value="">红色</option>
+									<option value="">褐色</option>
+									<option value="">橙色</option>
+									<option value="">银色</option>
+									<option value="">紫色</option>
+									<option value="">蓝色</option>
+								</select>
+								
+							</div>
+							车辆原价（<i class="i">单位为万</i>）：<input type="text" name="" id="input"value=""/> 万&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							现价：<input type="text" name="" id="input"value=""/> 万&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;车龄：<input type="text" name="" id="input"value=""/> 年
+							</li>
+					</ul>
+					</li>
+				
+				
+			</ul>
+			<ul>
+				<li class="li02">
+			
+					<div class="fot">
+						<span class="tlti">车辆基础配置:</span>
+						<ul class="ul03">
+							<li>长度：<input type="text" name="" id="input"value=""/>  cm</li>
+							<li>宽度：<input type="text" name="" id="input"value=""/> cm</li>
+						<ul >
+							<li>高度：<input type="text" name="" id="input"value=""/> cm</li>
+							<li>质量：<input type="text" name="" id="input"value=""/> cm</li>
+						</ul>
+						</ul>
+						</div>
+					<div class="fot">
+						<span class="tlti">车辆高级配置:</span>
+						<ul class="ul04">
+							<li>排量：<input type="text" name="" id="input"value=""/> L</li>
+							<li>燃油类型：汽油</li>
+						<ul>
+							<li>燃油标号：<input type="text" name="" id="input"value=""/></li>
+							<li>制动类型：<div class="select">
+								<select name="cars">
+									<option value="">自动挡</option>
+									<option value="">手动挡</option>
+									
+								</select>
+								
+							</div></li>
+						</ul>
+						<button class="but" type="button">提交</button>
+						</ul>
+						</div>
+				</li>
+				
+			</ul>
+		</div>
+		</div>
+		<script src="js/uploadImg.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			imgUpload({
+				inputId:'file', //input框id
+				imgBox:'imgBox', //图片容器id
+				buttonId:'btn', //提交按钮id
+				upUrl:'',  //提交地址
+				data:'file1' //参数名
+			})
+			
+		</script>
+		
+	</body>
+</html>
