@@ -3,7 +3,6 @@
     function tiao(showid,uid) {
         var tr="";
         var comm=$(".comment_xie textarea").val();
-        alert("进入Ajax跳转"+comm);
         $.ajax({
             type:'post',
             url:'addComment',
@@ -11,6 +10,7 @@
             cache:false,
             success:function(result){
                 $(".comment_kan").html("");  //清空处理
+                $(".comment_xie textarea").val("");
                 for(var i=0;i<result.length;i++){
                     var obj=result[i];
                     tr+="<ul>" +
