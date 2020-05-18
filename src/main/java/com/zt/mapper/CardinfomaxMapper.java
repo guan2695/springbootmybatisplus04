@@ -16,7 +16,8 @@ public interface CardinfomaxMapper {
      * @return
      */
     public int insertCardinfomax(Cardinfomax cardinfomax);
-
+    public String infomax(int cid,Double pailiang,String youtype,int youname,String dangtype);
+    public Cardinfomax focid();
     /**
      * 得到一辆车的高级信息
      * @param cid

@@ -10,4 +10,10 @@ import java.util.List;
  */
 public interface ImagesService {
     public List<Images> getimgesone (Images images);
+
+    /*
+     * 上传图片
+     * */
+    public String imagesall(int cid ,String src);
+    public Images cidget();
 }

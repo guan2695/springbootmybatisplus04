@@ -16,7 +16,7 @@ public interface CarinfoMapper {
      * @return
      */
     public int insertCarinfo(Carinfo carinfo);
-
+    public String addinfo(int cid, int length,int width,int height,int mass);
     /**
      * 得到一辆车的基本信息
      * @param cid
@@ -24,4 +24,5 @@ public interface CarinfoMapper {
      */
     @Select("SELECT * FROM carinfo WHERE cid=#{cid}")
     public Carinfo getOneCarinfo(int cid);
+
 }

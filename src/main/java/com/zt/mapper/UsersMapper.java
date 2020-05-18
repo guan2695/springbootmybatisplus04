@@ -19,7 +19,7 @@ public interface UsersMapper extends BaseMapper<User> {
      * @return
      */
     public User selectlogin(User user);
-
+    public User selllogin(User user);
     /**
      * 查询所有用户
      * @return

@@ -37,7 +37,10 @@ public class CarController {
     private AddressService addressService;
     @Autowired
     private  HistoryService historyService;
-
+    @Autowired
+    private  CardinfomaxService cardinfomaxService;
+    @Autowired
+    private CarinfoService carinfoService;
     /**
      *  首页的查询车辆
      * @param model
@@ -352,5 +355,25 @@ public class CarController {
         return "infor";
     }
 
+    @RequestMapping("/carall")
+    @ResponseBody
+    public String carall(HttpSession Session,int bid,int csid,int corolid,int uid ,Double oprice,Double price,int addressid,int carage,String img,Double pailiang,String youtype,int youname,String dangtype,int length,int width,int height,int mass ){
+        System.out.println("进入");
+        //添加信息
+        String num=carService.carall(bid,csid,corolid,uid,oprice,price,addressid,carage,img);
+        //添加src
+        Car Cid = carService.carcid();
+        System.out.println("Cid="+Cid);
+        String cimg=carService.carimg(Cid.getCid(),img);
+        System.out.println("cimg="+cimg);
+        //添加高级配置
+        String max= cardinfomaxService.infomax(Cid.getCid(),pailiang,youtype,youname,dangtype);
+        String  info=carinfoService.addinfo(Cid.getCid(),length,width, height, mass);
+        if (num !=null && cimg!=null&& max!=null) {
+            System.out.println("插入数据成功");
+            return "yes";
+        }
+        return "no";
+    }
 
 }

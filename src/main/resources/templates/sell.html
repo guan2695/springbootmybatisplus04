@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#upBox{
+				text-align: center;
+				width:500px;
+				padding: 20px;
+				border: 1px solid #f4f4f4;
+				margin: auto;
+				margin-bottom: 200px;
+				position: relative;
+				border-radius: 10px;
+			}
+			#inputBox{
+				width: 100%;
+				height: 40px;
+				border: 1px solid #FF6600;
+				color: #FF6600;
+				border-radius: 20px;
+				position: relative;
+				text-align: center;
+				line-height: 40px;
+				overflow: hidden;
+				font-size: 16px;
+			}
+			#inputBox input{
+				width: 114%;
+				height: 40px;
+				opacity: 0;
+				cursor: pointer;
+				position: absolute;
+				top: 0;
+				left: -14%;
+				border:1px silver solid;
+				
+			}
+			#imgBox{
+				text-align: left;
+			}
+			.imgContainer{
+				display: inline-block;
+				width: 32%;
+				height: 150px;
+				margin-left: 1%;
+				border: 1px solid #666666;
+				position: relative;
+				margin-top: 30px;
+				box-sizing: border-box;
+			}
+			.imgContainer img{
+				width: 100%;
+				height: 150px;
+				cursor: pointer;
+			}
+			.imgContainer p{
+				position: absolute;
+				bottom: -1px;
+				left: 0;
+				width: 100%;
+				height: 30px;
+				background: black;
+				text-align: center;
+				line-height: 30px;
+				color: white;
+				font-size: 16px;
+				font-weight: bold;
+				cursor: pointer;
+				display: none;
+			}
+			.imgContainer:hover p{
+				display: block;
+			}
+			#btn{
+				outline: none;
+				width: 100px;
+				height: 30px;
+				background: cornflowerblue;
+				border: 1px solid cornflowerblue;
+				color: white;
+				cursor: pointer;
+				margin-top: 30px;
+				border-radius: 5px;
+			}
+			html{
+				width: 100%;
+			height:650px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/imgsrc.css"/>
+		<script type="text/javascript"src="js/jquery-1.8.0.min.js"></script>
+		<script src="js/imgsrc.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/sell.js" type="text/javascript" ></script>
+	</head>
+	<body>
+		<div>
+			
+		<div class="imgsrc" style="width:650px;height:600px;position: relative;
+	bottom: 100px;	float: left;top: 50px;">
+			<div id="upBox">
+			 <div id="inputBox">
+				 <input type="file" title="请选择图片" id="file" multiple accept="image/png,image/jpg,image/gif,image/JPEG"/>点击选择图片（不能大于或小于6张）</div>
+		     
+			 <div id="imgBox">
+				 
+			 </div>
+		     
+			</div>
+			
+		</div>
+		<div class="tc"><a href="wymc.html">退出</a></div>
+		<div class="now">
+			<ul class="ul01">
+				<li class="li01">
+					<span class="tlti">基本信息：</span>
+					<ul class="ul02">
+						<li>地区:<span value="1">东湖区</span><span value="2">瑶湖区</span><span value="3">青云谱区</span><span  value="4">新建区</span><span  value="5">湾里区</span><span  value="6">青山湖区</span><span value="7">西湖区</span><span value="8">红谷滩</span></li>
+
+						<li >车牌:<span id="mo1" class="mo"value="1">大众</span><span id="mo2"value="2">本田</span><span id="mo3" value="3">奔驰</span><span id="mo4"value="4">丰田</span><span id="mo5"value="5">日产</span></li>
+						<li class="show">车系:<span value="1">高尔夫</span><span value="2">朗逸</span><span value="3">POLO</span><span value="4">迈腾</span></li>
+						<li class="hide1">车系:<span value="1">雅阁</span><span value="2">思域</span><span value="3">飞度</span><span value="4">凌派</span></li>
+						<li class="hide2">车系:<span value="1">奔驰A</span><span value="2">奔驰B</span><span value="3">奔驰C</span><span value="4">奔驰S</span></li>
+						<li class="hide3">车系:<span value="1">卡罗拉</span><span value="2">雷凌</span><span value="3">凯美瑞</span><span value="4">汉兰达</span></li>
+						<li class="hide4">车系:<span value="1">轩逸</span><span value="2">天籁</span><span value="3">奇骏</span><span value="4">逍客</span></li>
+						<li class="se">颜色:
+						<div class="select">
+								<select name="cars1">
+									<option value="1" >白色</option>
+									<option value="2">黑色</option>
+									<option value="3">灰色</option>
+									<option value="4">红色</option>
+									<option value="5">褐色</option>
+									<option value="6">橙色</option>
+									<option value="7">银色</option>
+									<option value="8">紫色</option>
+									<option value="9">蓝色</option>
+								</select>
+								
+							</div>
+							车辆原价（<i class="i">单位为万</i>）：<input type="text" name="oprice" id="input"value=""/> 万&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							现价：<input type="text" name="price" id="input"value=""/> 万&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;车龄：<input type="text" name="carage" id="input"value=""/> 年
+							</li>
+					</ul>
+					</li>
+				
+				
+			</ul>
+			<ul>
+				<li class="li02">
+			
+					<div class="fot">
+						<span class="tlti">车辆基础配置:</span>
+						<ul class="ul03">
+							<li>长度：<input type="text" name="le"id="input" value=""/>  cm</li>
+							<li>宽度：<input type="text" name="wi"id="input" value=""/> cm</li>
+						<ul >
+							<li>高度：<input type="text" name="he"id="input" value=""/> cm</li>
+							<li>质量：<input type="text" name="qu"id="input" value=""/> cm</li>
+						</ul>
+						</ul>
+						</div>
+					<div class="fot">
+						<span class="tlti">车辆高级配置:</span>
+						<ul class="ul04">
+							<li>排量：<input type="text" name="dis"id="input"  value=""/> L</li>
+							<li>燃油类型：<a class="qiyou">汽油</a></li>
+						<ul>
+							<li>燃油标号：<input type="text" name="gr"id="input" value=""/></li>
+							<li>制动类型：<div class="select">
+								<select name="cars2">
+									<option>自动挡</option>
+									<option>手动挡</option>
+									
+								</select>
+								
+							</div></li>
+						</ul>
+						<button class="but" type="button">提交</button>
+						</ul>
+						</div>
+				</li>
+				
+			</ul>
+		</div>
+		</div>
+		<script src="js/uploadImg.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			imgUpload({
+				inputId:'file', //input框id
+				imgBox:'imgBox', //图片容器id
+				buttonId:'btn', //提交按钮id
+				upUrl:'',  //提交地址
+				data:'file1' //参数名
+			})
+			
+		</script>
+		
+	</body>
+</html>

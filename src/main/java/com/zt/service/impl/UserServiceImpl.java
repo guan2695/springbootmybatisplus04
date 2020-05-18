@@ -1,6 +1,7 @@
 package com.zt.service.impl;
 
 import com.zt.entity.History;
+import com.zt.entity.Images;
 import com.zt.entity.User;
 import com.zt.mapper.UsersMapper;
 import com.zt.service.UserService;
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
     public User selectlogin(User user) {
         return usersMapper.selectlogin(user);
     }
+
+    @Override
+    public User selllogin(User user) { return  usersMapper.selllogin(user); }
 
     @Override
     public List<User> selectall() {
@@ -57,4 +61,6 @@ public class UserServiceImpl implements UserService {
     public int delUserByid(int uid) {
         return usersMapper.delUserByid(uid);
     }
+
+
 }

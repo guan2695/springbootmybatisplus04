@@ -83,7 +83,19 @@ public class UserController {
         System.out.println("查询浏览记录有"+listHistory.size());
         return "forward:index";
     }
+    @RequestMapping("/selllogin")
+    public String selllogin(HttpSession session,User user){
+        System.out.println(" --------selllogin--------- ");
+        System.out.println("phone" + user.getPhone());
+        User user1=userService.selllogin(user);
 
+        if(user1!=null){
+            return "sell";
+        }else {
+            System.out.println("查询方法失败");
+        }
+        return "wymc";
+    }
     /**
      * 退出账号走的方法
      * @param session
@@ -119,6 +131,7 @@ public class UserController {
     public String wymchtml(HttpSession session, User user) {
         return "wymc";
     }
+
     /**
      * 用户注册
      * @param user

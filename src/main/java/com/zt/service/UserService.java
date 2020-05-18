@@ -1,6 +1,8 @@
 package com.zt.service;
 
+import com.zt.entity.Car;
 import com.zt.entity.History;
+import com.zt.entity.Images;
 import com.zt.entity.User;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
  */
 public interface UserService {
     public User selectlogin(User user);
-
+    public User selllogin(User user);
     /**
      * 查询所有用户
      * @return
@@ -30,4 +32,5 @@ public interface UserService {
 
     public int updateUserpwd(User user);
     public int delUserByid(int uid);
+
 }

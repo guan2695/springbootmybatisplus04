@@ -13,6 +13,7 @@
 <script type="text/javascript" src="script/eg_top_search.js"></script>
 <script type="text/javascript" src="script/city.js"></script>
 <script type="text/javascript" src="script/snncar.js"></script>
+
 <script type="text/javascript">
 $(function(){
 	$('.navmenu li').hover(function(){
@@ -143,10 +144,10 @@ $(function () {
 
     <#if (list2.uname)??>
     <div class="top-r">
-      <a href="remove" id="b-regist">退出</a>|<a href="user.html" id="b-login" class="b-login">  ${list2.uname} 登陆成功</a> </div>
+      <a href="remove" id="b-regist">退出</a>|<a href="user.html" id="b-login"  class="b-login">  ${list2.uname} 登陆成功</a> </div>
     <#else>
     <div class="top-r">
-      <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
+      <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login"  class="b-login">登陆</a> </div>
   </#if>
     <div class="top-l">全国统一客服热线：000-000-0000</div>
     <div class="clear_fix"></div>
@@ -219,18 +220,20 @@ $(function () {
 <div class="clear_fix"></div>
 <div class="sell_box">
   <div class="middlewrap">
-    <form class="sel-box sell_panel_maskNav">
+    <form class="sel-box sell_panel_maskNav"method="post" action="selllogin"onsubmit="return check();" id="sellform">
       <div class="w-title">填写车辆信息，我们帮您卖车</div>
       <div class="write-box">
-        <input type="text" class="input-phone" placeholder="请输入手机号码" id="phone">
-        <input type="hidden" name="source_type" value="0">
+        <input type="text" class="input-phone" placeholder="请输入手机号码" id="phone"value=""name="phone">
         <p class="valid-error">请填写手机号码</p>
       </div>
-      <button class="sell-submit" data-clue-entry="01" data-role="navbtn" data-maskname="mask3" data-needpub="1"> 免费卖车 </button>
+      <button class="sell-submit" data-clue-entry="01" data-role="navbtn" data-maskname="mask3" data-needpub="1"onclick="$('#sellform').submit()"> 免费卖车 </button>
       <p class="submit-tip">免费咨询<i class="nub-org">000-000-0000</i></p>
     </form>
   </div>
 </div>
+<script type="text/javascript">
+
+</script>
 <div class="sell-img-1"> <img src="images/sellimg1.jpg"/> </div>
 <div class="sell-img-2"> <img src="images/sellimg2.jpg"/> </div>
 <div class="sell-img-1"> <img src="images/sellimg3.jpg"/> </div>
@@ -353,7 +356,7 @@ $(function () {
               <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">
             </li>
             <li class="clearfix">
-              <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;" />
+              <input class="input left" type="text" value="" name="verify" placeholder="输入验证码" style="width:100px;" />
               <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
             </li>
             <li class="clearfix">

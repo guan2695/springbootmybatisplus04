@@ -1,5 +1,6 @@
 package com.zt.mapper;
 
+import com.zt.entity.Car;
 import com.zt.entity.Images;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -14,6 +15,8 @@ import java.util.List;
 public interface ImagesMapper {
     public List<Images> getimgesone (Images images);
 
+    public String imagesall(int cid,String src);
+    public Images cidget();
     /**
      * 根据车id得到他的六张图片
      * @param cid

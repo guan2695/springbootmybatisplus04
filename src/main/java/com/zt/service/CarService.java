@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.Car;
+import com.zt.entity.Images;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,6 +11,13 @@ import java.util.List;
  * @create 2020-05-08 14:14
  */
 public interface CarService {
+
+    /*
+    * 添加车辆信息
+    * */
+    public String carall(int bid, int csid, int corolid, int uid, Double oprice, Double price, int addressid, int carage, String img);
+    public String carimg(int cid,String src);
+    public Car carcid();
     /**
      * 首页查询前九辆
      * @return
@@ -86,4 +94,6 @@ public interface CarService {
 
     public Car GetOneCarAllInfo(int cid);
     public int adminUpdCar(Car car);
+
+
 }

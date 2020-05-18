@@ -12,6 +12,14 @@ import java.util.List;
  */
 @Mapper
 public interface CarMapper  {
+
+    /**
+     *添加卖车信息
+     */
+
+    public String carall(int bid, int csid, int corolid, int uid, Double oprice, Double price, int addressid, int carage, String img);
+    public String carimg(int cid ,String src);
+    public Car carcid();
     /**
      * 首页查询九辆车
      * @return

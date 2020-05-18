@@ -1,6 +1,7 @@
 package com.zt.service.impl;
 
 import com.zt.entity.Car;
+import com.zt.entity.Images;
 import com.zt.mapper.CarMapper;
 import com.zt.mapper.UsersMapper;
 import com.zt.service.CarService;
@@ -17,6 +18,8 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
     @Autowired
     private CarMapper carMapper;
+    @Override
+    public String carall(int bid, int csid, int corolid, int uid, Double oprice, Double price, int addressid, int carage, String img){return carMapper.carall(bid, csid, corolid, uid, oprice, price, addressid, carage, img); }
     @Override
     public List<Car> selectlimit() {
         return carMapper.selectlimit();
@@ -103,4 +106,15 @@ public class CarServiceImpl implements CarService {
     public int adminUpdCar(Car car) {
         return carMapper.adminUpdCar(car);
     }
+
+    @Override
+    public String carimg(int cid ,String src) {
+        return carMapper.carimg(cid,src);
+    }
+
+    @Override
+    public Car carcid() {
+        return carMapper.carcid();
+    }
 }
+
