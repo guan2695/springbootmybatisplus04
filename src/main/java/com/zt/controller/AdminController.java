@@ -506,6 +506,10 @@ public class AdminController {
         }else {//通过
             System.out.println("通过");
             loansService.updLoansState(loans.getLid(),loans.getLstate());//改变贷款审核状态
+
+            //加余额
+            adminService.adminAddMoneyToUser(loans.getUid(),loans.getLmoney());
+
             return "yes";
         }
     }
