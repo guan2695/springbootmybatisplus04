@@ -1,445 +1,439 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>买家秀</title>
-		<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<head>
+	<meta charset="UTF-8">
+	<title>买家秀</title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-	</head>
-	<style type="text/css">
-		* {
-			margin: 0px;
-			padding: 0px;
-		}
-		.container-fluid{
-			background-color: #f5f5f5;
-		}
-		.row {
-			height: 100px;
-			line-height: 100px;
-			font-size: 20px;
-			color: gray;
-			background-color: white;
-		}
-		
-		.row div:hover {
-			color: red;
-			/*font-weight: bolder;*/
-			font-size: 22px;
-		}
-		
-		#middle {
-			margin-left: 8.3%;
-			margin-top: 10px;
-		}
-		
-		#middle dl {
-			width: 30%;
-			display: inline-block;
-			margin-left: 20px;
-			background-color: white;
-		}
-		
-		#middle dt {
-			position: relative;
-		}
-		
-		#middle dt span {
-			display: inline-block;
-			position: absolute;
-			top: 90%;
-			left: 22px;
-			font-size: 18px;
-			color: white;
-		}
-		
-		#middle dt img {
-			width: 100%;
-		}
-		
-		#middle dd {
-			text-indent: 1.5em;
-			font-size: 16px;
-			line-height: 30px;
-		}
-		
-		#page{
-			width: 65%;
-			height: 50px;
-			line-height: 50px;
-			text-align: center;
-			margin-left: 18%;
-			background-color: white;
-			border-radius: 5px;
-			color: dodgerblue;
-		}
-		#page a{
-			color: dodgerblue;
-			font-weight: bold;
-		}		
-		#page a:nth-of-type(1){
-			float: left;			
-			margin-left: 15px;
-		}
-		#page a:nth-of-type(2){
-			
-			margin-right: 300px;
-		}
-		#page a:nth-of-type(3){
-			margin-left: 300px;		
-			
-		}
-		#page a:nth-of-type(4){
-			float: right;
-			margin-right: 15px;
-		}
-		
-		/*下载网页《头》*/		
-		.ftWrap {
-			width: 100%;
-			margin-left: -10px;
-			margin-top: 15px;
-			background: gainsboro;
-			padding: 30px 0 0px 0;
-		}
-		
-		.foot {
-			width: 1200px;
-			margin: 10px auto;
-		}
-		
-		.foot .relate {
-			zoom: 1;
-			overflow: hidden;
-			margin: 0;
-		}
-		
-		.foot .items {
-			width: 15%;
-			float: left;
-		}
-		
-		.foot .items.last {
-			width: 25%;
-			zoom: 1;
-			overflow: hidden;
-		}
-		
-		.foot .items .tit {
-			color: #333;
-			padding: 0 0 10px 0;
-			font-size: 16px;
-			zoom: 1;
-			overflow: hidden;
-		}
-		
-		.foot .items .tit i {
-			float: right;
-			margin-right: 20px;
-			font-size: 14px;
-			display: none;
-		}
-		
-		.foot .items .con {
-			padding: 0 0 10px 0;
-			font-size: 14px;
-		}
-		
-		.foot .items .con a {
-			display: block;
-			color: #666;
-			padding: 5px 0 0 0;
-		}
-		
-		.foot .items .con a:hover {
-			color: #0075b3;
-		}
-		
-		.foot .items .tel {
-			text-align: center;
-			margin: 0;
-			position: relative;
-			border-left: 1px solid #ddd;
-			padding-left: 30px;
-			height: 126px;
-		}
-		
-		.foot .items .tel h1 {
-			font-size: 20px;
-			font-weight: normal;
-			padding: 0 0 5px 0;
-			color: #ee7800;
-			font-family: Arial;
-			min-width: 128px;
-		}
-		
-		.foot .items .tel p {
-			color: #666;
-		}
-		
-		.foot .items .tel a {
-			border: 1px solid #ee7800;
-			background: #fff;
-			display: block;
-			width: 93px;
-			height: 28px;
-			padding-left: 25px;
-			text-align: center;
-			margin: 15px auto auto auto;
-			font-size: 12px;
-			line-height: 28px;
-			color: #ee7800;
-			position: relative;
-		}
-		
-		.foot .items .tel a i.kf-icon {
-			position: absolute;
-			left: 15px;
-			top: 5px;
-			width: 23px;
-			height: 18px;
-			background: url(images/mb-kf-icon.png) 0 0 no-repeat;
-		}
-		
-		.foot .items .tel a:hover {
-			color: #F30;
-			background: #ee7800;
-			color: #fff;
-			transition: background-color 0.5s ease;
-		}
-		
-		.foot .items .tel a:hover i.kf-icon {
-			background-position: 0 -18px;
-		}
-		
-		.app-section {
-			width: 320px;
-			float: left;
-			margin: 0px;
-		}
-		
-		.app-section .title {
-			font-size: 16px;
-			color: #333;
-			font-weight: 100;
-			margin: 0;
-			line-height: 34px
-		}
-		
-		.app-section img {
-			width: 100px;
-			height: 100px;
-			margin-right: 10px;
-			float: left;
-			margin-top: 7px;
-			border: 2px solid #fff;
-		}
-		
-		.app-section p {
-			float: left;
-			width: 200px;
-			font-size: 12px;
-			line-height: 24px;
-			color: #999;
-			display: block;
-			text-align: left;
-			word-wrap: break-word
-		}
-		
-		.tel-mb {
-			width: 100%;
-			margin: 10px 0;
-			display: none;
-			zoom: 1;
-			overflow: hidden;
-		}
-		
-		.tel-mb span {
-			color: #ee7800;
-			float: left;
-			padding: 0 5px 0 0;
-			font-family: Arial, Helvetica, sans-serif;
-			font-size: 14px;
-		}
-		
-		.tel-mb p {
-			color: red;
-			float: left;
-			line-height: 30px;
-			margin-right: 20px;
-		}
-		
-		.tel-mb a {
-			float: right;
-			border: 1px solid #ee7800;
-			background: #fff;
-			display: block;
-			width: 93px;
-			height: 28px;
-			padding-left: 25px;
-			text-align: center;
-			font-size: 12px;
-			line-height: 28px;
-			color: #ee7800;
-			position: relative;
-		}
-		
-		.tel-mb a i .kf-icon {
-			position: absolute;
-			left: 15px;
-			top: 5px;
-			width: 23px;
-			height: 18px;
-			background: url(images/mb-kf-icon.png) 0 0 no-repeat;
-		}
-		
-		.tel-mb a:hover {
-			color: #F30;
-			background: #ee7800;
-			color: #fff;
-			transition: background-color 0.5s ease;
-		}
-		
-		.tel-mb a:hover i.kf-icon {
-			background-position: 0 -18px;
-		}
-		
-		.copyright {
-			margin: 20px 0px 0px;
-			width: 100%;
-			background: #444444;
-		}
-		
-		.copyright .cent {
-			width: 1200px;
-			margin: 0 auto;
-			padding: 20px 0;
-			zoom: 1;
-			overflow: hidden;
-			color: #b4b4b4;
-			text-align: center;
-		}
-		/*下载网页《尾》*/
-	</style>
+</head>
+<style type="text/css">
+	* {
+		margin: 0px;
+		padding: 0px;
+	}
+	.container-fluid{
+		background-color: #f5f5f5;
+	}
+	.row {
+		height: 100px;
+		line-height: 100px;
+		font-size: 20px;
+		color: gray;
+		background-color: white;
+	}
+	.row div{
+		text-align: center;
+	}
+	.row .carsun{
+		display: inline-block;
+		height: 40px;
+		width: 120px;
+		line-height: 40px;
+		border-radius: 5px;
+		background-color: gainsboro;
+		margin-top: 30px;
+		text-align: center;
+		color: brown;
+	}
+	.row div:hover {
+		color: brown;
+		/*font-weight: bolder;*/
+		font-size: 22px;
+	}
 
-	<script type="text/javascript">
-		<!--单击页面跳转-->
-		function tiao(urc) {
-			location.href = urc;
-		};
+	#middle {
+		margin-left: 8.3%;
+		margin-top: 10px;
+	}
 
-		<!--单击页面跳转-->
-		var first1=0;
-		function shpage(num) {
-			if(num<=1){
-				first1=1;
-			}else{
-				first1=num-1;
-			}
-			location.href="jlpageindex?first1="+first1;
-		};
-		function xiapage(num,num2) {
-			if(num>=num2){
-				first1=num2;
-			}else{
-				first1=parseInt(num)+1;
-			}
-			location.href="jlpageindex?first1="+first1;
-		};
+	#middle dl {
+		width: 30%;
+		display: inline-block;
+		margin-left: 20px;
+		background-color: white;
+	}
 
-	</script>
+	#middle dt {
+		position: relative;
+	}
 
-	<body>
-		<div class="container-fluid">   <!--布局的容器-->			
+	#middle dt span {
+		display: inline-block;
+		position: absolute;
+		top: 90%;
+		left: 22px;
+		font-size: 18px;
+		color: white;
+	}
 
-			<div class="row">    <!--头部-->				
-				<div class="col-md-1" onclick="tiao('index.html')"></div>
-				<div class="col-md-1"><img src="images/10025.jpg" /> </div>
-				<div class="col-md-1" onclick="tiao('index.html')">首页</div>
-				<div class="col-md-1" onclick="tiao('index.html')">全部车型</div>
-				<div class="col-md-1" onclick="tiao('index.html')">车主晒单</div>
-				<div class="col-md-1" onclick="tiao('index.html')">APP下载</div>
-				<div class="col-md-1" onclick="tiao('index.html')">关于我们</div>
-				<div class="col-md-5" onclick="tiao('index.html')"></div>
-			</div>
+	#middle dt img {
+		width: 100%;
+		height: 350px;
+	}
 
-			<div id="middle"><!--身体-->
+	#middle dd {
+		text-indent: 1.5em;
+		font-size: 16px;
+		line-height: 30px;
+	}
 
-				<#list accountlist as agelist>
-				<dl>
-					<dt><img onclick="tiao('carsundetail.html')" src="images/ren.jpg" /> <span>${agelist.title}</span></dt>
-					<dd><span>时间：</span><span>${agelist.showtime}</span> </dd>
-					<dd><span>${agelist.user.uname}</span> <span>务工</span></dd>
-				</dl>
-			    </#list>
+	#page{
+		width: 65%;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		margin-left: 18%;
+		background-color: white;
+		border-radius: 5px;
+		color: dodgerblue;
+	}
+	#page a{
+		color: dodgerblue;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	#page a:hover{
+		color: brown;
+		font-weight: bold;
+	}
+	#page a:nth-of-type(1){
+		float: left;
+		margin-left: 15px;
+	}
+	#page a:nth-of-type(2){
 
-			</div>
+		margin-right: 300px;
+	}
+	#page a:nth-of-type(3){
+		margin-left: 300px;
 
-			<div id="page">  <!--分页-->									
-				<a href="jlpageindex?first1=1">首页</a>
-				<a onclick="shpage('${firstxs}')">上一页</a>
-				<span>${firstxs}/${count} </span>
-				<a onclick="xiapage('${firstxs},${count}')">下一页</a>
-				<a href="jlpageindex?first1=${count}">末页</a>
-			</div>
+	}
+	#page a:nth-of-type(4){
+		float: right;
+		margin-right: 15px;
+	}
 
-			<!--下载尾部网页《头》-->
-			<div class="ftWrap">
-				<div class="foot">
-					<div class="cent">
-						<div class="relate">
-							<div class="items">
-								<div class="tit"><i class="icon-angle-right"></i>交易帮助</div>
-								<div class="con">
-									<a href="#">买车帮助</a>
-									<a href="#">卖车帮助</a>
-									<a href="#">过户帮助</a>
-								</div>
-							</div>
-							<div class="items">
-								<div class="tit"><i class="icon-angle-right"></i>客服中心</div>
-								<div class="con">
-									<a href="abut.html">网站合作</a>
-									<a href="about.html">关于我们</a>
-									<a href="contact.html">联系我们</a>
-								</div>
-							</div>
-							<div class="items">
-								<div class="tit"><i class="icon-angle-right"></i>购车指南</div>
-								<div class="con">
-									<a href="#">购车帮助</a>
-								</div>
-							</div>
-							<div class="app-section"> <img class="js-delayed-img" src="images/f_wx.jpg">
-								<div class="title">扫码关注微信</div>
-								<p> 随时随地，秒杀好车<br /> 优质个人二手车 </p>
-							</div>
-							<div class="items last">
-								<div class="tel">
-									<h1>000-000-0000</h1>
-									<p>周一至周日 8:00-18:00</p>
-									<p>免费咨询(咨询、建议、投诉)</p>
-									<a href="#" class="kf"><i class="kf-icon"></i>在线客服</a>
-								</div>
-								<div class="tel-mb">
-									<p><span>400-710-8886</span>周一至周日 8:00-18:00(仅收市话费)</p>
-									<a href="#" class="kf"><i class="kf-icon"></i>在线客服</a>
-								</div>
-							</div>
-						</div>
+	/*下载网页《头》*/
+	.ftWrap {
+		width: 100%;
+		margin-left: -10px;
+		margin-top: 15px;
+		background: gainsboro;
+		padding: 30px 0 0px 0;
+	}
+
+	.foot {
+		width: 1200px;
+		margin: 10px auto;
+	}
+
+	.foot .relate {
+		zoom: 1;
+		overflow: hidden;
+		margin: 0;
+	}
+
+	.foot .items {
+		width: 15%;
+		float: left;
+	}
+
+	.foot .items.last {
+		width: 25%;
+		zoom: 1;
+		overflow: hidden;
+	}
+
+	.foot .items .tit {
+		color: #333;
+		padding: 0 0 10px 0;
+		font-size: 16px;
+		zoom: 1;
+		overflow: hidden;
+	}
+
+	.foot .items .tit i {
+		float: right;
+		margin-right: 20px;
+		font-size: 14px;
+		display: none;
+	}
+
+	.foot .items .con {
+		padding: 0 0 10px 0;
+		font-size: 14px;
+	}
+
+	.foot .items .con a {
+		display: block;
+		color: #666;
+		padding: 5px 0 0 0;
+	}
+
+	.foot .items .con a:hover {
+		color: #0075b3;
+	}
+
+	.foot .items .tel {
+		text-align: center;
+		margin: 0;
+		position: relative;
+		border-left: 1px solid #ddd;
+		padding-left: 30px;
+		height: 126px;
+	}
+
+	.foot .items .tel h1 {
+		font-size: 20px;
+		font-weight: normal;
+		padding: 0 0 5px 0;
+		color: #ee7800;
+		font-family: Arial;
+		min-width: 128px;
+	}
+
+	.foot .items .tel p {
+		color: #666;
+	}
+
+	.foot .items .tel a {
+		border: 1px solid #ee7800;
+		background: #fff;
+		display: block;
+		width: 93px;
+		height: 28px;
+		padding-left: 25px;
+		text-align: center;
+		margin: 15px auto auto auto;
+		font-size: 12px;
+		line-height: 28px;
+		color: #ee7800;
+		position: relative;
+	}
+
+	.foot .items .tel a i.kf-icon {
+		position: absolute;
+		left: 15px;
+		top: 5px;
+		width: 23px;
+		height: 18px;
+		background: url(images/mb-kf-icon.png) 0 0 no-repeat;
+	}
+
+	.foot .items .tel a:hover {
+		color: #F30;
+		background: #ee7800;
+		color: #fff;
+		transition: background-color 0.5s ease;
+	}
+
+	.foot .items .tel a:hover i.kf-icon {
+		background-position: 0 -18px;
+	}
+
+	.app-section {
+		width: 320px;
+		float: left;
+		margin: 0px;
+	}
+
+	.app-section .title {
+		font-size: 16px;
+		color: #333;
+		font-weight: 100;
+		margin: 0;
+		line-height: 34px
+	}
+
+	.app-section img {
+		width: 100px;
+		height: 100px;
+		margin-right: 10px;
+		float: left;
+		margin-top: 7px;
+		border: 2px solid #fff;
+	}
+
+	.app-section p {
+		float: left;
+		width: 200px;
+		font-size: 12px;
+		line-height: 24px;
+		color: #999;
+		display: block;
+		text-align: left;
+		word-wrap: break-word
+	}
+
+	.tel-mb {
+		width: 100%;
+		margin: 10px 0;
+		display: none;
+		zoom: 1;
+		overflow: hidden;
+	}
+
+	.tel-mb span {
+		color: #ee7800;
+		float: left;
+		padding: 0 5px 0 0;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 14px;
+	}
+
+	.tel-mb p {
+		color: red;
+		float: left;
+		line-height: 30px;
+		margin-right: 20px;
+	}
+
+	.tel-mb a {
+		float: right;
+		border: 1px solid #ee7800;
+		background: #fff;
+		display: block;
+		width: 93px;
+		height: 28px;
+		padding-left: 25px;
+		text-align: center;
+		font-size: 12px;
+		line-height: 28px;
+		color: #ee7800;
+		position: relative;
+	}
+
+	.tel-mb a i .kf-icon {
+		position: absolute;
+		left: 15px;
+		top: 5px;
+		width: 23px;
+		height: 18px;
+		background: url(images/mb-kf-icon.png) 0 0 no-repeat;
+	}
+
+	.tel-mb a:hover {
+		color: #F30;
+		background: #ee7800;
+		color: #fff;
+		transition: background-color 0.5s ease;
+	}
+
+	.tel-mb a:hover i.kf-icon {
+		background-position: 0 -18px;
+	}
+
+	.copyright {
+		margin: 20px 0px 0px;
+		width: 100%;
+		background: #444444;
+	}
+
+	.copyright .cent {
+		width: 1200px;
+		margin: 0 auto;
+		padding: 20px 0;
+		zoom: 1;
+		overflow: hidden;
+		color: #b4b4b4;
+		text-align: center;
+	}
+	/*下载网页《尾》*/
+</style>
+
+<script type="text/javascript" src="js/carsun01.js"></script>
+
+<body>
+<div class="container-fluid">   <!--布局的容器-->
+
+	<div class="row">    <!--头部-->
+		<div class="col-md-1" onclick="tiao('index.html')"></div>
+		<div class="col-md-1"><img src="images/10025.jpg" /> </div>
+		<div class="col-md-1" onclick="tiao('index')">首页</div>
+		<div class="col-md-1" onclick="tiao('listhtml2')">我要买车</div>
+		<div class="col-md-1" onclick="tiao('wymchtml')">我要卖车</div>
+		<div class="col-md-1 carsun" onclick="tiao('jlpageindex')">车主晒单</div>
+		<div class="col-md-1" onclick="tiao('index.html')">关于我们</div>
+		<div class="col-md-5" onclick="tiao('index.html')"></div>
+	</div>
+
+	<div id="middle"><!--身体-->
+
+		<#list accountlist as agelist>
+		<dl name="${agelist.showid}">
+			<dt><img onclick="tiao('carsundetail?showid=${agelist.showid}')" src="images/${agelist.img}" /> <span>${agelist.title}</span></dt>
+			<dd><span>时间：</span><span>${agelist.showtime}</span> </dd>
+			<dd><span>${agelist.user.uname}</span> <span>务工</span></dd>
+		</dl>
+	</#list>
+
+</div>
+
+<div id="page">  <!--分页-->
+	<a onclick="carsunpage('1')">首页</a>
+	<a onclick="carsunpage('2')">上一页</a>
+	<span class="pagei"><i>1</i>/<i>${carsunconnt}</i></span>
+	<a onclick="carsunpage('3')">下一页</a>
+	<a onclick="carsunpage('4')">末页</a>
+</div>
+
+<!--下载尾部网页《头》-->
+<div class="ftWrap">
+	<div class="foot">
+		<div class="cent">
+			<div class="relate">
+				<div class="items">
+					<div class="tit"><i class="icon-angle-right"></i>交易帮助</div>
+					<div class="con">
+						<a href="#">买车帮助</a>
+						<a href="#">卖车帮助</a>
+						<a href="#">过户帮助</a>
 					</div>
 				</div>
-				<div class="copyright">
-					<div class="cent"> Copyright 2016-2017, snncar.com,All Rights Reserved 皖ICP备16022456号-1</div>
+				<div class="items">
+					<div class="tit"><i class="icon-angle-right"></i>客服中心</div>
+					<div class="con">
+						<a href="abut.html">网站合作</a>
+						<a href="about.html">关于我们</a>
+						<a href="contact.html">联系我们</a>
+					</div>
+				</div>
+				<div class="items">
+					<div class="tit"><i class="icon-angle-right"></i>购车指南</div>
+					<div class="con">
+						<a href="#">购车帮助</a>
+					</div>
+				</div>
+				<div class="app-section"> <img class="js-delayed-img" src="images/f_wx.jpg">
+					<div class="title">扫码关注微信</div>
+					<p> 随时随地，秒杀好车<br /> 优质个人二手车 </p>
+				</div>
+				<div class="items last">
+					<div class="tel">
+						<h1>000-000-0000</h1>
+						<p>周一至周日 8:00-18:00</p>
+						<p>免费咨询(咨询、建议、投诉)</p>
+						<a href="#" class="kf"><i class="kf-icon"></i>在线客服</a>
+					</div>
+					<div class="tel-mb">
+						<p><span>400-710-8886</span>周一至周日 8:00-18:00(仅收市话费)</p>
+						<a href="#" class="kf"><i class="kf-icon"></i>在线客服</a>
+					</div>
 				</div>
 			</div>
-			<!--下载尾部网页《尾》-->			
-
 		</div>
-	</body>
+	</div>
+	<div class="copyright">
+		<div class="cent"> Copyright 2016-2017, snncar.com,All Rights Reserved 皖ICP备16022456号-1</div>
+	</div>
+</div>
+<!--下载尾部网页《尾》-->
+
+</div>
+</body>
 
 </html>

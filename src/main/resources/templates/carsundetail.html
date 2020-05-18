@@ -96,9 +96,12 @@
 		}
 		.comment_xie li:nth-of-type(1){
 			height: 80px;
-			text-indent: 1em;
-			background-color: gainsboro;
-		}		
+
+		}
+		.comment_xie textarea{
+			width: 100%;
+			height: 100%;
+		}
 		.comment_xie li:nth-of-type(2){
 			height: 40px;
 			width: 100%;
@@ -377,12 +380,7 @@
 		/*固定栏《尾》*/
 	</style>
 	
-	<script type="text/javascript">
-		<!--单击页面跳转-->
-		function tiao(urc) {
-			location.href = urc;
-		};
-	</script>
+	<script type="text/javascript" src="js/carsundetail01.js"></script>
 	
 	<body>
 		<div class="container-fluid">   <!--布局的容器-->		
@@ -411,36 +409,39 @@
 			<div id="middle">   <!--身体-->	
 				
 				<div class="middle_zi">
-					<p>车已经准备好了，就等女朋友来了</p>
-					<p><span>苏先生</span>  <span>务工</span> <span style="float: right;">2019.11.10</span></p>
-					<p>买个车现在方便一点吧，打算也出去转一转玩一玩，生活质量可以提高很多，最好是有车了找个女朋友也好找点吧，现在还单身呢。</p>
-					<img src="images/ren.jpg" />
+					<p>${onebuyershow.title}</p>
+					<p><span>${onebuyershow.user.uname}</span>  <span>务工</span> <span style="float: right;">${onebuyershow.showtime}</span></p>
+					<p>${onebuyershow.showmsg}</p>
+					<img src="images/${onebuyershow.img}" />
 				</div>				
 				
 				<!--评论区《头》-->
 				<div class="middle_comment">
 					<h3>评论区</h3>
 					<div class="comment_kan">
-						<ul>
-							<li><span>李四</span> <span>2020-01-12 14:21:53</span></li>
-							<li>真好看啊！</li>
-						</ul>
-						
-						<ul>
-							<li><span>张三</span> <span>2020-01-12 14:21:53</span></li>
-							<li>不错，很省油</li>
-						</ul>
-						
-						<ul>
-							<li><span>轩二</span> <span>2020-01-12 14:21:53</span></li>
-							<li>捡到宝了，跟新车一样</li>
-						</ul>
+						<#list onecommentList as commentList>
+							<ul>
+								<li><span>${commentList.user.uname}</span> <span>${commentList.cdate}</span></li>
+								<li>${commentList.comment}</li>
+							</ul>
+					    </#list>
 					</div>
+
 					<h3>说说你的看法</h3>
 					<div class="comment_xie">
 						<ul>
-							<li>说点什么吧.....</li>
-							<li><span onclick="tiao('index.html')">发布</span></li>
+							<li>
+								<textarea >
+
+								</textarea>
+							</li>
+							<li>
+								<#if list2??>
+								<span onclick="tiao('${onebuyershow.showid}','${list2.uid}')">发布</span>
+								<#else>
+								<span onclick="tiao('${onebuyershow.showid}','1')">发布</span>
+							    </#if>
+							</li>
 						</ul>
 					</div>
 				</div>

@@ -360,6 +360,74 @@ public class CarController {
         return str;
     }
 
+    //得到总页数
+    @RequestMapping("/getcarcount")
+    @ResponseBody
+    public int listhtmlconnt(String pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid,String addid,String colorid) {
+        System.out.println(" --------进入查询--------- ");
+        if(bid==null){
+            bid="0";
+        }
+        if(csid==null){
+            csid="0";
+        }
+        if(addid==null){
+            addid="0";
+        }
+        if(colorid==null){
+            colorid="0";
+        }
+        int addid2 = Integer.parseInt(addid);
+        int colorid2 =Integer.parseInt(colorid);
+        car.setAddressid(addid2);
+        car.setCorolid(colorid2);
+
+        int bid2 =Integer.parseInt(bid);
+        int csid2=Integer.parseInt(csid);
+        System.out.println("车牌id为"+bid2);
+        car.setBid(bid2);
+        car.setCsid(csid2);
+        car.setPrice(price);
+        car.setFirst(1);
+        car.setPageSize(8);
+        if(carage==null){
+            carage="0";
+        }
+        int age = Integer.parseInt(carage);
+        System.out.println("车龄是区间"+age);
+        car.setCarage(car.getCarage());
+        System.out.println("价格"+car.getPrice());
+
+        //分页得总页数
+        int pageSize=8;
+        if(pageindex==null){
+            pageindex="0";
+        }
+        int first1=Integer.parseInt(pageindex);
+        //查询页码
+        System.out.println(first1);
+        int first=0;
+        if(first1!=0){
+            first=(first1-1)*pageSize;
+        }
+
+        //总页数
+        List<Car> listmanyQuery02 =carService.jiangPageconut(car);
+        int count=listmanyQuery02.size();
+        System.out.println("总个数："+count);
+
+        car.setFirst(first);
+        car.setPageSize(pageSize);
+        if(count%pageSize==0){
+            count=count/pageSize;
+        }else{
+            count=count/pageSize+1;
+        }
+        System.out.println("总页数："+count);
+
+        return count;
+    }
+
     //导航栏异步跳转
     @RequestMapping("/listhtml4")
     @ResponseBody
