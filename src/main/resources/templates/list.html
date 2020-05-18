@@ -273,10 +273,10 @@
             <dl class="fliter-bd clearfix">
                 <dt>品牌：</dt>
                 <dd class="clickBrandWidget">
-                    <a  class="on" title="p-0">不限</a>
+                    <a  class="on" title="p-0" onclick="cardseries()">不限</a>
                     <#list brandList as brand>
                     <a  class="xz" name="aa" title="p-${brand.bid}" onclick="cardseries()">${brand.bname} </a>
-                </#list>
+                    </#list>
                 </dd>
             </dl>
 
