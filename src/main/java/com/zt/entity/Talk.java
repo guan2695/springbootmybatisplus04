@@ -10,6 +10,7 @@ public class Talk {
     private int otherid;
     private String talkmsg;
     private String talkdate;
+    private int talkstate;
 
     private int unread;//未读消息数
 
@@ -24,10 +25,19 @@ public class Talk {
                 ", otherid=" + otherid +
                 ", talkmsg='" + talkmsg + '\'' +
                 ", talkdate='" + talkdate + '\'' +
+                ", talkstate=" + talkstate +
                 ", unread=" + unread +
                 ", meuser=" + meuser +
                 ", otheruser=" + otheruser +
                 '}';
+    }
+
+    public int getTalkstate() {
+        return talkstate;
+    }
+
+    public void setTalkstate(int talkstate) {
+        this.talkstate = talkstate;
     }
 
     public int getUnread() {

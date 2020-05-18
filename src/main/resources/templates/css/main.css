@@ -87,7 +87,7 @@ ul li{
 	height: 34px;
 	margin-left: 13px;
 	border-radius: 2px;
-	background: url(../images/me.png);
+	background: url(../images/own_head.jpg);
 	background-size:34px;
 }
 
@@ -341,6 +341,7 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 .user_name{
 	color: #333;
 	font-size: 14px;
+    font-weight: bold;
 }
 
 .user_message{
@@ -359,6 +360,18 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 	width: 20px;
 	height:20px;
 	border-radius:10px;
+}
+.user_time2{
+	float: right;
+	font-size: 12px;
+	/*font-weight: bold;*/
+	/*color: white;*/
+	/*text-align:center;*/
+	/*line-height:20px;*/
+	/*background: red;*/
+	/*width: 20px;*/
+	/*height:20px;*/
+	/*border-radius:10px;*/
 }
 
 .zUIpanelScrollBox,.zUIpanelScrollBar{
@@ -426,6 +439,9 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 
 .icon_active, .user_active{
 	background:#dedbdb;
+}
+.user_active{
+    border-bottom: solid 1px #CCCCCC;
 }
 
 /*******聊天窗口******/

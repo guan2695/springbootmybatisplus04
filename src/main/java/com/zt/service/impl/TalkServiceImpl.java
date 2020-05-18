@@ -27,4 +27,19 @@ public class TalkServiceImpl implements TalkService {
     public List<Talk> getTalkHistory(int meid, int otherid) {
         return talkMapper.getTalkHistory(meid,otherid);
     }
+
+    @Override
+    public int updTalkState(int meid, int otherid) {
+        return talkMapper.updTalkState(meid,otherid);
+    }
+
+    @Override
+    public int sendTalk(Talk talk) {
+        return talkMapper.sendTalk(talk);
+    }
+
+    @Override
+    public List<Talk> getAllTalk(int meid) {
+        return talkMapper.getAllTalk(meid);
+    }
 }

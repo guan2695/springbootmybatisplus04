@@ -12,4 +12,7 @@ import java.util.List;
 public interface TalkService {
     public List<Talk> getUnreadGroup(int meid);
     public List<Talk> getTalkHistory(int meid,int otherid);
+    public int updTalkState(int meid,int otherid);
+    public int sendTalk(Talk talk);
+    public List<Talk> getAllTalk(int meid);
 }
