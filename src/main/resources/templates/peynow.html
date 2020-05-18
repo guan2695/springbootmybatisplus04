@@ -24,11 +24,10 @@
 	<script type="text/javascript">
 		$(function(){
 			//alert("aa");
-			var umoney = $("input[id=u-money]").val();
-			var  cprice =$("input[id=c-price]").val();
+			var umoney = Number($("input[id=u-money]").val());
+			var  cprice =Number($("input[id=c-price]").val());
 			if(umoney>=cprice){
 				var yue= Number(umoney)*10000-Number(cprice)*10000;
-
 				$("#yue").html(Number(yue/10000)+"万");
 			}else{
 			$("#yue").html("余额不足");
@@ -36,15 +35,19 @@
 
 		})
 		function zhifu() {
+			var cid =$("input[id=c-cheid]").val();
+			//alert(cid);
 			var a2="余额不足";
 			var a=$("#yue").html();
-				alert(a);
+				//alert(a);
 			if(a==a2){
-				alert("余额不足跳转到贷款");
-				location.href="/usedcar/loans.html"
+				if(confirm("余额不足是否前往贷款")){
+					location.href="/usedcar/loans?cid="+cid;
+					return false;
+				}
 
 			}
-
+    return false;
 		};
 
 
@@ -71,6 +74,7 @@
 							<#if (list2.uname)??>
 							<span class="span01">${list2.money}万</span>
 							<input type="hidden" id="u-money" value="${list2.money}">
+							<input type="hidden" id="c-cheid" value="${getone.cid}">
 							<input type="hidden" id="c-price" value="${getone.price}">
 							<#else>
 							<span class="span01"></span>

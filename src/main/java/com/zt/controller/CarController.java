@@ -572,7 +572,7 @@ public class CarController {
     if(cuid==uid){
         return "404";
     }
-    return "forward:index";
+    return "forward:selectTranction?uid="+uid;
 }
 
 }

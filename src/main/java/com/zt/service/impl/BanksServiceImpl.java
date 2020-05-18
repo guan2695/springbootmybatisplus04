@@ -22,4 +22,6 @@ public class BanksServiceImpl implements BanksService {
     public List<Banks> getAllBanks() {
         return banksMapper.getAllBanks();
     }
+
+
 }

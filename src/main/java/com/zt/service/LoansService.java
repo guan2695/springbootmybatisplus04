@@ -13,5 +13,7 @@ public interface LoansService {
     public List<Loans> getAllLoans();
     public int updLoansState(int lid,int lstate);
     public int addLoansOverBeca(int lid,String lmsgbecause);
+    public int insertloans(Loans loans);
+    public List<Loans>getUserone(Loans loans);
 
 }
