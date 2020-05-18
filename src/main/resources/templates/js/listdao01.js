@@ -30,7 +30,7 @@ $(function () {
                    var carage=obj.carage;               //获取车龄
                    tr+="<li>" +
                        "<div class='list-infoBox'>" +
-                       "<a target='_parent' href='#'><img src='"+img+"' width='290' height='194' /></a>" +
+                       "<a target='_parent' href='getCarone?cid="+obj.cid+"'><img src='"+img+"' width='290' height='194' /></a>" +
                        "<p class='infoBox'><a target='_blank' class='info-title'></a>"+bname+"-"+csname+""+cid +" 车龄"+carage+"年 </p>" +
                        "<p class='fc-gray'><span class='tag-gray'>"+obj.address.address+"</span> <span class=''>车龄"+carage+"年</span> <em class='shuxian'>|</em> 颜色:"+obj.corol.corol+"</p>" +
                        "<p class='priType-s'><span> <i class='fc-org priType'>"+obj.price+"万 </i> </span> <s>"+obj.oprice+"万</s> </p> " +
@@ -103,7 +103,7 @@ $(function () {
                     var carage=obj.carage;               //获取车龄
                     tr+="<li>" +
                         "<div class='list-infoBox'>" +
-                        "<a target='_parent' href='#'><img src='"+img+"' width='290' height='194' /></a>" +
+                        "<a target='_parent' href='getCarone?cid="+obj.cid+"'><img src='"+img+"' width='290' height='194' /></a>" +
                         "<p class='infoBox'><a target='_blank' class='info-title'></a>"+bname+"-"+csname+""+cid +" 车龄"+carage+"年 </p>" +
                         "<p class='fc-gray'><span class='tag-gray'>"+obj.address.address+"</span> <span class=''>车龄"+carage+"年</span> <em class='shuxian'>|</em> 颜色:"+obj.corol.corol+"</p>" +
                         "<p class='priType-s'><span> <i class='fc-org priType'>"+obj.price+"万 </i> </span> <s>"+obj.oprice+"万</s> </p> " +
@@ -218,7 +218,7 @@ function carpage(math) {
                 var carage=obj.carage;               //获取车龄
                 tr+="<li>" +
                     "<div class='list-infoBox'>" +
-                    "<a target='_parent' href='#'><img src='"+img+"' width='290' height='194' /></a>" +
+                    "<a target='_parent' href='getCarone?cid="+obj.cid+"'><img src='"+img+"' width='290' height='194' /></a>" +
                     "<p class='infoBox'><a target='_blank' class='info-title'></a>"+bname+"-"+csname+""+cid +" 车龄"+carage+"年 </p>" +
                     "<p class='fc-gray'><span class='tag-gray'>"+obj.address.address+"</span> <span class=''>车龄"+carage+"年</span> <em class='shuxian'>|</em> 颜色:"+obj.corol.corol+"</p>" +
                     "<p class='priType-s'><span> <i class='fc-org priType'>"+obj.price+"万 </i> </span> <s>"+obj.oprice+"万</s> </p> " +
