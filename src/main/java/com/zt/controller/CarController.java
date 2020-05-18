@@ -457,7 +457,7 @@ public class CarController {
         car.setPrice(price);
         car.setAddressid(addid2);
         car.setCorolid(colorid2);
-        car.setFirst(1);
+        car.setFirst(0);
         car.setPageSize(8);
         if(carage==null){
             carage="0";
@@ -595,7 +595,7 @@ public class CarController {
      */
     @Transactional
     @RequestMapping("/buyCar")
-    public String buyCar(Car car,int uid,double money,int cid,int cuid,User user,Double umoney,Double cmoney,Transaction transaction){
+    public String buyCar(Car car,int uid,double money,int cid,int cuid,User user,Double umoney,Double cmoney,Transaction transaction,Model model){
     System.out.println("进入买车");
     System.out.println("买家id"+uid);
     System.out.println(money);
@@ -640,7 +640,8 @@ public class CarController {
     if(cuid==uid){
         return "404";
     }
-    return "forward:selectTranction?uid="+uid;
+
+    return "success";
 }
 
 }

@@ -2,6 +2,8 @@ package com.zt.controller;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zt.entity.*;
+import com.zt.mapper.AssessoverMapper;
+import com.zt.mapper.LoansassesMapper;
 import com.zt.mapper.UsersMapper;
 import com.zt.service.*;
 import org.apache.ibatis.annotations.Update;
@@ -35,6 +37,13 @@ public class UserController {
     private LoansService loansService;
     @Autowired
     private BanksService banksService;
+
+    @Autowired
+    private LoansassesMapper loansassesMapper;
+    @Autowired
+    private AssessmentService assessmentService;
+    @Autowired
+    private AssessoverMapper assessoverMapper;
 
     /**
      * 得到所有用户
@@ -179,6 +188,56 @@ public class UserController {
         return "loans";
     }
 
+    /**
+     * 查询失败原因
+     * @param
+     * @return
+     */
+    @RequestMapping("/selecterrorLoansasses")
+    @ResponseBody
+    public String    selecterrorLoansasses(Loansasses loansasses,int lid,Model model){
+        loansasses.setLid(lid);
+        Loansasses loansasses1 =loansassesMapper.selecterrorLoansasses(loansasses);
+        model.addAttribute("loansasses1",loansasses1);
+       String Lmsgstate=  loansasses1.getLmsgbecause();
+        return Lmsgstate;
+    }
+
+    /**
+     * 进入用户车辆审核页面
+     * @param
+     * @return
+     */
+    @RequestMapping("/selectUserAssessment")
+    public  String selectUserAssessment(Assessment assessment,int uid,Model model){
+        assessment.setUid(uid);
+        List<Assessment> assessmentList= assessmentService.selectUserAssessment(assessment);
+        model.addAttribute("assessmentList",assessmentList);
+
+        for (Assessment assessment1 : assessmentList) {
+           int cid= assessment1.getCid();
+//           Car car = new Car();
+//           car.setCid(cid);
+//          Car getCar= carService.getCarone(car);
+//          model.addAttribute("getCar",getCar);
+        }
+        return "user_car";
+    }
+
+    /**
+     * 查看车辆审核失败原因
+     * @param
+     * @return
+     */
+    @RequestMapping("/selectOver")
+    @ResponseBody
+    public String selectOver(Assessover assessover,int aid){
+        assessover.setAid(aid);
+        Assessover assessover1 = assessoverMapper.selectOver(assessover);
+       String because= assessover1.getBecause();
+    return because;
+    }
+
     public double toDouble(double num) {
         DecimalFormat dFormat = new DecimalFormat("#.00");
         String yearString = dFormat.format(num);
@@ -212,16 +271,16 @@ public class UserController {
         int num= loansService.insertloans(loans);
         System.out.println("插入贷款信息"+num);
 
-        User user2 = new User();
-        user2.setUid(cuid);
-        user2.setMoney(money3);
-        int num2=userService.updateMoney(user2);
-        System.out.println("车主增加金额"+num2);
+//        User user2 = new User();
+//        user2.setUid(cuid);
+//        user2.setMoney(money3);
+//        int num2=userService.updateMoney(user2);
+//        System.out.println("车主增加金额"+num2);
 
         if(num==0){
             return "404";
         }
-        return "index";
+        return "userloan?uid="+uid;
     }
 
     @RequestMapping("/wymchtml")
@@ -274,6 +333,7 @@ public class UserController {
         }
         return "user";
     }
+
 //    //分页
 //    @RequestMapping("fenye")
 //    public String fentye(Integer pageindex,Model model){

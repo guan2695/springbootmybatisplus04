@@ -198,6 +198,23 @@ function carinfo(cid) {
 	// location.href="/usedcar/adminGetOneCar?cid="+cid;
 }
 
+function selectOver(aid) {
+	alert(aid);
+	$.ajax({
+		type:'post',
+		url:"selectOver",
+		data:'aid='+aid,
+		success:function (result) {
+			alert("不通过原因是"+result);
+		},
+		error:function () {
+			alert("失败");
+
+		}
+	})
+	
+
+}
 /*修改一辆车*/
 function updcar(cid) {
 	// window.open("/usedcar/adminUpdCarBefo?cid="+cid);

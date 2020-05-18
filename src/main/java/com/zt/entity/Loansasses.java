@@ -11,7 +11,7 @@ public class Loansasses {
     //评估员id外键
     private int adminid;
     //0 未 1 评估成功
-    private int lmsgstate;
+    private String lmsgbecause;
 
     public Loansasses() {
     }
@@ -40,12 +40,12 @@ public class Loansasses {
         this.adminid = adminid;
     }
 
-    public int getLmsgstate() {
-        return lmsgstate;
+    public String getLmsgbecause() {
+        return lmsgbecause;
     }
 
-    public void setLmsgstate(int lmsgstate) {
-        this.lmsgstate = lmsgstate;
+    public void setLmsgbecause(String lmsgbecause) {
+        this.lmsgbecause = lmsgbecause;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Loansasses {
                 "lmsgid=" + lmsgid +
                 ", lid=" + lid +
                 ", adminid=" + adminid +
-                ", lmsgstate=" + lmsgstate +
+                ", lmsgbecause='" + lmsgbecause + '\'' +
                 '}';
     }
 }

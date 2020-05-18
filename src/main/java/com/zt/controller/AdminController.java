@@ -198,6 +198,17 @@ public class AdminController {
         model.addAttribute("car",car);
         return "adminCarInfo";
     }
+    @RequestMapping("/adminGetOneCar2")
+    public String adminLookOneCar2(int cid,Model model,int aid){
+        System.out.println("进入查询一辆车信息");
+        System.out.println("该aid为"+aid);
+        Car car= carService.GetOneCarAllInfo(cid);
+        System.out.println(car);
+        model.addAttribute("car",car);
+        model.addAttribute("aid",aid);
+
+        return "adminCarInfo";
+    }
 
     /**
      * 管理员修改一辆车之前，得到一辆车的信息
