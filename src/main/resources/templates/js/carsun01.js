@@ -3,7 +3,7 @@ $(function () {
     $("#middle").on("click","dl",function(){
         var showid=$(this).attr("name");
         alert(showid);
-        location.href = "carsundetail.html";
+        location.href = "getOneShow?showid="+showid;
     });
 
 }); //窗体
