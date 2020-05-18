@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,30 +57,49 @@ public class BuyershowController {
      * @return
      */
     @RequestMapping("getOneShow")
-    @ResponseBody
-    public Buyershow getOneBuyerShowByid(int showid) {
+    public String getOneBuyerShowByid(int showid,Model medel) {
         System.out.println("进入查询一个买家秀的方法");
         Buyershow buyershow = buyershowService.getOneShow(showid);
         System.out.println(buyershow);
+        medel.addAttribute("onebuyershow",buyershow);
+
         System.out.println("得到所有评论");
         List<Comment> commentList = buyershowService.getAllCommentByshow(showid);
         commentList.forEach(System.out::println);
-        return buyershow;
+        medel.addAttribute("onecommentList",commentList);
+        return "carsundetail";
     }
 
-    /**
-     * 添加评论
-     *
-     * @param comment
-     * @return
-     */
+
+
     @RequestMapping("/addComment")
     @ResponseBody
-    public int addComment(Comment comment) {
+    public List<Comment> addComment(String showid,String uid,String comment01,Model medel) {
+        System.out.println("进入添加评论方法"+showid+"\t"+uid+"\t"+comment01);
+        if(showid==null&&uid==null&&comment01==null){
+            System.out.println("Comment是空值");
+        }
+
+        Comment comment=new Comment();
+        //得到当前时间
+        Date da=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String mytime=sdf.format(da);
+        comment.setCdate(mytime);
+        comment.setShowid(Integer.parseInt(showid));
+        comment.setUid(Integer.parseInt(uid));
+        comment.setComment(comment01);
+        System.out.println(comment);
+
+
         System.out.println("进入添加评论方法");
         int num = buyershowService.addComment(comment);
         System.out.println(num);
-        return num;
+
+        System.out.println("得到所有评论");
+        List<Comment> commentList = buyershowService.getAllCommentByshow(comment.getShowid());
+        commentList.forEach(System.out::println);
+        return commentList;
     }
 
     @RequestMapping("/jlpageindex")

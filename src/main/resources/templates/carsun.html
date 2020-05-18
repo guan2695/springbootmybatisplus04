@@ -365,7 +365,7 @@
 
 		<#list accountlist as agelist>
 		<dl name="${agelist.showid}">
-			<dt><img onclick="tiao('carsundetail.html')" src="images/${agelist.img}" /> <span>${agelist.title}</span></dt>
+			<dt><img onclick="tiao('carsundetail?showid=${agelist.showid}')" src="images/${agelist.img}" /> <span>${agelist.title}</span></dt>
 			<dd><span>时间：</span><span>${agelist.showtime}</span> </dd>
 			<dd><span>${agelist.user.uname}</span> <span>务工</span></dd>
 		</dl>
