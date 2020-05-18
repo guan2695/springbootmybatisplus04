@@ -1,12 +1,10 @@
 package com.zt.controller;
 
-import com.zt.entity.Car;
-import com.zt.entity.History;
-import com.zt.entity.User;
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.zt.entity.*;
 import com.zt.mapper.UsersMapper;
-import com.zt.service.CarService;
-import com.zt.service.HistoryService;
-import com.zt.service.UserService;
+import com.zt.service.*;
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.lang.UsesJava7;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import javax.xml.transform.Source;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -32,6 +31,10 @@ public class UserController {
     private UsersMapper usersMapper;
     @Autowired
     private CarService carService;
+    @Autowired
+    private LoansService loansService;
+    @Autowired
+    private BanksService banksService;
 
     /**
      * 得到所有用户
@@ -131,6 +134,22 @@ public class UserController {
     public String userinfoPwd(HttpSession session, User user) {
         return "user_account";
     }
+    @RequestMapping("/userloan")
+    public  String userloan(User user,Model model,int uid){
+        Loans loans = new Loans();
+        loans.setUid(uid);
+        System.out.println("用户di为"+user.getUid());
+       List<Loans> loansList= loansService.getUserone(loans);
+       model.addAttribute("loansList",loansList);
+        return "user_loans";
+    }
+    /**
+     * 进入购买页面
+     * @param model
+     * @param user
+     * @param car
+     * @return
+     */
     @RequestMapping("/peynow")
     public String loans(Model model, User user,Car car) {
         System.out.println(car);
@@ -138,6 +157,71 @@ public class UserController {
         model.addAttribute("getone",getone);
         System.out.println("进入购买页面");
         return "peynow";
+    }
+
+    /**
+     * 进入贷款页面
+     * @param model
+     * @param car
+     * @param cid
+     * @return
+     */
+    @RequestMapping("/loans")
+    public String loans(Model model,Car car,int cid){
+        System.out.println("进入贷款页面");
+        System.out.println(car);
+        car.setCid(cid);
+        Car getone2 = carService.getCarone(car);
+        model.addAttribute("getoneloans",getone2);
+        System.out.println("进入贷款页面");
+       List<Banks> banksList= banksService.getAllBanks();
+        model.addAttribute("banksList",banksList);
+        return "loans";
+    }
+
+    public double toDouble(double num) {
+        DecimalFormat dFormat = new DecimalFormat("#.00");
+        String yearString = dFormat.format(num);
+        Double temp = Double.valueOf(yearString);
+        return temp;
+    }
+    /**
+     * 添加贷款信息
+     * @param
+     * @param
+     * @return
+     */
+
+
+    @RequestMapping("/insertbanks")
+    public String insertbanks(Model model, Loans loans,int bankid,int cuid,Double cmoney,int uid,String idcard,Double lmoney,int ishavehouse){
+        loans.setUid(uid);
+        loans.setLmoney(lmoney);
+        loans.setIdcard(idcard);
+        loans.setIshavehouse(ishavehouse);
+        loans.setBankid(bankid);
+        System.out.println(loans);
+        loans.setBankid(bankid);
+        //车钱
+         Double money= loans.getLmoney();
+         //卖车的加钱uid
+        System.out.println("车主的余额"+cmoney);
+        Double money3 =cmoney+money;
+        money3=toDouble(money3);
+        int cuid2=cuid;
+        int num= loansService.insertloans(loans);
+        System.out.println("插入贷款信息"+num);
+
+        User user2 = new User();
+        user2.setUid(cuid);
+        user2.setMoney(money3);
+        int num2=userService.updateMoney(user2);
+        System.out.println("车主增加金额"+num2);
+
+        if(num==0){
+            return "404";
+        }
+        return "index";
     }
 
     @RequestMapping("/wymchtml")
@@ -150,6 +234,7 @@ public class UserController {
      * @param model
      * @return
      */
+
     @RequestMapping("/register")
     public String add(User user, Model model) {
         System.out.println("页面传送的uname是" + user.getUname());
@@ -177,13 +262,17 @@ public class UserController {
         return "remove";
     }
     @RequestMapping("/updateuser")
-    public String updateuser(Model model, User user,int uid){
+    public String updateuser(Model model, User user,int uid,HttpSession session){
+        System.out.println(user);
         user.setUid(uid);
         int num = userService.updateuser(user);
+       User list2= userService.selectlogin(user);
+       session.removeAttribute("list2");
+       session.setAttribute("list2",list2);
         if(num==0){
             return "forward:userinfo";
         }
-        return "forward:userinfo";
+        return "user";
     }
 //    //分页
 //    @RequestMapping("fenye")

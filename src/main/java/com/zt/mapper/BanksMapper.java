@@ -50,4 +50,8 @@ public interface BanksMapper {
      */
     @Select("select * from banks where bankid=#{bankid}")
     public Banks getOneBankById(int bankid);
+    /**
+     * 插入贷款信息
+     */
+
 }

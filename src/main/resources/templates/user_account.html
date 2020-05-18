@@ -228,6 +228,7 @@ $(function () {
                     <li ><a href="userinfo">用户中心</a></li>
                     <li><a href="selectTranction?uid=${list2.uid}">我的业务</a></li>
                     <li class="on"><a href="userinfoPwd">账户管理</a></li>
+                    <li ><a href="userloan?uid=${list2.uid}">申请详细</a></li>
                 </ul>
 			</div>
 			<div class="meb-right fr dInline">
@@ -239,7 +240,7 @@ $(function () {
         <div class="mr-infor fl dInline">
             <h2>中午好，尊敬的用户 <b>${list2.uname}</b></h2>
             <p>
-                手机：${list2.phone}   邮箱：  |  [ <a href="#">管理账户信息</a> ]
+                手机：${list2.phone}   邮箱：  | [ <a href="inTalk?meid=${list2.uid}">我的消息</a> ]
             </p>
         </div>
     </div>
@@ -355,7 +356,7 @@ $(function () {
     function checkPasspost(){
         var upwd=editP.password1.value;//性别
         var opassword=editP.opassword.value;//性别
-        alert(opassword);
+        //alert(opassword);
         var password1=editP.upwd.value;//密码
         var password2=editP.password2.value;//密码
         var Ypass=/\S{6,}/;//密码验证

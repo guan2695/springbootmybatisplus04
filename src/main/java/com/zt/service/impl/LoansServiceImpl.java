@@ -30,4 +30,14 @@ public class LoansServiceImpl implements LoansService {
     public int addLoansOverBeca(int lid, String lmsgbecause) {
         return loansMapper.addLoansOverBeca(lid,lmsgbecause);
     }
+
+    @Override
+    public int insertloans(Loans loans) {
+        return loansMapper.insertloans(loans);
+    }
+    @Override
+    public List<Loans>getUserone(Loans loans){
+        return loansMapper.getUserone(loans);
+    }
+
 }
