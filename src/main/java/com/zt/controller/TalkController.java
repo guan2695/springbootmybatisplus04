@@ -64,6 +64,21 @@ public class TalkController {
     }
 
     /**
+     * 查看消息列表
+     * @param meid
+     * @param otherid
+     * @return
+     */
+    @RequestMapping("/getTalkinfo2")
+    @ResponseBody
+    public List<Talk> getTalkInfo2(int meid,int otherid){
+        System.out.println("查看消息列表");
+        List<Talk> talkList= talkService.getTalkHistory(meid,otherid);
+        talkList.forEach(System.out::println);
+        return talkList;
+    }
+
+    /**
      * 发送消息
      * @param talk
      * @return
