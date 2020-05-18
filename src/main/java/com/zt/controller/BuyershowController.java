@@ -155,7 +155,29 @@ public class BuyershowController {
 
     @RequestMapping("/jlpageindex2")
     @ResponseBody
-    public String Jlpageindex2(String first3,Model medel,HttpSession session1){
+    public List<Buyershow> Jlpageindex2(String first3,Model medel,HttpSession session1){
+        if(first3==null){
+            first3="0";
+        }
+        int first1 = Integer.parseInt(first3);
+        //分页
+        int pageSize=6;
+        //查询页码
+        System.out.println(first1);
+        int first=0;
+        if(first1!=0){
+            first=(first1-1)*pageSize;
+        }
+
+        List<Buyershow> accountlist= buyershowService.getPageIndex(first, pageSize);
+        accountlist.forEach(System.out::println);
+
+        return accountlist;
+    }
+
+    @RequestMapping("/jlpagecount2")
+    @ResponseBody
+    public String Jlpagecount2(String first3,Model medel,HttpSession session1){
         if(first3==null){
             first3="0";
         }
@@ -188,16 +210,10 @@ public class BuyershowController {
         }else{
             first2=1;
         }
-        System.out.println("显示页数"+first2);
-
-        List<Buyershow> accountlist= buyershowService.getPageIndex(first, pageSize);
-        accountlist.forEach(System.out::println);
-
-        //存值
-        String str=first2+"~"+count+"~"+ JSONArray.toJSONString(accountlist);
-        System.out.println(str);
+       //存值
+        String str=first2+"~"+count;
         return str;
-    }
+        }
 
 
     @RequestMapping("/insertBuyshow")

@@ -214,7 +214,7 @@ public class CarController {
         car.setBid(bid2);
         car.setCsid(csid2);
         car.setPrice(price);
-        car.setFirst(1);
+        car.setFirst(0);
         car.setPageSize(8);
         if(carage==null){
             carage="0";
@@ -457,7 +457,7 @@ public class CarController {
         car.setPrice(price);
         car.setAddressid(addid2);
         car.setCorolid(colorid2);
-        car.setFirst(1);
+        car.setFirst(0);
         car.setPageSize(8);
         if(carage==null){
             carage="0";

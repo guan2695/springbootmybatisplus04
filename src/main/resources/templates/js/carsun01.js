@@ -2,7 +2,6 @@
 $(function () {
     $("#middle").on("click","dl",function(){
         var showid=$(this).attr("name");
-        alert(showid);
         location.href = "getOneShow?showid="+showid;
     });
 
@@ -38,19 +37,12 @@ function carsunpage(math) {
     if(math==4){
         index=count;
     }
-    $.ajax({
+    $.ajax({           //更新内容
         type:'post',
         url:'jlpageindex2',
         data:'first3='+index,
         cache:false,
         success:function(result){
-            var ar=result.split("~","3");
-            var first=ar[0];
-            var count2=ar[1];
-            $(".pagei").find("i:eq(0)").html(first);
-            $(".pagei").find("i:eq(1)").html(count2);
-            //result=$.parseJSON(ar[2])
-            result=eval(ar[2]);
             $("#middle").html("");  //清空处理
             for(var i=0;i<result.length;i++){
                 var obj=result[i];
@@ -63,6 +55,23 @@ function carsunpage(math) {
                     "</dl> ";
             }
             $("#middle").append(tr);
+        },
+        error:function(){
+            alert("响应失败！!");
+        }
+    });
+
+    $.ajax({          //更新页码
+        type:'post',
+        url:'jlpagecount2',
+        data:'first3='+index,
+        cache:false,
+        success:function(result){
+            var ar=result.split("~","2");
+            var first=ar[0];
+            var count2=ar[1];
+            $(".pagei").find("i:eq(0)").html(first);
+            $(".pagei").find("i:eq(1)").html(count2);
         },
         error:function(){
             alert("响应失败！!");
