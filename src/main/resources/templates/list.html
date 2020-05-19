@@ -230,8 +230,8 @@
             <span class="common-bg city-logo"></span> </div>
         <div class="sea">
             <div class="egc-sea-box">
-                <input type="text" class="sea-ipt-txt" placeholder="搜索您想要的车" />
-                <a href="#" class="search-btn">搜索</a> </div>
+                <input type="text" id="searchCarText" class="sea-ipt-txt" placeholder="搜索您想要的车" />
+                <a onclick="searchCarPageCount()" class="search-btn">搜索</a> </div>
         </div>
         <div class="hot-phone"> <i></i> <span class="js-change-phone">000-000-0000</span> </div>
     </div>
@@ -383,7 +383,7 @@
 
 </div>
 
-<div id="page">  <!--分页-->
+<div id="page" name="1">  <!--分页-->
     <a onclick="carpage('1')">首页</a>
     <a onclick="carpage('2')">上一页</a>
     <span class="pagei"><i>1</i>/<i>${jiangconnt}</i></span>

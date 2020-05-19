@@ -66,6 +66,16 @@ public interface CarService {
      */
     public List<Car> manyCar(Car car,@Param("first") int first, @Param("pageSize") int pageSize);
 
+    /**
+     * 模糊查询
+     * @param search
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    public List<Car> searchCarByPage(@Param("search") String search,@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
+
+    public Car searchCarPageCount(String search);
 
     /**
      * 查询一辆车的六张图片

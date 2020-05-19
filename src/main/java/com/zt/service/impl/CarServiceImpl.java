@@ -68,6 +68,16 @@ public class CarServiceImpl implements CarService {
          return carMapper.manyCar(car,first,pageSize);
     }
 
+    @Override
+    public List<Car> searchCarByPage(String search, int pageIndex, int pageSize) {
+        return carMapper.searchCarByPage(search,pageIndex,pageSize);
+    }
+
+    @Override
+    public Car searchCarPageCount(String search) {
+        return carMapper.searchCarPageCount(search);
+    }
+
 
     @Override
     public Car getCarone(Car car) {

@@ -2,6 +2,8 @@ var bname=0,csname=0,price=0,carage=0,corol=0,address=0,pnum=0;
 $(function () {
     //导航栏搜索单击selecter
     $(".fliter-bd").on("click",".fliter-bd a",function(){
+        $("#page").attr({"name":"1"});  //取消模糊模式
+        $("#searchCarText").val("");  //清空搜素框
 
         $(this).parent().find("a").css({"background-color":"#f9f9f9","color":"#666"});  //清理样式
         $(this).parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
@@ -79,6 +81,8 @@ $(function () {
 
     //下拉搜索单击
     $(".selecter li a").click(function(){
+        $("#page").attr({"name":"1"});  //取消模糊模式
+        $("#searchCarText").val("");  //清空搜素框
         $(this).parent().parent().find("a[name=aa]").attr({"class":"xz"});     //清理class
         $(this).attr({"class":"xzz"});
         //添加class
@@ -148,7 +152,7 @@ $(function () {
                 address=ziid;
             }
         }
-        alert("bname"+bname+"\t"+"csname"+csname+"\t"+"price"+price+"\t"+"carage"+carage+"\t"+"corol"+corol+"\t"+"address"+address);
+        //alert("bname"+bname+"\t"+"csname"+csname+"\t"+"price"+price+"\t"+"carage"+carage+"\t"+"corol"+corol+"\t"+"address"+address);
     }
 
     //跳转
@@ -169,7 +173,8 @@ $(function () {
 
 //多条件分页
 function carpage(math) {
-    alert("多条件分页!!!");
+    var pagedis=$("#page").attr("name");
+
     var tr="";
     var index=0;
     var firstxs=$(".pagei").find("i:eq(0)").html();
@@ -194,8 +199,58 @@ function carpage(math) {
     if(math==4){
         index=count;
     }
-    alert(index);
-    $.ajax({
+
+    if(pagedis==2){   //模糊分页
+        var sertr="";
+        var search=$("#searchCarText").val();
+        $.ajax({
+            type:'post',
+            url:'searchCarByPage',
+            data:'search='+search+'&pageindex='+index,
+            cache:false,
+            success:function (result) {
+                $("#addcar1").html("");  //清空处理
+                for(var i=0;i<result.length;i++){
+                    var obj=result[i];
+                    var img="images/"+obj.img;           //获取图片路径
+                    var bname=obj.brand.bname;           //获取车品牌
+                    var csname=obj.cardseries.csname;    //获取车系
+                    var cid=obj.cid;                     //获取车id
+                    var carage=obj.carage;               //获取车龄
+                    sertr+="<li>" +
+                        "<div class='list-infoBox'>" +
+                        "<a target='_parent' href='getCarone?cid="+obj.cid+"'><img src='"+img+"' width='290' height='194' /></a>" +
+                        "<p class='infoBox'><a target='_blank' class='info-title'></a>"+bname+"-"+csname+""+cid +" 车龄"+carage+"年 </p>" +
+                        "<p class='fc-gray'><span class='tag-gray'>"+obj.address.address+"</span> <span class=''>车龄"+carage+"年</span> <em class='shuxian'>|</em> 颜色:"+obj.corol.corol+"</p>" +
+                        "<p class='priType-s'><span> <i class='fc-org priType'>"+obj.price+"万 </i> </span> <s>"+obj.oprice+"万</s> </p> " +
+                        "</div>" +
+                        "</li>";
+                }
+                $("#addcar1").append(sertr);
+            },
+            error:function () {
+                alert("相应失败");
+            }
+        });
+
+        $.ajax({    //得到页码
+            type:'post',
+            url:'getSearchPageCount',
+            data:'search='+search+'&pageindex='+index,
+            cache:false,
+            success:function(result){
+                var ar=result.split("~","2");
+                var first=ar[0];
+                var count2=ar[1];
+                $(".pagei").find("i:eq(0)").html(first);
+                $(".pagei").find("i:eq(1)").html(count2);
+            },
+            error:function(){
+                alert("响应失败！!");
+            }
+        });
+    }else{
+    $.ajax({     //正常分页
         type:'post',
         url:'listhtml3',
         data:'bid='+bname+'&csid='+csname+'&price='+price+'&carage='+carage+'&colorid='+corol+'&addid='+address+'&pageindex='+index,
@@ -231,9 +286,10 @@ function carpage(math) {
             alert("响应失败！!");
         }
     });
+    }
 }
 
-//得到总页数
+//正常分页-得到总页数
 function catcount() {
     $.ajax({
         type:'post',
@@ -247,4 +303,72 @@ function catcount() {
             alert("响应失败！!");
         }
     });
+}
+
+
+//单击搜索
+var searchPageCount=0;
+function searchCarPageCount() {
+    $("#page").attr({"name":"2"});
+    jisearchCar();
+    mhcatcount();
+}
+
+//得到总页数
+function mhcatcount() {
+    var firstxs=$(".pagei").find("i:eq(0)").html();
+    var search=$("#searchCarText").val();
+    $.ajax({
+        type:'post',
+        url:'getSearchPageCount',
+        data:'search='+search+'&pageindex='+firstxs,
+        cache:false,
+        success:function(result){
+            var ar=result.split("~","2");
+            var first=ar[0];
+            var count2=ar[1];
+            $(".pagei").find("i:eq(0)").html(first);
+            $(".pagei").find("i:eq(1)").html(count2);
+        },
+        error:function(){
+            alert("响应失败！!");
+        }
+    });
+}
+
+/*模糊查询*/
+function jisearchCar() {
+    var sertr="";
+    var firstxs=$(".pagei").find("i:eq(0)").html();
+    var search=$("#searchCarText").val();
+    $.ajax({
+        type:'post',
+        url:'searchCarByPage',
+        data:'search='+search+'&pageindex='+firstxs,
+        cache:false,
+        success:function (result) {
+            $("#addcar1").html("");  //清空处理
+            for(var i=0;i<result.length;i++){
+                var obj=result[i];
+                var img="images/"+obj.img;           //获取图片路径
+                var bname=obj.brand.bname;           //获取车品牌
+                var csname=obj.cardseries.csname;    //获取车系
+                var cid=obj.cid;                     //获取车id
+                var carage=obj.carage;               //获取车龄
+                sertr+="<li>" +
+                    "<div class='list-infoBox'>" +
+                    "<a target='_parent' href='getCarone?cid="+obj.cid+"'><img src='"+img+"' width='290' height='194' /></a>" +
+                    "<p class='infoBox'><a target='_blank' class='info-title'></a>"+bname+"-"+csname+""+cid +" 车龄"+carage+"年 </p>" +
+                    "<p class='fc-gray'><span class='tag-gray'>"+obj.address.address+"</span> <span class=''>车龄"+carage+"年</span> <em class='shuxian'>|</em> 颜色:"+obj.corol.corol+"</p>" +
+                    "<p class='priType-s'><span> <i class='fc-org priType'>"+obj.price+"万 </i> </span> <s>"+obj.oprice+"万</s> </p> " +
+                    "</div>" +
+                    "</li>";
+            }
+            $("#addcar1").append(sertr);
+        },
+        error:function () {
+            alert("相应失败");
+        }
+    });
+
 }
