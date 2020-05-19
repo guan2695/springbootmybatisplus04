@@ -334,6 +334,22 @@ public class UserController {
         return "user";
     }
 
+    /**
+     *
+     */
+    @RequestMapping("/selllogin")
+    public String selllogin(HttpSession session,User user){
+        System.out.println(" --------selllogin--------- ");
+        System.out.println("phone" + user.getPhone());
+        User user1=userService.selllogin(user);
+
+        if(user1!=null){
+            return "sell";
+        }else {
+            System.out.println("查询方法失败");
+        }
+        return "wymc";
+    }
 //    //分页
 //    @RequestMapping("fenye")
 //    public String fentye(Integer pageindex,Model model){

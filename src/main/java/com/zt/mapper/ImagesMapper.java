@@ -21,4 +21,7 @@ public interface ImagesMapper {
      */
     @Select("SELECT * FROM images WHERE cid=#{cid}")
     public List<Images> getImagesByCarid(int cid);
+
+    public String imagesall(int cid ,String src);
+    public Images cidget();
 }

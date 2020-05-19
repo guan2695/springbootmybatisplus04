@@ -9,9 +9,13 @@ border-right: 1px silver solid;
 	width: 80px;
 	height: 1.875rem;
 	background-color: #FF6600;
-	color: #F4F4F4;
+
 	font-size: 13px;
 	margin-right: 10px;
+}
+.tc a{
+	color: #F4F4F4;
+	text-decoration: none;
 }
 .img{
 	position: relative;
@@ -113,7 +117,7 @@ margin-left: 5px;
 	display: none;
 	margin-left: 20px;
 }
-.mo1{
+.mo{
 	background-color: #F9f9f9;
 	color:#ff6600;
 }

@@ -201,7 +201,12 @@ $(function () {
           </#if>
             <input type="hidden" value="${getone.cid}" id="c-cid"/>
           </div>
-          <div class="order_button"><a href="#" class="shouchang" id="sendMESStx">收藏</a><!--<a href="#" class="yshouchang">已收藏</a>-->
+          <div class="order_button">
+            <#if (list2.uname)??>
+            <a href="newTalk?otherid=${getone.uid}" class="shouchang" id="sendMESStx">信息咨询</a><!--<a href="#" class="yshouchang">已收藏</a>-->
+            <#else>
+
+          </#if>
             <div id="fp">
               <ul style=" position:relative;">
                 <li>

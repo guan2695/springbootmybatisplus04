@@ -40,4 +40,6 @@ public interface UserService {
      *
      */
     public int updateMoney(User user);
+
+    public User selllogin(User user);
 }

@@ -8,5 +8,13 @@
 </select>
 
 
+    <select id="imagesall" resultType="com.zt.entity.Images" parameterType="com.zt.entity.Images">
+    insert into images (cid,src) value(#{cid},#{src})
+    </select>
+
+    <select id="cidget" resultType="com.zt.entity.Images" parameterType="com.zt.entity.Images">
+    SELECT MAX(cid) AS cid FROM images
+    </select>
+
 
 </mapper>

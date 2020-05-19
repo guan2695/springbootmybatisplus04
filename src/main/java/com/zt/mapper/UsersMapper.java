@@ -83,4 +83,8 @@ public interface UsersMapper extends BaseMapper<User> {
      *
      */
     public int updateMoney(User user);
+    /**
+     *
+     */
+    public User selllogin(User user);
 }

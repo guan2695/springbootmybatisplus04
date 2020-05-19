@@ -515,5 +515,15 @@
         </if>
         GROUP BY c.cid
     </select>
+    <select id="carall" resultMap="usercar" parameterType="com.zt.entity.Car">
+    INSERT INTO car (bid,csid, corolid,uid,oprice,price,putstate,assesstate,addressid,carage,img)
+    VALUE (#{bid},#{csid},#{corolid},#{uid},#{oprice},#{price},0,0,#{addressid},#{carage},#{img})
+    </select>
+    <select id="carimg" resultMap="usercar" parameterType="com.zt.entity.Car">
+    insert into images (cid,src) value(#{cid},#{src})
+    </select>
+    <select id="carcid" resultMap="usercar" parameterType="com.zt.entity.Car">
+    SELECT MAX(cid) AS cid FROM car
+    </select>
 
 </mapper>

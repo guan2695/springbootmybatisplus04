@@ -1,46 +1,54 @@
 $(function(){
 	
 		$(".li01 ul li span").click(function(){
-			$(this).css("background-color","#f9f9f9");
-			$(this).css("color","#ff6600")
-			$(this).siblings().css("color","#666");
-			$(this).siblings().css("background-color","#fff");
+			$(this).addClass("mo");
+			$(this).siblings().removeClass("mo");
+
 		})
-		$(".mo1").click(function(){
+		$("#mo1").click(function(){
 			$(".show").show();
 			$(".hide1").hide();
+			$(".hide1").find("span").removeClass("mo");
 			$(".hide2").hide();
-			$(".hide3").hide();	
+			$(".hide2").find("span").removeClass("mo");
+			$(".hide3").hide();
+			$(".hide3").find("span").removeClass("mo");
 			$(".hide4").hide();
+			$(".hide4").find("span").removeClass("mo");
 		});
-		$(".mo2").click(function(){
+		$("#mo2").click(function(){
 			$(".show").hide();
+			$(".show").find("span").removeClass("mo");
 			$(".hide1").show();
 			$(".hide2").hide();
-			$(".hide3").hide();	
+			$(".hide2").find("span").removeClass("mo");
+			$(".hide3").hide();
+			$(".hide3").find("span").removeClass("mo");
 			$(".hide4").hide();
+			$(".hide4").find("span").removeClass("mo");
+
 			});
 		
-		$(".mo3").click(function(){
-			$(".show").hide();
-			$(".hide1").hide();
+		$("#mo3").click(function(){
+			$(".show").hide();$(".show").find("span").removeClass("mo");
+			$(".hide1").hide();$(".hide1").find("span").removeClass("mo");
 			$(".hide2").show();
-			$(".hide3").hide();	
-			$(".hide4").hide();
+			$(".hide3").hide();	$(".hide3").find("span").removeClass("mo");
+			$(".hide4").hide();$(".hide4").find("span").removeClass("mo");
 		});
-		$(".mo4").click(function(){
-			$(".show").hide();
-			$(".hide1").hide();
-			$(".hide2").hide();
+		$("#mo4").click(function(){
+			$(".show").hide();$(".show").find("span").removeClass("mo");
+			$(".hide1").hide();$(".hide1").find("span").removeClass("mo");
+			$(".hide2").hide();$(".hide2").find("span").removeClass("mo");
 			$(".hide3").show();
-			$(".hide4").hide();
+			$(".hide4").hide();$(".hide4").find("span").removeClass("mo");
 		});
 		
-		$(".mo5").click(function(){
-			$(".show").hide();
-			$(".hide1").hide();
-			$(".hide2").hide();
-			$(".hide3").hide();
+		$("#mo5").click(function(){
+			$(".show").hide();$(".show").find("span").removeClass("mo");
+			$(".hide1").hide();$(".hide1").find("span").removeClass("mo");
+			$(".hide2").hide();$(".hide2").find("span").removeClass("mo");
+			$(".hide3").hide();$(".hide3").find("span").removeClass("mo");
 			$(".hide4").show();
 		});
 	})
