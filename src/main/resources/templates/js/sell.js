@@ -23,7 +23,7 @@
 $(function () {
     /*
     * 取地区品牌车系*/
-    var csid = "";
+   var csid = "";
     $(".ul02 li:eq(2) span").click(function () {
         csid = $(this).attr("value");
 
@@ -56,7 +56,6 @@ $(function () {
         var youtype = $(".qiyou").html();
         var youname= $("input[name='gr']").val();
         var dangtype = $("select[name='cars2']").val();
-        alert(dangtype);
         var length= $("input[name='le']").val();
         var width= $("input[name='wi']").val();
         var height= $("input[name='he']").val();
@@ -89,9 +88,7 @@ $(function () {
                                                                             ,"length":length,"width":width,"height":height,"mass":mass},
                                                                     dataType:"json",
                                                                     success: function (result) {
-                                                                        if(result=="yes"){
-                                                                            alert("添加成功");
-                                                                        }else{
+                                                                        if(result=="no"){
                                                                             alert("添加失败");
                                                                         }
                                                                     },error:function () {
