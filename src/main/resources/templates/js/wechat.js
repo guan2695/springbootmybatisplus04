@@ -106,6 +106,7 @@ function showAllTalk(otherid,obj) {
 
 /*单击列表查看消息*/
 function showAllTalk2(otherid,obj) {
+	alert("aaa");
 	var chatList=$(obj>".user_time");
 	chatList.val("");
 	chatList.css("background","#dedbdb");
@@ -122,7 +123,7 @@ function showAllTalk2(otherid,obj) {
 	unread.html("");
 	unread.css("background","#dedbdb");
 	$.ajax({
-		url:"/usedcar/getTalkinfo?meid="+meid+"&otherid="+otherid,
+		url:"/usedcar/getTalkinfo2?meid="+meid+"&otherid="+otherid,
 		type:"post",
 		success:function (result) {
 			var obj=eval(result);
