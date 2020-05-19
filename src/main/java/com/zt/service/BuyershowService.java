@@ -22,4 +22,9 @@ public interface BuyershowService {
      * 买家秀的插入
      */
     public int insertBuyershow(Buyershow buyershow);
+    /**
+     * 用来判断是否秀了该车
+     *
+     */
+    public Buyershow selectBuyershowCid(Buyershow buyershow);
 }

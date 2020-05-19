@@ -32,7 +32,7 @@
 			
 			<div class="office_text">
 				<ul class="user_list">
-
+					<#if untalkList?? && (untalkList?size > 0)>
 					<#list untalkList as t>
 						<li class="user_active" onclick="showAllTalk(${t.meuser.uid},this)">
 							<div class="user_head"><img src="images/head/15.jpg"/></div>
@@ -42,6 +42,9 @@
 							<div class="user_time2">${t.talkdate}</div>
 						</li>
 					</#list>
+			<#else>
+
+		</#if>
 
 				</ul>
 			</div>	

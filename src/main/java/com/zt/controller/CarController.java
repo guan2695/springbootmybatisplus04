@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -45,6 +46,8 @@ public class CarController {
     private  CardinfomaxService cardinfomaxService;
     @Autowired
     private CarinfoService carinfoService;
+    @Autowired
+    private BuyershowService buyershowService;
 
     /**
      *  首页的查询车辆
@@ -594,6 +597,12 @@ public class CarController {
         System.out.println("交易记录有"+transactionlistseller.size());
         return "user_bus";
     }
+    public double toDouble(double num) {
+        DecimalFormat dFormat = new DecimalFormat("#.00");
+        String yearString = dFormat.format(num);
+        Double temp = Double.valueOf(yearString);
+        return temp;
+    }
     /**
      * 买车控制器
      */
@@ -610,6 +619,7 @@ public class CarController {
     System.out.println("车主余额"+cmoney);
     //给买家减少钱
    Double money1 = umoney-money;
+   money1=toDouble(money1);
     User user1 = new User();
     user1.setUid(uid);
     user1.setMoney(money1);
@@ -618,6 +628,7 @@ public class CarController {
 
 
     Double cmoney2=cmoney+money;
+        cmoney2=toDouble(cmoney2);
     User user2 = new User();
     user2.setUid(cuid);
     user2.setMoney(cmoney2);
@@ -669,6 +680,20 @@ public String carall(HttpSession Session,int bid,int csid,int corolid,int uid ,D
         return "yes";
     }
     return "no";
+}
+    @RequestMapping("/ifshow")
+    @ResponseBody
+    public  String ifshow(Buyershow buyershow,int cid){
+    System.out.println("车的id"+cid);
+    buyershow.setCid(cid);
+    Buyershow buyershow2= buyershowService.selectBuyershowCid(buyershow);
+    System.out.println("是否存在"+buyershow2);
+    if(buyershow2!=null){
+        return "yes";
+    }
+    return "no";
+
+
 }
 
 }

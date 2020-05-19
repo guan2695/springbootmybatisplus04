@@ -144,10 +144,10 @@ $(function () {
 
     <#if (list2.uname)??>
     <div class="top-r">
-      <a href="remove" id="b-regist">退出</a>|<a href="user.html" id="b-login"  class="b-login">  ${list2.uname} 登陆成功</a> </div>
+      <a href="remove" id="b-regist">退出</a>|<a href="userinfo2?phone=${list2.phone}&upwd=${list2.upwd}" id="b-login" class="b-login"> ${list2.uname}  个人中心</a> </div>
     <#else>
     <div class="top-r">
-      <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login"  class="b-login">登陆</a> </div>
+      <a href="#" id="b-regist">注册</a>|<a href="#" id="b-login" class="b-login">登陆</a> </div>
   </#if>
     <div class="top-l">全国统一客服热线：000-000-0000</div>
     <div class="clear_fix"></div>
@@ -192,11 +192,11 @@ $(function () {
   </div>
 </div>
 <ul class="navmenu">
-  <li class="active"><a href="index.html">首页</a><span></span></li>
-  <li><a href="list.html">我要买车</a><span></span></li>
-  <li><a href="wymc.html">我要卖车</a><span></span></li>
- <li><a href="#">车主晒单</a><span></span></li>
- <li><a href="about.html">关于我们</a><span></span></li>
+  <li class="active"><a href="index">首页</a><span></span></li>
+  <li><a href="listhtml2">我要买车</a><span></span></li>
+  <li><a href="wymchtml">我要卖车</a><span></span></li>
+  <li><a href="jlpageindex">车主晒单</a><span></span></li>
+  <li><a href="#">关于我们</a><span></span></li>
 </ul>
 <div class="clear_fix"></div>
 <div class="stress-search-box row">
@@ -204,11 +204,11 @@ $(function () {
   <div class="nav-cents">
     <ul>
       <li class="logo"><a href="index.html"><img src="images/123.png"  width="180"height="70px"/></a></li>
-      <li><a href="index.html">首页</a></li>
-      <li><a href="list.html">我要买车</a></li>
-      <li><a href="wymc.html">我要卖车</a></li>
-     <li><a href="#">车主晒单</a></li>
-     <li><a href="about.html">关于我们</a></li>
+      <li class="active"><a href="index">首页</a><span></span></li>
+      <li><a href="listhtml2">我要买车</a><span></span></li>
+      <li><a href="wymchtml">我要卖车</a><span></span></li>
+      <li><a href="jlpageindex">车主晒单</a><span></span></li>
+      <li><a href="#">关于我们</a><span></span></li>
     </ul>
     <div class="seas">
       <div class="egc-sea-box">

@@ -210,14 +210,15 @@ public class BuyershowController {
         String filename = file.getOriginalFilename();
         System.out.println("图片的名称" + filename);
         //上传目录的路径
-        String path = request.getRealPath("templates/images") + "/" + filename;
+        String path ="D:/idramyproy/springbootmybatisplus04/src/main/resources/templates/images";
 
         System.out.println("路径" + path);
         //创建目标路径
-        File destfile = new File(path);
+        File destfile = new File(path+"/"+filename);
         //执行上传
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), destfile);
+//            file.transferTo(destfile);
             System.out.println("上传成功");
 
             System.out.println(buyershow);
