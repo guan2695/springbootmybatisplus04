@@ -5,6 +5,12 @@
 <title>新的聊天</title>
 <link rel="stylesheet" href="css/amazeui.min.css" />
 <link rel="stylesheet" href="css/main.css" />
+
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/amazeui.min.js"></script>
+	<script type="text/javascript" src="js/zUI.js"></script>
+	<script type="text/javascript" src="js/wechat.js"></script>
 </head>
 <body>
 <div class="box">
@@ -34,7 +40,7 @@
 				<ul class="user_list">
 
 					<#list untalkList as t>
-					<li class="user_active" onclick="showAllTalk2(${t.meuser.uid},this)">
+					<li class="user_active" onclick="showAllTalk(${t.meuser.uid},this)">
 						<div class="user_head"><img src="images/head/15.jpg"/></div>
 						<div class="user_text">
 							<p class="user_name">${t.meuser.uname}</p>
@@ -64,20 +70,12 @@
 			</div>
 			
 			<!--聊天内容-->
-			<!--<input type="hidden" name="idmeid" value="${t.meuser.uid}">&lt;!&ndash;自己，发消息&ndash;&gt;-->
-			<!--<input type="hidden" name="idotherid" value="${t.otheruser.uid}">&lt;!&ndash;别人，收消息&ndash;&gt;-->
+			<input type="hidden" name="idmeid"><!--自己，发消息-->
+			<input type="hidden" name="idotherid"><!--别人，收消息-->
 			<div class="windows_body">
 				<div class="office_text" style="height: 100%;">
 					<ul class="content" id="chatbox">
-						<!--<li class="me"><img src="images/icon/me.png" title="金少凯"><span>疾风知劲草，板荡识诚臣</span></li>-->
-						<!--<li class="other"><img src="images/icon/other.png" title="张文超"><span>勇夫安知义，智者必怀仁</span></li>-->
-						<!--<#list talkList as t>-->
-							<!--<#if t.meuser.uid == list2.uid>-->
-						<!--<li class="me"><img src="images/icon/me.png" title="${t.meuser.uname}"><span>${t.talkmsg}</span></li>-->
-							<!--<#else>-->
-						<!--<li class="other"><img src="images/icon/other.png" title="${t.otheruser.uname}"><span>${t.talkmsg}</span></li>-->
-							<!--</#if>-->
-						<!--</#list>-->
+
 					</ul>
 				</div>
 			</div>
@@ -92,10 +90,6 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/amazeui.min.js"></script>
-<script type="text/javascript" src="js/zUI.js"></script>
-<script type="text/javascript" src="js/wechat.js"></script>
 
 <script type="text/javascript">
 //三图标
@@ -121,7 +115,7 @@ window.onload=function(){
 			var meid=$("input[name='idmeid']").val();
 			var otherid=$("input[name='idotherid']").val();
 
-			alert("消息："+talkmsg+"我的id："+meid+"他的id："+otherid);
+			//alert("消息："+talkmsg+"我的id："+meid+"他的id："+otherid);
 
 			if(text.value ==''){
 				alert('不能发送空消息');
