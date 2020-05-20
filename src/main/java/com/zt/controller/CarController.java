@@ -97,7 +97,7 @@ public class CarController {
         session.removeAttribute("list2");
         //车品牌
         List<Brand> brandList= brandService.getAllBrand();
-        session.setAttribute("brandList",brandList);
+        session.setAttribute("brandList3",brandList);
         return "index";
     }
 
@@ -178,7 +178,7 @@ public class CarController {
         System.out.println(car);
         List<Car> listmanyQuery;
         List<Brand> brandList= brandService.getAllBrand();
-        session.setAttribute("brandList",brandList);
+//        session.setAttribute("brandList",brandList);
 //        if(bid==null){
 //            bid="0";
 //        }
@@ -217,7 +217,8 @@ public class CarController {
             csid="0";
         }
         List<Brand> brandList= brandService.getAllBrand();
-        session.setAttribute("brandList",brandList);
+//        session.setAttribute("brandList",brandList);
+        model.addAttribute("brandList3");
         int bid2 =Integer.parseInt(bid);
         int csid2=Integer.parseInt(csid);
         System.out.println("车牌id为"+bid2);
@@ -298,7 +299,8 @@ public class CarController {
             colorid="0";
         }
         List<Brand> brandList= brandService.getAllBrand();
-        session.setAttribute("brandList",brandList);
+//        session.setAttribute("brandList",brandList);
+//        model.addAttribute("brandList");
         int bid2 =Integer.parseInt(bid);
         int csid2=Integer.parseInt(csid);
         int addid2 = Integer.parseInt(addid);
@@ -456,7 +458,8 @@ public class CarController {
             colorid="0";
         }
         List<Brand> brandList= brandService.getAllBrand();
-        session.setAttribute("brandList",brandList);
+//        session.setAttribute("brandList",brandList);
+        model.addAttribute("brandList3");
         int bid2 =Integer.parseInt(bid);
         int csid2=Integer.parseInt(csid);
         int addid2 = Integer.parseInt(addid);
@@ -742,9 +745,9 @@ public class CarController {
         System.out.println("uid="+uid);
         System.out.println("cid="+cid);
         int addas=assessmentService.addass(uid,cid);
-        if (num !=null && max<=0&&info<=0&&addas<=0) {
+        if (num !=null && max<=0&&info<=0&&addas<=0&&carim!=null) {
             System.out.println("插入数据成功");
-            return "sell";
+            return "yes";
         }
         return "no";
     }

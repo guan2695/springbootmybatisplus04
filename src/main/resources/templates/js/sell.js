@@ -103,8 +103,12 @@ $(function () {
                                                                                 "pailiang":pailiang,"youtype":youtype,"youname":youname,"dangtype":dangtype
                                                                                 ,"length":length,"width":width,"height":height,"mass":mass},
                                                                         dataType:"json",
-                                                                        success: function () {
-
+                                                                        success: function (result) {
+                                                                            if(result=="yes"){
+                                                                                alert("添加成功");
+                                                                            }else{
+                                                                                alert("添加失败");
+                                                                            }
                                                                         }
                                                                     });
                                                                     var imgs = $(".imgContainer").find("img");
@@ -113,8 +117,6 @@ $(function () {
                                                                         if (i==0){
                                                                             continue;
                                                                         }
-
-
                                                                         $.ajax({
                                                                             url: "/usedcar/imagesall",
                                                                             type: "post",
