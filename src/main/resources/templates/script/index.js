@@ -41,4 +41,41 @@ $(function(){
 			$('.jpDl').eq(index).fadeIn().siblings().hide();
 		})
 	});
+
+
 })
+function regcheck() {
+	var phone =$("input[id=phone2]").val();
+	var uname =$("input[name=uname]").val();
+	var upwd =$("input[id=upwd2]").val();
+	//alert("手机号"+phone+uname+upwd);
+	//alert("密码"+upwd);
+	$.ajax({
+		type: 'post',
+		url: 'Userphone',
+		data:'phone='+phone,
+		dataType:'text',
+		success:function (result) {
+			$("input[name=phone1]").val(result);
+			alert(result);
+			if (result=="yes") {
+				alert("该手机号已存在,请勿重复注册");
+				$("#form2").attr("action","index");
+				location.href="/usedcar/index";
+				return false;
+			}
+			if(result=="no"){
+				alert("注册成功");
+				$("#form2").attr("action","register");
+				location.href="/usedcar/register?phone="+phone+"&uname="+uname+"&upwd="+upwd;
+				return true;
+			}
+		},
+		error:function() {
+			alert("失败");
+		}
+	})
+	// return false;
+
+
+};

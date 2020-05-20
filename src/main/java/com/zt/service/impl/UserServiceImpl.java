@@ -39,6 +39,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User userphone(User user) {
+        return usersMapper.userphone(user);
+    }
+
+    @Override
     public User getOneUserById(int uid) {
         return usersMapper.getOneUserById(uid);
     }
