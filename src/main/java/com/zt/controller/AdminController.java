@@ -71,6 +71,7 @@ public class AdminController {
      * @return
      */
     @RequestMapping("/adminlogin")
+    @ResponseBody
     public String adminlogin(Admin admin, Model model, HttpSession session) {
         System.out.println("进入管理员登录");
         Admin admin1 = adminService.adminlogin(admin);
@@ -78,7 +79,7 @@ public class AdminController {
         if (admin1 == null) {
             return "error";
         }
-        return "redirect:adminIndex?pageIndex=1";
+        return "yes";
     }
 
     /**
