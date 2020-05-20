@@ -287,20 +287,24 @@ public class UserController {
     public String wymchtml(HttpSession session, User user) {
         return "wymc";
     }
+
     /**
      * 用户注册
      * @param user
      * @param model
      * @return
      */
-
     @RequestMapping("/register")
-    public String add(User user, Model model) {
-        System.out.println("页面传送的uname是" + user.getUname());
-        int num = userService.userregister(user);
-        System.out.println("num的值为" + num);
-        if (num == 0) {
-            return "index";
+    public String add(User user,String verify, Model model,HttpSession session) {
+        String validateCode= (String) session.getAttribute("validateCode");
+        System.out.println("生成的验证码："+validateCode+"用户输入的验证码："+verify);
+
+        if(validateCode.equalsIgnoreCase(verify)){
+            System.out.println("页面传送的uname是" + user.getUname());
+            int num = userService.userregister(user);
+            System.out.println("num的值为" + num);
+        }else{
+            System.out.println("验证码错误");
         }
         return "index";
     }
