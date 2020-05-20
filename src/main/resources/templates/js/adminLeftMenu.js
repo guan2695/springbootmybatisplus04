@@ -870,13 +870,5 @@ function adminAllTrancation(){
 		})
 }
 
-/*图片验证码单击刷新*/
-function changeCodeImg(){
-	var num=Math.ceil(Math.random()*100);//生成一个随机数（防止缓存）
-	var src = $("#vimg").attr("src");
-	alert(src + "?num=" + num);
-	$("#vimg").attr('src',src + "?num=" + num);
-}
-
 
 

@@ -84,7 +84,7 @@
 
 <div class="navigation">
   <div class="nav-cent">
-    <div class="logo"><a href="index"><img src="images/logo.png" width="240" /></a></div>
+    <div class="logo"><a href="adminLogin.html"><img src="images/logo.png" width="240" /></a></div>
     <div class="city">
       <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
         <div id="JS_header_city_bar_box" class="hide_city_group">
@@ -633,15 +633,16 @@
 
         </form>
       </div>
+
       <div class="p-dl">
-        <form class="registForm"  onsubmit="return regcheck()"  action="#" id="form2"  enctype="multipart/form-data" method="post" name="reg" >
+        <form class="registForm"    action="#" id="form2"  enctype="multipart/form-data" method="post" name="reg" >
           <ul class="login-items">
             <li class="clearfix">
-                <input class="input" id="phone2" name="phone"  type="text" value="" placeholder="手机号码（登录帐号）"required="required">
+                <input class="input" id="phone2"  name="phone"  type="text" value=""  placeholder="手机号码（登录帐号）"required="required">
             </li>
             <li class="clearfix">
               <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;"required="required" />
-              <div id="send"><img src="images/1234.png" style="width: 100px;height:40px;margin-left: 10px"></div>
+              <div id="send"><img id="vimg" src="validateCodeServlet" onclick="changeCodeImg()" style="width: 100px;height:40px;margin-left: 10px"></div>
             </li>
             <li class="clearfix">
               <input class="input" type="text" value=""  name="uname" placeholder="姓名"required="required">
@@ -658,7 +659,7 @@
           <div class="login-button">
             <input type="hidden" value="" name="carid" class="ordercarid" />
             <input type="hidden" value="" name="carstatus" class="orderstatus" />
-            <input type="submit"  value="立即注册" class="fM" />
+            <input type="button" onclick="regcheck()"  value="立即注册" class="fM" />
           </div>
           <!---校验-->
 

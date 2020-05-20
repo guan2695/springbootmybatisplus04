@@ -32,10 +32,10 @@ public class ValidateCodeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	private int width = 126;
+	private int width = 100;
 
 	
-	private int height = 43;
+	private int height = 40;
 
 	
 	private int codeCount = 4;
@@ -126,7 +126,7 @@ public class ValidateCodeServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 
 	throws ServletException, IOException {
-
+//		System.out.println("进入图片验证码");
 		
 		BufferedImage buffImg = new BufferedImage(width, height,
 
