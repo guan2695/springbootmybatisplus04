@@ -22,7 +22,7 @@ public interface AssessmentMapper {
             @Result(column = "cid",property = "car",one = @One(select = "com.zt.mapper.CarMapper.GetOneCarAllInfo"))
     })
     public List<Assessment> getAllAssessmet();
-
+    public String addass(int cid,int uid);
     /**
      * 管理员审核，更改审核表状态
      * @param assstate
