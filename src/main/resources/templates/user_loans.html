@@ -20,7 +20,9 @@
     <script type="text/javascript" src="script/snncar.js"></script>
     <script type="text/javascript">
         $(function(){
+
            // alert("1");
+
             $("#aa").click(function () {
                 var a = $("#aa").html();
                 alert(a);
@@ -49,6 +51,7 @@
 
         });
         function seller(uid) {
+
           //  alert(uid);
             $("#mr-detail").css({"display":"none"});
             $("#mr-detail2").css({"display":"block"});
@@ -72,6 +75,7 @@
                     alert("失败");
                 }
             })
+
 
         }
     </script>
@@ -205,7 +209,9 @@
 </div>
 <div class="navigation">
     <div class="nav-cent">
+
         <div class="logo"><a href="index"><img src="images/1234.png" width="215"height="85px" /></a></div>
+
         <div class="city">
             <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
                 <div id="JS_header_city_bar_box" class="hide_city_group">
@@ -242,17 +248,20 @@
     </div>
 </div>
 <ul class="navmenu">
+
     <li class="active"><a href="index">首页</a><span></span></li>
     <li><a href="listhtml2">我要买车</a><span></span></li>
     <li><a href="wymchtml">我要卖车</a><span></span></li>
     <li><a href="jlpageindex">车主晒单</a><span></span></li>
     <li><a href="#">关于我们</a><span></span></li>
+
 </ul>
 <div class="clear_fix"></div>
 <div class="stress-search-box row">
     <div class="stress-close"><a href="javascript:;"></a></div>
     <div class="nav-cents">
         <ul>
+
             <li class="logo"><a href="index"><img src="images/1234.png"  width="180"/></a></li>
             <li class="active"><a href="index">首页</a><span></span></li>
             <li><a href="listhtml2">我要买车</a><span></span></li>
@@ -263,6 +272,7 @@
         <div class="seas">
             <div class="egc-sea-box">
                 <input type="hidden" class="sea-ipt-txt" placeholder="搜索您想要的车">
+
                 <a href="#" class="search-btn">搜索</a> </div>
         </div>
     </div>
@@ -277,7 +287,9 @@
                 <li ><a href="selectTranction?uid=${list2.uid}">我的业务</a></li>
                 <li><a href="userinfoPwd">账户管理</a></li>
                 <li class="on"><a href="userloan?uid=${list2.uid}">申请详细</a></li>
+
                 <li ><a href="selectUserAssessment?uid=${list2.uid}">申请车辆</a></li>
+
             </ul>
         </div>
         <div class="meb-right fr dInline">
@@ -289,7 +301,9 @@
                     <div class="mr-infor fl dInline">
                         <h2>中午好，尊敬的用户 <b>${list2.uname}</b></h2>
                         <p>
+
                             手机：${list2.phone}  邮箱：  |  [ <a href="getAllTalk?meid=${list2.uid}">全部消息</a> ] [ <a href="inTalk?meid=${list2.uid}">未读消息</a> ]
+
                         </p>
                     </div>
                 </div>
@@ -331,18 +345,22 @@
                                 <div class="itemlist rightline">
                                     <p class="text-muted">贷款金额</p>
                                     <p> ${loanslist.lmoney}</p>
+
                                     <input type="hidden" id="lid" value="${loanslist.lid}"/>
+
                                 </div>
                                 <div class="itemlist rightline">
                                     <p class="text-muted">身份证</p>
                                     <p>${loanslist.idcard}</p>
                                 </div>
                                 <div class="itemlist rightline">
+
                                     <p class="text-muted">有无房</p>
                                     <#if (loanslist.ishavehouse)==0>
                                     <p> 无房</p>
                                     <#else>
                                     <p> 有房</p>
+
                                 </#if>
                                 </div>
                                 <div class="itemlist" style="color: red">
@@ -351,7 +369,9 @@
                                     <p> 审核中</p>
                                     </#if>
                                     <#if (loanslist.lstate)==1>
+
                                     <a onclick="errorloans()"> 未通过</a>
+
                                     </#if>
                                         <#if (loanslist.lstate)==2>
                                         <p> 已通过</p>

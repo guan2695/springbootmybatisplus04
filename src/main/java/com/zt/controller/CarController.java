@@ -8,6 +8,7 @@ import com.zt.entity.*;
 import com.zt.mapper.CarMapper;
 import com.zt.mapper.CorolMapper;
 import com.zt.service.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -203,9 +204,7 @@ public class CarController {
 
 
 
-    /**
-     *
-     */
+
     //根据品牌进入
     @RequestMapping("/listhtml2")
     public String listhtml(String pageindex,Model model, Car car,String bid,Double price,String carage,HttpSession session,String csid) {
@@ -224,7 +223,7 @@ public class CarController {
         car.setBid(bid2);
         car.setCsid(csid2);
         car.setPrice(price);
-        car.setFirst(1);
+        car.setFirst(0);
         car.setPageSize(8);
         if(carage==null){
             carage="0";
@@ -509,6 +508,54 @@ public class CarController {
         return cardserieslist;
     }
 
+    /**
+     * 模糊查询总页数
+     * @return
+     */
+    @RequestMapping("/getSearchPageCount")
+    @ResponseBody
+    public String getSearchPageCount(String search,String pageindex){
+        System.out.println("模糊查询总页数");
+        Car car=carService.searchCarPageCount(search);
+        int count= car.getCarage();
+        int pageSize=8;
+        if(count%pageSize==0){
+            count=count/pageSize;
+        }else{
+            count=count/pageSize+1;
+        }
+        if(pageindex.equals("0")){
+            pageindex="1";
+        }
+        System.out.println("总页数："+count+"页码"+pageindex);
+        String str=pageindex+"~"+count;
+
+        return str;
+    }
+
+    //模糊查询
+    @RequestMapping("/searchCarByPage")
+    @ResponseBody
+    public List<Car> searchCarByPage(String search,String pageindex, Model model) {
+        System.out.println(" --------进入模糊查询("+search+")("+pageindex+")--------- ");
+        if(pageindex==null){
+            pageindex="1";
+        }
+        int first1=Integer.parseInt(pageindex);
+        int pageSize=8;
+        int first=0;
+        if(first1!=0){
+            first=(first1-1)*pageSize;
+        }
+
+        List<Car> carlist= carService.searchCarByPage(search,first,pageSize);
+        carlist.forEach(System.out::println);
+        return carlist;
+    }
+
+
+
+
 
     /**
      * 查询一辆车的详细信息
@@ -659,7 +706,9 @@ public class CarController {
         return "404";
     }
 
+
     return "success";
+
 }
     /**
      * 卖车页面

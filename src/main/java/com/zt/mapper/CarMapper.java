@@ -108,6 +108,35 @@ public int insertCar(Car car);
     })
     public List<Car> adminGetCarByPage(@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
 
+
+    /**
+     * 模糊查询
+     * @param search
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    @Select("SELECT * FROM car WHERE bid IN (SELECT bid FROM brand WHERE bname LIKE '%${search}%') \n" +
+            "OR csid IN (SELECT csid FROM cardseries WHERE csname LIKE '%${search}%') limit #{pageIndex},#{pageSize}")
+    @Results({
+            @Result(column = "bid",property = "brand",one = @One(select = "com.zt.mapper.BrandMapper.getOneBrandById")),
+            @Result(column = "csid",property = "cardseries",one = @One(select = "com.zt.mapper.CardseriesMapper.getCarseriesByid")),
+            @Result(column = "corolid",property = "corol",one = @One(select = "com.zt.mapper.CorolMapper.getCorolByid")),
+            @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById")),
+            @Result(column = "addressid",property = "address",one = @One(select = "com.zt.mapper.AddressMapper.getAddressByid")),
+            @Result(column = "cid",property = "imagesList",many = @Many(select = "com.zt.mapper.ImagesMapper.getImagesByCarid"))
+    })
+    public List<Car> searchCarByPage(@Param("search") String search,@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
+
+    /**
+     * 模糊查询总页数
+     * @param search
+     * @return
+     */
+    @Select("SELECT count(*) carage FROM car WHERE bid IN (SELECT bid FROM brand WHERE bname LIKE '%${search}%') OR csid IN (SELECT csid FROM cardseries WHERE csname LIKE '%${search}%')")
+    public Car searchCarPageCount(@Param("search") String search);
+
+
     /**
      * 得到一辆车的所有信息，所有！！！
      * @param cid

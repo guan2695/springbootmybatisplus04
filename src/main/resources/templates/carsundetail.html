@@ -80,6 +80,12 @@
 			color: darkslateblue;
 			font-weight: bold;
 		}
+		.comment_kan li:nth-of-type(2) span:nth-of-type(2){
+			height: 45px;
+			line-height: 45px;
+			color: black;
+			font-weight: normal;
+		}
 		.comment_kan li span:nth-of-type(2){
 			float: right;
 			margin-right: 15px;
@@ -118,6 +124,119 @@
 			text-align: center;
 		}	
 		/*评论区《尾》*/
+		/*模态框《头》*/
+		.modal_zhu{
+
+		}
+		.modal_zhu ul{
+			background-color: gainsboro;
+			text-indent: 1em;
+		}
+		.modal_zhu li{
+			list-style: none;
+			height: 30px;
+			line-height: 30px;
+			border-bottom: ghostwhite 1px dashed;
+		}
+		.modal_zhu li:nth-of-type(2){
+			height: 45px;
+			line-height: 45px;
+			color: darkslateblue;
+			font-weight: bold;
+		}
+		.modal_zhu li:nth-of-type(2) span:nth-of-type(2){
+			height: 45px;
+			line-height: 45px;
+			color: black;
+			font-weight: normal;
+		}
+		.modal_zhu li span:nth-of-type(2){
+			float: right;
+			margin-right: 15px;
+		}
+
+		.modal_nei{
+
+		}
+		.modal_nei ul{
+			background-color: gainsboro;
+			text-indent: 1em;
+		}
+		.modal_nei li{
+			list-style: none;
+			height: 30px;
+			line-height: 30px;
+			border-bottom: ghostwhite 1px dashed;
+		}
+		.modal_nei li:nth-of-type(2){
+			height: 45px;
+			line-height: 45px;
+			color: darkslateblue;
+			font-weight: bold;
+		}
+		.modal_nei li:nth-of-type(2) span:nth-of-type(2){
+			height: 45px;
+			line-height: 45px;
+			color: black;
+			font-weight: normal;
+		}
+		.modal_nei li span:nth-of-type(2){
+			float: right;
+			margin-right: 15px;
+		}
+
+		.modal_hui {
+			height: 140px;
+		}
+		.modal_hui ul{
+			list-style: none;
+		}
+		.modal_hui li{
+
+		}
+		.modal_hui li:nth-of-type(1){
+			height: 80px;
+
+		}
+		.modal_hui textarea{
+			width: 100%;
+			height: 100%;
+		}
+		.modal_hui li:nth-of-type(2){
+			height: 40px;
+			width: 100%;
+		}
+		.modal_hui li:nth-of-type(2) span{
+			display: inline-block;
+			height: 40px;
+			width: 120px;
+			line-height: 40px;
+			border-radius: 5px;
+			background-color: gainsboro;
+			margin-top: 10px;
+			margin-left: 45%;
+			text-align: center;
+		}
+
+		.comment_hui input{
+			display: inline-block;
+			height: 40px;
+			width: 230px;
+			line-height: 40px;
+			border-radius: 5px 0px 0px 5px;
+			background-color: papayawhip;
+			border: none;
+		}
+
+		.comment_hui button{
+			display: inline-block;
+			height: 40px;
+			width: 100px;
+			line-height: 40px;
+			border-radius: 0px 5px 5px 0px;
+			border: none;
+		}
+		/*模态框《尾》*/
 				
 		/*下载网页《头》*/		
 		.ftWrap {
@@ -427,7 +546,7 @@
 						<#list onecommentList as commentList>
 							<ul>
 								<li><span>${commentList.user.uname}</span> <span>${commentList.cdate}</span></li>
-								<li>${commentList.comment}</li>
+								<li><span name="${commentList.user.uid}">${commentList.comment}</span> <span class="commentreply" name="${commentList.commid}" data-toggle="modal" data-target="#myModal">查看回复</span></li>
 							</ul>
 					    </#list>
 					</div>
@@ -450,7 +569,55 @@
 						</ul>
 					</div>
 				</div>
-				<!--评论区《尾》-->
+			  	<!--评论区《尾》-->
+
+
+			<!-- 模态框《回复》 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document" style="width: 65%; margin-left: 16.7%;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="modal_zhu">
+								<ul>
+									<li><span>jiang</span> <span>2017/12/12</span></li>
+									<li><span>真好看</span> <span data-toggle="modal" data-target="#myModal">楼主</span></li>
+								</ul>
+						    </div>
+						</div>
+
+						<div class="modal-body">
+							<!--评论区《头》-->
+								<div class="modal_nei">
+									<#list onecommentList as commentList>
+									<ul>
+										<li><span>${commentList.user.uname}</span> <span>${commentList.cdate}</span></li>
+										<li><span>${commentList.comment}</span></li>
+									</ul>
+								</#list>
+							</div>
+
+							<div class="comment_hui">
+								<input type="text" name="" placeholder="回复：李四">
+								<button class="issuereply" name="">回复</button>
+								<#if list2??>
+								<input type="hidden" name="" value="${list2.uid}" />
+								<#else>
+								<input type="hidden" name="" value="1" />
+							    </#if>
+
+							</div>
+						<!--评论区《尾》-->
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary">发表</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
 			</div>
 			
 			

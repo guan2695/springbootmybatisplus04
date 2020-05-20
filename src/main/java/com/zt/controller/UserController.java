@@ -2,8 +2,10 @@ package com.zt.controller;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zt.entity.*;
+
 import com.zt.mapper.AssessoverMapper;
 import com.zt.mapper.LoansassesMapper;
+
 import com.zt.mapper.UsersMapper;
 import com.zt.service.*;
 import org.apache.ibatis.annotations.Update;
@@ -38,6 +40,7 @@ public class UserController {
     @Autowired
     private BanksService banksService;
 
+
     @Autowired
     private BrandService brandService;
     @Autowired
@@ -54,6 +57,7 @@ public class UserController {
 
     @Autowired
     private CorolService corolService;
+
 
     /**
      * 得到所有用户
@@ -199,6 +203,7 @@ public class UserController {
         return "loans";
     }
 
+
     /**
      * 查询失败原因
      * @param
@@ -249,6 +254,7 @@ public class UserController {
     return because;
     }
 
+
     public double toDouble(double num) {
         DecimalFormat dFormat = new DecimalFormat("#.00");
         String yearString = dFormat.format(num);
@@ -282,16 +288,21 @@ public class UserController {
         int num= loansService.insertloans(loans);
         System.out.println("插入贷款信息"+num);
 
+
 //        User user2 = new User();
 //        user2.setUid(cuid);
 //        user2.setMoney(money3);
 //        int num2=userService.updateMoney(user2);
 //        System.out.println("车主增加金额"+num2);
 
+
         if(num==0){
             return "404";
         }
+
+
         return "userloan?uid="+uid;
+
     }
 
     @RequestMapping("/wymchtml")
@@ -305,6 +316,7 @@ public class UserController {
      * @param
      * @return
      */
+
     @RequestMapping("/register")
     @ResponseBody
     public String add(User user,String phone,String upwd,String uname,String verify,HttpSession session) {
@@ -368,6 +380,7 @@ public class UserController {
             return "forward:userinfo";
         }
         return "user";
+
     }
 
     /**
@@ -423,6 +436,7 @@ public class UserController {
         List<Cardseries> cardseriesList=carseriesService.getCardSeriesByBrand((Integer.parseInt(bid)));
         cardseriesList.forEach(System.out::println);
         return cardseriesList;
+
     }
 //    //分页
 //    @RequestMapping("fenye")
