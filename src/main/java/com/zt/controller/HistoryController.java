@@ -36,6 +36,7 @@ public class HistoryController {
     @RequestMapping("/deleteHistory")
     @ResponseBody
     public int deleteHistory(History history,int uid){
+        System.out.println("进入删除");
         System.out.println("进入删除浏览记录");
         history.setUid(uid);
        int num= historyService.deleteUidHistory(history);

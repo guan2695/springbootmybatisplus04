@@ -533,12 +533,13 @@
         $.ajax({
             type: 'post',
             url: 'deleteHistory',
-            data: 'uid=' + uid,
+            data: 'uid='+uid,
             success: function (obj) {
                 var num = eval(obj);
                 if (num > 0) {
-                    alert("成功");
                     $("#historyuid").html("");
+                    alert("成功");
+
                 } else {
                     alert("清空失败");
                 }
@@ -549,7 +550,7 @@
                 alert("失败");
             }
         })
-    }
+    };
 </script>
 
 
@@ -573,7 +574,7 @@
                         <h2  onclick="qingkong(${list2.uid})" style="margin-left: 70%;">清空浏览记录</h2>
                     </div>
                     <div class="boer">
-                        <ul class="ul1">
+                        <ul class="ul1" id="historyuid">
                             <#list listHistory as listHist>
                             <input type="hidden" name="hcid" value="${listHist.cid}">
                             <li class="li_h1">

@@ -511,6 +511,56 @@ $(function () {
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(function(){
+    $("#fp ul li").hover(function(){
+      $pan=$(this).find(".co-pan");
+      var cwidth=$pan.attr('width');
+      var cheight=$pan.height();
+      $(this).find(".co-pan").not(".cf-item").css({"top":"35px","right":"80px",});
+      $pan.stop(true,false).animate({"width":cwidth + "px"},300);
+    },function(){
+      $pan=$(this).find(".co-pan");
+      $pan.stop(true,false).animate({"width":"0px"},300);
+    });
+  });
+  function  checkuname() {
+    //  alert($("input[id=u-uname]").val());
+    var uname = $("input[id=u-uname]").val();
+    var cid = $("input[id=c-cid]").val();
+    var uuid = $("input[id=u-id]").val();
+    var cuid = $("input[id=c-uid]").val();
+    if (uname == "" || uname == null) {
+      alert("请先登录");
+      location.href = "#"
+      return false;
+    }if(uuid==cuid) {
+      alert("该车是自己的无法购买");
+      return false;
+    }
+    location.href = "/usedcar/peynow?cid=" + cid;
+    return true;
+  };
+
+  function  checkuname2() {
+    var uname = $("input[id=u-uname]").val();
+    var cid = $("input[id=c-cid]").val();
+    var uuid = $("input[id=u-id]").val();
+    var cuid = $("input[id=c-uid]").val();
+    if (uname == "" || uname == null) {
+      alert("请先登录");
+      location.href = "#"
+      return false;
+    }
+    if(uuid==cuid) {
+      alert("该车是自己的不用咨询");
+      return false;
+    }
+    return true;
+  }
+
+</script>
+
 <!--会员登录和注册弹出框结束-->
 <script type="text/javascript">
 $(".appearance-det").each(function() {
@@ -666,81 +716,73 @@ $("#sendprice").live("click",function(){
 </div>
 
 
-<!--leftsead end-->
+
 <script type="text/javascript">
-$(document).ready(function(){
+  $(document).ready(function(){
+    $("#history").hover(function(){
+      $(this).children(".moder").show();
 
-	$("#leftsead a").hover(function(){
-		if($(this).prop("className")=="youhui"){
-			$(this).children("img.hides").show();
-		}else{
-			$(this).children("img.hides").show();
-			$(this).children("img.shows").hide();
-			$(this).children("img.hides").animate({marginRight:'0px'},'slow');
-		}
-	},function(){
-		if($(this).prop("className")=="youhui"){
-			$(this).children("img.hides").hide('slow');
-		}else{
-			$(this).children("img.hides").animate({marginRight:'-143px'},'slow',function(){$(this).hide();$(this).next("img.shows").show();});
-		}
-	});
+    },function(){
+      $(this).children(".moder").hide();
 
-	$("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({scrollTop: 0}, 600);});
+    }) ;
 
-});
+    $("#leftsead a").hover(function(){
+      if($(this).prop("className")=="youhui"){
+        $(this).children("img.hides").show();
+      }else{
+        $(this).children("img.hides").show();
+        $(this).children("img.shows").hide();
+        $(this).children("img.hides").animate({marginRight:'0px'},'slow');
+      }
+    },function(){
+      if($(this).prop("className")=="youhui"){
+        $(this).children("img.hides").hide('slow');
+      }else{
+        $(this).children("img.hides").animate({marginRight:'-143px'},'slow',function(){$(this).hide();$(this).next("img.shows").show();});
+      }
+    });
 
+    $("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({scrollTop: 0}, 600);});
 
-
+  });
 </script>
 <script>
-	$(function(){
-		$("#fp ul li").hover(function(){
-			 $pan=$(this).find(".co-pan");
-			 var cwidth=$pan.attr('width');
-			 var cheight=$pan.height();
-			 $(this).find(".co-pan").not(".cf-item").css({"top":"35px","right":"80px",});
-			 $pan.stop(true,false).animate({"width":cwidth + "px"},300);
-		},function(){
-			 $pan=$(this).find(".co-pan");
-			 $pan.stop(true,false).animate({"width":"0px"},300);
-		});
-		});
-	function  checkuname() {
-    //  alert($("input[id=u-uname]").val());
-      var uname = $("input[id=u-uname]").val();
-      var cid = $("input[id=c-cid]").val();
-      var uuid = $("input[id=u-id]").val();
-      var cuid = $("input[id=c-uid]").val();
-      if (uname == "" || uname == null) {
-        alert("请先登录");
-        location.href = "#"
-        return false;
-      }if(uuid==cuid) {
-       alert("该车是自己的无法购买");
-        return false;
-      }
-      location.href = "/usedcar/peynow?cid=" + cid;
-      return true;
-    };
+  $(function(){
+    $("#fp ul li").hover(function(){
+      $pan=$(this).find(".co-pan");
+      var cwidth=$pan.attr('width');
+      var cheight=$pan.height();
+      $(this).find(".co-pan").not(".cf-item").css({"top":"35px","right":"80px",});
+      $pan.stop(true,false).animate({"width":cwidth + "px"},300);
+    },function(){
+      $pan=$(this).find(".co-pan");
+      $pan.stop(true,false).animate({"width":"0px"},300);
+    });
+  });
 
-    function  checkuname2() {
-      var uname = $("input[id=u-uname]").val();
-      var cid = $("input[id=c-cid]").val();
-      var uuid = $("input[id=u-id]").val();
-      var cuid = $("input[id=c-uid]").val();
-      if (uname == "" || uname == null) {
-        alert("请先登录");
-        location.href = "#"
-        return false;
-      }
-      if(uuid==cuid) {
-        alert("该车是自己的不用咨询");
-        return false;
-      }
-      return true;
-    }
+  function qingkong(uid) {
+    alert("清空");
+    $.ajax({
+      type: 'post',
+      url: 'deleteHistory',
+      data: 'uid=' + uid,
+      success: function (obj) {
+        var num = eval(obj);
+        if (num > 0) {
+          alert("成功");
+          $("#historyuid").html("");
+        } else {
+          alert("清空失败");
+        }
 
+
+      },
+      error: function () {
+        alert("失败");
+      }
+    })
+  };
 </script>
 </body>
 </html>
