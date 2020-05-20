@@ -14,7 +14,7 @@ public interface ReplyMapper {
      * @param commid
      * @return
      */
-    @Select("SELECT * FROM reply WHERE commid=#{commid}")
+    @Select("SELECT * FROM reply WHERE commid=#{commid} ORDER BY redate")
     @Results({
             @Result(column = "uid",property = "user",one = @One(select = "com.zt.mapper.UsersMapper.getOneUserById"))
     })

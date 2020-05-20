@@ -72,7 +72,8 @@ public class CarController {
         System.out.println("一共输出了"+carList.size()+"条数据");
         //车品牌
         List<Brand> brandList= brandService.getAllBrand();
-        session.setAttribute("brandList",brandList);
+        session.setAttribute("brandList3",brandList);
+//        model.addAttribute("brandList",brandList);
         return "index";
     }
 
@@ -605,10 +606,18 @@ public class CarController {
          * 判断用户是否登录
          * 加一条浏览记录
          */
-        if(uid==null){
-           uid="0";
-           }else {
-            int uid2 = Integer.parseInt(uid);
+
+
+          User user= (User) session.getAttribute("list2");
+          if(user==null){
+              return "infor";
+
+          }else {
+           int uid5= user.getUid();
+           uid=""+uid5;
+
+
+         int uid2 = Integer.parseInt(uid);
 
             history.setUid(uid2);
             history.setCid(cid);

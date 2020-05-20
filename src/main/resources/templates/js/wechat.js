@@ -51,7 +51,7 @@ window.onload=function b(){
 			// 		}
 			// 	})
 
-			alert("脚本");
+			//alert("脚本");
 			chat.innerHTML += '<li class="me"><img src="'+'images/icon/me.png'+'"><span>'+text.value+'</span></li>';
 			text.value = '';
 			chat.scrollTop=chat.scrollHeight;

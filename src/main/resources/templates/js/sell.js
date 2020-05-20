@@ -4,13 +4,12 @@ function csids(obj) {
     $(obj).addClass("mo");
     $(obj).siblings().removeClass("mo");
     csid= $(obj).attr("value");
-    alert(csid);
 }
 
 $(function () {
 
     var bid = $(".ul02 li:eq(1) .mo1").attr("value");
-    alert(bid)
+
   var num="";
     $.ajax({
         url:'/usedcar/selllogin02',
@@ -36,7 +35,7 @@ $(function () {
    $(".mo1").click(function () {
        var bid = $(this).attr("value");
         //var bid=$(this).val();
-        alert(bid);
+
         var num="";
        $.ajax({
            url:'/usedcar/selllogin02',
@@ -94,10 +93,7 @@ $(function () {
                                                         if (width != ""){
                                                             if (height != ""){
                                                                 if (mass != ""){
-                                                                    alert("uname="+uname+"csid="+csid+"bid="+bid+"color="+color+"addressid="+addressid+
-                                                                        "image="+image+"oprice="+oprice+"price="+price+"carage="+carage+"pailiang="+
-                                                                        pailiang+"youtype="+youtype+"youname="+youname+"dangtype="+dangtype+"length"+
-                                                                        length+"width"+width+"height"+height+"mass"+mass);
+
                                                                     $.ajax({
                                                                         url: "/usedcar/carall",
                                                                         type: "post",
@@ -117,7 +113,7 @@ $(function () {
                                                                         if (i==0){
                                                                             continue;
                                                                         }
-                                                                        alert(src);
+
 
                                                                         $.ajax({
                                                                             url: "/usedcar/imagesall",

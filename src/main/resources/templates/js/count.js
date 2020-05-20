@@ -72,4 +72,29 @@ function changeCodeImg(){
     var src = $("#vimg").attr("src");
     // alert(src + "?num=" + num);
     $("#vimg").attr('src',src + "?num=" + num);
-}
+};
+
+
+function qingkong(uid) {
+    alert("清空");
+    $.ajax({
+        type: 'post',
+        url: 'deleteHistory',
+        data: 'uid='+uid,
+        success: function (obj) {
+            var num = eval(obj);
+            if (num > 0) {
+                $(".historyuid").html("");
+                alert("成功");
+
+            } else {
+                $(".historyuid").html("");
+            }
+
+
+        },
+        error: function () {
+            alert("失败");
+        }
+    })
+};

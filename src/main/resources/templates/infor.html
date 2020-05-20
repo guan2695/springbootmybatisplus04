@@ -94,7 +94,7 @@ $(function () {
 </div>
 <div class="navigation">
   <div class="nav-cent">
-    <div class="logo"><a href="adminLogin.html"><img src="images/logo.png" width="215"height="85px" /></a></div>
+    <div class="logo"><a href="adminLogin.html"><img src="images/1234.png" width="215"height="85px" /></a></div>
     <div class="city"> 
       <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
         <div id="JS_header_city_bar_box" class="hide_city_group">
@@ -134,7 +134,7 @@ $(function () {
   <li><a href="listhtml2">我要买车</a><span></span></li>
   <li><a href="wymchtml">我要卖车</a><span></span></li>
   <li><a href="jlpageindex">车主晒单</a><span></span></li>
-  <li><a href="#">关于我们</a><span></span></li>
+  <li><a href="about">关于我们</a><span></span></li>
 </ul>
 <div class="clear_fix"></div>
 <!--所在位置-->
@@ -636,7 +636,7 @@ $("#sendprice").live("click",function(){
             <h2  onclick="qingkong(${list2.uid})" style="margin-left: 70%;">清空浏览记录</h2>
           </div>
           <div class="boer">
-            <ul class="ul1" id="historyuid">
+            <ul class="ul1 historyuid" id="historyuid">
 
               <#list listHistory as listHist>
               <input type="hidden" name="hcid" value="${listHist.cid}">
@@ -761,28 +761,29 @@ $("#sendprice").live("click",function(){
     });
   });
 
-  function qingkong(uid) {
-    alert("清空");
-    $.ajax({
-      type: 'post',
-      url: 'deleteHistory',
-      data: 'uid=' + uid,
-      success: function (obj) {
-        var num = eval(obj);
-        if (num > 0) {
-          alert("成功");
-          $("#historyuid").html("");
-        } else {
-          alert("清空失败");
-        }
-
-
-      },
-      error: function () {
-        alert("失败");
-      }
-    })
-  };
+  // function qingkong(uid) {
+  //   alert("清空");
+  //   $.ajax({
+  //     type: 'post',
+  //     url: 'deleteHistory',
+  //     data: 'uid=' + uid,
+  //     success: function (obj) {
+  //       var num = eval(obj);
+  //       if (num > 0) {
+  //         alert("成功");
+  //         $("#historyuid").html("");
+  //       } else {
+  //         // alert("清空失败");
+  //         $("#historyuid").html("");
+  //       }
+  //
+  //
+  //     },
+  //     error: function () {
+  //       alert("失败");
+  //     }
+  //   })
+  // };
 </script>
 </body>
 </html>

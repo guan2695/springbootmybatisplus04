@@ -203,6 +203,7 @@ function carpage(math) {
     if(pagedis==2){   //模糊分页
         var sertr="";
         var search=$("#searchCarText").val();
+
         $.ajax({
             type:'post',
             url:'searchCarByPage',

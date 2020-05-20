@@ -208,7 +208,7 @@ public class AdminController {
         model.addAttribute("car",car);
         model.addAttribute("aid",aid);
 
-        return "adminCarInfo";
+        return "adminCarInfo2";
     }
 
     /**

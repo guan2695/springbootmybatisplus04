@@ -35,19 +35,12 @@ function addNewContent(obj) {
 	$("#imgBox").html("");
 	for(var a = 0; a < imgSrc.length; a++) {
 		var oldBox = $(obj).html();
-		htmls+='<div class="imgContainer"><img title=' + imgName[a] + ' alt=' + imgName[a] + ' src=' + imgSrc[a] + ' onclick="imgDisplay(this)"><p onclick="removeImg(this,' + a + ')" class="imgDelete">删除</p></div>';
+		htmls+='<div class="imgContainer"><img title=' + imgName[a] + ' alt=' + imgName[a] + ' src=' + imgSrc[a] + ' onclick="imgDisplay(this)"></div>';
 		$(obj).html(htmls);
 	}
 	imgSrc.length=0;
 }
-//删除
-function removeImg(obj, index) {
-	imgSrc.splice(index, 1);
-	imgFile.splice(index, 1);
-	imgName.splice(index, 1);
-	var boxId = "#" + $(obj).parent('.imgContainer').parent().attr("id");
-	addNewContent(boxId);
-}
+
 //上传(将文件流数组传到后台)
 function submitPicture(url,data) {
 	console.log(data);

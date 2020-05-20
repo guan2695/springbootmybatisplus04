@@ -124,9 +124,9 @@
 	</head>
 	<body>
 	<form method="post" action="imagesUpload" enctype="multipart/form-data">
-	<#if (list2.uname)??>
+	<#if (userlist.uname)??>
 	<div class="top1"><span class="sh">全国热线000—000-0000</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		欢迎您：<span class="uname">${list2.uname}</span></div>
+		欢迎您：<span class="uname">${userlist.uname}</span></div>
 	<#else>
 	<div><span class="ri">全国热线000—000-0000</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		欢迎您<span class="uname"></span></div>
@@ -191,7 +191,7 @@
 							<li>宽度：<input type="text" name="wi"id="input" value=""/> cm</li>
 						<ul >
 							<li>高度：<input type="text" name="he"id="input" value=""/> cm</li>
-							<li>质量：<input type="text" name="qu"id="input" value=""/> cm</li>
+							<li>质量：<input type="text" name="qu"id="input" value=""/> kg</li>
 						</ul>
 						</ul>
 						</div>

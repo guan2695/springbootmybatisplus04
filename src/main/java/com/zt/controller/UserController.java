@@ -167,6 +167,11 @@ public class UserController {
        model.addAttribute("loansList",loansList);
         return "user_loans";
     }
+
+    @RequestMapping("/about")
+    public String about(){
+        return "about";
+    }
     /**
      * 进入购买页面
      * @param model
@@ -394,6 +399,8 @@ public class UserController {
         System.out.println(" --------selllogin--------- ");
         System.out.println("phone" + user.getPhone());
         User user1=userService.selllogin(user);
+        System.out.println("userlist" + user1);
+        model.addAttribute("userlist",user1);
         List<Brand> brandList= brandService.getAllBrand();
         List<Address>addressList=addressService.getAllAddress();
         System.out.println("brandlist="+brandList);

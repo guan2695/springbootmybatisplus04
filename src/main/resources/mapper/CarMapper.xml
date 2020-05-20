@@ -155,7 +155,7 @@
     <select id="manyConditions" parameterType="com.zt.entity.Car" resultMap="carinfo">
         SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
         FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
-        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid and c.putstate=1
         AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
 
     <if test="bid!=null and bid!=''">
@@ -266,7 +266,7 @@
     <select id="manyCar" parameterType="com.zt.entity.Car" resultMap="carinfo">
         SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
         FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
-        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid and c.putstate=1
         AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
         <if test="bid!=null and bid!=''">
             AND b.bid=#{bid}
@@ -410,7 +410,7 @@
     <select id="jiangPageconut" parameterType="com.zt.entity.Car" resultMap="carinfo">
         SELECT c.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
         FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad
-        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid
+        WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid and c.putstate=1
         AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
 
         <if test="bid!=null and bid!=''">

@@ -16,6 +16,7 @@
   <script type="text/javascript" src="script/city.js"></script>
   <script type="text/javascript" src="script/snncar.js"></script>
   <script type="text/javascript" src="script/jquery.SuperSlide.2.1.1.js"></script>
+  <script type="text/javascript" src="js/count.js"></script>
   <!--导航登陆网页版下拉-->
   <script type="text/javascript">
     $(function () {
@@ -84,7 +85,7 @@
 
 <div class="navigation">
   <div class="nav-cent">
-    <div class="logo"><a href="adminLogin.html"><img src="images/logo.png" width="240" /></a></div>
+    <div class="logo"><a href="adminLogin.html"><img  width="180"height="70px" src="images/1234.png" width="240" /></a></div>
     <div class="city">
       <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
         <div id="JS_header_city_bar_box" class="hide_city_group">
@@ -125,14 +126,14 @@
   <li><a href="listhtml2">我要买车</a><span></span></li>
   <li><a href="wymchtml">我要卖车</a><span></span></li>
   <li><a href="jlpageindex">车主晒单</a><span></span></li>
-  <li><a href="#">关于我们</a><span></span></li>
+  <li><a href="about">关于我们</a><span></span></li>
 </ul>
 <div class="clear_fix"></div>
 <div class="stress-search-box row">
   <div class="stress-close"><a href="javascript:;"></a></div>
   <div class="nav-cents">
     <ul>
-      <li class="logo"><a href="index.html"><img src="images/logo.png"  width="180"/></a></li>
+      <li class="logo"><a href="index.html"><img src="images/1234.png"  width="180"/></a></li>
       <li><a href="index">首页</a></li>
       <li><a href="listhtml">我要买车</a></li>
       <li><a href="wymchtml">我要卖车</a></li>
@@ -157,8 +158,8 @@
           <h3>
             <div class="border"><a href="listhtml?first=1">品牌</a></div>
             <ul>
-              <#if brandList?? && (brandList?size > 0)>
-            <#list brandList as brand>
+              <#if brandList3?? && (brandList3?size > 0)>
+            <#list brandList3 as brand>
               <li><a href="listhtml2?bid=${brand.bid}" >${brand.bname}</a></li>
             </#list>
             <#else>
@@ -488,6 +489,7 @@
         </div>
       </li>
     </#list>
+
     </#if>
       </ul>
     </div>
@@ -574,28 +576,30 @@
     //alert(cid);
     location.href="/usedcar/getCarone?cid="+cid;
   };
-  function qingkong(uid) {
-    alert("清空");
-    $.ajax({
-      type: 'post',
-      url: 'deleteHistory',
-      data: 'uid=' + uid,
-      success: function (obj) {
-        var num = eval(obj);
-        if (num > 0) {
-          alert("成功");
-          $("#historyuid").html("");
-        } else {
-          alert("清空失败");
-        }
-
-
-      },
-      error: function () {
-        alert("失败");
-      }
-    })
-  };
+  // function qingkong(uid) {
+  //   alert("清空");
+  //   $.ajax({
+  //     type: 'post',
+  //     url: 'deleteHistory',
+  //     data: 'uid=' + uid,
+  //     success: function (obj) {
+  //       var num = eval(obj);
+  //       if (num > 0) {
+  //         alert("成功");
+  //         $("#historyuid").html("");
+  //
+  //       } else {
+  //         //alert("清空失败");
+  //         $("#historyuid").html("");
+  //       }
+  //
+  //
+  //     },
+  //     error: function () {
+  //       alert("失败");
+  //     }
+  //   })
+  // };
 
 
 
@@ -612,7 +616,7 @@
         <form onsubmit="return check();" action="login" enctype="multipart/form-data" method="post" name="form" id="form">
           <ul class="login-items">
             <li>
-              <label>用户名(手机号)</label>
+              <label>手机号</label>
               <input class="input" type="text" value="" maxlength="32"  name="phone" placeholder="请输入您的手机号" autofocus="autofocus" required="required">
             </li>
             <li>
@@ -691,7 +695,9 @@
             <h2  onclick="qingkong(${list2.uid})" style="margin-left: 70%;">清空浏览记录</h2>
          </div>
            <div class="boer">
-            <ul class="ul1" id="historyuid">
+            <ul class="ul1 historyuid" id="historyuid">
+
+              <#if listHistory?? && (listHistory?size>0)>
 
               <#list listHistory as listHist>
               <input type="hidden" name="hcid" value="${listHist.cid}">
@@ -704,7 +710,7 @@
 
                 <p class="fontc"> <span> <i class="red"> ${listHist.car.price}万 </i> </span> <s>${listHist.car.oprice}万</s> </p>
               </li></#list>
-
+           </#if>
             </ul>
 
           </div>

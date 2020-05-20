@@ -11,11 +11,12 @@
             success:function(result){
                 $(".comment_kan").html("");  //清空处理
                 $(".comment_xie textarea").val("");
+
                 for(var i=0;i<result.length;i++){
                     var obj=result[i];
                     tr+="<ul>" +
                         "<li><span>"+obj.user.uname+"</span> <span>"+obj.cdate+"</span></li>" +
-                        "<li>"+obj.comment+"</li>" +
+                        "<li><span name='"+obj.user.uid+"'>"+obj.comment+"</span> <span class='commentreply' onclick='replyhui(this)' name='"+obj.commid+"' data-toggle='modal' data-target='#myModal'>查看回复</span></li>" +
                         "</ul>";
                 }
                 $(".comment_kan").append(tr);
@@ -26,55 +27,56 @@
         });
     };
 
-$(function () {
     //单击查看回复
-   $(".commentreply").click(function () {
-       var tt="";
-       var commid=$(this).attr("name");           //得到评论id
-       var louid=$(this).prev().attr("name");     //得到楼主id
+    function replyhui(this01){
+        var tt="";
+        var commid=$(this01).attr("name");           //得到评论id
+        //alert("评论id"+commid);
+        var louid=$(this01).prev().attr("name");     //得到楼主id
 
-       $(".comment_hui").find("button").attr({"name":commid});
-       $(".comment_hui").find("input:eq(1)").attr({"name":louid});
+        $(".comment_hui").find("button").attr({"name":commid});
+        $(".comment_hui").find("input:eq(1)").attr({"name":louid});
 
-       var commtnt= $(this).prev().html();  //获取楼主评论内容
-       var title= $(this).parent().prev().find("span:eq(0)").html();  //获取楼主评论标题
-       var date= $(this).parent().prev().find("span:eq(1)").html();  //获取楼主评论时间
-       //楼主赋值
-       $(".modal_zhu").find("li:eq(0)").find("span:eq(0)").html(title);
-       $(".modal_zhu").find("li:eq(0)").find("span:eq(1)").html(date);
-       $(".modal_zhu").find("li:eq(1)").find("span:eq(0)").html(commtnt);
+        var commtnt= $(this01).prev().html();  //获取楼主评论内容
+        var title= $(this01).parent().prev().find("span:eq(0)").html();  //获取楼主评论标题
+        var date= $(this01).parent().prev().find("span:eq(1)").html();  //获取楼主评论时间
+        //楼主赋值
+        $(".modal_zhu").find("li:eq(0)").find("span:eq(0)").html(title);
+        $(".modal_zhu").find("li:eq(0)").find("span:eq(1)").html(date);
+        $(".modal_zhu").find("li:eq(1)").find("span:eq(0)").html(commtnt);
 
-       //模态框异步
-       $.ajax({
-           type:'post',
-           url:'getallreply',
-           data:'commid='+commid,
-           cache:false,
-           success:function(result){
-               $(".modal_nei").html("");  //清空处理
-               for(var i=0;i<result.length;i++) {
-                   var obj = result[i];
-                   var replyid = obj.replyid; //得到回复对象的id
-                   if (replyid == louid) {
-                       tt += "<ul>" +
-                           "<li><span>" + obj.user.uname + "</span> <span>" + obj.redate + "</span></li>" +
-                           "<li>" + obj.comment + "</li>" +
-                           "</ul>";
-                   }else{
-                       tt += "<ul>" +
-                           "<li><span>" + obj.user.uname + "</span>回复"+replyid+" <span>" + obj.redate + "</span></li>" +
-                           "<li>" + obj.comment + "</li>" +
-                           "</ul>";
-                   }
-               }
-               $(".modal_nei").append(tt);
-           },
-           error:function(){
-               alert("响应失败！!");
-           }
-       });
-   });
+        //模态框异步
+        $.ajax({
+            type:'post',
+            url:'getallreply',
+            data:'commid='+commid,
+            cache:false,
+            success:function(result){
+                $(".modal_nei").html("");  //清空处理
+                for(var i=0;i<result.length;i++) {
+                    var obj = result[i];
+                    var replyid = obj.replyid; //得到回复对象的id
+                    if (replyid == louid) {
+                        tt += "<ul>" +
+                            "<li><span>" + obj.user.uname + "</span> <span>" + obj.redate + "</span></li>" +
+                            "<li>" + obj.comment + "</li>" +
+                            "</ul>";
+                    }else{
+                        tt += "<ul>" +
+                            "<li><span>" + obj.user.uname + "</span>回复"+replyid+" <span>" + obj.redate + "</span></li>" +
+                            "<li>" + obj.comment + "</li>" +
+                            "</ul>";
+                    }
+                }
+                $(".modal_nei").append(tt);
+            },
+            error:function(){
+                alert("响应失败！!");
+            }
+        });
+    }
 
+$(function () {
    //点击回复
    $(".issuereply").click(function () {
        var tt="";

@@ -522,13 +522,14 @@
 
 			<div class="row">    <!--头部-->				
 				<div class="col-md-2" onclick="tiao('index.html')"></div>
-				<div class="col-md-1"><img src="images/10025.jpg" /> </div>
+				<div class="col-md-2"><img  width="180"height="70px" src="images/1234.png" /> </div>
 				<div class="col-md-1" >  <a href="index" style="text-decoration: none">首页</a></div>
 				<div class="col-md-1"><a href="listhtml2" style="text-decoration: none">我要买车</a></div>
 				<div class="col-md-1"><a href="wymchtml" style="text-decoration: none">我要卖车</a></div>
 				<div class="col-md-1" ><a href="jlpageindex" style="text-decoration: none">车主晒单</a></div>
 				<div class="col-md-1" ><a href="#" style="text-decoration: none">关于我们</a></div>
-			</div>
+				<div class="col-md-4" ></div>
+		</div>
 			
 			<div id="middle">   <!--身体-->	
 				
@@ -546,7 +547,7 @@
 						<#list onecommentList as commentList>
 							<ul>
 								<li><span>${commentList.user.uname}</span> <span>${commentList.cdate}</span></li>
-								<li><span name="${commentList.user.uid}">${commentList.comment}</span> <span class="commentreply" name="${commentList.commid}" data-toggle="modal" data-target="#myModal">查看回复</span></li>
+								<li><span name="${commentList.user.uid}">${commentList.comment}</span> <span class="commentreply" onclick='replyhui(this)'  name="${commentList.commid}" data-toggle="modal" data-target="#myModal">查看回复</span></li>
 							</ul>
 					    </#list>
 					</div>
@@ -555,9 +556,7 @@
 					<div class="comment_xie">
 						<ul>
 							<li>
-								<textarea >
-
-								</textarea>
+								<textarea ></textarea>
 							</li>
 							<li>
 								<#if list2??>
@@ -611,7 +610,6 @@
 
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<button type="button" class="btn btn-primary">发表</button>
 						</div>
 
 					</div>
