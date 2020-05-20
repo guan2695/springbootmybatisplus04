@@ -39,6 +39,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User userphone(User user) {
+        return usersMapper.userphone(user);
+    }
+
+    @Override
     public User getOneUserById(int uid) {
         return usersMapper.getOneUserById(uid);
     }
@@ -67,4 +72,9 @@ public class UserServiceImpl implements UserService {
     public int updateMoney(User user) {
         return usersMapper.updateMoney(user);
     }
+    @Override
+    public User selllogin(User user) { return  usersMapper.selllogin(user); }
+
+    @Override
+    public User selectuid(String uname){return  usersMapper.selectuid(uname);}
 }

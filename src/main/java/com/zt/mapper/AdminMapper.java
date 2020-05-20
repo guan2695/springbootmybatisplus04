@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zt.entity.Admin;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 
 /**
@@ -27,4 +29,13 @@ public interface AdminMapper extends BaseMapper<Admin> {
      */
     @Select("SELECT * FROM admin WHERE adminid=#{adminid}")
     public Admin getOneAdminByid(int adminid);
+
+    /**
+     * 贷款车成功管理员增加用户余额
+     * @param uid
+     * @param money
+     * @return
+     */
+    @Update("UPDATE USER SET money=money+#{money} WHERE uid=#{uid}")
+    public int adminAddMoneyToUser(@Param("uid") int uid,@Param("money") double money);
 }

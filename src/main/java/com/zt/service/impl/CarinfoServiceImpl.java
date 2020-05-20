@@ -19,4 +19,8 @@ public class CarinfoServiceImpl implements CarinfoService {
     public int insertCarinfo(Carinfo carinfo) {
         return carinfoMapper.insertCarinfo(carinfo);
     }
+
+    public int addinfo(int cid, int length,int width,int height,int mass){
+        return carinfoMapper.addinfo(cid,length,width,height,mass);
+    }
 }

@@ -30,4 +30,11 @@ public class AssessmentServiceImpl implements AssessmentService {
     public int addAssessOver(int aid, String because) {
         return assessmentMapper.addAssessOver(aid,because);
     }
+
+    @Override
+    public List<Assessment> selectUserAssessment(Assessment assessment) {
+        return assessmentMapper.selectUserAssessment(assessment);
+    }
+    @Override
+    public int addass(int uid,int cid){return assessmentMapper.addass(uid,cid);}
 }

@@ -71,6 +71,7 @@ public class AdminController {
      * @return
      */
     @RequestMapping("/adminlogin")
+    @ResponseBody
     public String adminlogin(Admin admin, Model model, HttpSession session) {
         System.out.println("进入管理员登录");
         Admin admin1 = adminService.adminlogin(admin);
@@ -78,7 +79,7 @@ public class AdminController {
         if (admin1 == null) {
             return "error";
         }
-        return "redirect:adminIndex?pageIndex=1";
+        return "yes";
     }
 
     /**
@@ -196,6 +197,17 @@ public class AdminController {
         Car car= carService.GetOneCarAllInfo(cid);
         System.out.println(car);
         model.addAttribute("car",car);
+        return "adminCarInfo";
+    }
+    @RequestMapping("/adminGetOneCar2")
+    public String adminLookOneCar2(int cid,Model model,int aid){
+        System.out.println("进入查询一辆车信息");
+        System.out.println("该aid为"+aid);
+        Car car= carService.GetOneCarAllInfo(cid);
+        System.out.println(car);
+        model.addAttribute("car",car);
+        model.addAttribute("aid",aid);
+
         return "adminCarInfo";
     }
 
@@ -495,6 +507,10 @@ public class AdminController {
         }else {//通过
             System.out.println("通过");
             loansService.updLoansState(loans.getLid(),loans.getLstate());//改变贷款审核状态
+
+            //加余额
+            adminService.adminAddMoneyToUser(loans.getUid(),loans.getLmoney());
+
             return "yes";
         }
     }

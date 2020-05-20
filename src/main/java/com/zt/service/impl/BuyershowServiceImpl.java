@@ -55,4 +55,9 @@ public class BuyershowServiceImpl implements BuyershowService {
         return buyershowMapper.insertBuyershow(buyershow);
     }
 
+    @Override
+    public Buyershow selectBuyershowCid(Buyershow buyershow) {
+        return buyershowMapper.selectBuyershowCid(buyershow);
+    }
+
 }

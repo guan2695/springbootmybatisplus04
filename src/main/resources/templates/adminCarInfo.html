@@ -86,8 +86,9 @@
 							<td>是否上架</td><td><#if car.putstate == 1>是</#if>
 												<#if car.putstate == 0>否</#if>
 							</td>
-							<td>是否过审</td><td><#if car.assesstate == 1>是</#if>
-												<#if car.assesstate == 0>否</#if></td>
+							<td>是否过审</td><td><#if car.assesstate == 2>是</#if>
+						<#if car.assesstate == 0><a href="#">审核中</a></#if>
+												<#if car.assesstate == 1>否 &nbsp;<a   onclick="selectOver(${aid})"> 查询未通过原因</a></#if></td>
 						</tr>
 					</table>
 				</div>

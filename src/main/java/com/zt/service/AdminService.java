@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.Admin;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author guan
@@ -8,4 +9,5 @@ import com.zt.entity.Admin;
  */
 public interface AdminService {
     public Admin adminlogin(Admin admin);
+    public int adminAddMoneyToUser(int uid,double money);
 }

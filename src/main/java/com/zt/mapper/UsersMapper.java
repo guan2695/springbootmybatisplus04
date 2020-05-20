@@ -35,6 +35,11 @@ public interface UsersMapper extends BaseMapper<User> {
     public int userregister(User user);
 
     /**
+     * 注册前判断手机号是否存在
+     */
+    @Select("SELECT * FROM USER WHERE phone=#{phone}")
+    public User userphone(User user);
+    /**
      * 根据用户id得到一个用户
      * @param uid
      * @return
@@ -83,4 +88,10 @@ public interface UsersMapper extends BaseMapper<User> {
      *
      */
     public int updateMoney(User user);
+    /**
+     *
+     */
+    public User selllogin(User user);
+
+    public User selectuid(String uname);
 }

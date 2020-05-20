@@ -7,6 +7,10 @@
     VALUES(#{cid},#{pailiang},#{youtype},#{youname},#{dangtype})
 </insert>
 
+    <insert id="infomax"  parameterType="com.zt.entity.Cardinfomax">
+        INSERT INTO cardinfomax(cid,pailiang,youtype,youname,dangtype)
+        VALUE (#{cid},#{pailiang},#{youtype},#{youname},#{dangtype})
+    </insert>
 
 
 </mapper>

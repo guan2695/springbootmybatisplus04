@@ -198,6 +198,23 @@ function carinfo(cid) {
 	// location.href="/usedcar/adminGetOneCar?cid="+cid;
 }
 
+function selectOver(aid) {
+	alert(aid);
+	$.ajax({
+		type:'post',
+		url:"selectOver",
+		data:'aid='+aid,
+		success:function (result) {
+			alert("不通过原因是"+result);
+		},
+		error:function () {
+			alert("失败");
+
+		}
+	})
+	
+
+}
 /*修改一辆车*/
 function updcar(cid) {
 	// window.open("/usedcar/adminUpdCarBefo?cid="+cid);
@@ -672,7 +689,7 @@ function adminAllLoans(){
 						"      \t\t<td>"+housestate+"</td>\n" +
 						"      \t\t<td>"+l.banks.bankname+"</td>\n";
 	                if(l.lstate==0){
-	                	tr+="      \t\t<td><button type=\"button\" onclick=\"adminGoShenheLoans("+l.lid+")\" class=\"btn btn-warning btn-xs\" data-toggle=\"modal\" data-target=\"#loansMotai\">\n" +
+	                	tr+="      \t\t<td><button type=\"button\" onclick=\"adminGoShenheLoans("+l.lid+","+l.lmoney+","+l.user.uid+")\" class=\"btn btn-warning btn-xs\" data-toggle=\"modal\" data-target=\"#loansMotai\">\n" +
 							"\t\t\t\t\t\t\t 去审核\n";
 					}else if(l.lstate==1){
 						tr+="      \t\t<td><button type=\"button\" class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"\">\n" +
@@ -694,9 +711,11 @@ function adminAllLoans(){
 }
 
 /*管理员去审核模态框*/
-function adminGoShenheLoans(lid) {
+function adminGoShenheLoans(lid,money,uid) {
 	// alert(lid);
 	$("input[name='LoansTestId']").val(lid);
+	$("input[name='LoansTestMoney']").val(money);
+	$("input[name='LoansTestUserid']").val(uid);
 }
 //贷款审核是否通过下拉列表改变方法
 function shenheTong(){
@@ -715,8 +734,10 @@ function adminShenheLoansBtn() {
 	var lid=$("input[name='LoansTestId']").val();
 	var state=$("#shenheName").val();
 	var baca=$("#butongguoBecause").val();
+	var money=$("input[name='LoansTestMoney']").val();
+	var uid=$("input[name='LoansTestUserid']").val();
 	$.ajax({
-			url:"/usedcar/adminGoLoans?lid="+lid+"&lstate="+state+"&lmsgbecause="+baca,
+			url:"/usedcar/adminGoLoans?lid="+lid+"&lstate="+state+"&lmsgbecause="+baca+"&lmoney="+money+"&uid="+uid,
 			type:"post",
 			dataType:"text",
 			success:function (result) {
@@ -848,7 +869,6 @@ function adminAllTrancation(){
 			}
 		})
 }
-
 
 
 

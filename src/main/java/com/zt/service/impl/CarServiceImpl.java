@@ -129,4 +129,22 @@ public class CarServiceImpl implements CarService {
     public List<Car> jiangPageconut(Car car) {
         return carMapper.jiangPageconut(car);
     }
+
+    @Override
+    public String carall(int bid, int csid, int corolid, int uid, Double oprice, Double price, int addressid, int carage, String img){return carMapper.carall(bid, csid, corolid, uid, oprice, price, addressid, carage, img); }
+    @Override
+    public String carimg(int cid ,String src) {
+        return carMapper.carimg(cid,src);
+    }
+
+    @Override
+    public Car carcid() {
+        return carMapper.carcid();
+    }
+
+    /*
+     * 查询bid对应的csname
+     * */
+    @Override
+    public Car getcs(Car bid){return carMapper.getcs(bid);}
 }

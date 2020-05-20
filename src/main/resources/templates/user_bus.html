@@ -9,14 +9,13 @@
 <link rel="stylesheet" type="text/css" href="css/home.css"/>
 <link rel="stylesheet" type="text/css" href="css/hurst.css"/>
 <link rel="stylesheet" type="text/css" href="css/city.css">
-<script type="text/javascript" src="script/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="script/home_ban.js"></script>
 <script type="text/javascript" src="script/eg_top_search.js"></script>
-<script type="text/javascript" src="script/city.js"></script>
 <script type="text/javascript" src="script/snncar.js"></script>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -141,6 +140,31 @@ $(function () {
 		$(".sercat .wxewm").hide();
 	});
 });
+
+function cargetcid() {
+    //alert("车的id"+$("input[id=c-cid]").val());
+    var cid=$("input[id=c-cid]").val()
+    $("input[name=cid]").val(cid);
+    $.ajax({
+        type:'post',
+        url:'ifshow',
+        data:'cid='+cid,
+        dataType:'text',
+        success:function (result) {
+           // alert("结果"+result);
+            if(result=="yes"){
+                alert("已评论，请勿重复提交");
+                $("#myModal2").modal('hide');
+            }
+
+        },
+        error:function () {
+            alert("失败")
+
+        }
+    })
+
+}
 </script>
 
 <script type="text/javascript">
@@ -183,7 +207,7 @@ $(function () {
 </div>
 <div class="navigation">
   <div class="nav-cent">
-    <div class="logo"><a href="index.html"><img src="images/logo.png" width="240" /></a></div>
+      <div class="logo"><a href="index"><img src="images/1234.png" width="215"height="85px" /></a></div>
     <div class="city"> 
       <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left"> 
         <div id="JS_header_city_bar_box" class="hide_city_group">
@@ -213,30 +237,30 @@ $(function () {
       <span class="common-bg city-logo"></span> </div>
     <div class="sea">
       <div class="egc-sea-box">
-        <input type="text" class="sea-ipt-txt" placeholder="搜索您想要的车" />
+        <input type="hidden" class="sea-ipt-txt" placeholder="搜索您想要的车" />
         <a href="#" class="search-btn">搜索</a> </div>
     </div>
     <div class="hot-phone"> <i></i> <span class="js-change-phone">000-000-0000</span> </div>
   </div>
 </div>
 <ul class="navmenu">
-  <li class="active"><a href="index.html">首页</a><span></span></li>
- <li><a href="list.html">我要买车</a><span></span></li>
- <li><a href="wymc.html">我要卖车</a><span></span></li>
- <li><a href="#">车主晒单</a><span></span></li>
- <li><a href="about.html">关于我们</a><span></span></li>
+    <li class="active"><a href="index">首页</a><span></span></li>
+    <li><a href="listhtml2">我要买车</a><span></span></li>
+    <li><a href="wymchtml">我要卖车</a><span></span></li>
+    <li><a href="jlpageindex">车主晒单</a><span></span></li>
+    <li><a href="#">关于我们</a><span></span></li>
 </ul>
 <div class="clear_fix"></div>
 <div class="stress-search-box row">
   <div class="stress-close"><a href="javascript:;"></a></div>
   <div class="nav-cents">
     <ul>
-      <li class="logo"><a href="index.html"><img src="images/logo.png"  width="180"/></a></li>
-     <li><a href="index.html">首页</a></li>
-     <li><a href="list.html">我要买车</a></li>
-     <li><a href="wymc.html">我要卖车</a></li>
-     <li><a href="#">车主晒单</a></li>
-     <li><a href="about.html">关于我们</a></li>
+      <li class="logo"><a href="index"><img src="images/1234.png"  width="180"/></a></li>
+        <li class="active"><a href="index">首页</a><span></span></li>
+        <li><a href="listhtml2">我要买车</a><span></span></li>
+        <li><a href="wymchtml">我要卖车</a><span></span></li>
+        <li><a href="jlpageindex">车主晒单</a><span></span></li>
+        <li><a href="#">关于我们</a><span></span></li>
     </ul>
     <div class="seas">
       <div class="egc-sea-box">
@@ -255,6 +279,9 @@ $(function () {
                     <li class="on"><a href="selectTranction?uid=${list2.uid}">我的业务</a></li>
                     <li><a href="userinfoPwd">账户管理</a></li>
                     <li ><a href="userloan?uid=${list2.uid}">申请详细</a></li>
+
+                    <li ><a href="selectUserAssessment?uid=${list2.uid}">申请车辆</a></li>
+
                 </ul>
 			</div>
 			<div class="meb-right fr dInline">
@@ -266,7 +293,9 @@ $(function () {
         <div class="mr-infor fl dInline">
             <h2>中午好，尊敬的用户 <b>${list2.uname}</b></h2>
             <p>
-                手机：${list2.phone}  邮箱：  |  [ <a href="inTalk?meid=${list2.uid}">我的消息</a> ]
+
+                手机：${list2.phone}  邮箱：  |  [ <a href="getAllTalk?meid=${list2.uid}">全部消息</a> ] [ <a href="inTalk?meid=${list2.uid}">未读消息</a> ]
+
             </p>
         </div>
     </div>
@@ -290,9 +319,9 @@ $(function () {
 						</span>	<div class="carTxt fr dInline">
                                     <h2><a href="#" target="_blank">${transalist.brand.bname} ${transalist.cardseries.csname}${transalist.cid}  车龄${transalist.carage}年</a></h2>
                                     <p>		<span>车龄${transalist.carage}年</span>
-                                        <span>行驶里程：0.8万公里</span>
-                                        <span>排量：2.0T</span>
-                                        <span>排放标准：</span>
+                                        <span>颜色：${transalist.corol.corol}</span>
+                                        <span></span>
+                                        <span></span>
                                     </p>
                                     <div class="price clearfix" style="margin:5px 0;">
                                         <div class="fl dInline pNum">
@@ -304,6 +333,7 @@ $(function () {
 					<em>新车价：${transalist.oprice}万元(含${transalist.oprice}00元购置税)</em><br>
 					<input type="hidden" class="CarValue_287" value="{img:'/',id:'224',price:'28.2',status:'',title:'奥迪A4L 2013 款 2.0T CVT 35TFSI 技术型',url:'#'}">
 					<input type="hidden" id="c-cid"  value="${transalist.cid}"/>
+                     <input type="hidden" name="uid"  value="${list2.uid}"/>
                                         </span>
                                     </div>
                                     <div class="cs_bt clearfix">
@@ -338,9 +368,9 @@ $(function () {
 						</span>	<div class="carTxt fr dInline">
                                         <h2><a href="#" target="_blank">${transalistsell.brand.bname} ${transalistsell.cardseries.csname}${transalistsell.cid}  车龄${transalistsell.carage}年</a></h2>
                                         <p>		<span>车龄${transalistsell.carage}年</span>
-                                            <span>行驶里程：0.8万公里</span>
-                                            <span>排量：2.0T</span>
-                                            <span>排放标准：</span>
+                                            <span>颜色：${transalistsell.corol.corol}</span>
+                                            <span></span>
+                                            <span></span>
                                         </p>
                                         <div class="price clearfix" style="margin:5px 0;">
                                             <div class="fl dInline pNum">
@@ -349,7 +379,7 @@ $(function () {
                                                 <font> 万元</font>
                                             </div>
                                             <span class="num1 fl" style="height:43px;padding-top:10px;">
-					<em>新车价：${transalistsell.oprice}万元(含${transalistsell.oprice}00元购置税)</em><br>
+					<em>新车价：${transalistsell.oprice}万元(手续费：1000)</em><br>
 					<input type="hidden" class="CarValue_287" value="{img:'/',id:'224',price:'28.2',status:'',title:'奥迪A4L 2013 款 2.0T CVT 35TFSI 技术型',url:'#'}">
 					</span>
                                         </div>
@@ -411,7 +441,7 @@ $(function () {
   <div class="copyright">
     <div class="cent"> Copyright © 2016-2017, snncar.com,All Rights Reserved 皖ICP备16022456号-1</div>
   </div>
-    <!-- Modal修改菜品的模态框 -->
+    <!-- Modal上传买家秀的的模态框 -->
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -419,16 +449,16 @@ $(function () {
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">上传评论信息</h4>
                 </div>
+
                 <div class="modal-body" id="modiv">
-                    <form action="insertBuyshow" enctype="multipart/form-data" method="post">
-                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">uid：</span> <input type="text" name="uid" value="${list2.uid}" style="width: 40%;height: 40px; "><br>
-                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">cid：</span> <input type="text" name="cid" style="width: 40%;height: 40px; "><br>
+                    <form action="insertBuyshow" onsubmit="return selectbuyShowCid()" enctype="multipart/form-data" method="post">
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;"></span> <input type="hidden" name="uid" value="${list2.uid}" style="width: 40%;height: 40px; "><br>
+                        <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;"></span> <input type="hidden" name="cid" style="width: 40%;height: 40px; "><br>
                         <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">标题：</span> <input type="text" name="title" style="width: 40%;height: 40px; "><br>
                         <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;">   内容 ：</span><input type="text" name="showmsg"  style="width: 40%;height: 40px;margin-top:30px ; "><br>
                         <span style="font: '微软雅黑';font-size: 30px;font-weight: bold;margin-top:60px ;">   上传车图</span><input type="file" name="pic" style="width: 40%;height: 40px;margin-top:20px ; ">
-                       <!-- --><input type="submit" value="上传" style="width: 50px;height: 40px;margin-left:250px;background-color: #3379b5;color: white;border-color:#3379b5  ">
+                       <!-- --><input type="submit"  value="上传" style="width: 50px;height: 40px;margin-left:250px;background-color: #3379b5;color: white;border-color:#3379b5  ">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -647,12 +677,38 @@ function delOrder(act,meb){
 	});
 	return false;
 };
-function cargetcid() {
-    alert($("input[id=c-cid]").val());
-    var cid=$("input[id=c-cid]").val()
-    $("input[name=cid]").val(cid);
+function selectbuyShowCid() {
+    var cid = $("input[id=c-cid]").val();
+    var uid = $("input[name=uid]").val();
+    //alert("车id"+cid);
+    $.ajax({
+        type:'post',
+        url:'ifshow',
+        data:'cid='+cid,
+        dataType:"text",
+        success:function (result) {
+          // alert(result);
+            if(result=="yes"){
+                location.href="/usedcar/selectTranction?uid="+uid;
+                return false;
+
+            }
+            if(result=="no"){
+                alert("插入成功");
+                return true;
+            }
+
+        },
+        error:function () {
+            alert("失败");
+        }
+
+
+    })
 
 }
+
+
 </script>
 
 </body>

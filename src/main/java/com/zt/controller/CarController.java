@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -42,6 +43,15 @@ public class CarController {
     private  HistoryService historyService;
     @Autowired
     private TransactionService transactionService;
+    @Autowired
+    private  CardinfomaxService cardinfomaxService;
+    @Autowired
+    private CarinfoService carinfoService;
+    @Autowired
+    private AssessmentService assessmentService;
+     @Autowired
+    private BuyershowService buyershowService;
+
 
     /**
      *  首页的查询车辆
@@ -637,12 +647,18 @@ public class CarController {
         System.out.println("交易记录有"+transactionlistseller.size());
         return "user_bus";
     }
+    public double toDouble(double num) {
+        DecimalFormat dFormat = new DecimalFormat("#.00");
+        String yearString = dFormat.format(num);
+        Double temp = Double.valueOf(yearString);
+        return temp;
+    }
     /**
      * 买车控制器
      */
     @Transactional
     @RequestMapping("/buyCar")
-    public String buyCar(Car car,int uid,double money,int cid,int cuid,User user,Double umoney,Double cmoney,Transaction transaction){
+    public String buyCar(Car car,int uid,double money,int cid,int cuid,User user,Double umoney,Double cmoney,Transaction transaction,Model model){
     System.out.println("进入买车");
     System.out.println("买家id"+uid);
     System.out.println(money);
@@ -653,6 +669,7 @@ public class CarController {
     System.out.println("车主余额"+cmoney);
     //给买家减少钱
    Double money1 = umoney-money;
+   money1=toDouble(money1);
     User user1 = new User();
     user1.setUid(uid);
     user1.setMoney(money1);
@@ -661,6 +678,7 @@ public class CarController {
 
 
     Double cmoney2=cmoney+money;
+        cmoney2=toDouble(cmoney2);
     User user2 = new User();
     user2.setUid(cuid);
     user2.setMoney(cmoney2);
@@ -687,7 +705,53 @@ public class CarController {
     if(cuid==uid){
         return "404";
     }
-    return "forward:selectTranction?uid="+uid;
+
+
+    return "success";
+
 }
+    /**
+     * 卖车页面
+     */
+    @RequestMapping("/carall")
+    @ResponseBody
+    public String carall(HttpSession Session,int bid,int csid,int corolid,String uname ,Double oprice,Double price,int addressid,int carage,String img,Double pailiang,String youtype,int youname,String dangtype,int length,int width,int height,int mass){
+        System.out.println("进入");
+        //添加信息
+        User uids= userService.selectuid(uname);
+        String uids1=uids.getUid()+"";
+        int uid=Integer.parseInt(uids1);
+
+        String num=carService.carall(bid,csid,corolid,uid,oprice,price,addressid,carage,img);
+        //添加src
+        Car Cid = carService.carcid();
+        int cid=Cid.getCid();
+        String carim=carService.carimg(cid,img);
+        //添加高级配置
+        int max= cardinfomaxService.infomax(cid,pailiang,youtype,youname,dangtype);
+        int  info=carinfoService.addinfo(cid,length,width, height, mass);
+        System.out.println("uid="+uid);
+        System.out.println("cid="+cid);
+        int addas=assessmentService.addass(uid,cid);
+        if (num !=null && max<=0&&info<=0&&addas<=0) {
+            System.out.println("插入数据成功");
+            return "sell";
+        }
+        return "no";
+    }
+    @RequestMapping("/ifshow")
+    @ResponseBody
+    public  String ifshow(Buyershow buyershow,int cid){
+        System.out.println("车的id"+cid);
+        buyershow.setCid(cid);
+        Buyershow buyershow2= buyershowService.selectBuyershowCid(buyershow);
+        System.out.println("是否存在"+buyershow2);
+        if(buyershow2!=null){
+            return "yes";
+        }
+        return "no";
+
+
+    }
 
 }

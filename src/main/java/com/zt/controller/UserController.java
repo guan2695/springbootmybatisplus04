@@ -2,6 +2,10 @@ package com.zt.controller;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zt.entity.*;
+
+import com.zt.mapper.AssessoverMapper;
+import com.zt.mapper.LoansassesMapper;
+
 import com.zt.mapper.UsersMapper;
 import com.zt.service.*;
 import org.apache.ibatis.annotations.Update;
@@ -35,6 +39,25 @@ public class UserController {
     private LoansService loansService;
     @Autowired
     private BanksService banksService;
+
+
+    @Autowired
+    private BrandService brandService;
+    @Autowired
+    private AddressService addressService;
+
+    @Autowired
+    private LoansassesMapper loansassesMapper;
+    @Autowired
+    private AssessmentService assessmentService;
+    @Autowired
+    private AssessoverMapper assessoverMapper;
+    @Autowired
+    private CarseriesService carseriesService;
+
+    @Autowired
+    private CorolService corolService;
+
 
     /**
      * 得到所有用户
@@ -70,6 +93,7 @@ public class UserController {
         }
         session.setAttribute("list2", userlist2);
         int uid2 = userlist2.getUid();
+        System.out.println("该用户id"+uid2);
         history.setUid(uid2);
         List<History> listHistory= historyService.selectHistory(history);
         session.setAttribute("listHistory",listHistory);
@@ -179,6 +203,58 @@ public class UserController {
         return "loans";
     }
 
+
+    /**
+     * 查询失败原因
+     * @param
+     * @return
+     */
+    @RequestMapping("/selecterrorLoansasses")
+    @ResponseBody
+    public String    selecterrorLoansasses(Loansasses loansasses,int lid,Model model){
+        loansasses.setLid(lid);
+        Loansasses loansasses1 =loansassesMapper.selecterrorLoansasses(loansasses);
+        model.addAttribute("loansasses1",loansasses1);
+       String Lmsgstate=  loansasses1.getLmsgbecause();
+        return Lmsgstate;
+    }
+
+    /**
+     * 进入用户车辆审核页面
+     * @param
+     * @return
+     */
+    @RequestMapping("/selectUserAssessment")
+    public  String selectUserAssessment(Assessment assessment,int uid,Model model){
+        assessment.setUid(uid);
+        List<Assessment> assessmentList= assessmentService.selectUserAssessment(assessment);
+        model.addAttribute("assessmentList",assessmentList);
+
+        for (Assessment assessment1 : assessmentList) {
+           int cid= assessment1.getCid();
+//           Car car = new Car();
+//           car.setCid(cid);
+//          Car getCar= carService.getCarone(car);
+//          model.addAttribute("getCar",getCar);
+        }
+        return "user_car";
+    }
+
+    /**
+     * 查看车辆审核失败原因
+     * @param
+     * @return
+     */
+    @RequestMapping("/selectOver")
+    @ResponseBody
+    public String selectOver(Assessover assessover,int aid){
+        assessover.setAid(aid);
+        Assessover assessover1 = assessoverMapper.selectOver(assessover);
+       String because= assessover1.getBecause();
+    return because;
+    }
+
+
     public double toDouble(double num) {
         DecimalFormat dFormat = new DecimalFormat("#.00");
         String yearString = dFormat.format(num);
@@ -212,39 +288,70 @@ public class UserController {
         int num= loansService.insertloans(loans);
         System.out.println("插入贷款信息"+num);
 
-        User user2 = new User();
-        user2.setUid(cuid);
-        user2.setMoney(money3);
-        int num2=userService.updateMoney(user2);
-        System.out.println("车主增加金额"+num2);
+
+//        User user2 = new User();
+//        user2.setUid(cuid);
+//        user2.setMoney(money3);
+//        int num2=userService.updateMoney(user2);
+//        System.out.println("车主增加金额"+num2);
+
 
         if(num==0){
             return "404";
         }
-        return "index";
+
+
+        return "userloan?uid="+uid;
+
     }
 
     @RequestMapping("/wymchtml")
     public String wymchtml(HttpSession session, User user) {
         return "wymc";
     }
+
     /**
      * 用户注册
      * @param user
-     * @param model
+     * @param
      * @return
      */
 
     @RequestMapping("/register")
-    public String add(User user, Model model) {
-        System.out.println("页面传送的uname是" + user.getUname());
-        int num = userService.userregister(user);
-        System.out.println("num的值为" + num);
-        if (num == 0) {
-            return "index";
+    @ResponseBody
+    public String add(User user,String phone,String upwd,String uname,String verify,HttpSession session) {
+        user.setPhone(phone);
+        user.setUname(uname);
+        user.setUpwd(upwd);
+
+       String validateCode= (String) session.getAttribute("validateCode");
+        System.out.println("生成的验证码："+validateCode+"用户输入的验证码："+verify);
+
+        if(validateCode.equalsIgnoreCase(verify)){
+          System.out.println("页面传送的uname是" + user.getUname());
+          int num = userService.userregister(user);
+          System.out.println("num的值为" + num);
+          return "yes";
+        }else{
+            System.out.println("验证码错误");
+            return "error";
         }
-        return "index";
     }
+    /**
+     * 注册前判断phone是否存在
+     */
+    @RequestMapping("/Userphone")
+    @ResponseBody
+     public  String Userphone(String phone,User user){
+        user.setPhone(phone);
+          User user1= userService.userphone(user);
+          if(user1!=null){
+              //存在不能执行注册
+              return "yes";
+          }
+        return "no";
+    }
+
     /**
      * 修改用户密码
      */
@@ -273,6 +380,63 @@ public class UserController {
             return "forward:userinfo";
         }
         return "user";
+
+    }
+
+    /**
+     *
+     */
+    /**
+     *
+     */
+    @RequestMapping("/selllogin")
+    public String selllogin(HttpSession session,Model model,User user){
+        System.out.println(" --------selllogin--------- ");
+        System.out.println("phone" + user.getPhone());
+        User user1=userService.selllogin(user);
+        List<Brand> brandList= brandService.getAllBrand();
+        List<Address>addressList=addressService.getAllAddress();
+        System.out.println("brandlist="+brandList);
+        System.out.println("brandlist="+brandList);
+        model.addAttribute("brandlist",brandList);
+        model.addAttribute("addresslist",addressList);
+        List<Corol> corolList=corolService.getAllcorol();
+        System.out.println("corolList="+corolList);
+        model.addAttribute("corolList",corolList);
+        if(user1!=null){
+            return "sell";
+        }else {
+            System.out.println("查询方法失败");
+        }
+        return "wymc";
+    }
+    @RequestMapping("/selllogin01")
+    @ResponseBody
+    public String selllogin01(HttpSession session,Model model,User user){
+        System.out.println(" --------selllogin01--------- ");
+        System.out.println("phone" + user.getPhone());
+        User user1=userService.selllogin(user);
+        if(user1!=null){
+            return "wymc";
+        }else {
+            System.out.println("查询方法失败");
+        }
+        return "sell";
+    }
+
+
+    @RequestMapping("/selllogin02")
+    @ResponseBody
+    public List<Cardseries> selllogin02(HttpSession session,Model model,String bid){
+        System.out.println(" --------selllogin02--------- ");
+        System.out.println("bid="+bid);
+        if(bid==null){
+            bid="0";
+        }
+        List<Cardseries> cardseriesList=carseriesService.getCardSeriesByBrand((Integer.parseInt(bid)));
+        cardseriesList.forEach(System.out::println);
+        return cardseriesList;
+
     }
 //    //分页
 //    @RequestMapping("fenye")

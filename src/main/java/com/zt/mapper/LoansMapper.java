@@ -54,4 +54,10 @@ public interface LoansMapper {
     public int insertloans(Loans loans);
     @Select("SELECT * FROM loans WHERE uid=#{uid}")
     public List<Loans>getUserone(Loans loans);
+
+    /**
+     *
+     */
+
+
 }

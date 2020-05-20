@@ -24,6 +24,8 @@ public interface UserService {
      */
     public int userregister(User user);
 
+    public User userphone(User user);
+
 
     public User getOneUserById(int uid);
     public List<History> getAllHistoryByUser(int uid);
@@ -40,4 +42,8 @@ public interface UserService {
      *
      */
     public int updateMoney(User user);
+
+    public User selllogin(User user);
+
+    public User selectuid(String uname);
 }

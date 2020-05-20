@@ -19,4 +19,9 @@ public class AdminServiceImpl implements AdminService {
     public Admin adminlogin(Admin admin) {
         return adminMapper.adminlogin(admin);
     }
+
+    @Override
+    public int adminAddMoneyToUser(int uid, double money) {
+        return adminMapper.adminAddMoneyToUser(uid,money);
+    }
 }

@@ -27,18 +27,25 @@
 		</div>
 		
 		<!--聊天列表-->
+		<input type="hidden" value="${list2.uid}" id="loginUser">
 		<div class="middle on">
 			
 			<div class="office_text">
 				<ul class="user_list">
-					<li class="user_active">
-						<div class="user_head"><img src="images/head/15.jpg"/></div>
-						<div class="user_text">
-							<p class="user_name">早安无恙</p>
-						</div>
-						<div class="user_time">下午 2：54</div>
-					</li>
-					
+					<#if untalkList?? && (untalkList?size > 0)>
+					<#list untalkList as t>
+						<li class="user_active" onclick="showAllTalk(${t.meuser.uid},this)">
+							<div class="user_head"><img src="images/head/15.jpg"/></div>
+							<div class="user_text">
+								<p class="user_name">${t.meuser.uname}</p>
+							</div>
+							<div class="user_time">${t.unread}</div>
+						</li>
+					</#list>
+			<#else>
+
+		</#if>
+
 				</ul>
 			</div>	
 		</div>
@@ -49,9 +56,8 @@
 		<div class="talk_window">
 			<div class="windows_top">
 				<div class="windows_top_box">
-					<span>早安无恙</span>
+					<span id="talkTopTitle"></span>
 					<ul class="window_icon">
-					
 						<li><a href=""><img src="images/icon/icon10.png"/></a></li>
 					</ul>
 					<!-- 侧边栏内容 -->
@@ -60,11 +66,14 @@
 			</div>
 			
 			<!--聊天内容-->
+			<input type="hidden" name="idmeid"><!--自己，发消息-->
+			<input type="hidden" name="idotherid"><!--别人，收消息-->
 			<div class="windows_body">
 				<div class="office_text" style="height: 100%;">
 					<ul class="content" id="chatbox">
-						<li class="me"><img src="images/own_head.jpg" title="金少凯"><span>疾风知劲草，板荡识诚臣</span></li>
-						<li class="other"><img src="images/head/15.jpg" title="张文超"><span>勇夫安知义，智者必怀仁</span></li>
+
+						<!--<li class="me"><img src="images/icon/me.png" title="金少凯"><span>疾风知劲草，板荡识诚臣</span></li>-->
+						<!--<li class="other"><img src="images/icon/other.png" title="张文超"><span>勇夫安知义，智者必怀仁</span></li>-->
 					</ul>
 				</div>
 			</div>
@@ -101,15 +110,43 @@ window.onload=function(){
 		var chat = document.getElementById('chatbox');
 		var btn = document.getElementById('send');
 		var talk = document.getElementById('talkbox');
+
+
 		btn.onclick=function(){
+			var talkmsg=$("#input_box").val();
+			var meid=$("input[name='idmeid']").val();
+			var otherid=$("input[name='idotherid']").val();
+
+			//alert("消息："+talkmsg+"我的id："+meid+"他的id："+otherid);
+
 			if(text.value ==''){
 				alert('不能发送空消息');
 			}else{
-				chat.innerHTML += '<li class="me"><img src="'+'images/own_head.jpg'+'"><span>'+text.value+'</span></li>';
-				text.value = '';
-				chat.scrollTop=chat.scrollHeight;
-				talk.style.background="#fff";
-				text.style.background="#fff";
+				//alert("发送消息");
+				$.ajax({
+						url:"/usedcar/sendTalk",
+						type:"post",
+						dataType:"text",
+						contentType:"application/json",
+						data:JSON.stringify({"meid":meid,"otherid":otherid,"talkmsg":talkmsg}),
+						success:function (result) {
+							if(result=="yes"){
+								// alert("页面");
+								chat.innerHTML += '<li class="me"><img src="'+'images/icon/me.png'+'"><span>'+text.value+'</span></li>';
+								text.value = '';
+								chat.scrollTop=chat.scrollHeight;
+								talk.style.background="#fff";
+								text.style.background="#fff";
+							}else{
+								alert("消息发送失败");
+							}
+						},
+						error:function () {
+							alert("响应失败");
+						}
+					})
+
+
 			};
 		};
 	};

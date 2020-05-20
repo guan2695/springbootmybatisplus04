@@ -7,6 +7,9 @@
     VALUES(#{cid},#{length},#{width},#{height},#{mass})
 </insert>
 
-
+    <insert id="addinfo"  parameterType="com.zt.entity.Carinfo">
+        INSERT INTO carinfo(cid,length,width,height,mass)
+        VALUES(#{cid},#{length},#{width},#{height},#{mass})
+    </insert>
 
 </mapper>

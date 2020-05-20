@@ -22,4 +22,16 @@ public class ImagesServiceImpl implements ImagesService {
     public List<Images> getimgesone(Images images) {
         return imagesMapper.getimgesone(images);
     }
+
+    /*
+     * 上传图片+卖车信息
+     * */
+    @Override
+    public String imagesall(int cid ,String src) {
+        return imagesMapper.imagesall(cid,src);
+    }
+    @Override
+    public Images cidget() {
+        return imagesMapper.cidget();
+    }
 }

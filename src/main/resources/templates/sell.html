@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -20,7 +21,7 @@
 			}
 			#inputBox{
 				width: 100%;
-				height: 40px;
+				height: 55px;
 				border: 1px solid #FF6600;
 				color: #FF6600;
 				border-radius: 20px;
@@ -29,9 +30,10 @@
 				line-height: 40px;
 				overflow: hidden;
 				font-size: 16px;
+				padding-top: 10px;
 			}
-			#inputBox input{
-				width: 114%;
+			#inputBox #file{
+				width: 600px;
 				height: 40px;
 				opacity: 0;
 				cursor: pointer;
@@ -92,21 +94,54 @@
 				width: 100%;
 			height:650px;
 			}
+			.sub{
+				cursor: pointer;
+				width: 100px;
+				height: 35px;
+
+				border: none;
+				border: 1px #5bc0de solid;
+				border-radius: 5px;
+				text-align: center;
+				background-color: #5bc0de;
+				color: white;
+			}
+			.top1{
+				width: 100%;
+				height: 30px;
+				background-color: #fafafa;
+				border-bottom-color: #FFFAF0;
+				font-size: 14px;
+				color: #666666;
+			}
+
 		</style>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/imgsrc.css"/>
 		<script type="text/javascript"src="js/jquery-1.8.0.min.js"></script>
 		<script src="js/imgsrc.js" type="text/javascript" charset="utf-8"></script>
-		
+		<script type="text/javascript"src="js/sell.js"></script>
 	</head>
 	<body>
+	<form method="post" action="imagesUpload" enctype="multipart/form-data">
+	<#if (list2.uname)??>
+	<div class="top1"><span class="sh">全国热线000—000-0000</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		欢迎您：<span class="uname">${list2.uname}</span></div>
+	<#else>
+	<div><span class="ri">全国热线000—000-0000</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		欢迎您<span class="uname"></span></div>
+	</#if>
 		<div>
 			
 		<div class="imgsrc" style="width:650px;height:600px;position: relative;
 	bottom: 100px;	float: left;top: 50px;">
 			<div id="upBox">
-			 <div id="inputBox"><input type="file" title="请选择图片" id="file" multiple accept="image/png,image/jpg,image/gif,image/JPEG"/>点击选择图片</div>
-		     
+			 <div id="inputBox">
+
+				 <input type="file" name="uploadFiles" title="请选择图片" id="file" multiple accept="image/png,image/jpg,image/gif,image/JPEG"/>点击选择图片（不能大于或小于6张）
+
+
+			 </div>
 			 <div id="imgBox">
 				 
 			 </div>
@@ -120,30 +155,26 @@
 				<li class="li01">
 					<span class="tlti">基本信息：</span>
 					<ul class="ul02">
-						<li>地区:<span>东湖区</span><span>瑶湖区</span><span>青云谱区</span><span>新建区</span><span>湾里区</span><span>青山湖区</span><span>西湖区</span><span>红谷滩</span></li>
-						<li >车牌:<span class="mo1">大众</span><span class="mo2">本田</span><span class="mo3">奔驰</span><span class="mo4">丰田</span><span class="mo5">日产</span></li>
-						<li class="show">车系:<span>高尔夫</span><span>朗逸</span><span>POLO</span><span>迈腾</span></li>
-						<li class="hide1">车系:<span>雅阁</span><span>思域</span><span>飞度</span><span>凌派</span></li>
-						<li class="hide2">车系:<span>奔驰A</span><span>奔驰B</span><span>奔驰C</span><span>奔驰S</span></li>
-						<li class="hide3">车系:<span>卡罗拉</span><span>雷凌</span><span>凯美瑞</span><span>汉兰达</span></li>
-						<li class="hide4">车系:<span>轩逸</span><span>天籁</span><span>奇骏</span><span>逍客</span></li>
+						<li>地区:<#list addresslist as adlist><span value="${adlist.addid}">${adlist.address}</span></#list></li>
+
+						<li >车牌:<#list brandlist as bdlist><span class="mo1" value="${bdlist.bid}">${bdlist.bname}</span></#list> </li>
+
+                        <li class="show"></li>
+
 						<li class="se">颜色:
 						<div class="select">
-								<select name="cars">
-									<option value="">白色</option>
-									<option value="">黑色</option>
-									<option value="">灰色</option>
-									<option value="">红色</option>
-									<option value="">褐色</option>
-									<option value="">橙色</option>
-									<option value="">银色</option>
-									<option value="">紫色</option>
-									<option value="">蓝色</option>
+								<select name="cars1">
+									<#if corolList??>
+									<#list corolList as cllist><option value="${cllist.corolid}">${cllist.corol}</option> </#list>
+								     <#else>
+										<option value="1">白色</option>
+										<option value="2">黑色</option>
+										<option value="3">灰色</option>
+									</#if>
 								</select>
-								
 							</div>
-							车辆原价（<i class="i">单位为万</i>）：<input type="text" name="" id="input"value=""/> 万&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							现价：<input type="text" name="" id="input"value=""/> 万&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;车龄：<input type="text" name="" id="input"value=""/> 年
+							车辆原价（<i class="i">单位为万</i>）：<input type="text" name="oprice" id="input"value=""/> 万&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							现价：<input type="text" name="price" id="input"value=""/> 万&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;车龄：<input type="text" name="carage" id="input"value=""/> 年
 							</li>
 					</ul>
 					</li>
@@ -156,37 +187,39 @@
 					<div class="fot">
 						<span class="tlti">车辆基础配置:</span>
 						<ul class="ul03">
-							<li>长度：<input type="text" name="" id="input"value=""/>  cm</li>
-							<li>宽度：<input type="text" name="" id="input"value=""/> cm</li>
+							<li>长度：<input type="text" name="le"id="input" value=""/>  cm</li>
+							<li>宽度：<input type="text" name="wi"id="input" value=""/> cm</li>
 						<ul >
-							<li>高度：<input type="text" name="" id="input"value=""/> cm</li>
-							<li>质量：<input type="text" name="" id="input"value=""/> cm</li>
+							<li>高度：<input type="text" name="he"id="input" value=""/> cm</li>
+							<li>质量：<input type="text" name="qu"id="input" value=""/> cm</li>
 						</ul>
 						</ul>
 						</div>
 					<div class="fot">
 						<span class="tlti">车辆高级配置:</span>
 						<ul class="ul04">
-							<li>排量：<input type="text" name="" id="input"value=""/> L</li>
-							<li>燃油类型：汽油</li>
+							<li>排量：<input type="text" name="dis"id="input"  value=""/> L</li>
+							<li>燃油类型：<a class="qiyou">汽油</a></li>
 						<ul>
-							<li>燃油标号：<input type="text" name="" id="input"value=""/></li>
+							<li>燃油标号：<input type="text" name="gr"id="input" value=""/></li>
 							<li>制动类型：<div class="select">
-								<select name="cars">
-									<option value="">自动挡</option>
-									<option value="">手动挡</option>
+								<select name="cars2">
+									<option>自动挡</option>
+									<option>手动挡</option>
 									
 								</select>
 								
 							</div></li>
 						</ul>
-						<button class="but" type="button">提交</button>
+						<button class="but" type="submit">提交</button>
+
 						</ul>
 						</div>
 				</li>
 				
 			</ul>
 		</div>
+
 		</div>
 		<script src="js/uploadImg.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
@@ -199,6 +232,6 @@
 			})
 			
 		</script>
-		
+	</form>
 	</body>
 </html>
