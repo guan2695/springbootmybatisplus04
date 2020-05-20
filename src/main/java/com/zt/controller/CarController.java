@@ -661,43 +661,48 @@ public class CarController {
 
     return "success";
 }
-/**
- * 卖车页面
- */
-@RequestMapping("/carall")
-@ResponseBody
-public String carall(HttpSession Session,int bid,int csid,int corolid,int uid ,Double oprice,Double price,int addressid,int carage,String img,Double pailiang,String youtype,int youname,String dangtype,int length,int width,int height,int mass){
-    System.out.println("进入");
-    //添加信息
-    String num=carService.carall(bid,csid,corolid,uid,oprice,price,addressid,carage,img);
-    //添加src
-    Car Cid = carService.carcid();
-    System.out.println("Cid="+Cid);
-   String cimg=carService.carimg(Cid.getCid(),img);
-   System.out.println("cimg="+cimg);
-    //添加高级配置
-    String max= cardinfomaxService.infomax(Cid.getCid(),pailiang,youtype,youname,dangtype);
-    String  info=carinfoService.addinfo(Cid.getCid(),length,width, height, mass);
-    String addas=assessmentService.addass(Cid.getCid(),uid);
-    if (num !=null && cimg!=null&& max!=null&&info!=null&&addas!=null) {
-        System.out.println("插入数据成功");
-        return "wymc";
+    /**
+     * 卖车页面
+     */
+    @RequestMapping("/carall")
+    @ResponseBody
+    public String carall(HttpSession Session,int bid,int csid,int corolid,String uname ,Double oprice,Double price,int addressid,int carage,String img,Double pailiang,String youtype,int youname,String dangtype,int length,int width,int height,int mass){
+        System.out.println("进入");
+        //添加信息
+        User uids= userService.selectuid(uname);
+        String uids1=uids.getUid()+"";
+        int uid=Integer.parseInt(uids1);
+
+        String num=carService.carall(bid,csid,corolid,uid,oprice,price,addressid,carage,img);
+        //添加src
+        Car Cid = carService.carcid();
+        int cid=Cid.getCid();
+        String carim=carService.carimg(cid,img);
+        //添加高级配置
+        int max= cardinfomaxService.infomax(cid,pailiang,youtype,youname,dangtype);
+        int  info=carinfoService.addinfo(cid,length,width, height, mass);
+        System.out.println("uid="+uid);
+        System.out.println("cid="+cid);
+        int addas=assessmentService.addass(uid,cid);
+        if (num !=null && max<=0&&info<=0&&addas<=0) {
+            System.out.println("插入数据成功");
+            return "sell";
+        }
+        return "no";
     }
-    return "no";
-}
     @RequestMapping("/ifshow")
     @ResponseBody
     public  String ifshow(Buyershow buyershow,int cid){
-    System.out.println("车的id"+cid);
-    buyershow.setCid(cid);
-    Buyershow buyershow2= buyershowService.selectBuyershowCid(buyershow);
-    System.out.println("是否存在"+buyershow2);
-    if(buyershow2!=null){
-        return "yes";
+        System.out.println("车的id"+cid);
+        buyershow.setCid(cid);
+        Buyershow buyershow2= buyershowService.selectBuyershowCid(buyershow);
+        System.out.println("是否存在"+buyershow2);
+        if(buyershow2!=null){
+            return "yes";
+        }
+        return "no";
+
+
     }
-    return "no";
-
-
-}
 
 }

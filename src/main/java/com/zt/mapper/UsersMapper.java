@@ -92,4 +92,6 @@ public interface UsersMapper extends BaseMapper<User> {
      *
      */
     public User selllogin(User user);
+
+    public User selectuid(String uname);
 }

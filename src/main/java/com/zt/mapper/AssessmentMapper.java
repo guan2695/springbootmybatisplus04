@@ -22,7 +22,8 @@ public interface AssessmentMapper {
             @Result(column = "cid",property = "car",one = @One(select = "com.zt.mapper.CarMapper.GetOneCarAllInfo"))
     })
     public List<Assessment> getAllAssessmet();
-    public String addass(int cid,int uid);
+    @Insert("INSERT INTO assessment (uid,cid) VALUE (#{uid},#{cid})")
+    public int addass(int uid,int cid);
     /**
      * 管理员审核，更改审核表状态
      * @param assstate

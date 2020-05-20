@@ -35,4 +35,6 @@ public class AssessmentServiceImpl implements AssessmentService {
     public List<Assessment> selectUserAssessment(Assessment assessment) {
         return assessmentMapper.selectUserAssessment(assessment);
     }
+    @Override
+    public int addass(int uid,int cid){return assessmentMapper.addass(uid,cid);}
 }

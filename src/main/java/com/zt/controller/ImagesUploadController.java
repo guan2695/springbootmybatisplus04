@@ -41,12 +41,11 @@ public class ImagesUploadController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                return "wymc";
             }
     } else if (uploadFiles.length == 0) {
-        return "sell";
+        return "forward:selllogin";
     }
-        return "sell";
+        return "forward:selllogin";
 }
 
 }

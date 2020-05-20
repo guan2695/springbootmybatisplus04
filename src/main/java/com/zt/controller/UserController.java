@@ -39,11 +39,21 @@ public class UserController {
     private BanksService banksService;
 
     @Autowired
+    private BrandService brandService;
+    @Autowired
+    private AddressService addressService;
+
+    @Autowired
     private LoansassesMapper loansassesMapper;
     @Autowired
     private AssessmentService assessmentService;
     @Autowired
     private AssessoverMapper assessoverMapper;
+    @Autowired
+    private CarseriesService carseriesService;
+
+    @Autowired
+    private CorolService corolService;
 
     /**
      * 得到所有用户
@@ -79,6 +89,7 @@ public class UserController {
         }
         session.setAttribute("list2", userlist2);
         int uid2 = userlist2.getUid();
+        System.out.println("该用户id"+uid2);
         history.setUid(uid2);
         List<History> listHistory= historyService.selectHistory(history);
         session.setAttribute("listHistory",listHistory);
@@ -362,18 +373,56 @@ public class UserController {
     /**
      *
      */
+    /**
+     *
+     */
     @RequestMapping("/selllogin")
-    public String selllogin(HttpSession session,User user){
+    public String selllogin(HttpSession session,Model model,User user){
         System.out.println(" --------selllogin--------- ");
         System.out.println("phone" + user.getPhone());
         User user1=userService.selllogin(user);
-
+        List<Brand> brandList= brandService.getAllBrand();
+        List<Address>addressList=addressService.getAllAddress();
+        System.out.println("brandlist="+brandList);
+        System.out.println("brandlist="+brandList);
+        model.addAttribute("brandlist",brandList);
+        model.addAttribute("addresslist",addressList);
+        List<Corol> corolList=corolService.getAllcorol();
+        System.out.println("corolList="+corolList);
+        model.addAttribute("corolList",corolList);
         if(user1!=null){
             return "sell";
         }else {
             System.out.println("查询方法失败");
         }
         return "wymc";
+    }
+    @RequestMapping("/selllogin01")
+    @ResponseBody
+    public String selllogin01(HttpSession session,Model model,User user){
+        System.out.println(" --------selllogin01--------- ");
+        System.out.println("phone" + user.getPhone());
+        User user1=userService.selllogin(user);
+        if(user1!=null){
+            return "wymc";
+        }else {
+            System.out.println("查询方法失败");
+        }
+        return "sell";
+    }
+
+
+    @RequestMapping("/selllogin02")
+    @ResponseBody
+    public List<Cardseries> selllogin02(HttpSession session,Model model,String bid){
+        System.out.println(" --------selllogin02--------- ");
+        System.out.println("bid="+bid);
+        if(bid==null){
+            bid="0";
+        }
+        List<Cardseries> cardseriesList=carseriesService.getCardSeriesByBrand((Integer.parseInt(bid)));
+        cardseriesList.forEach(System.out::println);
+        return cardseriesList;
     }
 //    //分页
 //    @RequestMapping("fenye")

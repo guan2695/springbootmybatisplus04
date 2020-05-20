@@ -20,7 +20,7 @@ public class CarinfoServiceImpl implements CarinfoService {
         return carinfoMapper.insertCarinfo(carinfo);
     }
 
-    public String addinfo(int cid, int length,int width,int height,int mass){
+    public int addinfo(int cid, int length,int width,int height,int mass){
         return carinfoMapper.addinfo(cid,length,width,height,mass);
     }
 }

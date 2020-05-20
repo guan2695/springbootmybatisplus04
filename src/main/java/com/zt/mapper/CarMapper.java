@@ -162,4 +162,9 @@ public int insertCar(Car car);
     public String carall(int bid, int csid, int corolid, int uid, Double oprice, Double price, int addressid, int carage, String img);
     public String carimg(int cid,String src);
     public Car carcid();
+
+    /*
+     * 查询bid对应的csname
+     * */
+    public Car getcs(Car bid);
 }

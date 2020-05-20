@@ -25,6 +25,6 @@ public interface CardinfomaxMapper {
     @Select("SELECT * FROM cardinfomax WHERE cid=#{cid}")
     public Cardinfomax getOneCardinfoMax(int cid);
 
-    public String infomax(int cid,Double pailiang,String youtype,int youname,String dangtype);
+    public int infomax(int cid,Double pailiang,String youtype,int youname,String dangtype);
     public Cardinfomax focid();
 }

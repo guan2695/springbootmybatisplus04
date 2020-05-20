@@ -51,7 +51,7 @@
     SELECT  DISTINCT  h.hdate,h.cid,b.*,c.csid,cs.csname,co.*,u.*,c.oprice,c.price,c.putstate,c.assesstate,ad.*,c.carage,c.img,i.src
     FROM car c,brand b,cardseries cs,images i,USER u,corol co,address ad,history h
     WHERE c.bid=b.bid AND c.csid=cs.csid AND c.corolid=co.corolid AND c.uid=u.uid AND i.cid=c.cid AND c.addressid=ad.addid
-    AND h.cid=c.cid  AND h.uid=11 AND c.putstate=1
+    AND h.cid=c.cid  AND h.uid=#{uid} AND c.putstate=1
     GROUP BY h.cid ORDER BY h.hdate
 </select>
 

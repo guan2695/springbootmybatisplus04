@@ -19,7 +19,7 @@ public class CardinfomaxServiceImpl implements CardinfomaxService {
         return cardinfomaxMapper.insertCardinfomax(cardinfomax);
     }
 
-    public String infomax(int cid,Double pailiang,String youtype,int youname,String dangtype) {
+    public int infomax(int cid,Double pailiang,String youtype,int youname,String dangtype) {
         return cardinfomaxMapper.infomax(cid,pailiang,youtype,youname,dangtype);
     }
     public Cardinfomax focid(){

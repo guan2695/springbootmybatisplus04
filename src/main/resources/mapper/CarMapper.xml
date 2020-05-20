@@ -526,4 +526,7 @@
     SELECT MAX(cid) AS cid FROM car
     </select>
 
+    <select id="getcs" resultMap="usercar" parameterType="com.zt.entity.Car">
+    SELECT * FROM cardseries WHERE bid=#{bid}
+    </select>
 </mapper>

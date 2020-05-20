@@ -27,4 +27,8 @@
     <update id="updateMoney" parameterType="com.zt.entity.User">
         UPDATE USER SET money=#{money} WHERE uid=#{uid}
     </update>
+
+    <select id="selectuid" resultType="com.zt.entity.User">
+    SELECT uid FROM USER WHERE uname=#{uname}
+    </select>
 </mapper>

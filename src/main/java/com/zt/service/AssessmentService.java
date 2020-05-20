@@ -14,4 +14,6 @@ public interface AssessmentService {
     public int updAssessState(int assstate,int aid);
     public int addAssessOver(int aid,String because);
     public List<Assessment> selectUserAssessment(Assessment assessment);
+
+    public int addass(int uid,int cid);
 }

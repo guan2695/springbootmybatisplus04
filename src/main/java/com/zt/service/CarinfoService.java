@@ -14,5 +14,5 @@ public interface CarinfoService {
      */
     public int insertCarinfo(Carinfo carinfo);
 
-    public String addinfo(int cid,int length,int width,int height,int mass);
+    public int addinfo(int cid,int length,int width,int height,int mass);
 }

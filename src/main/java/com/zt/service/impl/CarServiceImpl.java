@@ -131,4 +131,10 @@ public class CarServiceImpl implements CarService {
     public Car carcid() {
         return carMapper.carcid();
     }
+
+    /*
+     * 查询bid对应的csname
+     * */
+    @Override
+    public Car getcs(Car bid){return carMapper.getcs(bid);}
 }
