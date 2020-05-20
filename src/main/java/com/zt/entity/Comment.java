@@ -16,6 +16,9 @@ public class Comment {
     //时间
     private String cdate;
 
+    //该评论的回复个数
+    private int replynum;
+
     //发布评论的用户
     private User user;
 

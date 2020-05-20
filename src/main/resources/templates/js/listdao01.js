@@ -297,6 +297,7 @@ function catcount() {
         data:'bid='+bname+'&csid='+csname+'&price='+price+'&carage='+carage+'&colorid='+corol+'&addid='+address,
         cache:false,
         success:function(result){
+            $(".pagei").find("i:eq(0)").html("1");
             $(".pagei").find("i:eq(1)").html(result);
         },
         error:function(){

@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zt.entity.Buyershow;
 import com.zt.entity.Comment;
+import com.zt.entity.Reply;
 import com.zt.service.BuyershowService;
+import com.zt.service.ReplyService;
 import ikidou.reflect.TypeBuilder;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,9 @@ public class BuyershowController {
 
     @Autowired
     private BuyershowService buyershowService;
+
+    @Autowired
+    private ReplyService replyService;
 
     /**
      * 得到所有的买家秀
@@ -252,6 +257,42 @@ public class BuyershowController {
         }
 
         return "forward:index";
+    }
+
+
+    @RequestMapping("/getallreply")
+    @ResponseBody
+    public List<Reply> getallreply(Model model,int commid){
+        System.out.println("-----执行回复《"+commid+"》-----");
+
+        List<Reply> replylist =replyService.getAllreply(commid);
+        replylist.forEach(System.out::println);
+        return replylist;
+    }
+
+    @RequestMapping(value ="/addreply")
+    public String addreply(Reply reply,String commid,String uid,String replyid,String comment){
+        System.out.println("-----执行添加回复《"+commid+"》-----");
+        if(commid==null && uid==null && replyid==null && comment==null){
+            System.out.println("回复参数有空！！！");
+            return "forward:getallreply?commid="+commid;
+        }
+        //得到当前时间
+        Date da=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String mytime=sdf.format(da);
+
+        reply.setCommid(Integer.parseInt(commid));
+        reply.setUid(Integer.parseInt(uid));
+        reply.setReplyid(Integer.parseInt(replyid));
+        reply.setComment(comment);
+        reply.setRedate(mytime);
+        System.out.println("添加的回复："+reply);
+        int num=replyService.addreply(reply);
+        if(num<=0){
+            System.out.println("添加回复失败！！！");
+        }
+       return "forward:getallreply?commid="+commid;
     }
 }
 
