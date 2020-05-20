@@ -24,6 +24,8 @@ public interface UserService {
      */
     public int userregister(User user);
 
+    public User userphone(User user);
+
 
     public User getOneUserById(int uid);
     public List<History> getAllHistoryByUser(int uid);
