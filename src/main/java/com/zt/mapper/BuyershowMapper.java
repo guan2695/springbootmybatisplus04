@@ -79,4 +79,11 @@ public interface BuyershowMapper {
      * 买家秀的插入
      */
     public int insertBuyershow(Buyershow buyershow);
+
+    /**
+     * 用来判断是否秀了该车
+     *
+     */
+    @Select("SELECT * FROM buyershow WHERE cid=#{cid}")
+    public Buyershow selectBuyershowCid(Buyershow buyershow);
 }

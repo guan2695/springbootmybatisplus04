@@ -287,23 +287,48 @@ public class UserController {
     public String wymchtml(HttpSession session, User user) {
         return "wymc";
     }
+
     /**
      * 用户注册
      * @param user
-     * @param model
+     * @param
      * @return
      */
-
     @RequestMapping("/register")
-    public String add(User user, Model model) {
-        System.out.println("页面传送的uname是" + user.getUname());
-        int num = userService.userregister(user);
-        System.out.println("num的值为" + num);
-        if (num == 0) {
-            return "index";
+    @ResponseBody
+    public String add(User user,String phone,String upwd,String uname,String verify,HttpSession session) {
+        user.setPhone(phone);
+        user.setUname(uname);
+        user.setUpwd(upwd);
+
+       String validateCode= (String) session.getAttribute("validateCode");
+        System.out.println("生成的验证码："+validateCode+"用户输入的验证码："+verify);
+
+        if(validateCode.equalsIgnoreCase(verify)){
+          System.out.println("页面传送的uname是" + user.getUname());
+          int num = userService.userregister(user);
+          System.out.println("num的值为" + num);
+          return "yes";
+        }else{
+            System.out.println("验证码错误");
+            return "error";
         }
-        return "index";
     }
+    /**
+     * 注册前判断phone是否存在
+     */
+    @RequestMapping("/Userphone")
+    @ResponseBody
+     public  String Userphone(String phone,User user){
+        user.setPhone(phone);
+          User user1= userService.userphone(user);
+          if(user1!=null){
+              //存在不能执行注册
+              return "yes";
+          }
+        return "no";
+    }
+
     /**
      * 修改用户密码
      */

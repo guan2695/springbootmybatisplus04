@@ -15,6 +15,7 @@
 <script type="text/javascript" src="script/snncar.js"></script>
 <script type="text/javascript" src="script/superslide.2.1.js"></script>
 <script type="text/javascript" src="js/img.js"></script>
+  <script type="text/javascript" src="js/count.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('.navmenu li').hover(function(){
@@ -93,7 +94,7 @@ $(function () {
 </div>
 <div class="navigation">
   <div class="nav-cent">
-    <div class="logo"><a href="index"><img src="images/logo.png" width="215"height="85px" /></a></div>
+    <div class="logo"><a href="adminLogin.html"><img src="images/logo.png" width="215"height="85px" /></a></div>
     <div class="city"> 
       <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
         <div id="JS_header_city_bar_box" class="hide_city_group">
@@ -163,7 +164,7 @@ $(function () {
           <div class="price-infor">
             <p><span class="nowprice">${getone.price}万元</span></p>
           </div>
-          <div class="price_button" id="sendprice">点击进行分期</div>
+
         </div>
         <div class="clear_fix"></div>
         <div class="item-box">
@@ -202,11 +203,9 @@ $(function () {
             <input type="hidden" value="${getone.cid}" id="c-cid"/>
           </div>
           <div class="order_button">
-            <#if (list2.uname)??>
-            <a href="newTalk?otherid=${getone.uid}" class="shouchang" id="sendMESStx">信息咨询</a><!--<a href="#" class="yshouchang">已收藏</a>-->
-            <#else>
 
-          </#if>
+            <a href="newTalk?otherid=${getone.uid}" class="shouchang" id="sendMESStx" onclick="return checkuname2()" >信息咨询</a><!--<a href="#" class="yshouchang">已收藏</a>-->
+
             <div id="fp">
               <ul style=" position:relative;">
                 <li>
@@ -476,37 +475,37 @@ $(function () {
         </form>
       </div>
 
-      <div class="p-dl">
-        <form class="registForm" action="register" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
-          <ul class="login-items">
-            <li class="clearfix">
-              <input class="input" name="phone" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）"required="required">
-            </li>
-            <li class="clearfix">
-              <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;"required="required" />
-              <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
-            </li>
-            <li class="clearfix">
-              <input class="input" type="text" value=""  name="uname" placeholder="姓名"required="required">
-            </li>
-            <li class="clearfix sex">
-              <input type="radio" checked="" name="gender" value="M" />
-              男&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="radio" name="gender" value="F" />
-              女 </li>
-            <li class="clearfix">
-              <input id="" class="input" type="password" name="upwd" value="" placeholder="输入密码"required="required">
-            </li>
-          </ul>
-          <div class="login-button">
-            <input type="hidden" value="" name="carid" class="ordercarid" />
-            <input type="hidden" value="" name="carstatus" class="orderstatus" />
-            <input type="submit"  value="立即注册" class="fM" onclick="$('#reg').submit()" />
-          </div>
-          <!---校验-->
+        <div class="p-dl">
+            <form class="registForm"    action="#" id="form2"  enctype="multipart/form-data" method="post" name="reg" >
+                <ul class="login-items">
+                    <li class="clearfix">
+                        <input class="input" id="phone2"  name="phone"  type="text" value=""  placeholder="手机号码（登录帐号）"required="required">
+                    </li>
+                    <li class="clearfix">
+                        <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;"required="required" />
+                        <div id="send"><img id="vimg" src="validateCodeServlet" onclick="changeCodeImg()" style="width: 100px;height:40px;margin-left: 10px"></div>
+                    </li>
+                    <li class="clearfix">
+                        <input class="input" type="text" value=""  name="uname" placeholder="姓名"required="required">
+                    </li>
+                    <li class="clearfix sex">
+                        <input type="radio" checked="" name="gender" value="M" />
+                        男&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="gender" value="F" />
+                        女 </li>
+                    <li class="clearfix">
+                        <input id="upwd2" class="input" type="password" name="upwd" value="" placeholder="输入密码"required="required">
+                    </li>
+                </ul>
+                <div class="login-button">
+                    <input type="hidden" value="" name="carid" class="ordercarid" />
+                    <input type="hidden" value="" name="carstatus" class="orderstatus" />
+                    <input type="button" onclick="regcheck()"  value="立即注册" class="fM" />
+                </div>
+                <!---校验-->
 
-        </form>
-      </div>
+            </form>
+        </div>
 
 
     </div>
@@ -567,16 +566,104 @@ $("#sendprice").live("click",function(){
     });
 }); 
 		</script>
+<!--会员登录和注册弹出框结束-->
 <div id="leftsead">
   <ul>
-    <li> <a id="top_btn"> <img src="images/foot03/ll06.png" width="47" height="49" class="hides"/> <img src="images/foot03/l06.png" width="47" height="49" class="shows" /> </a> </li>
-    <li> <a href=""> <img src="images/foot03/ll03.png"  width="47" height="49" class="hides"/> <img src="images/foot03/l03.png" width="47" height="49" class="shows" /> </a> </li>
-    <li> <a href=""> <img src="images/foot03/ll02.png" width="166" height="49" class="hides"/> <img src="images/foot03/l04.png" width="47" height="49" class="shows" /> </a> </li>
-    <li> <a class="youhui"> <img src="images/foot03/l02.png" width="47" height="49" class="shows" /> <img src="images/foot03/zfew.jpg" width="196" height="205" class="hides" usemap="#taklhtml"/> </a> </li>
-  </ul>
-</div>
-<!--leftsead end--> 
+    <li class="licss">
+      <a id="top_btn">
+        <img src="images/foot03/ll06.png" width="47" height="49" class="hides"/>
+        <img src="images/foot03/l06.png" width="47" height="49" class="shows" />
+      </a>
+    </li>
 
+    <li class="licss">
+
+      <a id="history">
+        <#if (list2)??>
+        <div class="moder">
+          <div class="car_show"><h1>我看过的车</h1>
+            <h2  onclick="qingkong(${list2.uid})" style="margin-left: 70%;">清空浏览记录</h2>
+          </div>
+          <div class="boer">
+            <ul class="ul1" id="historyuid">
+
+              <#list listHistory as listHist>
+              <input type="hidden" name="hcid" value="${listHist.cid}">
+              <li class="li_h1">
+                <div class="img_car1">  <img src="images/${listHist.car.img}" onclick="dianjitu(${listHist.cid})"  width="280px"height="200px"></div>
+                <p class="fontc">${listHist.car.brand.bname} ${listHist.car.cardseries.csname}${listHist.car.cid} 车龄${listHist.car.carage}年</p>
+                <p class="fc-gray"> <span class="tag-gray">${listHist.car.address.address}</span> <span class="">车龄${listHist.car.carage}年</span>
+                  <em class="shuxian">|</em> 颜色:${listHist.car.corol.corol} </p>
+
+
+                <p class="fontc"> <span> <i class="red"> ${listHist.car.price}万 </i> </span> <s>${listHist.car.oprice}万</s> </p>
+              </li></#list>
+
+  </ul>
+
+</div>
+</div>
+<img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
+<img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
+</a>
+</li>
+
+<li class="licss">
+  <a href="">
+    <img src="images/foot03/ll02.png" width="166" height="49" class="hides"/>
+    <img src="images/foot03/l04.png" width="47" height="49" class="shows" />
+  </a>
+</li>
+
+<li class="licss">
+  <a class="youhui">
+    <img src="images/foot03/l02.png" width="47" height="49" class="shows" />
+    <img src="images/foot03/zfew.jpg" width="196" height="205" class="hides" usemap="#taklhtml"/>
+  </a>
+</li>
+
+<#else>
+<div class="moder">
+  <div class="car_show"><h1>我看过的车</h1></div>
+  <div class="boer">
+    <ul class="ul1">
+      </li>
+    </ul>
+
+  </#if>
+
+
+</div>
+</div>
+
+<img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
+<img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
+</a>
+</li>
+
+<li class="licss">
+  <a href="">
+    <img src="images/foot03/ll02.png" width="166" height="49" class="hides"/>
+    <img src="images/foot03/l04.png" width="47" height="49" class="shows" />
+  </a>
+</li>
+
+<li class="licss">
+  <a class="youhui">
+    <img src="images/foot03/l02.png" width="47" height="49" class="shows" />
+    <img src="images/foot03/zfew.jpg" width="196" height="205" class="hides" usemap="#taklhtml"/>
+  </a>
+</li>
+<#if (list2.uname)??>
+<input name="phone1" type="hidden" value="${list2.phone}">
+<input name="mima" type="hidden" value="${list2.upwd}">
+<#else>
+<input name="phone1" type="hidden" value="">
+<input name="mima" type="hidden" value="">
+</#if>
+</ul>
+</div>
+<!--leftsead end-->
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -586,9 +673,9 @@ $(document).ready(function(){
 		}else{
 			$(this).children("img.hides").show();
 			$(this).children("img.shows").hide();
-			$(this).children("img.hides").animate({marginRight:'0px'},'slow'); 
+			$(this).children("img.hides").animate({marginRight:'0px'},'slow');
 		}
-	},function(){ 
+	},function(){
 		if($(this).prop("className")=="youhui"){
 			$(this).children("img.hides").hide('slow');
 		}else{
@@ -599,7 +686,10 @@ $(document).ready(function(){
 	$("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({scrollTop: 0}, 600);});
 
 });
-</script> 
+
+
+
+</script>
 <script>
 	$(function(){
 		$("#fp ul li").hover(function(){
@@ -629,7 +719,25 @@ $(document).ready(function(){
       }
       location.href = "/usedcar/peynow?cid=" + cid;
       return true;
+    };
+
+    function  checkuname2() {
+      var uname = $("input[id=u-uname]").val();
+      var cid = $("input[id=c-cid]").val();
+      var uuid = $("input[id=u-id]").val();
+      var cuid = $("input[id=c-uid]").val();
+      if (uname == "" || uname == null) {
+        alert("请先登录");
+        location.href = "#"
+        return false;
+      }
+      if(uuid==cuid) {
+        alert("该车是自己的不用咨询");
+        return false;
+      }
+      return true;
     }
+
 </script>
 </body>
 </html>

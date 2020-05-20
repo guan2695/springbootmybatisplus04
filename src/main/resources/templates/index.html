@@ -84,7 +84,7 @@
 
 <div class="navigation">
   <div class="nav-cent">
-    <div class="logo"><a href="index"><img src="images/logo.png" width="240" /></a></div>
+    <div class="logo"><a href="adminLogin.html"><img src="images/logo.png" width="240" /></a></div>
     <div class="city">
       <div id="JS_hide_city_menu_11" class="city-select cut_handdler Left">
         <div id="JS_header_city_bar_box" class="hide_city_group">
@@ -349,7 +349,7 @@
 <!--车类列表-->
 <div class="car_feature">
   <div class="menucar">
-    <div class="more" id="11"><a href="listhtml">查看全部>></a></div>
+    <div class="more" id="11"><a href="listhtml2">查看全部>></a></div>
     <ul>
       <li class="hover" id="tabs2_0" onmousemove="isShow4('tabs2_0','divs2_0','block','<a href=list.html>查看全部>></a>');">热卖好车</li>
       <li id="tabs2_1" onmousemove="isShow4('tabs2_1','divs2_1','block','<a href=list.html>查看全部>></a>');">最新上架</li>
@@ -595,7 +595,13 @@
         alert("失败");
       }
     })
-  }
+  };
+
+
+
+
+    
+    
 </script>
 <!--会员登录和注册弹出框开始-->
 <div id="popBox">
@@ -627,15 +633,16 @@
 
         </form>
       </div>
+
       <div class="p-dl">
-        <form class="registForm" action="register" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
+        <form class="registForm"    action="#" id="form2"  enctype="multipart/form-data" method="post" name="reg" >
           <ul class="login-items">
             <li class="clearfix">
-              <input class="input" name="phone" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）"required="required">
+                <input class="input" id="phone2"  name="phone"  type="text" value=""  placeholder="手机号码（登录帐号）"required="required">
             </li>
             <li class="clearfix">
               <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;"required="required" />
-              <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
+              <div id="send"><img id="vimg" src="validateCodeServlet" onclick="changeCodeImg()" style="width: 100px;height:40px;margin-left: 10px"></div>
             </li>
             <li class="clearfix">
               <input class="input" type="text" value=""  name="uname" placeholder="姓名"required="required">
@@ -646,13 +653,13 @@
               <input type="radio" name="gender" value="F" />
               女 </li>
             <li class="clearfix">
-              <input id="" class="input" type="password" name="upwd" value="" placeholder="输入密码"required="required">
+              <input id="upwd2" class="input" type="password" name="upwd" value="" placeholder="输入密码"required="required">
             </li>
           </ul>
           <div class="login-button">
             <input type="hidden" value="" name="carid" class="ordercarid" />
             <input type="hidden" value="" name="carstatus" class="orderstatus" />
-            <input type="submit"  value="立即注册" class="fM" onclick="$('#reg').submit()" />
+            <input type="button" onclick="regcheck()"  value="立即注册" class="fM" />
           </div>
           <!---校验-->
 
@@ -664,6 +671,7 @@
 </div>
 <script type="text/javascript" charset="utf-8">
 </script>
+
 <!--会员登录和注册弹出框结束-->
 <div id="leftsead">
   <ul>
@@ -733,6 +741,7 @@
 
 </div>
 </div>
+
 <img  id="asd" src="images/111.png" width="28" height="28" class="hides"/>
 <img id="shows1" src="images/111.png" width="28" height="28" class="shows" />
 </a>

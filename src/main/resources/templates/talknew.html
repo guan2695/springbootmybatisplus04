@@ -38,16 +38,26 @@
 			
 			<div class="office_text">
 				<ul class="user_list">
-
-					<#list untalkList as t>
-					<li class="user_active" onclick="showAllTalk(${t.meuser.uid},this)">
+					<#if untalkList?? && (untalkList?size > 0)>
+					<#list untalkList as ut>
+					<li class="user_active" onclick="showAllTalk(${ut.meuser.uid},this)">
 						<div class="user_head"><img src="images/head/15.jpg"/></div>
 						<div class="user_text">
-							<p class="user_name">${t.meuser.uname}</p>
+							<p class="user_name">${ut.meuser.uname}</p>
 						</div>
-						<div class="user_time2">${t.talkdate}</div>
+						<div class="user_time2">${ut.talkdate}</div>
 					</li>
 				</#list>
+			<#else>
+				<li class="user_active" >
+					<div class="user_head"><img src="images/head/15.jpg"/></div>
+					<div class="user_text">
+						<p class="user_name">${t.meuser.uname}</p>
+					</div>
+					<div class="user_time2">${t.talkdate}</div>
+				</li>
+
+		</#if>
 
 
 				</ul>
@@ -71,7 +81,11 @@
 			
 			<!--聊天内容-->
 			<input type="hidden" name="idmeid"><!--自己，发消息-->
-			<input type="hidden" name="idotherid"><!--别人，收消息-->
+			<#if t??>
+			<input type="hidden" name="idotherid" value="${t.otheruser.uid}"><!--别人，收消息-->
+			<#else>
+			<input type="hidden" name="idotherid">
+			</#if>
 			<div class="windows_body">
 				<div class="office_text" style="height: 100%;">
 					<ul class="content" id="chatbox">
@@ -112,10 +126,11 @@ window.onload=function(){
 
 		btn.onclick=function(){
 			var talkmsg=$("#input_box").val();
-			var meid=$("input[name='idmeid']").val();
+			// var meid=$("input[name='idmeid']").val();
+			var meid=$("#loginUser").val();//当前登录的用户
 			var otherid=$("input[name='idotherid']").val();
 
-			//alert("消息："+talkmsg+"我的id："+meid+"他的id："+otherid);
+			alert("消息："+talkmsg+"我的id："+meid+"他的id："+otherid);
 
 			if(text.value ==''){
 				alert('不能发送空消息');
