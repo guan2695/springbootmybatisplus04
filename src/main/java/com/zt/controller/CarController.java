@@ -729,16 +729,17 @@ public class CarController {
     @ResponseBody
     public String carall(HttpSession Session,int bid,int csid,int corolid,String uname ,Double oprice,Double price,int addressid,int carage,String img,Double pailiang,String youtype,int youname,String dangtype,int length,int width,int height,int mass){
         System.out.println("进入");
-        //添加信息
         User uids= userService.selectuid(uname);
         String uids1=uids.getUid()+"";
         int uid=Integer.parseInt(uids1);
-
         String num=carService.carall(bid,csid,corolid,uid,oprice,price,addressid,carage,img);
         //添加src
         Car Cid = carService.carcid();
         int cid=Cid.getCid();
         String carim=carService.carimg(cid,img);
+        System.out.println("img="+img);
+        //添加信息
+
         //添加高级配置
         int max= cardinfomaxService.infomax(cid,pailiang,youtype,youname,dangtype);
         int  info=carinfoService.addinfo(cid,length,width, height, mass);

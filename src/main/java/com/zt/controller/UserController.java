@@ -400,7 +400,7 @@ public class UserController {
         System.out.println("phone" + user.getPhone());
         User user1=userService.selllogin(user);
         System.out.println("userlist" + user1);
-        model.addAttribute("userlist",user1);
+        session.setAttribute("userlist123",user1);
         List<Brand> brandList= brandService.getAllBrand();
         List<Address>addressList=addressService.getAllAddress();
         System.out.println("brandlist="+brandList);
@@ -416,6 +416,19 @@ public class UserController {
             System.out.println("查询方法失败");
         }
         return "wymc";
+    }
+    @RequestMapping("/getusercarall")
+    public String selllogin(HttpSession session,Model model){
+        List<Brand> brandList= brandService.getAllBrand();
+        List<Address>addressList=addressService.getAllAddress();
+        System.out.println("brandlist="+brandList);
+        System.out.println("brandlist="+brandList);
+        model.addAttribute("brandlist",brandList);
+        model.addAttribute("addresslist",addressList);
+        List<Corol> corolList=corolService.getAllcorol();
+        System.out.println("corolList="+corolList);
+        model.addAttribute("corolList",corolList);
+        return "sell";
     }
     @RequestMapping("/selllogin01")
     @ResponseBody

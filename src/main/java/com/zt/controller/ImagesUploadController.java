@@ -17,7 +17,7 @@ public class ImagesUploadController {
     @RequestMapping("/imagesUpload")
     public String imagesUpload(MultipartFile[] uploadFiles, HttpServletRequest request){
         System.out.println(uploadFiles.length);
-        if (uploadFiles.length > 0) {
+        if (uploadFiles.length > 0&&uploadFiles==null) {
             for (int i = 0; i < uploadFiles.length; i++) {
                 MultipartFile uploadFile = uploadFiles[i];
                 //设置上传文件的位置在该项目目录下的uploadFile文件夹下，并根据上传的文件日期，进行分类保存
@@ -43,10 +43,10 @@ public class ImagesUploadController {
                 }
             }
     } else if (uploadFiles.length == 0) {
-        return "forward:selllogin";
+            return "forward:getusercarall";
+        }
+        return "forward:getusercarall";
     }
-        return "forward:selllogin";
-}
 
 }
 

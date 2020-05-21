@@ -3,6 +3,10 @@
     function tiao(showid,uid) {
         var tr="";
         var comm=$(".comment_xie textarea").val();
+        if (comm == "") {
+            alert("评论内容不能为空！");
+            return;
+        }
         $.ajax({
             type:'post',
             url:'addComment',
@@ -33,7 +37,10 @@
         var commid=$(this01).attr("name");           //得到评论id
         //alert("评论id"+commid);
         var louid=$(this01).prev().attr("name");     //得到楼主id
+        var louname=$(this01).parent().prev().find("span:eq(0)").html();  //得到楼主名字
+        //alert("楼主名字："+louname);
 
+        $(".comment_hui").find("input:eq(0)").attr({"placeholder":"回复："+louname});
         $(".comment_hui").find("button").attr({"name":commid});
         $(".comment_hui").find("input:eq(1)").attr({"name":louid});
 
@@ -84,7 +91,17 @@ $(function () {
        var louid=$(this).next().attr("name");       //搂住id
        var loginid=$(this).next().val();          //得到登录者id
        var comment=$(this).prev().val();
-       alert("commid"+commid+"louid"+louid+"loginid"+loginid);
+       if(loginid==louid){
+           alert("不能回复自己的评论！");
+           $(".comment_hui").find("input:eq(0)").val("");
+           return;
+       }
+       if(comment==""){
+           alert("回复评论没有内容！！");
+           $(".comment_hui").find("input:eq(0)").val("");
+           return;
+       }
+       //alert("commid"+commid+"louid"+louid+"loginid"+loginid);
        //模态框异步
        $.ajax({
            type:'post',

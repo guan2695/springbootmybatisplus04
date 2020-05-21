@@ -7,6 +7,16 @@ function csids(obj) {
 }
 
 $(function () {
+    $.ajax({
+        url:'/usedcar/getusercarall',
+        post:'json',
+        cache:false,
+        success:function () {
+        },error:function () {
+
+        }
+    })
+
 
     var bid = $(".ul02 li:eq(1) .mo1").attr("value");
 
@@ -93,7 +103,7 @@ $(function () {
                                                         if (width != ""){
                                                             if (height != ""){
                                                                 if (mass != ""){
-
+                                                                alert(image)
                                                                     $.ajax({
                                                                         url: "/usedcar/carall",
                                                                         type: "post",
@@ -132,7 +142,7 @@ $(function () {
                                                                             }
                                                                         });
                                                                     }
-                                                                    alert("添加成功！！")
+
                                                                 } else {
                                                                     alert("请输入质量！")
                                                                 }

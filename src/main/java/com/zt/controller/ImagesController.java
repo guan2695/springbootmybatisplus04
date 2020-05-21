@@ -38,6 +38,13 @@ public class ImagesController {
     @ResponseBody
     public String imagesall(String src){
         System.out.println("--------------imagesall--------------");
+        System.out.println("--------------imagesall--------------");
+        System.out.println("--------------imagesall--------------");
+        System.out.println("--------------imagesall--------------");
+        System.out.println("--------------imagesall--------------");
+        System.out.println("--------------imagesall--------------");
+        System.out.println("--------------imagesall--------------");
+        System.out.println("--------------imagesall--------------");
         //得到上传文件名
         System.out.println("图片的名称" + src);
         Images Cid = imagesService.cidget();

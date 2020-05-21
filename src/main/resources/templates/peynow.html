@@ -69,11 +69,12 @@
 				<h6><a href="info.html"><i class="fa fa-angle-double-left" aria-hidden="true"></i>退出付款</a></h6>
 			</div>	
 			<div class="w3pay-right wthree-pay-grid">
-				<div class="card-bounding agileits"> 
+				<div class="card-bounding agileits">
+					<#if (list2.uname)??>
 					<form action="buyCar?uid=${list2.uid}&money=${getone.price}&cuid=${getone.uid}&cid=${getone.cid}&umoney=${list2.money}&cmoney=${getone.user.money}" method="post" >
 						<div class="card-details"> 
 							<aside>卡上余额：</aside>
-							<#if (list2.uname)??>
+
 							<span class="span01">${list2.money}万</span>
 							<input type="hidden" id="u-money" value="${list2.money}">
 							<input type="hidden" id="c-cheid" value="${getone.cid}">
