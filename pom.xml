@@ -85,7 +85,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.49</version>
+            <version>1.2.83</version>
             <scope>test</scope>
         </dependency>
         <!--使用TypeBuilder来绑定泛型-->
@@ -135,7 +135,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.1.15</version>
+            <version>1.2.83</version>
         </dependency>
         <!-- 上传commons-lang3 -->
         <dependency>
